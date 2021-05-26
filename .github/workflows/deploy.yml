@@ -20,6 +20,11 @@ jobs:
       - run: npm run test
 
       - name: Deploy npm Packages
+        run: npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+      - name: Deploy npm Packages
         run: npx pleb publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
