@@ -1,0 +1,4 @@
+node_modules
+packages/.cache
+packages/*/index.d.ts
+*.log

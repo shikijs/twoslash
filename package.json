@@ -1,0 +1,20 @@
+{
+  "name": "shiki-twoslash-monorepo",
+  "workspaces": [
+    "./packages/shiki-twoslash",
+    "./packages/remark-shiki-twoslash",
+    "./packages/*"
+  ],
+  "scripts": {
+    "test": "jest",
+    "build": "npm run build --workspaces --if-present"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.3",
+    "esbuild": "^0.12.3",
+    "esbuild-jest": "^0.5.0",
+    "jest": "^27.0.1",
+    "pleb": "^3.4.3",
+    "typescript": "^4.2.4"
+  }
+}

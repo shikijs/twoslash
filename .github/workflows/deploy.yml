@@ -1,0 +1,23 @@
+name: Deploy merged versions
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+          registry-url: "https://registry.npmjs.org/"
+
+      - run: npm build
+      - run: npm test
+
+      - name: Deploy npm Packages
+        run: npx pleb publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
