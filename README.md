@@ -1,6 +1,6 @@
 <center><img src="./misc/repo-icon.png" /></center>
 
-You take some Shiki, add a hint of TypeScript compiler, and 🎉 incredible statically generated code samples for describing code.
+You take some Shiki, add a hint of TypeScript compiler, and 🎉 incredible statically generated code samples.
 
 ### This Repo
 
