@@ -19,8 +19,8 @@ git clone https://github.com/shiki/twoslash
 cd twoslash
 
 npm i
-npm build
-npm test
+npm run build
+npm run test
 ```
 
 ### TODO
@@ -28,3 +28,4 @@ npm test
 - Finish design on microsite
 - Website
 - Docusaurus support is broken
+- Shiki-twoslash tsconfig support needs access to the TS website repo to extract info
