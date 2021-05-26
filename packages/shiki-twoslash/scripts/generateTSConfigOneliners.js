@@ -30,3 +30,5 @@ const content = `export const tsconfig = {
 }
 `
 writeFileSync(fixturePath, format(content, { filepath: fixturePath }))
+
+exec("rm -rf TypeScript-website", { stdio: "inherit" })
