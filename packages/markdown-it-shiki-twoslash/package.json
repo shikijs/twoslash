@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/microsoft/TypeScript-Website/issues"
   },
-  "description": "A markdown-it plugin for Shiki with Wwoslash code samples",
+  "description": "A markdown-it plugin for Shiki with Twoslash code samples",
   "author": "Orta Therox",
   "main": "./dist/index.js",
   "module": "./dist/markdown-it-shiki-twoslash.esm.js",
@@ -21,8 +21,8 @@
   ],
   "scripts": {
     "start": "tsdx watch",
-    "bootstrap": "yarn build",
-    "prepublishOnly": "yarn build",
+    "bootstrap": "npm run build",
+    "prepublishOnly": "npm run build",
     "build": "tsdx build",
     "test": "tsdx test",
     "lint": "tsdx lint"
@@ -42,8 +42,5 @@
     "tslib": "^1.10.0",
     "typescript": "*",
     "unified": "^8.4.2"
-  },
-  "jest": {
-    "testEnvironment": "node"
   }
 }

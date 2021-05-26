@@ -114,5 +114,5 @@ export const tsconfig = {
   useDefineForClassFields: `Emit ECMAScript-standard-compliant class fields.`,
   verbose: `Enable verbose logging`,
   watchDirectory: `Specify how directories are watched on systems that lack recursive file-watching functionality.`,
-  watchFile: `Specify how the TypeScript watch mode works.`,
+  watchFile: `Specify how the TypeScript watch mode works.`
 };

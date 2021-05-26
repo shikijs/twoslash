@@ -21,8 +21,8 @@
   ],
   "scripts": {
     "start": "tsdx watch",
-    "bootstrap": "yarn build",
-    "prepublishOnly": "yarn build",
+    "bootstrap": "npm run build",
+    "prepublishOnly": "npm run build",
     "build": "tsdx build",
     "test": "tsdx test",
     "lint": "tsdx lint"

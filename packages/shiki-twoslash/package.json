@@ -21,9 +21,9 @@
   ],
   "scripts": {
     "start": "tsdx watch",
-    "prepublishOnly": "yarn build",
-    "bootstrap": "node scripts/generateTSConfigOneliners.js && yarn build",
-    "build": "tsdx build && yarn tsc src/dom.ts --outDir dist",
+    "prepublishOnly": "npm run ",
+    "update": "node scripts/generateTSConfigOneliners.js",
+    "build": "tsdx build && npx tsc src/dom.ts --outDir dist",
     "test": "tsdx test",
     "lint": "tsdx lint"
   },
@@ -41,6 +41,7 @@
     "tslib": "^1.10.0",
     "typescript": "*",
     "unified": "^8.4.2",
-    "unist-util-visit": "^2.0.0"
+    "unist-util-visit": "^2.0.0",
+    "gray-matter": "^4.0.3"
   }
 }

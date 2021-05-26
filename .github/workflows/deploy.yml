@@ -15,6 +15,7 @@ jobs:
           registry-url: "https://registry.npmjs.org/"
 
       - run: npm install
+      - run: npm run update --workspaces --if-present
       - run: npm run build
       - run: npm run test
 

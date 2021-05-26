@@ -2,8 +2,6 @@
 /**
  * Loops through the tsconfig markdown docs and generates a .ts files
  * with the one-liners so they can show up in the rendered output for tsconfig JSONs
-
-   yarn workspace shiki-twoslash bootstrap
  */
 
 const { readdirSync, writeFileSync } = require("fs")
@@ -11,7 +9,10 @@ const { join } = require("path")
 const { read } = require("gray-matter")
 const { format } = require("prettier")
 
-const englishRoot = join(__dirname, "..", "..", "tsconfig-reference", "copy", "en", "options")
+const exec = require("child_process").execSync
+exec("git clone https://github.com/microsoft/TypeScript-website", { stdio: "inherit" })
+
+const englishRoot = join("TypeScript-website", "packages", "tsconfig-reference", "copy", "en", "options")
 const options = readdirSync(englishRoot).filter(p => !p.startsWith(".") && p.endsWith(".md"))
 
 const lines = ["compilerOptions: `The set of compiler options for your project`,"]
