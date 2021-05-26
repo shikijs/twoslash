@@ -77,7 +77,6 @@ var hover = function (event) {
 document.addEventListener('DOMContentLoaded', () => {
   setInterval(() => {
     var blocks = document.querySelectorAll(".shiki.lsp .code-container code");
-    console.log({ blocks })
     blocks.forEach(function (code) {
         code.addEventListener("mouseover", hover);
         code.addEventListener("mouseout", resetHover);

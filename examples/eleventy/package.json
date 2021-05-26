@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "start": "yarn eleventy --serve"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "1.0.0-canary.23",
+    "deasync": "^0.1.21",
+    "eleventy-plugin-shiki-twoslash": "file:../../packages/eleventy-plugin-shiki-twoslash"
+  }
+}

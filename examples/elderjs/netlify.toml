@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = "public/"
+
+[[headers]]
+  for = "/_elderjs/*"
+  [headers.values]
+    cache-control = '''
+      public,
+      max-age=31536000,
+      immutable'''
