@@ -1,15 +1,15 @@
 {
   "name": "markdown-it-shiki-twoslash",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
-  "homepage": "https://github.com/microsoft/TypeScript-Website",
+  "homepage": "https://github.com/shikijs/twoslash",
   "repository": {
-    "url": "https://github.com/microsoft/TypeScript-Website.git",
+    "url": "https://github.com/shikijs/twoslash.git",
     "directory": "packages/markdown-it-shiki-twoslash",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/microsoft/TypeScript-Website/issues"
+    "url": "https://github.com/shikijs/twoslash/issues"
   },
   "description": "A markdown-it plugin for Shiki with Twoslash code samples",
   "author": "Orta Therox",

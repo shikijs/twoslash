@@ -2,14 +2,14 @@
   "name": "eleventy-plugin-shiki-twoslash",
   "version": "1.0.0",
   "license": "MIT",
-  "homepage": "https://github.com/microsoft/TypeScript-Website",
+  "homepage": "https://github.com/shikijs/twoslash",
   "repository": {
-    "url": "https://github.com/microsoft/TypeScript-Website.git",
+    "url": "https://github.com/shikijs/twoslash.git",
     "directory": "packages/eleventy-plugin-shiki-twoslash",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/microsoft/TypeScript-Website/issues"
+    "url": "https://github.com/shikijs/twoslash/issues"
   },
   "description": "An 11ty plugin which adds shiki with optional twoslash-powered code samples",
   "author": "Orta Therox",

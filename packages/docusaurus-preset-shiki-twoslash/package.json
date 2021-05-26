@@ -2,14 +2,14 @@
   "name": "docusaurus-preset-shiki-twoslash",
   "version": "1.0.1",
   "license": "MIT",
-  "homepage": "https://github.com/microsoft/TypeScript-Website",
+  "homepage": "https://github.com/shikijs/twoslash",
   "repository": {
-    "url": "https://github.com/microsoft/TypeScript-Website.git",
+    "url": "https://github.com/shikijs/twoslash.git",
     "directory": "packages/docusaurus-preset-shiki-twoslash",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/microsoft/TypeScript-Website/issues"
+    "url": "https://github.com/shikijs/twoslash/issues"
   },
   "description": "An Docusaurus plugin which adds shiki with optional twoslash-powered code samples",
   "author": "Orta Therox",
