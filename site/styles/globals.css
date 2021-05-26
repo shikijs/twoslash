@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "caslon";
+  src: url("/CaslonOS-Regular.otf") format("woff2");
+}
+
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #FCF3D9;
+  font-family: 'caslon', 'Times New Roman', Times, serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
