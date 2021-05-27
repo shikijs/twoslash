@@ -47,3 +47,4 @@ npm run test
 - Finish design on microsite
 - Website
 - Docusaurus support is broken
+- Wrap up automation
