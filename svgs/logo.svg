@@ -1,0 +1,13 @@
+<svg width="167" height="240" viewBox="0 0 167 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.5 164.5V143.5L83.5 192V211.5L0.5 164.5Z" fill="#183F66" fill-opacity="0.8"/>
+<path d="M83.5 20.5V1L165 46L165.5 66.5L83.5 20.5Z" fill="#E23D1E" fill-opacity="0.8"/>
+<path d="M0.5 67.5V47L166 142.5V164.5L0.5 67.5Z" fill="#E5A604" fill-opacity="0.8"/>
+<path d="M0.5 191.5V170.5L83.5 219V238.5L0.5 191.5Z" fill="#183F66" fill-opacity="0.8"/>
+<path d="M83.5 46V26.5L165 74.5V94L83.5 46Z" fill="#E23D1E" fill-opacity="0.8"/>
+<path d="M0 94.5L0.5 73.5L167 171V190.5L0 94.5Z" fill="#E5A604" fill-opacity="0.8"/>
+<path d="M166.5 164.5V143.5L83.5 192V211.5L166.5 164.5Z" fill="#183F66" fill-opacity="0.8"/>
+<path d="M83.5 20.5V1L0.5 48V67.5L83.5 20.5Z" fill="#E23D1E" fill-opacity="0.8"/>
+<path d="M166.5 191.5V170.5L83.5 219V238.5L166.5 191.5Z" fill="#183F66" fill-opacity="0.8"/>
+<path d="M82.5 46.5V26.5L0.5 75V94.5L82.5 46.5Z" fill="#E23D1E" fill-opacity="0.8"/>
+<path d="M126 167L0.5 94V47.5L83.5 1L165 46V94L83.5 46L42 70.5M126 167L83.5 191.5M126 167L166.5 143.015M83.5 191.5L0.5 143.015V191.5L83.5 238.5M83.5 191.5V238.5M83.5 238.5L166.5 191.5V143.015M166.5 143.015L42 70.5M42 70.5L0.5 94.5M83 1V46M82.5 94.5V141" stroke="black"/>
+</svg>
