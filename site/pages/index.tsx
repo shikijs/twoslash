@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -26,7 +25,7 @@ export default function Home() {
           </div>
 
           <div style={{ textAlign: "center" }}>
-            <Image src="/svgs/squiggle.svg" alt="Vercel Logo" width={70} height={25.5} />
+            <img src="/svgs/squiggle.svg" alt="Vercel Logo" width={70} height={25.5} />
           </div>
 
           <div className={styles.intro}>
@@ -39,7 +38,7 @@ export default function Home() {
           </div>
 
           <div style={{ textAlign: "center" }}>
-            <Image src="/svgs/logo.svg" alt="Vercel Logo" width={167} height={238} />
+            <img src="/svgs/logo.svg" alt="Vercel Logo" width={167} height={238} />
           </div>
         </article>
       </main>
