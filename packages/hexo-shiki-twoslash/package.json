@@ -22,6 +22,6 @@
   },
   "dependencies": {
     "remark-shiki-twoslash": "1.3.0",
-    "typescript": "*"
+    "typescript": "> 4"
   }
 }

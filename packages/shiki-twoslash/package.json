@@ -31,7 +31,7 @@
     "@typescript/twoslash": "1.1.7",
     "@typescript/vfs": "1.3.4",
     "shiki": "^0.9.3",
-    "typescript": "*"
+    "typescript": "> 4"
   },
   "devDependencies": {
     "@types/jest": "^25.1.3",
@@ -39,7 +39,6 @@
     "rehype-stringify": "^6.0.1",
     "tsdx": "^0.14.1",
     "tslib": "^1.10.0",
-    "typescript": "*",
     "unified": "^8.4.2",
     "unist-util-visit": "^2.0.0",
     "gray-matter": "^4.0.3"
