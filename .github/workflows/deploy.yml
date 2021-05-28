@@ -28,8 +28,8 @@ jobs:
       - name: Setup Website
         run: |
           cd site
-          npm i
-          npm run build
+          yarn
+          yarn build
 
       - name: Deploy Site
         uses: JamesIves/github-pages-deploy-action@4.1.3
