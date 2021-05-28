@@ -3,13 +3,18 @@
   src: url("/CaslonOS-Regular.otf") format("woff2");
 }
 
+@font-face {
+  font-family: "euclid";
+  src: url("/EuclidInitialsnormal.woff2") format("woff2");
+}
 
 html,
 body {
   padding: 0;
   margin: 0;
-  background-color: #FCF3D9;
-  font-family: 'caslon', 'Times New Roman', Times, serif;
+  background-color: #fcf3d9;
+  font-family: "caslon", "Times New Roman", Times, serif;
+  text-align: justify;
 }
 
 a {
@@ -19,4 +24,102 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.eu {
+  font-family: "euclid";
+  font-size: 20rem;
+  display: inline-block;
+  height: 5rem;
+  margin-left: -0.4rem;
+  margin-top: -4rem;
+}
+
+p {
+  font-size: 1.3rem;
+  line-height: 2rem;
+}
+
+h1 {
+  font-size: 4rem;
+  margin-bottom: 0;
+}
+
+article.container {
+  padding: 4.5rem 0;
+  margin-bottom: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.border-red {
+  border-left: 8px solid #e76143bb;
+}
+
+.border-blue {
+  border-left: 8px solid #183f66bb;
+}
+
+.border-yellow {
+  border-left: 8px solid #e5a604bb;
+}
+
+.main {
+  padding: 5rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro {
+  text-align: center;
+  text-transform: uppercase;
+  max-width: 640px;
+  font-weight: 100;
+}
+
+.intro p {
+  font-size: 0.9rem;
+}
+
+.intro p.by {
+  font-size: 1.3rem;
+}
+
+#shiki .split-50-50,
+#twoslash .split-50-50 {
+  margin-top: 6rem;
+}
+
+/* ------------- grid ----------------- */
+
+.split-50-50 {
+  display: flex;
+}
+
+.split-50-50 div {
+  flex: 1;
+}
+
+@media (max-width: 800px) {
+  .split-50-50 {
+    flex-direction: column;
+  }
+  .left-margin-1 {
+    margin-left: 1rem;
+    padding: 0 !important;
+    margin-right: 1rem;
+  }
+  .center-small {
+    text-align: center;
+  }
+}
+
+.left-margin-1 {
+  padding-left: 10%;
 }
