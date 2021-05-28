@@ -1,11 +1,11 @@
 @font-face {
   font-family: "caslon";
-  src: url("/CaslonOS-Regular.otf") format("woff2");
+  src: url("./CaslonOS-Regular.otf") format("woff2");
 }
 
 @font-face {
   font-family: "euclid";
-  src: url("/EuclidInitialsnormal.woff2") format("woff2");
+  src: url("./EuclidInitialsnormal.woff2") format("woff2");
 }
 
 html,
