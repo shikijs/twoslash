@@ -35,7 +35,7 @@ export default function Home(props) {
           <div className="intro">
             <p className="by">By orta therox</p>
             <p>
-              Purveyor of renound open source code
+              Purveyor of renowned open source code
               <br />
               and TypeScript compiler team member
             </p>

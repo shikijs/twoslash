@@ -22,5 +22,9 @@
   "dependencies": {
     "remark-shiki-twoslash": "1.3.0",
     "typescript": ">3"
+  },
+  "devDependencies": {
+    "shiki": "latest",
+    "shiki-twoslash": "workspace"
   }
 }
