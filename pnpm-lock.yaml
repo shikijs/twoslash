@@ -154,7 +154,7 @@ importers:
       unified: 8.4.2
       unist-util-visit: 2.0.3
 
-  packages/shiki-twoslash-cli:
+  packages/twoslash-cli:
     specifiers:
       '@types/node': ^14.14.6
       hast-util-to-html: ^7.1.2
