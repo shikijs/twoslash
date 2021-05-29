@@ -14,10 +14,10 @@ jobs:
           node-version: "16.x"
           registry-url: "https://registry.npmjs.org/"
 
-      - run: npm install
-      - run: npm run update --workspaces --if-present
-      - run: npm run build
-      - run: npm run test
+      - run: pnpm install
+      - run: pnpm run update -r
+      - run: pnpm run build
+      - run: pnpm run test
 
       - name: Deploy npm Packages
         run: npx pleb publish

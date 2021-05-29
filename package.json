@@ -3,11 +3,11 @@
   "workspaces": [
     "./packages/shiki-twoslash",
     "./packages/remark-shiki-twoslash",
-    "./packages/*"
+    "./packages/**"
   ],
   "scripts": {
     "test": "jest",
-    "build": "npm run build --workspaces --if-present"
+    "build": "pnpm run build -r"
   },
   "devDependencies": {
     "@types/jest": "^25.2.3",
