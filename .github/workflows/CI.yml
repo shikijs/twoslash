@@ -20,5 +20,6 @@ jobs:
         run: curl -f https://get.pnpm.io/v6.js | node - add --global pnpm@6
 
       - run: pnpm install
+      - run: pnpm build  --filter shiki-twoslash
       - run: pnpm build
       - run: pnpm test

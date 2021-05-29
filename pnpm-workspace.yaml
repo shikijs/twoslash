@@ -1,4 +1,3 @@
 packages:
     - ./packages/shiki-twoslash
-    - ./packages/remark-shiki-twoslash
     - ./packages/**
