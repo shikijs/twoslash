@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "bootstrap": "pnpm build  --filter shiki-twoslash && pnpm build -r --filter !shiki-twoslash",
+    "bootstrap": "pnpm build -r --workspace-concurrency 1",
     "build": "pnpm run build -r"
   },
   "devDependencies": {
