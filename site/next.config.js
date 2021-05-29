@@ -9,5 +9,4 @@ if (process.env.CI) {
 module.exports = {
   basePath,
   assetPrefix,
-  a: 123
 };

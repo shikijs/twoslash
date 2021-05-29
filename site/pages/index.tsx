@@ -106,7 +106,7 @@ export default function Home(props) {
 // Grabs the code samples
 export async function getStaticProps() {
   const fs = require("fs");
-  const file = fs.readFileSync("examples/thing.html", "utf8");
+  const file = fs.readFileSync("examples/render/basic.ts.html", "utf8");
 
   return {
     props: {
