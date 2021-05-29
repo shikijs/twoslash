@@ -39,7 +39,9 @@
     "tslib": "^1.10.0",
     "typescript": ">3",
     "unified": "^8.4.2",
-    "remark": "^13.0.0"
+    "remark": "^13.0.0",
+    "shiki": "latest",
+    "shiki-twoslash": "workspace"
   },
   "jest": {
     "testEnvironment": "node"
