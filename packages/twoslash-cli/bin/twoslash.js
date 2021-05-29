@@ -1,12 +1,53 @@
 #!/usr/bin/env node
-'use strict';
+"use strict"
 
-const filepath = process.argv[2]
-if (!filepath) throw new Error("Pass a markdown file as arg1")
+import { Command } from "commander"
+import { readdirSync, statSync } from "fs"
+import { join } from "path"
+const program = new Command()
 
-const to = process.argv[3]
-if (!to) throw new Error("Pass a filepath to put the html, if it's `*.html` you get the full md render, if it's not then a folder of each code block is made.")
+program.description(`Converts md/ts/js/tsx/jsx files into HTML by running them through Shiki Twoslash.
 
-import {runOnFile} from "../index.js"
+Examples:    
 
-runOnFile({ from: filepath, to })
+    Converts a bunch of ts files in the samples dir and creates .html files in renders  
+    
+    $ twoslash samples/*.ts renders 
+
+    Render a few markdown files to .html files in the build folder
+
+    $ twoslash pages/one.md  pages/two.md build`)
+       .option("-s, --samples", "Instead of rendering to HTML, spit out individual code blocks as files")
+
+       .on("--help", () => {
+        console.log("\n")
+        console.log("  Reference:")
+        console.log("    - CLI Info:")
+        console.log("      https://github.com/shikijs/twoslash/tree/main/packages/twoslash-cli")
+        console.log("")
+        console.log("    - Shiki Settings:")
+        console.log("      https://github.com/shikijs/twoslash/tree/main/packages/shiki-twoslash#user-settings")
+        
+      })
+    
+program.parse(process.argv)
+
+const options = program.opts()
+if (options.debug) console.log(options)
+
+const to = program.args.pop()
+
+import { canConvert, runOnFile } from "../index.js"
+
+const possibleFiles = program.args.flatMap(from => {
+    const stat = statSync(from)
+    return stat.isDirectory(from) ? readdirSync(from).map(p => join(from, p)) : [from]
+}).filter(canConvert)
+
+if (possibleFiles.length == 0) {
+    throw new Error("Could not find any md/ts/js/tsx/jsx files in the input")
+}
+
+const s = possibleFiles.length == 1 ? "" : "s"
+console.log(`Twoslashifying ${possibleFiles.length} file${s}:\n`)
+possibleFiles.forEach(from => runOnFile({ from, to, splitOutCodeSamples: options.samples }))
