@@ -80,7 +80,7 @@ export default function Home(props) {
           <div className="split-50-50">
             <div className="left-margin-1">
               <p>
-                <span className="eu">T</span>Think of twoslash as a pre-processor for your code-samples.
+                <span className="eu">T</span>hink of twoslash as a pre-processor for your code-samples.
               </p>
               <p>Twoslash is a JavaScript and TypeScript markup language. You can write a single code sample which describes an entire JavaScript project</p>
               <p>Twoslash uses the same compiler APIs as your text editors to provide type-driven hover information, accurate errors and</p>
