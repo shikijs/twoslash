@@ -3,7 +3,7 @@
   "displayName": "Twoslash in Markdown",
   "description": "Auto-complete for Twoslash code samples in your IDE",
   "publisher": "Orta",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "url": "https://github.com/shikijs/twoslash.git"
   },

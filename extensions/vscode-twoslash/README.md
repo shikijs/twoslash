@@ -1,28 +1,15 @@
 # vscode-twoslash README
 
-Runs Twoslash code samples in your IDE to determine if they are correct.
+This extension adds auto-complete for any Twoslash code samples in a markdown file, as well as a link to open the code sample in the Twoslash REPL on the TypeScript website.
 
-### What it does
+<img src="https://github.com/shikijs/twoslash/blob/main/extensions/vscode-twoslash/web/sample.png?raw=true">
 
-This extension adds a "Monitor" button above Twoslash code-samples:
+The auto-complete includes:
 
-<img src="./web/1.png">
+ - Twoslash specific commands (e.g. `@filename`)
+ - TypeScript compiler options 
 
-Selecting a code sample, means that the extension will start monitoring it:
-
-<img src="./web/2.png">
-
-Pressing save _when_ your cursor is inside a monitored code sample will run Twoslash on it:
-
-<img src="./web/3.png">
-
-You can then iterate until you're done:
-
-<img src="./web/4.png">
-
-### Notes
-
-The start character index of the code sample is used to keep track of what is monitored, if you edit some text above then it'll get dropped from being monitored. You can re-click the button.
+The compiler options uses the version of TypeScript in your `node_modules`, so it should be up-to-date.
 
 ### Deployment
 
