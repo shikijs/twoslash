@@ -26,5 +26,7 @@ const theme = JSON.parse(invert);
 // Comments as black is rough
 theme.tokenColors.find((t) => t.name === "Comment").settings.foreground = "#BB8700";
 theme.tokenColors.push({ name: "TS Type", scope: "support.type.primitive.ts", settings: { foreground: "#BB8700" } });
+theme.tokenColors.push({ name: "TS Var", scope: "meta.definition.variable.js", settings: { foreground: "#183F66" } });
 
 writeFileSync(themePath, JSON.stringify(theme).replace(/#ffffff/gi, "#000000"));
+

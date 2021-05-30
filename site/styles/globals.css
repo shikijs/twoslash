@@ -111,6 +111,22 @@ article.container {
   margin-bottom: 8rem;;
 }
 
+.mid-10 .source {
+  background-color: #BB8700;
+  padding: 4px;
+}
+
+.mid-10 .output {
+  background-color: black;
+  color: white;
+  padding: 4px;
+}
+
+
+.mid-10 pre {
+  margin-top: 0;
+}
+
 /* ------------- grid ----------------- */
 
 .split-50-50 {
@@ -122,7 +138,7 @@ article.container {
 }
 
 @media (max-width: 800px) {
-  .split-50-50 {
+  .split-50-50, .mid-10 {
     flex-direction: column;
   }
   .left-margin-1 {
@@ -156,7 +172,7 @@ article.container {
   display: flex;
 }
 
-.mid-10 > div{
+.mid-10 > div {
   flex: 1;
 }
 
@@ -170,9 +186,10 @@ pre.shiki {
 pre {
   /* Give the text some space to breathe */
   padding: 12px;
+  line-height: 18px;
   /* All code samples get a grey border, twoslash ones get a different color */
-  border-left: 1px solid #999;
-  border-bottom: 1px solid #999;
+  border-left: 1px solid #BB8700;
+  border-bottom: 1px solid #BB8700;
   margin-bottom: 3rem;
   /* Important to allow the code to move horizontally;
  */
