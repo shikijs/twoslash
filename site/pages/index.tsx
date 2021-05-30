@@ -1,7 +1,10 @@
 import Head from "next/head";
+import { useEffect } from "react";
+import { setupTwoslashHovers } from "shiki-twoslash/dist/dom";
 
-export default function Home(props) {
-  console.log(props);
+export default function Home(props: ReturnType<typeof getStaticProps>["props"]) {
+  useEffect(setupTwoslashHovers, []);
+
   return (
     <>
       <Head>
@@ -45,6 +48,9 @@ export default function Home(props) {
             <img src="./svgs/logo.svg" alt="Shiki Logo" width={167} height={238} />
           </div>
         </article>
+
+        <Split num={0} />    
+
 
         <article className="container border-yellow" id="shiki">
           <div style={{ textAlign: "center" }}>
@@ -98,19 +104,89 @@ export default function Home(props) {
             </div>
           </div>
         </article>
+
+
+        <Split num={1} />    
+
+        <article className="container border-blue" id="features">
+          <Point msg="When you mix Shiki with Twoslash you can have extremely accurate syntax highlighting for JavaScript and TypeScript. The syntax highlighting has been maintained by the TypeScript team for years and gets updated with new TypeScript releases." />
+
+          <Code code={props.html.basic.replace("twoslash", "").replace("twoslash", "").replace("lsp", "")} />
+
+          <Point msg="By default, code samples rendered by shiki-twoslash have all of their IDE hover information embedded inside the HTML. With a hint of JavaScript, you can support mouse-hovering in the browser. Try hovering below:" />
+
+          <Code code={props.html.basic} />
+
+          <Point msg="The name Twoslash refers to specially formatted comments which can be used to set up your environment, like compiler flags or separate input files. For example, here is a code sample showing export/importing a function:" />
+
+          <TwoCode source={props.html.multiFileSrc} output={props.html.multiFileHTML} />
+
+          <Point msg="You can write comment queries to have the twoslash powered code-samples highlight types without user interaction." />
+
+          <TwoCode source={props.html.multiFileHighSrc} output={props.html.multiFileHighHTML} />
+
+          <Point msg="And if a code sample becomes un-focused, you can snip it down to just the bit that matters. The compiler still verifies everything ahead of time." />
+
+          <TwoCode source={props.html.multiFileSnipSrc} output={props.html.multiFileSnipHTML} />
+
+          <Point msg="To some extent, anything your editor can show you about code, Twoslash can show. For example, here is the real auto-complete for an express app in JS:" />
+
+          <TwoCode source={props.html.expressSrc} output={props.html.expressHTML} />
+
+          <Point msg="Are you wondering where the types come from? Express is a JavaScript library. During the build process Shiki-Twoslash can use types from your app’s node_modules folder. I just had to run: yarn add @types/express<br/><br/>You probably don't want to only show golden-path code too, showing <em>how</em> code goes wrong is also a critical way to understand code. Shiki Twoslash has native support for TypeScript compiler errors." />
+
+          <TwoCode source={props.html.errorSrc} output={props.html.errorHTML} />
+
+          <Point msg="You see how we declared which errors were expected in the source? That means if this code sample errors with something else, Shiki Twoslash will fail to render.<br /><br />Failing rocks because your CI will tell you that your code samples are out of date." />
+
+
+        </article>
       </main>
     </>
   );
 }
 
+const Point = (props: { msg: string }) => {
+  const msg = `<span class="eu">${props.msg[0]}</span>${props.msg.substring(1)}`
+  return <p className="mid-6" dangerouslySetInnerHTML={{__html: msg }} />
+}
+
+const Code = (props: { code: string }) => <div className="mid-8" dangerouslySetInnerHTML={{ __html: props.code }} />;
+
+const TwoCode = (props: { source: string; output: string }) => (
+  <div className="mid-10">
+    <div style={{ paddingRight: "5px" }}>
+      <span className="source">Source</span>
+      <div dangerouslySetInnerHTML={{ __html: props.source }} />
+    </div>
+    <div style={{ marginLeft: "5px" }}>
+      <span>Output</span>
+      <div dangerouslySetInnerHTML={{ __html: props.output }} />
+    </div>
+  </div>
+);
+
+const Split = (props: { num: number }) => <div className="split"><img src={`./svgs/split-${props.num}.svg`} /></div>
+
 // Grabs the code samples
-export async function getStaticProps() {
+export function getStaticProps() {
   const fs = require("fs");
-  const file = fs.readFileSync("examples/render/basic.ts.html", "utf8");
 
   return {
     props: {
-      file
-    }
+      html: {
+        basic: fs.readFileSync("examples/render/basic.ts.html", "utf8"),
+        multiFileSrc: fs.readFileSync("examples/render/multi-file.ts_src.html", "utf8"),
+        multiFileHTML: fs.readFileSync("examples/render/multi-file.ts.html", "utf8"),
+        multiFileHighSrc: fs.readFileSync("examples/render/multi-file-highlight.ts_src.html", "utf8"),
+        multiFileHighHTML: fs.readFileSync("examples/render/multi-file-highlight.ts.html", "utf8"),
+        multiFileSnipSrc: fs.readFileSync("examples/render/multi-file-snip.ts_src.html", "utf8"),
+        multiFileSnipHTML: fs.readFileSync("examples/render/multi-file-snip.ts.html", "utf8"),
+        expressSrc: fs.readFileSync("examples/render/express.js_src.html", "utf8"),
+        expressHTML: fs.readFileSync("examples/render/express.js.html", "utf8"),
+        errorSrc: fs.readFileSync("examples/render/errors.ts_src.html", "utf8"),
+        errorHTML: fs.readFileSync("examples/render/errors.ts.html", "utf8"),
+      },
+    },
   };
 }
