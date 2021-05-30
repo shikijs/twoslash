@@ -33,6 +33,7 @@ jobs:
         run: |
           cd site
           yarn
+          yarn bootstrap
           yarn build
 
       - name: Deploy Site

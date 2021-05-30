@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync } from "fs
 import remark from "remark"
 import toHAST from "mdast-util-to-hast"
 import hastToHTML from "hast-util-to-html"
-import { visit } from "unist-util-visit"
+import visit from "unist-util-visit"
 import { join, dirname } from "path"
 import remarkShikiTwoslash from "remark-shiki-twoslash"
 import { basename, extname, sep } from "path"
@@ -23,7 +23,9 @@ export const canConvert = (path) => {
   return true
 }
 
-/** @param {{ from: string, to: string, splitOutCodeSamples: boolean }} args */
+/** @typedef {{ from: string, to: string, splitOutCodeSamples: boolean, alsoRenderSource: boolean, lint: boolean, realFrom?: string }} Args */
+/** @param {Args} args */
+
 export const runOnFile = async args => {
   const { from } = args
   if (!canConvert(from)) return
@@ -36,7 +38,7 @@ export const runOnFile = async args => {
   }
 }
 
-/** @param {{ from: string, to: string, splitOutCodeSamples: boolean }} args */
+/** @param {Args} args */
 function renderJS(args) {
   // Basically write to a tmp file as a markdown file and go through that pipeline
   const { from } = args
@@ -52,16 +54,21 @@ function renderJS(args) {
   }
 
   const newFileName = tmpdir() + sep + basename(from) + ".md"
-  writeFileSync(newFileName,`${prefix}
-\`\`\`${extname(from).replace(".", "")} twoslash
-${fileContent}
-\`\`\`
-`)
+  const code = toCode(prefix, extname(from).replace(".", ""), ["twoslash"], fileContent) 
+  writeFileSync(newFileName, code)
 
   renderMarkdown({ ...args, from: newFileName, realFrom: from,  })
+
+  // Also allow for showing a before/after by supporting a flag which renders the src
+  if (args.alsoRenderSource) {
+    const newFileName = tmpdir() + sep + basename(from) + "_src.md"
+    const code = toCode(prefix, extname(from).replace(".", ""), [], fileContent) 
+    writeFileSync(newFileName, code)
+    renderMarkdown({ ...args, from: newFileName, realFrom: from,  })
+  }
 }
 
-/** @param {{ from: string, to: string, splitOutCodeSamples: boolean, realFrom?: string }} args */
+/** @param {Args} args */
 async function renderMarkdown(args) {
   const { from, to, splitOutCodeSamples, realFrom } = args
 
@@ -71,6 +78,9 @@ async function renderMarkdown(args) {
 
   // @ts-ignore
   await remarkShikiTwoslash.default(settings)(markdownAST)
+
+  // Bail before writing the new versions if we're linting
+  if (args.lint) return
 
   // Render directly to one file
   if (!splitOutCodeSamples) {
@@ -120,3 +130,9 @@ function getSettingsFromMarkdown(fileContent, from) {
     }
   }
 }
+
+const toCode = (prefix, lang, classes, content)  => `${prefix}
+\`\`\`${lang} ${classes.join(" ")}
+${content}
+\`\`\`
+`

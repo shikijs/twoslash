@@ -18,6 +18,8 @@ Examples:
 
     $ twoslash pages/one.md  pages/two.md build`)
        .option("-s, --samples", "Instead of rendering to HTML, spit out individual code blocks as files")
+       .option("--sourceAlso", "Also include a render of the source input. Only works on ts/tsx/js/jsx files.")
+       .option("--lint", "Don't actually render output files, just verify they work.")
 
        .on("--help", () => {
         console.log("\n")
@@ -50,4 +52,5 @@ if (possibleFiles.length == 0) {
 
 const s = possibleFiles.length == 1 ? "" : "s"
 console.log(`Twoslashifying ${possibleFiles.length} file${s}:\n`)
-possibleFiles.forEach(from => runOnFile({ from, to, splitOutCodeSamples: options.samples }))
+
+possibleFiles.forEach(from => runOnFile({ from, to, splitOutCodeSamples: options.samples, alsoRenderSource: options.sourceAlso, lint: options.lint }))
