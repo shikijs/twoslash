@@ -4,16 +4,16 @@ You take some Shiki, add a hint of TypeScript compiler, and 🎉 incredible stat
 
 ### This Repo
 
-This repo uses pnpm. There are four main areas:
+The majority of this repo uses pnpm, the rest yarn. There are four main areas of interest:
  
  - `packages`, the shiki meets twoslash plugins for markdown renderers and static site generators
  - `site`, the docs micro-site
  - `examples`, example static site generator projects which use the plugins
-- `extensions`, right now, just the vscode extension for twoslash code samples
+ - `extensions`, right now, just the vscode extension for twoslash code samples
  
 ### Packages
 
-The `site` and `examples` are excluded from the workspace. To work on those, `cd` to their folders and read instructions.
+The `site` `extensions` and `examples` are excluded from the workspace. To work on those, `cd` to their folders and read instructions.
 
 Otherwise:
 
@@ -49,4 +49,3 @@ pnpm test
 - Finish design on microsite
 - Website
 - Docusaurus support is broken
-- Wrap up automation
