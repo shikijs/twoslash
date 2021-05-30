@@ -1,3 +1,4 @@
+// twoslash: { theme: "../../../script/theme" }
 // Removes 'readonly' attributes from a type's properties
 type CreateMutable<Type> = {
   -readonly [Property in keyof Type]: Type[Property];
