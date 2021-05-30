@@ -138,8 +138,6 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           <TwoCode source={props.html.errorSrc} output={props.html.errorHTML} />
 
           <Point msg="You see how we declared which errors were expected in the source? That means if this code sample errors with something else, Shiki Twoslash will fail to render.<br /><br />Failing rocks because your CI will tell you that your code samples are out of date." />
-
-
         </article>
       </main>
     </>
