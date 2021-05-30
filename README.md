@@ -4,12 +4,13 @@ You take some Shiki, add a hint of TypeScript compiler, and 🎉 incredible stat
 
 ### This Repo
 
-This repo uses **npm workspaces - you need `npm@7.7` or above**. There are three main areas:
+This repo uses pnpm. There are four main areas:
  
  - `packages`, the shiki meets twoslash plugins for markdown renderers and static site generators
  - `site`, the docs micro-site
  - `examples`, example static site generator projects which use the plugins
-
+- `extensions`, right now, just the vscode extension for twoslash code samples
+ 
 ### Packages
 
 The `site` and `examples` are excluded from the workspace. To work on those, `cd` to their folders and read instructions.
@@ -17,12 +18,12 @@ The `site` and `examples` are excluded from the workspace. To work on those, `cd
 Otherwise:
 
 ```sh
-git clone https://github.com/shiki/twoslash
+git clone https://github.com/shikijs/twoslash
 cd twoslash
 
-npm i
-npm run build
-npm run test
+pnpm i
+pnpm bootstrap
+pnpm test
 ```
 
 #### Plugins 
@@ -41,6 +42,7 @@ npm run test
 #### Root Abstractions
 
 - [`shiki-twoslash`](packages/shiki-twoslash) - Provides all the building blocks for above
+- [`twoslash-cli`](packages/twoslash-cli) - A CLI for converting md/ts/tsx/js/jsx files to HTML
 
 ### TODO
 
