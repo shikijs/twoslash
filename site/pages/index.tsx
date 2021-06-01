@@ -62,10 +62,10 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
                 <span className="eu">V</span>isual Studio Code’s syntax highlighter packaged for running in a web browser and statically via Node.js.
               </p>
               <p>
-                Supports all possible languages available on the VS Code extension marketplace. That’s over 200 langauges. All you need is a{" "}
+                Supports all possible languages available on the VS Code extension marketplace. That’s over 200 languages. All you need is a{" "}
                 <code>.tmlangauge</code> file for anything not shipped with Shiki.
               </p>
-              <p>Shiki colours your code with any VS Code theme. That’s 4000+ last time we checked.</p>
+              <p>Shiki colours your code with any VS Code theme. That’s {Math.round(props.stats.themeCount/100) * props.stats.themeCount}+ last time we checked.</p>
             </div>
 
             <div className="left-margin-1">
@@ -107,7 +107,9 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
 
         <Split num={1} />    
 
-        <article className="container border-blue" id="features">
+        <article className="container border-blue" id="markup">
+          <h2><a href="#markup">#</a>Chapter 1: Twoslash Markup</h2>
+
           <Point msg="When you mix Shiki with Twoslash you can have extremely accurate syntax highlighting for JavaScript and TypeScript. The syntax highlighting has been maintained by the TypeScript team for years and gets updated with new TypeScript releases." />
 
           <Code code={props.html.basic.replace("twoslash", "").replace("twoslash", "").replace("lsp", "")} />
@@ -138,6 +140,22 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
 
           <Point msg="You see how we declared which errors were expected in the source? That means if this code sample errors with something else, Shiki Twoslash will fail to render.<br /><br />Failing rocks because your CI will tell you that your code samples are out of date." />
         </article>
+
+
+
+        <article className="container border-blue" id="shiki">
+          <h2><a href="#shiki">#</a>Chapter 2: Shiki</h2>
+
+          <Point msg="Twoslash Shiki is a polite but hard fork of the Shiki code rendering engine. Let's look at a few of the Shiki Twoslash features" />
+
+          <Code code={props.html.theme} />
+
+          <Point msg="Twoslash Shiki is a polite but hard fork of the Shiki code rendering engine. Let's look at a few of the Shiki Twoslash features" />
+
+          <Code code={props.html.theme} />
+
+        </article>
+
       </main>
     </>
   );
@@ -171,6 +189,7 @@ export function getStaticProps() {
 
   return {
     props: {
+      stats: fs.readFileSync("script/stats.json", "utf8"),
       html: {
         basic: fs.readFileSync("examples/render/basic.ts.html", "utf8"),
         multiFileSrc: fs.readFileSync("examples/render/multi-file.ts_src.html", "utf8"),
@@ -183,6 +202,7 @@ export function getStaticProps() {
         expressHTML: fs.readFileSync("examples/render/express.js.html", "utf8"),
         errorSrc: fs.readFileSync("examples/render/errors.ts_src.html", "utf8"),
         errorHTML: fs.readFileSync("examples/render/errors.ts.html", "utf8"),
+        theme: fs.readFileSync("examples/render/theme.ts.html", "utf8"),
       },
     },
   };

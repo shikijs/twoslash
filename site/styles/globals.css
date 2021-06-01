@@ -51,9 +51,23 @@ p {
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 3.8rem;
   margin-bottom: 0;
 }
+
+h2 {
+  font-size: 3rem;
+  margin-top: 1rem;
+  margin-bottom: 12rem;
+}
+
+h2 > a {
+  opacity: 0.3;
+}
+h2 > a:hover {
+  opacity: 0.9;
+}
+
 
 article.container {
   padding: 4.5rem 0;
