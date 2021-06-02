@@ -53,8 +53,16 @@ function renderJS(args) {
     fileContent = fileContent.replace(`// twoslash: ${js}\n`, "")
   }
 
+  // Support forwarding codefence info for highlighting
+  const classes = []
+  if (fileContent.startsWith("// codefence: ")) {
+    const highlightOpts = fileContent.split("\n")[0].replace("// codefence: ", "")
+    classes.push(highlightOpts)
+    fileContent = fileContent.replace(`// twoslash: ${highlightOpts}\n`, "")
+  }
+
   const newFileName = tmpdir() + sep + basename(from) + ".md"
-  const code = toCode(prefix, extname(from).replace(".", ""), ["twoslash"], fileContent) 
+  const code = toCode(prefix, extname(from).replace(".", ""), [...classes, "twoslash"], fileContent) 
   writeFileSync(newFileName, code)
 
   renderMarkdown({ ...args, from: newFileName, realFrom: from,  })
@@ -62,7 +70,7 @@ function renderJS(args) {
   // Also allow for showing a before/after by supporting a flag which renders the src
   if (args.alsoRenderSource) {
     const newFileName = tmpdir() + sep + basename(from) + "_src.md"
-    const code = toCode(prefix, extname(from).replace(".", ""), [], fileContent) 
+    const code = toCode(prefix, extname(from).replace(".", ""), classes, fileContent) 
     writeFileSync(newFileName, code)
     renderMarkdown({ ...args, from: newFileName, realFrom: from,  })
   }

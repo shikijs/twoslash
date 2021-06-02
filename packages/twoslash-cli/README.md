@@ -20,23 +20,36 @@ Twoslashifying 5 files:
 
 #### Examples
 
-Take a bunch of .ts files and render them to HTML
+> Take a bunch of .ts files and render them to HTML.
 
 ```sh
 twoslash samples/*.ts renders 
 ```
 
-Render a few markdown files to HTML
+> Take a bunch of .ts files and render them to HTML, but also render the source highlighted too.
+
+```sh
+twoslash --sourceAlso samples/*.ts renders 
+```
+
+> Render a few markdown files to HTML.
 
 ```sh
 twoslash pages/one.md  pages/two.md build 
 ```
 
-Take a markdown file and split out each code sample into its own HTML. They get an index for a filename.
+> Take a markdown file and split out each code sample into its own HTML. They get an index for a filename.
 
 ```sh
 twoslash --samples pages/example_files.md renders
 ```
+
+> Lint all the code samples in bunch of Markdown files .
+
+```sh
+twoslash --lint pages/example_files.md
+```
+
 
 #### Configuring Shiki Twoslash
 
@@ -57,6 +70,15 @@ This one would do the same for a TypeScript file:
 
 ```ts
 // twoslash: { themes: ["nord", "light-plus"] }
+const a = 123
+const b = 3456
+```
+
+and you can set up the codefence settings like:
+
+```ts
+// twoslash: { themes: ["nord", "light-plus"] }
+// highlight: {1}
 const a = 123
 const b = 3456
 ```

@@ -8,8 +8,11 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
   return (
     <>
       <Head>
-        <title>Shiki Twoslash: Incredible Static Code Samples</title>
-        <meta name="description" content="You take some Shiki, add a hint of TypeScript compiler, and 🎉! Incredible static code samples" />
+        <title>Shiki Twoslash: Static Code Samples for JS Projects</title>
+        <meta name="description" content="You take some Shiki, add a hint of the TypeScript compiler, and 🎉! Incredible static code samples" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+        <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png" />
+        <meta name="msapplication-TileColor" content="#fcf3d9" />
       </Head>
 
       <main className="main">
@@ -62,8 +65,8 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
                 <span className="eu">V</span>isual Studio Code’s syntax highlighter packaged for running in a web browser and statically via Node.js.
               </p>
               <p>
-                Supports all possible languages available on the VS Code extension marketplace. That’s over 200 languages. All you need is a{" "}
-                <code>.tmlangauge</code> file for anything not shipped with Shiki.
+                Supports all possible languages available on the VS Code extension marketplace. That’s over 200 languages. All you need is a
+                <code> .tmlangauge</code> file for anything not shipped with Shiki.
               </p>
               <p>Shiki colours your code with any VS Code theme. That’s {Math.round(props.stats.themeCount/100) * 100}+ last time we checked.</p>
             </div>
@@ -71,7 +74,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
             <div className="left-margin-1">
               <p>Fig 1.</p>
               <p className="center-small">
-                <img src="./svgs/fig-1-code.svg" alt="The word 'shiki'" width="246" height="284" />
+                <img src="./svgs/fig-1-code.svg" alt="A diagram showing syntax tokens" width="246" height="284" />
               </p>
             </div>
           </div>
@@ -98,12 +101,38 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
             <div className="left-margin-1">
               <p>Fig 2.</p>
               <p className="center-small">
-                <img src="./svgs/fig-2-code.svg" alt="The word 'shiki'" width="331" height="270" />
+                <img src="./svgs/fig-2-code.svg" alt="A diagram showing a twoslash code sample being converted to HTML" width="331" height="270" />
               </p>
             </div>
           </div>
         </article>
 
+
+
+        <article className="container border-blue" id="twoslash">
+          <div style={{ textAlign: "center" }}>
+            <img className="old" src="./svgs/shiki.svg" alt="The word 'shiki'" width={309} height={95} /><br />
+            <img className="old" src="./svgs/twoslash.svg" alt="The word 'twoslash'" width={501} height={92} />
+          </div>
+
+          <div className="split-50-50">
+            <div className="left-margin-1 ">
+              <p>
+                <span className="eu">M</span>ixing these two ideas is Shiki Twoslash. The goal being that you can write ergonomic code samples which are backed by the TypeScript compiler.
+              </p>
+              <p>All code sample use Shiki, then you can opt-in to have Twoslash markup inside specific code blocks.</p>
+              <p>Shiki Twoslash is built to generate completely server-side syntax highlighted code samples with no relience that the user can run JavaScript.</p>
+              
+            </div>
+
+            <div className="left-margin-1">
+              <p>Fig 3.</p>
+              <p className="center-small">
+                <img src="./svgs/fig-3-code.svg" alt="A diagram of markdown -> HTML with Shiki Twoslash" width="331" height="421" />
+              </p>
+            </div>
+          </div>
+        </article>
 
         <Split num={1} />    
 
@@ -164,7 +193,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
 
           <TwoCode source={fakeCodeFence(props.html.highlightSrc, "{1, 3-4}")} output={props.html.highlightHTML.replace("// codefence: {1, 3-4}", "")} />
 
-          <MicroPoint>Shiki Twoslash uses CSS to set up the differences, so style-wise, it's all up to you.</MicroPoint>
+          <MicroPoint>Shiki Twoslash uses CSS classes to set up the highlighting, so style-wise, it's all up to you.</MicroPoint>
         </article>
 
         <article className="container border-yellow" id="integrations">
@@ -185,9 +214,16 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           <MicroPoint>You can use these libraries to set up in almost any JavaScript tool. There are examples in the <a href="https://github.com/shikijs/twoslash/tree/main/examples">Shiki Twoslash monorepo</a> of working with Next.js, Elder.js and MDX. I'm open to adding more examples.</MicroPoint>
         </article>
 
+        <article className="container border-blue" id="tooling">
+          <h2><a href="#tooling">#</a>Chapter 4:<br className="small-only"/> Tooling</h2>
+          <Point msg="No markdown document is an island. To build out a corpus of markdown documents which rely on Twoslash there are some additional tools which might come in handy."/>
+          
+          <Library top="Twoslash CLI" body="Render documents via the terminal and verify the code samples all pass." npm="twoslash-cli" />
+          <Library right top="Twoslash VS Code" body="Adds twoslash markdup auto-complete to code samples, and offers a one-click link to a Twoslash repl." npm="vscode-twoslash" url="https://marketplace.visualstudio.com/items?itemName=Orta.vscode-twoslash" />
+        </article>
 
         <article className="container border-blue" id="vision">
-          <h2><a href="#vision">#</a>Chapter 4:<br className="small-only"/> Vision</h2>
+          <h2><a href="#vision">#</a>Chapter 5:<br className="small-only"/> Vision</h2>
 
           <Point msg="I intend for Shiki Twoslash to be a very long term project. Initially created to power the TypeScript website and handbook, Shiki Twoslash has the potential for being a solid foundation for almost any website which describes JavaScript-y code."/>
           <MicroPoint>Extracting Shiki Twoslash, documenting, improving and abstracting into generator plugins is work I do on my own time and if that is the sort of work you want to see more of, consider sponsoring me on GitHub Sponsors</MicroPoint>
@@ -239,8 +275,7 @@ const MicroPoint = (props: { children: any }) => {
 }
 
 
-const Library = (props: { top: string, body: string, npm: string, right?: true }) => {
-
+const Library = (props: { top: string, body: string, npm: string, right?: true, url?: string }) => {
   return (
   <div className="mid-6 lib">
     <div className={"lib-content " + ( props.right? "right" : "")} >
@@ -250,11 +285,10 @@ const Library = (props: { top: string, body: string, npm: string, right?: true }
         <p dangerouslySetInnerHTML={{ __html: props.body}} />
       </div>
     </div>
-    <a href={`https://www.npmjs.com/package/${props.npm}`}>{props.npm}</a>
+    <a href={props.url || `https://www.npmjs.com/package/${props.npm}`}>{props.npm}</a>
   </div>
   )
 }
-
 
 const Code = (props: { code: string }) => <div className="mid-8" dangerouslySetInnerHTML={{ __html: props.code }} />;
 

@@ -160,6 +160,10 @@ article.container {
   max-width: 50%;
 }
 
+
+.lib {
+  margin-bottom: 4rem;
+}
 .lib-content {
   display: flex;
   word-break: break-all;
