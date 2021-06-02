@@ -1,7 +1,8 @@
 // twoslash: { theme: "../../../script/theme" }
-// highlight: {1}
-function greet(person: string, date: Date) {
-  console.log(`Hello ${person}, today is ${date.toDateString()}!`)
+// codefence: {1, 3-4}
+function greet(person: string) {
+  console.log(`Hello ${person},`)
+  console.log(`How do?`)
 }
 
-greet("Maddison", new Date())
+greet("Maddison")

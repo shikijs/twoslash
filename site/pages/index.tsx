@@ -4,7 +4,7 @@ import { setupTwoslashHovers } from "shiki-twoslash/dist/dom";
 
 export default function Home(props: ReturnType<typeof getStaticProps>["props"]) {
   useEffect(setupTwoslashHovers, []);
-
+  console.log(props.stats)
   return (
     <>
       <Head>
@@ -53,7 +53,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
 
         <article className="container border-yellow" id="shiki">
           <div style={{ textAlign: "center" }}>
-            <img src="./svgs/shiki.svg" alt="The word 'shiki'" width={309} height={95} />
+            <img className="old" src="./svgs/shiki.svg" alt="The word 'shiki'" width={309} height={95} />
           </div>
 
           <div className="split-50-50">
@@ -65,7 +65,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
                 Supports all possible languages available on the VS Code extension marketplace. That’s over 200 languages. All you need is a{" "}
                 <code>.tmlangauge</code> file for anything not shipped with Shiki.
               </p>
-              <p>Shiki colours your code with any VS Code theme. That’s {Math.round(props.stats.themeCount/100) * props.stats.themeCount}+ last time we checked.</p>
+              <p>Shiki colours your code with any VS Code theme. That’s {Math.round(props.stats.themeCount/100) * 100}+ last time we checked.</p>
             </div>
 
             <div className="left-margin-1">
@@ -79,11 +79,11 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
 
         <article className="container border-blue" id="twoslash">
           <div style={{ textAlign: "center" }}>
-            <img src="./svgs/twoslash.svg" alt="The word 'twoslash'" width={501} height={92} />
+            <img className="old" src="./svgs/twoslash.svg" alt="The word 'twoslash'" width={501} height={92} />
           </div>
 
           <div className="split-50-50">
-            <div className="left-margin-1">
+            <div className="left-margin-1 ">
               <p>
                 <span className="eu">T</span>hink of twoslash as a pre-processor for your code-samples.
               </p>
@@ -108,13 +108,13 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
         <Split num={1} />    
 
         <article className="container border-blue" id="markup">
-          <h2><a href="#markup">#</a>Chapter 1: Twoslash Markup</h2>
+          <h2><a href="#markup">#</a>Chapter 1:<br className="small-only"/> Twoslash Markup</h2>
 
-          <Point msg="When you mix Shiki with Twoslash you can have extremely accurate syntax highlighting for JavaScript and TypeScript. The syntax highlighting has been maintained by the TypeScript team for years and gets updated with new TypeScript releases." />
+          <Point msg="By default all codeblocks in Shiki Twoslash act like traditional static code samples, making Shiki Twoslash backwards compatible with existing codebases." />
 
           <Code code={props.html.basic.replace("twoslash", "").replace("twoslash", "").replace("lsp", "")} />
 
-          <Point msg="By default, code samples rendered by shiki-twoslash have all of their IDE hover information embedded inside the HTML. With a hint of JavaScript, you can support mouse-hovering in the browser. Try hovering below:" />
+          <Point msg="However, on JavaScript-y code samples, you can opt-in each code sample to use Twoslash." />
 
           <Code code={props.html.basic} />
 
@@ -141,35 +141,125 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           <Point msg="You see how we declared which errors were expected in the source? That means if this code sample errors with something else, Shiki Twoslash will fail to render.<br /><br />Failing rocks because your CI will tell you that your code samples are out of date." />
         </article>
 
+        <article className="container border-red" id="shiki">
+          <h2><a href="#shiki">#</a>Chapter 2:<br className="small-only"/> Shiki Twoslash</h2>
 
+          <Point msg="Twoslash Shiki is a polite but hard fork of the Shiki code rendering engine. Let's look at a few of the Shiki Twoslash features.<br/><br/><strong>Multi-theme rendering</strong> gives you the chance to set up your own custom color themes ahead of time. Shiki Twoslash will render each codeblock multiple times. For example, these settings uses the site theme and every shipped Shiki theme." />
 
-        <article className="container border-blue" id="shiki">
-          <h2><a href="#shiki">#</a>Chapter 2: Shiki</h2>
+          <Code code={shikiWrap(`{ "themes": ${themes()}}`)} />
 
-          <Point msg="Twoslash Shiki is a polite but hard fork of the Shiki code rendering engine. Let's look at a few of the Shiki Twoslash features" />
+          <MicroPoint>Turns into:</MicroPoint>
 
-          <Code code={props.html.theme} />
+          <div className="show-lots-of-code mid-10" dangerouslySetInnerHTML={{ __html: props.html.theme }} />
 
-          <Point msg="Twoslash Shiki is a polite but hard fork of the Shiki code rendering engine. Let's look at a few of the Shiki Twoslash features" />
+          <MicroPoint>Each code sample has the theme name as a class:</MicroPoint>
 
-          <Code code={props.html.theme} />
+          <Code code={shikiWrap(`&lt;pre class="shiki dark-plus" style="..."`)} />
 
+          <MicroPoint>Giving you the chance to use CSS to hide the ones which should not be seen.</MicroPoint>
+
+          <Code code={shikiWrap(cssForHiding())} />
+
+          <Point msg="Highlighting code in your sample can be done via codefence comments:" />
+
+          <TwoCode source={fakeCodeFence(props.html.highlightSrc, "{1, 3-4}")} output={props.html.highlightHTML.replace("// codefence: {1, 3-4}", "")} />
+
+          <MicroPoint>Shiki Twoslash uses CSS to set up the differences, so style-wise, it's all up to you.</MicroPoint>
         </article>
 
+        <article className="container border-yellow" id="integrations">
+          <h2><a href="#integrations">#</a>Chapter 3:<br className="small-only"/> Integrations</h2>
+
+          <Point msg="I built plugins for most of the big static site generators in the JavaScript ecosystem. These are production ready, but aside from Gatsby, haven't had a true stress test yet." />
+          <MicroPoint>The goal of these plugins is to get the markdown parsing set up, the CSS and JS support is left to you to make decisions on.</MicroPoint>
+
+          <Library top="Gatsby plugin" body="Add the package, edit your <code>gatsby-config.js</code>, add CSS and JS." npm="gatsby-remark-shiki-twoslash" />
+          <Library right top="Docusaurus preset" body="Add the pacakge, edit your <code>docusaurus.config</code>, add CSS and JS." npm="docusaurus-preset-shiki-twoslash" />
+          <Library top="VuePress plugin" body="Add the package, edit your <code>./vuepress/config.ts</code>, add CSS and JS." npm="vuepress-plugin-shiki-twoslash" />
+          <Library right top="Hexo plugin" body="Add the pacakge, edit your <code>./config.yml</code> add CSS and JS" npm="hexo-shiki-twoslash" />
+          <Library top="11ty plugin" body="Add the package, edit your <code>.eleventy.js</code>, add CSS and JS." npm="eleventy-plugin-shiki-twoslash" />
+
+          <Point msg="These generator plugins are powered by two markdown engine plugins. Of those, <code>remark-shiki-twoslash</code> does most of the work." />
+          <a className="mid-6 lib" href="https://www.npmjs.com/package/remark-shiki-twoslash">remark-shiki-twoslash</a>
+          <a className="mid-6 lib" href="https://www.npmjs.com/package/markdown-it-shiki-twoslash">markdown-it-shiki-twoslash</a>
+          <MicroPoint>You can use these libraries to set up in almost any JavaScript tool. There are examples in the <a href="https://github.com/shikijs/twoslash/tree/main/examples">Shiki Twoslash monorepo</a> of working with Next.js, Elder.js and MDX. I'm open to adding more examples.</MicroPoint>
+        </article>
+
+
+        <article className="container border-blue" id="vision">
+          <h2><a href="#vision">#</a>Chapter 4:<br className="small-only"/> Vision</h2>
+
+          <Point msg="I intend for Shiki Twoslash to be a very long term project. Initially created to power the TypeScript website and handbook, Shiki Twoslash has the potential for being a solid foundation for almost any website which describes JavaScript-y code."/>
+          <MicroPoint>Extracting Shiki Twoslash, documenting, improving and abstracting into generator plugins is work I do on my own time and if that is the sort of work you want to see more of, consider sponsoring me on GitHub Sponsors</MicroPoint>
+
+          <a className="mid-6 lib" href="https://github.com/sponsors/orta/">github.com/sponsors/orta/</a>
+
+        </article>
       </main>
     </>
   );
 }
 
+function shikiWrap(code: string) {
+  return `<pre class="shiki " style="background-color: #FCF3D9; color: #111111; "><div class="language-id">ts</div><div class='code-container'><code style='white-space: pre-wrap'>${code}</code></div></pre>`
+}
+
+function themes() {
+  const themes = ["../shiki-twoslash", 'dark-plus',  'github-dark',  'github-light',  'light-plus',  'material-theme-darker',  'material-theme-default',  'material-theme-lighter',  'material-theme-ocean',  'material-theme-palenight',  'min-dark',  'min-light',  'monokai',  'nord',  'slack-theme-dark-mode',  'slack-theme-ochin',  'solarized-dark',  'solarized-light' ] 
+  return themes.map(t => '"' + t + '"').join(", ")
+}
+
+function fakeCodeFence(str: string, fence: string) {
+  return str.replace("// codefence: {1, 3-4}", `\`\`\`ts twoslash ${fence}`).replace("<div class='line'></div></code", '<div class="line" style="color: #BB8700">```</div></code')
+}
+
+function cssForHiding(){
+return `@media (prefers-color-scheme: light) {
+  .shiki.dark-plus {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .shiki.light-plus {
+    display: none;
+  }
+}
+`
+}
+
 const Point = (props: { msg: string }) => {
   const msg = `<span class="eu">${props.msg[0]}</span>${props.msg.substring(1)}`
-  return <p className="mid-6" dangerouslySetInnerHTML={{__html: msg }} />
+  return <p className="mid-6 has-funny-opening-letter" dangerouslySetInnerHTML={{__html: msg }} />
 }
+
+const MicroPoint = (props: { children: any }) => {
+  return <p className="mid-6">{props.children}</p>
+}
+
+
+const Library = (props: { top: string, body: string, npm: string, right?: true }) => {
+
+  return (
+  <div className="mid-6 lib">
+    <div className={"lib-content " + ( props.right? "right" : "")} >
+      <img src="./img/logo.png" />
+      <div>
+        <h4>{props.top}</h4>
+        <p dangerouslySetInnerHTML={{ __html: props.body}} />
+      </div>
+    </div>
+    <a href={`https://www.npmjs.com/package/${props.npm}`}>{props.npm}</a>
+  </div>
+  )
+}
+
 
 const Code = (props: { code: string }) => <div className="mid-8" dangerouslySetInnerHTML={{ __html: props.code }} />;
 
 const TwoCode = (props: { source: string; output: string }) => (
-  <div className="mid-10">
+  <div className="mid-10 code-split">
     <div style={{ paddingRight: "5px" }}>
       <span className="source">Source</span>
       <div dangerouslySetInnerHTML={{ __html: props.source }} />
@@ -187,22 +277,26 @@ const Split = (props: { num: number }) => <div className="split"><img src={`./sv
 export function getStaticProps() {
   const fs = require("fs");
 
+  const get = (path: string) => fs.readFileSync(`examples/render/${path}.html`, "utf8")
+
   return {
     props: {
-      stats: fs.readFileSync("script/stats.json", "utf8"),
+      stats: JSON.parse(fs.readFileSync("script/stats.json", "utf8")),
       html: {
-        basic: fs.readFileSync("examples/render/basic.ts.html", "utf8"),
-        multiFileSrc: fs.readFileSync("examples/render/multi-file.ts_src.html", "utf8"),
-        multiFileHTML: fs.readFileSync("examples/render/multi-file.ts.html", "utf8"),
-        multiFileHighSrc: fs.readFileSync("examples/render/multi-file-highlight.ts_src.html", "utf8"),
-        multiFileHighHTML: fs.readFileSync("examples/render/multi-file-highlight.ts.html", "utf8"),
-        multiFileSnipSrc: fs.readFileSync("examples/render/multi-file-snip.ts_src.html", "utf8"),
-        multiFileSnipHTML: fs.readFileSync("examples/render/multi-file-snip.ts.html", "utf8"),
-        expressSrc: fs.readFileSync("examples/render/express.js_src.html", "utf8"),
-        expressHTML: fs.readFileSync("examples/render/express.js.html", "utf8"),
-        errorSrc: fs.readFileSync("examples/render/errors.ts_src.html", "utf8"),
-        errorHTML: fs.readFileSync("examples/render/errors.ts.html", "utf8"),
-        theme: fs.readFileSync("examples/render/theme.ts.html", "utf8"),
+        basic: get("basic.ts"),
+        multiFileSrc: get("multi-file.ts_src"),
+        multiFileHTML: get("multi-file.ts"),
+        multiFileHighSrc: get("multi-file-highlight.ts_src"),
+        multiFileHighHTML: get("multi-file-highlight.ts"),
+        multiFileSnipSrc: get("multi-file-snip.ts_src"),
+        multiFileSnipHTML: get("multi-file-snip.ts"),
+        expressSrc: get("express.js_src"),
+        expressHTML: get("express.js"),
+        errorSrc: get("errors.ts_src"),
+        errorHTML: get("errors.ts"),
+        highlightSrc: get("highlight-1.ts_src"),
+        highlightHTML: get("highlight-1.ts"),
+        theme: get("theme.ts"),
       },
     },
   };

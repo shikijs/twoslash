@@ -29,7 +29,6 @@ body {
 
 a {
   color: inherit;
-  text-decoration: none;
 }
 
 * {
@@ -58,11 +57,12 @@ h1 {
 h2 {
   font-size: 3rem;
   margin-top: 1rem;
-  margin-bottom: 12rem;
+  margin-bottom: 6rem;
 }
 
 h2 > a {
   opacity: 0.3;
+  text-decoration: none;
 }
 h2 > a:hover {
   opacity: 0.9;
@@ -77,6 +77,8 @@ article.container {
   align-items: center;
   max-width: 1000px;
   width: 100%;
+
+  background-color: rgba(255,255,255, 0.2);
 }
 
 .border-red {
@@ -136,9 +138,96 @@ article.container {
   padding: 4px;
 }
 
-
 .mid-10 pre {
   margin-top: 0;
+}
+
+.show-lots-of-code {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.has-funny-opening-letter {
+  margin-top: 180px;
+}
+
+.show-lots-of-code > pre {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+.code-split > div {
+  max-width: 50%;
+}
+
+.lib-content {
+  display: flex;
+  word-break: break-all;
+}
+
+.lib-content.right {
+  flex-direction: row-reverse;
+} 
+
+.lib-content h4 {
+  font-size: 1.5rem;
+  margin-top: 0;
+}
+
+.lib-content img {
+  max-width:150px;
+  max-height:150px;
+  margin-right: 18px;
+  margin-bottom: 18px;
+}
+
+.lib-content.right img {
+  margin-right: 0;
+  margin-left: 18px;
+} 
+
+.lib a, a.lib {
+  display: block;
+  background-color: black;
+  color: #FCF3D9;
+  text-align: center;
+  font-family: "JetBrains Mono", Menlo, Monaco, Consolas, Courier New, monospace;
+  font-size: 1.3rem;
+  line-height: 2.5rem;
+  min-height: 2.5rem;
+}
+
+.lib a:hover, a.lib:hover {
+  background-color: #183f66;
+}
+
+.small-only {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .intro p {
+    font-size: 0.8rem;
+  }
+
+  img.old {
+    width: 60%;
+    margin-top: -20px;;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .small-only { 
+    display: inline-block;
+  }
 }
 
 /* ------------- grid ----------------- */
@@ -152,6 +241,9 @@ article.container {
 }
 
 @media (max-width: 800px) {
+  img {
+    max-width: 100%;;
+  }
   .split-50-50, .mid-10 {
     flex-direction: column;
   }
@@ -163,6 +255,14 @@ article.container {
   .center-small {
     text-align: center;
   }
+
+  .mid-6 {
+    padding: 10px;
+  }
+
+  .code-split > div {
+    max-width: none;;
+  }
 }
 
 .left-margin-1 {
@@ -172,7 +272,6 @@ article.container {
 .mid-6 {
   max-width: 480px;
   width: 100%;
-  margin-top: 30px;
   margin-bottom: 50px;
 }
 .mid-8 {
@@ -191,7 +290,7 @@ article.container {
 }
 
 pre.shiki {
-  margin-bottom: 180px;
+  margin-bottom: 20px;
 }
 
 /* ------------- Shiki Twoslash C&P ----------------- */
@@ -218,7 +317,7 @@ pre.shiki:hover .dim {
   opacity: 1;
 }
 pre.shiki div.dim {
-  opacity: 0.5;
+  opacity: 0.3;
 }
 pre.shiki div.dim,
 pre.shiki div.highlight {
@@ -227,7 +326,7 @@ pre.shiki div.highlight {
 }
 pre.shiki div.highlight {
   opacity: 1;
-  background-color: #f1f8ff;
+  background-color: #fefff1;
 }
 pre.shiki div.line {
   min-height: 1rem;
@@ -337,14 +436,14 @@ pre .inline-completions ul.dropdown {
   display: inline-block;
   position: absolute;
   width: 240px;
-  background-color: gainsboro;
-  color: grey;
+  background-color: #FFFAED;
+  color: black;
   padding-top: 4px;
   font-family: "JetBrains Mono", Menlo, Monaco, Consolas, Courier New, monospace;
   font-size: 0.8rem;
   margin: 0;
   padding: 0;
-  border-left: 4px solid #4b9edd;
+  border-left: 4px solid #183F66;
 }
 pre .inline-completions ul.dropdown::before {
   background-color: #4b9edd;
@@ -358,16 +457,17 @@ pre .inline-completions ul.dropdown li {
   overflow-x: hidden;
   padding-left: 4px;
   margin-bottom: 4px;
+  color: #e5a604bb;
 }
 pre .inline-completions ul.dropdown li.deprecated {
   text-decoration: line-through;
 }
 pre .inline-completions ul.dropdown li span.result-found {
-  color: #4b9edd;
+  color: #183F66;
 }
 pre .inline-completions ul.dropdown li span.result {
   width: 100px;
-  color: black;
+  
   display: inline-block;
 }
 .dark-theme .markdown pre {
