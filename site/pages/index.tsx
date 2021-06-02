@@ -109,7 +109,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
 
 
 
-        <article className="container border-blue" id="twoslash">
+        <article className="container border-red" id="twoslash">
           <div style={{ textAlign: "center" }}>
             <img className="old" src="./svgs/shiki.svg" alt="The word 'shiki'" width={309} height={95} /><br />
             <img className="old" src="./svgs/twoslash.svg" alt="The word 'twoslash'" width={501} height={92} />
@@ -136,7 +136,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
 
         <Split num={1} />    
 
-        <article className="container border-blue" id="markup">
+        <article className="container border-yellow" id="markup">
           <h2><a href="#markup">#</a>Chapter 1:<br className="small-only"/> Twoslash Markup</h2>
 
           <Point msg="By default all codeblocks in Shiki Twoslash act like traditional static code samples, making Shiki Twoslash backwards compatible with existing codebases." />
@@ -170,7 +170,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           <Point msg="You see how we declared which errors were expected in the source? That means if this code sample errors with something else, Shiki Twoslash will fail to render.<br /><br />Failing rocks because your CI will tell you that your code samples are out of date." />
         </article>
 
-        <article className="container border-red" id="shiki">
+        <article className="container border-blue" id="shiki">
           <h2><a href="#shiki">#</a>Chapter 2:<br className="small-only"/> Shiki Twoslash</h2>
 
           <Point msg="Twoslash Shiki is a polite but hard fork of the Shiki code rendering engine. Let's look at a few of the Shiki Twoslash features.<br/><br/><strong>Multi-theme rendering</strong> gives you the chance to set up your own custom color themes ahead of time. Shiki Twoslash will render each codeblock multiple times. For example, these settings uses the site theme and every shipped Shiki theme." />
@@ -196,7 +196,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           <MicroPoint>Shiki Twoslash uses CSS classes to set up the highlighting, so style-wise, it's all up to you.</MicroPoint>
         </article>
 
-        <article className="container border-yellow" id="integrations">
+        <article className="container border-red" id="integrations">
           <h2><a href="#integrations">#</a>Chapter 3:<br className="small-only"/> Integrations</h2>
 
           <Point msg="I built plugins for most of the big static site generators in the JavaScript ecosystem. These are production ready, but aside from Gatsby, haven't had a true stress test yet." />
@@ -214,7 +214,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           <MicroPoint>You can use these libraries to set up in almost any JavaScript tool. There are examples in the <a href="https://github.com/shikijs/twoslash/tree/main/examples">Shiki Twoslash monorepo</a> of working with Next.js, Elder.js and MDX. I'm open to adding more examples.</MicroPoint>
         </article>
 
-        <article className="container border-blue" id="tooling">
+        <article className="container border-yellow" id="tooling">
           <h2><a href="#tooling">#</a>Chapter 4:<br className="small-only"/> Tooling</h2>
           <Point msg="No markdown document is an island. To build out a corpus of markdown documents which rely on Twoslash there are some additional tools which might come in handy."/>
           
