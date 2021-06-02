@@ -205,7 +205,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           <Library top="Gatsby plugin" body="Add the package, edit your <code>gatsby-config.js</code>, add CSS and JS." npm="gatsby-remark-shiki-twoslash" />
           <Library right top="Docusaurus preset" body="Add the pacakge, edit your <code>docusaurus.config</code>, add CSS and JS." npm="docusaurus-preset-shiki-twoslash" />
           <Library top="VuePress plugin" body="Add the package, edit your <code>./vuepress/config.ts</code>, add CSS and JS." npm="vuepress-plugin-shiki-twoslash" />
-          <Library right top="Hexo plugin" body="Add the pacakge, edit your <code>./config.yml</code> add CSS and JS" npm="hexo-shiki-twoslash" />
+          <Library right top="Hexo plugin" body="Add the package, edit your <code>./config.yml</code> add CSS and JS" npm="hexo-shiki-twoslash" />
           <Library top="11ty plugin" body="Add the package, edit your <code>.eleventy.js</code>, add CSS and JS." npm="eleventy-plugin-shiki-twoslash" />
 
           <Point msg="These generator plugins are powered by two markdown engine plugins. Of those, <code>remark-shiki-twoslash</code> does most of the work." />
@@ -222,14 +222,19 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           <Library right top="Twoslash VS Code" body="Adds twoslash markdup auto-complete to code samples, and offers a one-click link to a Twoslash repl." npm="vscode-twoslash" url="https://marketplace.visualstudio.com/items?itemName=Orta.vscode-twoslash" />
         </article>
 
+        <Split num={2} />    
+
         <article className="container border-blue" id="vision">
-          <h2><a href="#vision">#</a>Chapter 5:<br className="small-only"/> Vision</h2>
+          <h2><a href="#vision">#</a>Vision</h2>
 
           <Point msg="I intend for Shiki Twoslash to be a very long term project. Initially created to power the TypeScript website and handbook, Shiki Twoslash has the potential for being a solid foundation for almost any website which describes JavaScript-y code."/>
           <MicroPoint>Extracting Shiki Twoslash, documenting, improving and abstracting into generator plugins is work I do on my own time and if that is the sort of work you want to see more of, consider sponsoring me on GitHub Sponsors</MicroPoint>
 
           <a className="mid-6 lib" href="https://github.com/sponsors/orta/">github.com/sponsors/orta/</a>
 
+          <MicroPoint>Have a good one!</MicroPoint>
+
+          <img src="./orta-dm.jpg" />
         </article>
       </main>
     </>
