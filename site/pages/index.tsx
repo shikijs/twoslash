@@ -121,7 +121,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
                 <span className="eu">M</span>ixing these two ideas is Shiki Twoslash. The goal being that you can write ergonomic code samples which are backed by the TypeScript compiler.
               </p>
               <p>All code sample use Shiki, then you can opt-in to have Twoslash markup inside specific code blocks.</p>
-              <p>Shiki Twoslash is built to generate completely server-side syntax highlighted code samples with no relience that the user can run JavaScript.</p>
+              <p>Shiki Twoslash is built to generate completely server-side syntax highlighted code samples with no reliance that the user can run JavaScript.</p>
               
             </div>
 
