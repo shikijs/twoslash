@@ -1,4 +1,4 @@
-// twoslash: { theme: "../../../script/theme" }
+// twoslash: { theme: "../../../script/shiki-twoslash" }
 // codefence: {1, 3-4}
 function greet(person: string) {
   console.log(`Hello ${person},`)

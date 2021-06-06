@@ -1,4 +1,4 @@
-// twoslash: { theme: "../../../script/theme" }
+// twoslash: { theme: "../../../script/shiki-twoslash" }
 // @noErrors
 // @esModuleInterop
 import express from "express"

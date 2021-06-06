@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "bootstrap": "yarn twoslash --sourceAlso examples/*.ts examples/*.js examples/render ",
+    "bootstrap": "yarn twoslash --sourceAlso examples/*  examples/render ",
     "build": "next build && next export && touch out/.nojekyll",
     "start": "next start"
   },
