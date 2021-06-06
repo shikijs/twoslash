@@ -46,6 +46,4 @@ pnpm test
 
 ### TODO
 
-- Finish design on microsite
-- Website
 - Docusaurus support is broken
