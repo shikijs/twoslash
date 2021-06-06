@@ -147,7 +147,6 @@ article.container {
 }
 
 .show-lots-of-code pre:nth-child(even) {
-  background: red;
   margin-left: 20px;
 }
 
@@ -242,6 +241,10 @@ a.lib:hover {
 
   .small-only {
     display: inline-block;
+  }
+
+  .show-lots-of-code pre:nth-child(even) {
+    margin-left: 0;
   }
 }
 

@@ -29,7 +29,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
               <br />
               the syntax engine of Visual Studio Code
               <br />
-              mixed with the TypeScript compiler’s information.
+              mixed with the TypeScript compiler’s information
             </p>
           </div>
 
@@ -251,7 +251,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           </a>
           <MicroPoint>
             You can use these libraries to set up in almost any JavaScript tool. There are examples in the{" "}
-            <a href="https://github.com/shikijs/twoslash/tree/main/examples">Shiki Twoslash monorepo</a> of working with Next.js, Elder.js and MDX. I'm open to
+            <a href="https://github.com/shikijs/twoslash/tree/main/examples">Shiki Twoslash monorepo</a> of working with Next.js, Elder.js and MDX.<br/><br/>I'm open to
             adding more examples.
           </MicroPoint>
         </article>
@@ -293,7 +293,16 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           <MicroPoint>Have a good one!</MicroPoint>
           <MicroPoint><img src="./img/us.jpeg" width="100%" /></MicroPoint>
 
-          <MicroPoint>Big thanks to <a href="https://www.instagram.com/gemmamcshane/">Danger</a>, <a href="https://www.instagram.com/outlook_hayesy/">Hayes</a>, <a href="https://matsu.io">Pine</a> for Shiki, <a href="https://github.com/RyanCavanaugh">Ryan Cavanaugh</a> for the idea, starting code and optimism, <a href="https://www.c82.net">Nicholas Rougeux</a> whose design work helped me really nail how to present this, and finally all the folks who helped out build the TypeScript website in Discord.</MicroPoint>
+          <MicroPoint>
+              Big thanks to <a href="https://www.instagram.com/gemmamcshane/">Danger</a>,{" "}
+              <a href="https://www.instagram.com/outlook_hayesy/">Hayes</a>,{" "}
+              <a href="https://matsu.io">Pine</a> for Shiki,{" "}
+              <a href="https://github.com/RyanCavanaugh">Ryan Cavanaugh</a> for the idea, starting code and optimism,{" "}
+              <a href="https://www.c82.net">Nicholas Rougeux</a> whose design work helped me{" "}
+              <a href='https://www.figma.com/file/OVzyeDLLDSvqCwgoaXsr0T/Twoslash?node-id=0%3A1'>really nail</a>{" "}
+              the aesthetic I wanted,{" "}
+              <a href='https://www.facebook.com/thehappychappo'>The Happy Chappo</a> for art{" "}
+              and finally all the folks who helped out build the TypeScript website in Discord.</MicroPoint>
 
           <MicroPoint><a href="https://github.com/shikijs/twoslash">https://github.com/shikijs/twoslash</a></MicroPoint>
         </article>
@@ -309,23 +318,7 @@ function shikiWrap(code: string) {
 function themes() {
   const themes = [
     "../shiki-twoslash",
-    "dark-plus",
-    "github-dark",
-    "github-light",
-    "light-plus",
-    "material-theme-darker",
-    "material-theme-default",
-    "material-theme-lighter",
-    "material-theme-ocean",
-    "material-theme-palenight",
-    "min-dark",
-    "min-light",
-    "monokai",
-    "nord",
-    "slack-theme-dark-mode",
-    "slack-theme-ochin",
-    "solarized-dark",
-    "solarized-light",
+    'dark-plus',  'github-dark',  'github-light',  'light-plus',  'material-theme-darker',  'material-theme-default', 'material-theme-lighter',  'min-light',  'min-dark',  'monokai', 'slack-theme-ochin', 'solarized-light' , 'nord',  'slack-theme-dark-mode',    'material-theme-ocean',  'solarized-dark',  'material-theme-palenight'
   ];
   return themes.map((t) => '"' + t + '"').join(", ");
 }
