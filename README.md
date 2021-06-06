@@ -43,7 +43,3 @@ pnpm test
 
 - [`shiki-twoslash`](packages/shiki-twoslash) - Provides all the building blocks for above
 - [`twoslash-cli`](packages/twoslash-cli) - A CLI for converting md/ts/tsx/js/jsx files to HTML
-
-### TODO
-
-- Docusaurus support is broken
