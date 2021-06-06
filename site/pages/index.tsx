@@ -4,7 +4,7 @@ import { setupTwoslashHovers } from "shiki-twoslash/dist/dom";
 
 export default function Home(props: ReturnType<typeof getStaticProps>["props"]) {
   useEffect(setupTwoslashHovers, []);
-  console.log(props.stats);
+
   return (
     <>
       <Head>
@@ -152,6 +152,8 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           <Point msg="The name Twoslash refers to specially formatted comments which can be used to set up your environment, like compiler flags or separate input files. For example, here is a code sample showing export/importing a function:" />
 
           <TwoCode source={props.html.multiFileSrc} output={props.html.multiFileHTML} />
+
+          <MicroPoint>Compiler flag comments are removed from the output, but we keep the filename around to help people understand that you've made a multi-file code sample.</MicroPoint>
 
           <Point msg="You can write comment queries to have the twoslash powered code-samples highlight types without user interaction." />
 
