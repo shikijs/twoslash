@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "bootstrap": "yarn twoslash --sourceAlso examples/*  examples/render ",
-    "build": "next build && next export && touch out/.nojekyll",
+    "build": "next build && next export && touch out/.nojekyll && node script/stripNextJS.mjs",
     "start": "next start"
   },
   "dependencies": {
