@@ -303,7 +303,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           </a>
 
           <MicroPoint>Have a good one!</MicroPoint>
-          <MicroPoint><img src="./img/us.jpeg" width="100%" /></MicroPoint>
+          <MicroPoint><img src="./img/us.jpg" width="480" height="361" /></MicroPoint>
 
           <MicroPoint>
               Big thanks to <a href="https://www.instagram.com/gemmamcshane/">Danger</a>,{" "}
@@ -370,7 +370,7 @@ const Library = (props: { top: string; body: string; npm: string; right?: true; 
   return (
     <div className="mid-6 lib">
       <div className={"lib-content " + (props.right ? "right" : "")}>
-        <img src={`./prints/${props.imgName}.png`} />
+        <img src={`./prints/${props.imgName}.png`} width="150" height="150"/>
         <div>
           <h4>{props.top}</h4>
           <p dangerouslySetInnerHTML={{ __html: props.body }} />
@@ -386,7 +386,7 @@ const Tool = (props: { top: string; body: string; npm: string; url?: string; img
     <div className="mid-6 lib">
       <h4>{props.top}</h4>
       <p dangerouslySetInnerHTML={{ __html: props.body }} />
-      <img src={`./svgs/${props.imgName}.svg`} />
+      <img src={`./svgs/${props.imgName}.svg`} width="480" height="201" />
       <a href={props.url || `https://www.npmjs.com/package/${props.npm}`}>{props.npm}</a>
     </div>
   );
@@ -409,7 +409,7 @@ const TwoCode = (props: { source: string; output: string }) => (
 
 const Split = (props: { num: number }) => (
   <div className="split">
-    <img src={`./svgs/split-${props.num}.svg`} />
+    <img src={`./svgs/split-${props.num}.svg`} width="630" height="81" />
   </div>
 );
 
