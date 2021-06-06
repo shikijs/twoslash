@@ -12,6 +12,16 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
         <meta name="description" content="You take some Shiki, add a hint of the TypeScript compiler, and 🎉! Incredible static code samples" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
         <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png" />
+        <meta property="og:title" content="Shiki Twoslash: Static Code Samples for JS Projects" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://shikijs.github.io/twoslash/" />
+        <meta property="og:image" content="https://shikijs.github.io/twoslash/img/ograph.png" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:site" content="@orta"/>
+        <meta name="twitter:creator" content="@orta"/>
         <meta name="msapplication-TileColor" content="#fcf3d9" />
       </Head>
 
