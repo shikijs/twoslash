@@ -22,19 +22,17 @@ function theme(context, pluginOptions) {
   }
 
   // Step 2 - Add the CSS
-  if (!preset[1].theme) preset[1].theme = {}
-  const existingCSS = preset[1].theme.customCss
-  let newCSS = [require.resolve("docusaurus-preset-shiki-twoslash/twoslash.css")]
-  if (existingCSS && typeof existingCSS === "string") newCSS.push(existingCSS)
-  if (existingCSS && typeof existingCSS === "object") newCSS = newCSS.concat(existingCSS)
-  preset[1].theme.customCss = newCSS
-
-  console.log(preset)
+  // if (!preset[1].theme) preset[1].theme = {}
+  // const existingCSS = preset[1].theme.customCss
+  // let newCSS = [require.resolve("docusaurus-preset-shiki-twoslash/twoslash.css")]
+  // if (existingCSS && typeof existingCSS === "string") newCSS.push(existingCSS)
+  // if (existingCSS && typeof existingCSS === "object") newCSS = newCSS.concat(existingCSS)
+  // preset[1].theme.customCss = newCSS
 
   // Step 3 - Inject the hover via the internal 'theme' - this is a real nasty hack
   return {
     name: "docusaurus-preset-shiki-twoslash",
-    plugins: [require.resolve("./shiki-twoslash-theme")],
+    plugins: [] // [require.resolve("./shiki-twoslash-theme")],
   }
 }
 

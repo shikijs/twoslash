@@ -1,25 +1,26 @@
 ## Shiki Twoslash
 
-Critical points about Shiki Twoslash which constrain future scope:
+Critical points to understand about Shiki Twoslash which constrain future scope:
 
- - New features need to be useful in most codebases using twoslash. I don't want edge cases.
- - All code sample needs to be atomically compiled. Order should not affect code samples.
- - Everything needs to work without JS on the user's side. For example, the TypeScript website ships Twoslash epubs/PDFs.
+ - New features need to be useful in most codebases using twoslash.
+ - All code sample needs to be atomically compiled. E.g. re-ordering should not affect code samples.
+ - Everything needs to work without JS on the user's side. E.g. example, the TypeScript website ships Twoslash epubs/PDFs.
  - Don't make assumptions about the user environment. E.g. don't assume they use React etc.
 
 Things I care about which might affect scope:
 
- - The level of complexity in the output HTML. E.g. we probably won't syntax highlight embedded overlays.
- - The speed of development. Today Shiki Twoslash caches code samples at Twoslash level, so the compiling happens if the code changes.
+ - I expect people to understand the systems the use. E.g. Offering example CSS + JS, but not bundling it into the results.
+ - The level of complexity in the output HTML. E.g. we probably won't syntax highlight hover info.
+ - The speed of development. E.g. Shiki Twoslash caches code samples at Twoslash level, so the compiling happens only if the code sample changes.
 
 ### Long Term Vision
 
 Today, early June 2021, Shiki Twoslash is bascially 1.0'd. It does everything the TypeScript website needs,
-and is in a good position to be used in blogs as seen on [fatihkalifa.com](https://fatihkalifa.com) and [cpojer.net](https://cpojer.net).
+and is in a good position to be used in blogs as seen on [fatihkalifa.com](https://fatihkalifa.com) and [cpojer.net](https://cpojer.net), and on serious technical documentation sites like TypeScript. 
 
 I, Orta, intend to keep maintaining Shiki Twoslash for a very long time, which means big changes will need an issue ahead of time because I can't maintain what I don't understand. Smaller things I can be flexible with.
 
-I'm also a few years into Shiki Twoslash now, so I'm not sure how much low hanging fruit is available.
+I'm also a few years into Shiki Twoslash now, so I'm not sure how much low hanging fruit is available at this point.
 
 ### Shiki Convergence
 

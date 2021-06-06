@@ -263,7 +263,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           </h2>
           <Point msg="No markdown document is an island. To build out a corpus of markdown documents which rely on Twoslash there are some additional tools which might come in handy." />
 
-          <Tool top="Twoslash CLI" body="Render documents via the terminal and verify the code samples all pass. <a href='https://github.com/shikijs/twoslash/tree/main/packages/twoslash-cli/examples'>This site</a> uses the CLI for all of the above code samples." npm="twoslash-cli" imgName="cli" />
+          <Tool top="Twoslash CLI" body="Render documents via the terminal and verify the code samples all pass. <a href='https://github.com/shikijs/twoslash/tree/main/site/examples'>This site</a> uses the CLI for all of the above code samples." npm="twoslash-cli" imgName="cli" />
           <Tool
             top="Twoslash VS Code"
             body="Adds twoslash markdup auto-complete to code samples, and offers a one-click link to a Twoslash repl with a reference on the TypeScript website."
@@ -280,7 +280,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
             <a href="#vision">#</a>Vision
           </h2>
 
-          <Point msg="I intend for Shiki Twoslash to be a very long term project. Initially created to power the TypeScript website and handbook, Shiki Twoslash has the potential for being a solid foundation for almost any website which describes JavaScript-y code." />
+          <Point msg="I intend for Shiki Twoslash to be a <a href='https://github.com/shikijs/twoslash/blob/main/VISION.md'>very long term project</a>. Initially created to power the TypeScript website and handbook, Shiki Twoslash has the potential for being a solid foundation for almost any website which describes JavaScript-y code." />
           <MicroPoint>
             Extracting Shiki Twoslash, documenting, improving and abstracting into generator plugins is work I do on my own time and if that is the sort of work
             you want to see more of, consider sponsoring me on GitHub Sponsors
