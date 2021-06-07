@@ -324,12 +324,12 @@ pre {
   margin-bottom: 3rem;
   /* Important to allow the code to move horizontally;
  */
-  overflow: auto;
+  overflow-x: auto;
   /* So that folks know you can highlight */
   position: relative;
 }
 pre.shiki {
-  overflow: initial;
+  overflow-x: initial;
 }
 pre.shiki:hover .dim {
   opacity: 1;
