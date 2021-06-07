@@ -18,7 +18,7 @@ function theme(context, pluginOptions) {
 
     // Add to before - because otherwise it would have been set by the existing code syntax renderer
     // now all they have is divs which will NOOP
-    preset[1][key].beforeDefaultRemarkPlugins.push([require("remark-shiki-twoslash").remarkTwoslash, pluginOptions])
+    preset[1][key].beforeDefaultRemarkPlugins.push([require("remark-shiki-twoslash").default, pluginOptions])
   }
 
   // Step 2 - Add the CSS
