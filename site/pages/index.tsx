@@ -19,9 +19,9 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta name="twitter:card" content="summary_large_image"/>
-        <meta name="twitter:site" content="@orta"/>
-        <meta name="twitter:creator" content="@orta"/>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@orta" />
+        <meta name="twitter:creator" content="@orta" />
         <meta name="theme-color" content="#fcf3d9" />
         <meta name="msapplication-TileColor" content="#fcf3d9" />
       </Head>
@@ -76,7 +76,11 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
               </p>
               <p>
                 Supports all possible languages available on the VS Code extension marketplace. That’s over 200 languages. All you need is a
-                <code> .tmlanguage</code> file for anything not shipped with <a href="https://github.com/shikijs/shiki" target="_blank">Shiki</a>.
+                <code> .tmlanguage</code> file for anything not shipped with{" "}
+                <a href="https://github.com/shikijs/shiki" target="_blank">
+                  Shiki
+                </a>
+                .
               </p>
               <p>Shiki colours your code with any VS Code theme. That’s {Math.round(props.stats.themeCount / 100) * 100}+ last time we checked.</p>
             </div>
@@ -131,8 +135,9 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
                 by the TypeScript compiler.
               </p>
               <p>All code sample use Shiki, then you can opt-in to have Twoslash markup inside specific code blocks.</p>
-              <p>Shiki Twoslash is built to generate completely server-side syntax highlighted code samples with no reliance that the user can run JavaScript.</p>
-              
+              <p>
+                Shiki Twoslash is built to generate completely server-side syntax highlighted code samples with no reliance that the user can run JavaScript.
+              </p>
             </div>
 
             <div className="left-margin-1">
@@ -164,7 +169,10 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
 
           <TwoCode source={props.html.multiFileSrc} output={props.html.multiFileHTML} />
 
-          <MicroPoint>Compiler flag comments are removed from the output, but we keep the filename around to help people understand that you've made a multi-file code sample.</MicroPoint>
+          <MicroPoint>
+            Compiler flag comments are removed from the output, but we keep the filename around to help people understand that you've made a multi-file code
+            sample.
+          </MicroPoint>
 
           <Point msg="You can write comment queries to have the twoslash powered code-samples highlight types without user interaction." />
 
@@ -216,7 +224,6 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           <Point msg="Code blocks which are atomic is great, but can get repetitive in your markdown file. To avoid constantly repeating yourself, Shiki Twoslash has a simple includes system where you can create a hidden codeblock which is imported in parts into your code samples." />
 
           <TwoCode source={props.html.includeHtml} output={props.html.includeHtmlRender} />
-
         </article>
 
         <article className="container border-red" id="integrations">
@@ -264,8 +271,10 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           </a>
           <MicroPoint>
             You can use these libraries to set up in almost any JavaScript tool. There are examples in the{" "}
-            <a href="https://github.com/shikijs/twoslash/tree/main/examples">Shiki Twoslash monorepo</a> of working with Next.js, Elder.js and MDX.<br/><br/>I'm open to
-            adding more examples.
+            <a href="https://github.com/shikijs/twoslash/tree/main/examples">Shiki Twoslash monorepo</a> of working with Next.js, Elder.js and MDX.
+            <br />
+            <br />
+            I'm open to adding more examples.
           </MicroPoint>
         </article>
 
@@ -276,7 +285,12 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           </h2>
           <Point msg="No markdown document is an island. To build out a corpus of markdown documents which rely on Twoslash there are some additional tools which might come in handy." />
 
-          <Tool top="Twoslash CLI" body="Render documents via the terminal and verify the code samples all pass. <a href='https://github.com/shikijs/twoslash/tree/main/site/examples'>This site</a> uses the CLI for all of the above code samples." npm="twoslash-cli" imgName="cli" />
+          <Tool
+            top="Twoslash CLI"
+            body="Render documents via the terminal and verify the code samples all pass. <a href='https://github.com/shikijs/twoslash/tree/main/site/examples'>This site</a> uses the CLI for all of the above code samples."
+            npm="twoslash-cli"
+            imgName="cli"
+          />
           <Tool
             top="Twoslash VS Code"
             body="Adds twoslash markdup auto-complete to code samples, and offers a one-click link to a Twoslash repl with a reference on the TypeScript website."
@@ -304,20 +318,22 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           </a>
 
           <MicroPoint>Have a good one!</MicroPoint>
-          <MicroPoint><img src="./img/us.jpg" width="480" height="361" /></MicroPoint>
+          <MicroPoint>
+            <img src="./img/us.jpg" width="480" height="361" />
+          </MicroPoint>
 
           <MicroPoint>
-              Big thanks to <a href="https://www.instagram.com/gemmamcshane/">Danger</a>,{" "}
-              <a href="https://www.instagram.com/outlook_hayesy/">Hayes</a>,{" "}
-              <a href="https://matsu.io">Pine</a> for Shiki,{" "}
-              <a href="https://github.com/RyanCavanaugh">Ryan Cavanaugh</a> for the idea, starting code and optimism,{" "}
-              <a href="https://www.c82.net">Nicholas Rougeux</a> whose design work helped me{" "}
-              <a href='https://www.figma.com/file/OVzyeDLLDSvqCwgoaXsr0T/Twoslash?node-id=0%3A1'>really nail</a>{" "}
-              the aesthetic I wanted,{" "}
-              <a href='https://www.facebook.com/thehappychappo'>The Happy Chappo</a> for art{" "}
-              and finally all the folks who helped out build the TypeScript website in Discord.</MicroPoint>
+            Big thanks to <a href="https://www.instagram.com/gemmamcshane/">Danger</a>, <a href="https://www.instagram.com/outlook_hayesy/">Hayes</a>,{" "}
+            <a href="https://matsu.io">Pine</a> for Shiki, <a href="https://github.com/RyanCavanaugh">Ryan Cavanaugh</a> for the idea, starting code and
+            optimism, <a href="https://www.c82.net">Nicholas Rougeux</a> whose design work helped me{" "}
+            <a href="https://www.figma.com/file/OVzyeDLLDSvqCwgoaXsr0T/Twoslash?node-id=0%3A1">really nail</a> the aesthetic I wanted,{" "}
+            <a href="https://www.facebook.com/thehappychappo">The Happy Chappo</a> for art and finally all the folks who helped out build the TypeScript website
+            in Discord.
+          </MicroPoint>
 
-          <MicroPoint><a href="https://github.com/shikijs/twoslash">https://github.com/shikijs/twoslash</a></MicroPoint>
+          <MicroPoint>
+            <a href="https://github.com/shikijs/twoslash">https://github.com/shikijs/twoslash</a>
+          </MicroPoint>
         </article>
       </main>
     </>
@@ -331,7 +347,23 @@ function shikiWrap(code: string) {
 function themes() {
   const themes = [
     "../shiki-twoslash",
-    'dark-plus',  'github-dark',  'github-light',  'light-plus',  'material-theme-darker',  'material-theme-default', 'material-theme-lighter',  'min-light',  'min-dark',  'monokai', 'slack-theme-ochin', 'solarized-light' , 'nord',  'slack-theme-dark-mode',    'material-theme-ocean',  'solarized-dark',  'material-theme-palenight'
+    "dark-plus",
+    "github-dark",
+    "github-light",
+    "light-plus",
+    "material-theme-darker",
+    "material-theme-default",
+    "material-theme-lighter",
+    "min-light",
+    "min-dark",
+    "monokai",
+    "slack-theme-ochin",
+    "solarized-light",
+    "nord",
+    "slack-theme-dark-mode",
+    "material-theme-ocean",
+    "solarized-dark",
+    "material-theme-palenight",
   ];
   return themes.map((t) => '"' + t + '"').join(", ");
 }
@@ -371,7 +403,7 @@ const Library = (props: { top: string; body: string; npm: string; right?: true; 
   return (
     <div className="mid-6 lib">
       <div className={"lib-content " + (props.right ? "right" : "")}>
-        <img src={`./prints/${props.imgName}.png`} width="150" height="150"/>
+        <img src={`./prints/${props.imgName}.png`} width="150" height="150" />
         <div>
           <h4>{props.top}</h4>
           <p dangerouslySetInnerHTML={{ __html: props.body }} />
