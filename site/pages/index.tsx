@@ -76,7 +76,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
               </p>
               <p>
                 Supports all possible languages available on the VS Code extension marketplace. That’s over 200 languages. All you need is a
-                <code> .tmlangauge</code> file for anything not shipped with <a href="https://github.com/shikijs/shiki" target="_blank">Shiki</a>.
+                <code> .tmlanguage</code> file for anything not shipped with <a href="https://github.com/shikijs/shiki" target="_blank">Shiki</a>.
               </p>
               <p>Shiki colours your code with any VS Code theme. That’s {Math.round(props.stats.themeCount / 100) * 100}+ last time we checked.</p>
             </div>
