@@ -1,14 +1,11 @@
 @font-face {
   font-family: "caslon";
-  src: local('Papyrus'), url("/twoslash/CaslonOS-Regular.otf") format("woff2");
-  font-display: swap;
+  src:  url("/twoslash/CaslonOS-Regular.otf") format("woff2");
 }
 
 @font-face {
   font-family: "euclid";
-  font-display: swap;
-
-  src: local("Papyrus") url("/twoslash/EuclidInitialsnormal.woff2") format("woff2");
+  src:url("/twoslash/EuclidInitialsnormal.woff2") format("woff2");
 }
 
 @font-face {
