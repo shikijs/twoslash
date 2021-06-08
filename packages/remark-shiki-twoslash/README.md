@@ -1,6 +1,6 @@
 ### remark-shiki-twoslash
 
-[You might first want to read the user docs.](https://shikijs.github.io/twoslash/).
+[You might first want to read the user docs first](https://shikijs.github.io/twoslash/).
 
 This module sets up markdown code blocks to run through [shiki](https://shiki.matsu.io) which means it gets the VS Code quality
 syntax highlighting, with optional inline TypeScript compiler-backed tooling.

@@ -1,8 +1,6 @@
 {
   "name": "shiki-twoslash-monorepo",
   "workspaces": [
-    "./packages/shiki-twoslash",
-    "./packages/remark-shiki-twoslash",
     "./packages/**"
   ],
   "scripts": {

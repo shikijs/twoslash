@@ -28,7 +28,7 @@
     "lint": "tsdx lint"
   },
   "dependencies": {
-    "remark-shiki-twoslash": "1.4.0",
+    "remark-shiki-twoslash": "1.4.2",
     "typescript": ">3",
     "unist-util-visit": "^2.0.0"
   },
@@ -41,7 +41,7 @@
     "unified": "^8.4.2",
     "remark": "^13.0.0",
     "shiki": "latest",
-    "shiki-twoslash": "1.4.0"
+    "shiki-twoslash": "1.4.1"
   },
   "jest": {
     "testEnvironment": "node"

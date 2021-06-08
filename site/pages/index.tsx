@@ -45,7 +45,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           </div>
 
           <div className="intro">
-            <p className="by">By orta therox</p>
+            <p className="by">By <a href='https://orta.io'>orta therox</a></p>
             <p>
               Purveyor of renowned open source code
               <br />
@@ -155,9 +155,9 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
 
           <Point msg="By default all codeblocks in Shiki Twoslash act like traditional static code samples, making Shiki Twoslash backwards compatible with existing codebases." />
 
-          <Code code={props.html.basic.replace("twoslash", "").replace("twoslash", "").replace("lsp", "")} />
+          <Code code={props.html.basic.replace("shiki-twoslash twoslash", "").replace("twoslash", "").replace("lsp", "")} />
 
-          <Point msg="However, on JavaScript-y code samples, you can opt-in each code sample to use Twoslash." />
+          <Point msg="However, on JavaScript-y code samples, you can opt-in a code sample to use Twoslash. Try move your cursor into this code sample:" />
 
           <Code code={props.html.basic} />
 
@@ -229,31 +229,31 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           </h2>
 
           <Point msg="I built plugins for most of the big static site generators in the JavaScript ecosystem. These are production ready, but aside from Gatsby, haven't had a true stress test yet." />
-          <MicroPoint>The goal of these plugins is to get the markdown parsing set up, the CSS and JS support is left to you to make decisions on.</MicroPoint>
+          <MicroPoint>The goal of these plugins is to get the markdown parsing set up, then you add the CSS and decide how you want to style it.</MicroPoint>
 
           <Library
             top="Gatsby plugin"
-            body="Add the package, edit your <code>gatsby-config.js</code>, add CSS and JS."
+            body="Add the package, edit your <code>gatsby-config.js</code>, add CSS."
             npm="gatsby-remark-shiki-twoslash"
             imgName="gatsby"
           />
           <Library
             right
             top="Docusaurus preset"
-            body="Add the pacakge, edit your <code>docusaurus.config</code>, add CSS and JS."
+            body="Add the package, edit your <code>docusaurus.config</code>, add CSS."
             npm="docusaurus-preset-shiki-twoslash"
             imgName="docusaurus"
           />
           <Library
             top="VuePress plugin"
-            body="Add the package, edit your <code>./vuepress/config.ts</code>, add CSS and JS."
+            body="Add the package, edit your <code>./vuepress/config.ts</code>, add CSS ."
             npm="vuepress-plugin-shiki-twoslash"
             imgName="vue"
           />
-          <Library right top="Hexo plugin" body="Add the package, edit your <code>./config.yml</code> add CSS and JS" npm="hexo-shiki-twoslash" imgName="h" />
+          <Library right top="Hexo plugin" body="Add the package, edit your <code>./config.yml</code> add CSS," npm="hexo-shiki-twoslash" imgName="h" />
           <Library
             top="11ty plugin"
-            body="Add the package, edit your <code>.eleventy.js</code>, add CSS and JS."
+            body="Add the package, edit your <code>.eleventy.js</code>, add CSS."
             npm="eleventy-plugin-shiki-twoslash"
             imgName="11ty"
           />

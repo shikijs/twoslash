@@ -26,7 +26,7 @@ importers:
 
   packages/docusaurus-preset-shiki-twoslash:
     specifiers:
-      remark-shiki-twoslash: 1.4.0
+      remark-shiki-twoslash: 1.4.2
       typescript: '>3'
     dependencies:
       remark-shiki-twoslash: link:../remark-shiki-twoslash
@@ -34,9 +34,9 @@ importers:
 
   packages/eleventy-plugin-shiki-twoslash:
     specifiers:
-      remark-shiki-twoslash: 1.4.0
+      remark-shiki-twoslash: 1.4.2
       shiki: latest
-      shiki-twoslash: 1.4.0
+      shiki-twoslash: 1.4.1
       typescript: '>3'
     dependencies:
       remark-shiki-twoslash: link:../remark-shiki-twoslash
@@ -50,9 +50,9 @@ importers:
       jest-file-snapshot: ^0.5.0
       rehype-stringify: ^6.0.1
       remark: ^13.0.0
-      remark-shiki-twoslash: 1.4.0
+      remark-shiki-twoslash: 1.4.2
       shiki: latest
-      shiki-twoslash: 1.4.0
+      shiki-twoslash: 1.4.1
       tsdx: ^0.14.1
       tslib: ^1.10.0
       typescript: '>3'
@@ -74,7 +74,7 @@ importers:
 
   packages/hexo-shiki-twoslash:
     specifiers:
-      remark-shiki-twoslash: 1.4.0
+      remark-shiki-twoslash: 1.4.2
       typescript: '>3'
     dependencies:
       remark-shiki-twoslash: link:../remark-shiki-twoslash
@@ -89,9 +89,9 @@ importers:
       markdown-it: ^12.0.6
       markdown-it-shiki: ^0.2.3
       rehype-stringify: ^6.0.1
-      remark-shiki-twoslash: 1.4.0
+      remark-shiki-twoslash: 1.4.2
       shiki: latest
-      shiki-twoslash: 1.4.0
+      shiki-twoslash: 1.4.1
       tsdx: ^0.14.1
       tslib: ^1.10.0
       typescript: '>3'
@@ -123,7 +123,7 @@ importers:
       regenerator-runtime: ^0.13.7
       rehype-stringify: ^6.0.1
       shiki: ^0.9.3
-      shiki-twoslash: 1.4.0
+      shiki-twoslash: 1.4.1
       tsdx: ^0.14.1
       tslib: 2.1.0
       typescript: '>3'
@@ -176,8 +176,8 @@ importers:
       hast-util-to-html: ^7.1.2
       mdast-util-to-hast: ^10.0.0
       remark: ^13.0.0
-      remark-shiki-twoslash: 1.4.0
-      shiki-twoslash: 1.4.0
+      remark-shiki-twoslash: 1.4.2
+      shiki-twoslash: 1.4.1
       typescript: ^3
       unist-util-visit: ^3.1.0
     dependencies:
@@ -194,7 +194,7 @@ importers:
 
   packages/vuepress-plugin-shiki-twoslash:
     specifiers:
-      remark-shiki-twoslash: 1.4.0
+      remark-shiki-twoslash: 1.4.2
       typescript: '>3'
     dependencies:
       remark-shiki-twoslash: link:../remark-shiki-twoslash
