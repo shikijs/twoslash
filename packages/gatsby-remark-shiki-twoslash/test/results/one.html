@@ -2,7 +2,7 @@
 <pre
   class="shiki twoslash lsp"
   style="background-color: #ffffff; color: #000000"
-><div class='code-container'><code><div class='line'><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26"><data-lsp lsp='const getStringLength: (str: string) => number' >getStringLength</data-lsp></span><span style="color: #000000"> = (</span><span style="color: #001080"><data-lsp lsp='(parameter) str: string' >str</data-lsp></span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080"><data-lsp lsp='(parameter) str: string' >str</data-lsp></span><span style="color: #000000">.</span><span style="color: #001080"><data-lsp lsp='(property) String.length: number' >length</data-lsp></span></div></code><a class='playground-link' href='https://www.typescriptlang.org/play/#code/MYewdgzgLgBA5gUygZSgJwJZjgGQdqACxgF4YAKaNALhiqzgEpSA+O9AOgBt84ig'>Try</a></div></pre>
+><div class='code-container'><code><div class='line'><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26"><data-lsp lsp='const getStringLength: (str: string) => number' >getStringLength</data-lsp></span><span style="color: #000000"> = (</span><span style="color: #001080"><data-lsp lsp='(parameter) str: string' >str</data-lsp></span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080"><data-lsp lsp='(parameter) str: string' >str</data-lsp></span><span style="color: #000000">.</span><span style="color: #001080"><data-lsp lsp='(property) String.length: number' >length</data-lsp></span></div></code></div></pre>
 
 <style>
   .shiki {
@@ -40,5 +40,24 @@
   }
   .query {
     color: white;
+  }
+
+  /* To get them all hovering OOTB: .twoslash data-lsp::before { */
+
+  .twoslash data-lsp:hover::before {
+    content: attr(lsp);
+    position: absolute;
+    transform: translate(0, 1rem);
+
+    background-color: #3f3f3f;
+    color: #fff;
+    text-align: left;
+    padding: 5px 8px;
+    border-radius: 2px;
+    font-family: "JetBrains Mono", Menlo, Monaco, Consolas, Courier New,
+      monospace;
+    font-size: 14px;
+    white-space: pre-wrap;
+    z-index: 100;
   }
 </style>

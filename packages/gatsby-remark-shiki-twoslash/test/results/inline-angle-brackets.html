@@ -3,13 +3,13 @@
   class="shiki twoslash lsp"
   style="background-color: #ffffff; color: #000000"
 ><div class='code-container'><code><div class='line'><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080"><data-lsp lsp='let someValue: any' >someValue</data-lsp></span><span style="color: #000000">: </span><span style="color: #267F99">any</span><span style="color: #000000"> = </span><span style="color: #A31515">"this is a string"</span></div>
-<div class='line'><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080"><data-lsp lsp='let strLength: number' >strLength</data-lsp></span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000"> = (&lt;</span><span style="color: #267F99">string</span><span style="color: #000000">&gt;</span><span style="color: #001080"><data-lsp lsp='let someValue: any' >someValue</data-lsp></span><span style="color: #000000">).</span><span style="color: #001080"><data-lsp lsp='(property) String.length: number' >length</data-lsp></span></div></code><a class='playground-link' href='https://www.typescriptlang.org/play/#code/DYUwLgBAzg9gtiAagQ2AVxALgsgdgTwgF4IAiMACwEsoIadowAnK3Ac1IChPRIpmAMiHaVsuNHABGIJsQgAKADz8W7AHywEKdCACUAOlAiKQA'>Try</a></div></pre>
+<div class='line'><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080"><data-lsp lsp='let strLength: number' >strLength</data-lsp></span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000"> = (&lt;</span><span style="color: #267F99">string</span><span style="color: #000000">&gt;</span><span style="color: #001080"><data-lsp lsp='let someValue: any' >someValue</data-lsp></span><span style="color: #000000">).</span><span style="color: #001080"><data-lsp lsp='(property) String.length: number' >length</data-lsp></span></div></code></div></pre>
 <p>And the other is the <code>as</code>-syntax:</p>
 <pre
   class="shiki twoslash lsp"
   style="background-color: #ffffff; color: #000000"
 ><div class='code-container'><code><div class='line'><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080"><data-lsp lsp='let someValue: any' >someValue</data-lsp></span><span style="color: #000000">: </span><span style="color: #267F99">any</span><span style="color: #000000"> = </span><span style="color: #A31515">"this is a string"</span></div>
-<div class='line'><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080"><data-lsp lsp='let strLength: number' >strLength</data-lsp></span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000"> = (</span><span style="color: #001080"><data-lsp lsp='let someValue: any' >someValue</data-lsp></span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #267F99">string</span><span style="color: #000000">).</span><span style="color: #001080"><data-lsp lsp='(property) String.length: number' >length</data-lsp></span></div></code><a class='playground-link' href='https://www.typescriptlang.org/play/#code/DYUwLgBAzg9gtiAagQ2AVxALgsgdgTwgF4IAiMACwEsoIadowAnK3Ac1IChPRIpmAMiHaVsuNHABGIJsQgAKWAhToQOWvxbsAlADpQIikA'>Try</a></div></pre>
+<div class='line'><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080"><data-lsp lsp='let strLength: number' >strLength</data-lsp></span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000"> = (</span><span style="color: #001080"><data-lsp lsp='let someValue: any' >someValue</data-lsp></span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #267F99">string</span><span style="color: #000000">).</span><span style="color: #001080"><data-lsp lsp='(property) String.length: number' >length</data-lsp></span></div></code></div></pre>
 <p>
   The two samples are equivalent. Using one over the other is mostly a choice of
   preference; however, when using TypeScript with JSX, only
@@ -52,5 +52,24 @@
   }
   .query {
     color: white;
+  }
+
+  /* To get them all hovering OOTB: .twoslash data-lsp::before { */
+
+  .twoslash data-lsp:hover::before {
+    content: attr(lsp);
+    position: absolute;
+    transform: translate(0, 1rem);
+
+    background-color: #3f3f3f;
+    color: #fff;
+    text-align: left;
+    padding: 5px 8px;
+    border-radius: 2px;
+    font-family: "JetBrains Mono", Menlo, Monaco, Consolas, Courier New,
+      monospace;
+    font-size: 14px;
+    white-space: pre-wrap;
+    z-index: 100;
   }
 </style>

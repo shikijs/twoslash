@@ -21,5 +21,5 @@ syntax highlighting mixed with the twoslash JavaScript tooling from the TypeScri
      theme: "nord"
    ```
 
-1. **Follow the steps in [npmjs.com/package/remark-shiki-twoslash](https://www.npmjs.com/package/remark-shiki-twoslash)** to add the CSS and JS requirements.
+1. **Follow the steps in [npmjs.com/package/remark-shiki-twoslash](https://www.npmjs.com/package/remark-shiki-twoslash)** to add the CSS requirements.
 1. **Learn in [npmjs.com/package/remark-shiki-twoslash](https://www.npmjs.com/package/remark-shiki-twoslash)** to see what is available, this package leaves all the heavy work to that module.

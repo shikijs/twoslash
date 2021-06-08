@@ -52,9 +52,6 @@ interface HighlighterOptions {
   theme?: IThemeRegistration
   langs?: (Lang | ILanguageRegistration)[]
   themes?: IThemeRegistration[]
-  /**
-   * Paths for loading themes and langs. Relative to the package's root.
-   */
   paths?: IHighlighterPaths
 }
 ```
@@ -83,17 +80,27 @@ export interface TwoSlashOptions {
 }
 ```
 
-Most people will want to set a `theme`, and _maybe_ `vfsRoot` if they want to do twoslash with custom libraries in a monorepo:
+And one extra for good luck:
+
+```ts
+export interface TwoslashShikiOptions {
+  /** A way to turn on the try buttons seen on the TS website */
+  addTryButton?: true
+}
+```
+
+That said, most people will just want to set a `theme`:
 
 ```ts
 {
   resolve: "gatsby-remark-shiki-twoslash",
   options: {
-    theme: "github-light",
-    vfsRoot: path.join(__dirname, "..", "..")
+    theme: "github-light"
   },
 }
 ```
+
+You can find all [built-in themes here](https://github.com/shikijs/shiki/tree/master/packages/shiki/themes) and all [built-in languages here](https://github.com/shikijs/shiki/tree/master/packages/shiki/languages).
 
 ### Common Use Case
 
@@ -114,7 +121,7 @@ This applies to other projects which use globals, like Jest etc. If you think th
 
 ### API
 
-The user-exposed parts of the API is a single file, you might find it easier to just read that: [`src/index.ts`](https://github.com/microsoft/TypeScript-website/blob/v2/packages/shiki-twoslash/src/index.ts).
+The user-exposed parts of the API is a well documented single file, you might find it easier to just read that: [`src/index.ts`](https://github.com/shikijs/twoslash/blob/main/packages/shiki-twoslash/src/index.ts).
 
 ##### `createShikiHighlighter`
 
@@ -197,8 +204,3 @@ if (node.meta && node.meta.includes("twoslash")) {
   node.twoslash = results
 }
 ```
-
-### Used in:
-
-- [gatsby-remark-shiki-twoslash](https://www.npmjs.com/package/gatsby-remark-shiki-twoslash)
-- [remark-shiki-twoslash](https://www.npmjs.com/package/remark-shiki-twoslash)

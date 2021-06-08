@@ -15,7 +15,7 @@ const splice = (str: string, idx: number, rem: number, newString: string) =>
  * We're given the text which lives inside the token, and this function will
  * annotate it with twoslash metadata
  */
-export function createHighlightedString2(ranges: Range[], text: string, targetedWord: string = "") {
+export function createHighlightedString(ranges: Range[], text: string, targetedWord: string = "") {
   const actions = [] as { text: string; index: number }[]
   let hasErrors = false
 
@@ -27,9 +27,12 @@ export function createHighlightedString2(ranges: Range[], text: string, targeted
 
   ranges.forEach(r => {
     if (r.classes === "lsp") {
+      // console.log(ranges, text, targetedWord)
+      // The LSP response lives inside a dom attribute, which _can_ have < inside it, so switch them ahead of time.
+      const lsp = htmlAttrReplacer(r.lsp || "")
       const underLineTargetedWord = r.lsp === targetedWord ? "style=⇯border-bottom: solid 2px lightgrey;⇯" : ""
       actions.push({ text: "⇍/data-lsp⇏", index: r.end })
-      actions.push({ text: `⇍data-lsp lsp=⇯${r.lsp || ""}⇯ ${underLineTargetedWord}⇏`, index: r.begin })
+      actions.push({ text: `⇍data-lsp lsp=¿${lsp}¿ ${underLineTargetedWord}⇏`, index: r.begin })
     } else if (r.classes === "err") {
       hasErrors = true
     } else if (r.classes === "query") {
@@ -49,11 +52,16 @@ export function createHighlightedString2(ranges: Range[], text: string, targeted
 
   if (hasErrors) html = `⇍data-err⇏${html}⇍/data-err⇏`
 
-  return replaceTripleArrow(stripHTML(html))
+  return htmlAttrUnReplacer(replaceTripleArrow(stripHTML(html)))
 }
 
+// HTML attributes have different rules, 
+const htmlAttrReplacer = (str: string) => str.replace(/"/g, "⃟")
+const htmlAttrUnReplacer = (str: string) => str.replace(/⃟/g, '"')
+
+// Inline strings which are shown at HTML level 
 export const subTripleArrow = (str: string) => str.replace(/</g, "⇍").replace(/>/g, "⇏").replace(/'/g, "⇯")
-export const replaceTripleArrow = (str: string) => str.replace(/⇍/g, "<").replace(/⇏/g, ">").replace(/⇯/g, "'")
+export const replaceTripleArrow = (str: string) => str.replace(/⇍/g, "<").replace(/⇏/g, ">").replace(/⇯/g, "'").replace(/¿/g, "'")
 export const replaceTripleArrowEncoded = (str: string) =>
   str.replace(/⇍/g, "&lt;").replace(/⇏/g, "&gt;").replace(/⇯/g, "&apos;")
 

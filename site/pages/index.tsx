@@ -1,10 +1,6 @@
 import Head from "next/head";
-import { useEffect } from "react";
-import { setupTwoslashHovers } from "shiki-twoslash/dist/dom";
 
 export default function Home(props: ReturnType<typeof getStaticProps>["props"]) {
-  useEffect(setupTwoslashHovers, []);
-
   return (
     <>
       <Head>

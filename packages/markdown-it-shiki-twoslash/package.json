@@ -1,6 +1,6 @@
 {
   "name": "markdown-it-shiki-twoslash",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "homepage": "https://github.com/shikijs/twoslash",
   "repository": {
@@ -28,7 +28,7 @@
     "lint": "tsdx lint"
   },
   "dependencies": {
-    "remark-shiki-twoslash": "1.3.0"
+    "remark-shiki-twoslash": "1.4.0"
   },
   "devDependencies": {
     "@types/deasync": "^0.1.1",
@@ -42,8 +42,7 @@
     "tslib": "^1.10.0",
     "typescript": ">3",
     "unified": "^8.4.2",
-
     "shiki": "latest",
-    "shiki-twoslash": "workspace"
+    "shiki-twoslash": "1.4.0"
   }
 }
