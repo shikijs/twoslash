@@ -6,8 +6,13 @@ import { defaultShikiRenderer } from "./renderers/shiki"
 import { tsconfigJSONRenderer } from "./renderers/tsconfig"
 import { parseCodeFenceInfo } from "./parseCodeFenceInfo"
 
-/** The possible user config, a combination of all shiki and twoslash options */
-export type UserConfigSettings = HighlighterOptions & TwoSlashOptions
+export interface TwoslashShikiOptions {
+  /** A way too turn on the try buttons seen on the TS website */
+  addTryButton?: true
+}
+
+/** The possible user config, a combination of all shiki, twoslash and twoslash-shiki options */
+export type UserConfigSettings = HighlighterOptions & TwoSlashOptions & TwoslashShikiOptions
 
 /**
  * This gets filled in by the promise below, then should

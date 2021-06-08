@@ -1,0 +1,112 @@
+[
+  {
+    "code": "type A<B> = { \n    str: string\n    b: B\n}",
+    "extension": "ts",
+    "highlights": [],
+    "queries": [],
+    "staticQuickInfos": [
+      {
+        "text": "type A<B> = {\n    str: string;\n    b: B;\n}",
+        "docs": "",
+        "start": 5,
+        "length": 1,
+        "line": 0,
+        "character": 5,
+        "targetString": "A"
+      },
+      {
+        "text": "(type parameter) B in type A<B>",
+        "docs": "",
+        "start": 7,
+        "length": 1,
+        "line": 0,
+        "character": 7,
+        "targetString": "B"
+      },
+      {
+        "text": "(property) str: string",
+        "docs": "",
+        "start": 19,
+        "length": 3,
+        "line": 1,
+        "character": 4,
+        "targetString": "str"
+      },
+      {
+        "text": "(property) b: B",
+        "docs": "",
+        "start": 35,
+        "length": 1,
+        "line": 2,
+        "character": 4,
+        "targetString": "b"
+      },
+      {
+        "text": "(type parameter) B in type A<B>",
+        "docs": "",
+        "start": 38,
+        "length": 1,
+        "line": 2,
+        "character": 7,
+        "targetString": "B"
+      }
+    ],
+    "errors": [],
+    "playgroundURL": "https://www.typescriptlang.org/play/#code/C4TwDgpgBAggPAIQHxQLxQN5QFBT1AZ2ACcAuQkgSwDsBzXfAI3IWwF8g"
+  },
+  {
+    "code": "\ntype A<B> = { \n    str: \"one\" | \"two\"\n    b: B\n}",
+    "extension": "ts",
+    "highlights": [],
+    "queries": [],
+    "staticQuickInfos": [
+      {
+        "text": "type A<B> = {\n    str: \"one\" | \"two\";\n    b: B;\n}",
+        "docs": "",
+        "start": 6,
+        "length": 1,
+        "line": 1,
+        "character": 5,
+        "targetString": "A"
+      },
+      {
+        "text": "(type parameter) B in type A<B>",
+        "docs": "",
+        "start": 8,
+        "length": 1,
+        "line": 1,
+        "character": 7,
+        "targetString": "B"
+      },
+      {
+        "text": "(property) str: \"one\" | \"two\"",
+        "docs": "",
+        "start": 20,
+        "length": 3,
+        "line": 2,
+        "character": 4,
+        "targetString": "str"
+      },
+      {
+        "text": "(property) b: B",
+        "docs": "",
+        "start": 43,
+        "length": 1,
+        "line": 3,
+        "character": 4,
+        "targetString": "b"
+      },
+      {
+        "text": "(type parameter) B in type A<B>",
+        "docs": "",
+        "start": 46,
+        "length": 1,
+        "line": 3,
+        "character": 7,
+        "targetString": "B"
+      }
+    ],
+    "errors": [],
+    "playgroundURL": "https://www.typescriptlang.org/play/#code/FAFwngDgpgBAggHgEID4YF4YG8bBvmAZxACcAuGAIgHsA7KSmAHypAHdrK8CAjCpYAF8gA"
+  }
+]

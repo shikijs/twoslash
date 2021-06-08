@@ -2,8 +2,8 @@
 <pre
   class="shiki twoslash lsp"
   style="background-color: #ffffff; color: #000000"
-><div class='code-container'><code><div class='line'><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1"><data-lsp lsp='const a: {&amp;#13;    b: string;&amp;#13;}' >a</data-lsp></span><span style="color: #000000"> = {</span></div><div class='line'><span style="color: #000000">  </span><span style="color: #001080"><data-lsp lsp='(property) b: string' >b</data-lsp>:</span><span style="color: #000000"> </span><span style="color: #A31515">&apos;1234&apos;</span><span style="color: #000000">,</span></div><div class='line'><span style="color: #000000">}</span></div>
-<div class='line'><span style="color: #001080"><data-lsp lsp='const a: {&amp;#13;    b: string;&amp;#13;}' >a</data-lsp></span></div></code><a class='playground-link' href='https://www.typescriptlang.org/play/#code/MYewdgzgLgBAhjAvDA3gKBjARgLhgcgEYAmAZgBZ8AaNAXzTTiA'>Try</a></div></pre>
+><div class='code-container'><code><div class='line'><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1"><data-lsp lsp='const a: {&#13;    b: string;&#13;}' >a</data-lsp></span><span style="color: #000000"> = {</span></div><div class='line'><span style="color: #000000">  </span><span style="color: #001080"><data-lsp lsp='(property) b: string' >b</data-lsp>:</span><span style="color: #000000"> </span><span style="color: #A31515">&apos;1234&apos;</span><span style="color: #000000">,</span></div><div class='line'><span style="color: #000000">}</span></div>
+<div class='line'><span style="color: #001080"><data-lsp lsp='const a: {&#13;    b: string;&#13;}' >a</data-lsp></span></div></code></div></pre>
 
 <style>
   .shiki {
@@ -41,5 +41,24 @@
   }
   .query {
     color: white;
+  }
+
+  /* To get them all hovering OOTB: .twoslash data-lsp::before { */
+
+  .twoslash data-lsp:hover::before {
+    content: attr(lsp);
+    position: absolute;
+    transform: translate(0, 1rem);
+
+    background-color: #3f3f3f;
+    color: #fff;
+    text-align: left;
+    padding: 5px 8px;
+    border-radius: 2px;
+    font-family: "JetBrains Mono", Menlo, Monaco, Consolas, Courier New,
+      monospace;
+    font-size: 14px;
+    white-space: pre-wrap;
+    z-index: 100;
   }
 </style>

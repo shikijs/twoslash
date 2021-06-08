@@ -57,6 +57,8 @@ describe("with fixtures", () => {
         vfsRoot: join(__dirname, "..", "..", ".."),
       })
 
+      console.log(results.html)
+
       const htmlString = format(results.html + style, { parser: "html" })
       expect(cleanFixture(htmlString)).toMatchFile(resultHTMLPath)
 
@@ -105,6 +107,25 @@ color: #ffeeee;
 .query {
   color: white;
 }
+
+/* To get them all hovering OOTB: .twoslash data-lsp::before { */
+
+.twoslash data-lsp:hover::before {
+   content: attr(lsp);
+   position: absolute;
+   transform: translate(0, 1rem);
+   
+   background-color: #3f3f3f;
+   color: #fff;
+   text-align: left;
+   padding: 5px 8px;
+   border-radius: 2px;
+   font-family: "JetBrains Mono", Menlo, Monaco, Consolas, Courier New, monospace;
+   font-size: 14px;
+   white-space: pre-wrap;
+   z-index: 100;
+}
+
 </style>
 `
 

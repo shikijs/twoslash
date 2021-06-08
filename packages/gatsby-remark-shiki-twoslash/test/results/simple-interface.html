@@ -2,7 +2,7 @@
 <pre
   class="shiki twoslash lsp"
   style="background-color: #ffffff; color: #000000"
-><div class='code-container'><code><div class='line'><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99"><data-lsp lsp='interface User' >User</data-lsp></span><span style="color: #000000"> {</span></div><div class='line'><span style="color: #000000">  </span><span style="color: #001080"><data-lsp lsp='(property) User.name: string' >name</data-lsp></span><span style="color: #000000">: </span><span style="color: #267F99">string</span></div><div class='line'><span style="color: #000000">  </span><span style="color: #001080"><data-lsp lsp='(property) User.id: number' >id</data-lsp></span><span style="color: #000000">: </span><span style="color: #267F99">number</span></div><div class='line'><span style="color: #000000">}</span></div></code><a class='playground-link' href='https://www.typescriptlang.org/play/#code/JYOwLgpgTgZghgYwgAgKoGdrIN4ChnIhwC2EAXMumFKAOb7LAAmFIArsQEbS4C+QA'>Try</a></div></pre>
+><div class='code-container'><code><div class='line'><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99"><data-lsp lsp='interface User' >User</data-lsp></span><span style="color: #000000"> {</span></div><div class='line'><span style="color: #000000">  </span><span style="color: #001080"><data-lsp lsp='(property) User.name: string' >name</data-lsp></span><span style="color: #000000">: </span><span style="color: #267F99">string</span></div><div class='line'><span style="color: #000000">  </span><span style="color: #001080"><data-lsp lsp='(property) User.id: number' >id</data-lsp></span><span style="color: #000000">: </span><span style="color: #267F99">number</span></div><div class='line'><span style="color: #000000">}</span></div></code></div></pre>
 
 <style>
   .shiki {
@@ -40,5 +40,24 @@
   }
   .query {
     color: white;
+  }
+
+  /* To get them all hovering OOTB: .twoslash data-lsp::before { */
+
+  .twoslash data-lsp:hover::before {
+    content: attr(lsp);
+    position: absolute;
+    transform: translate(0, 1rem);
+
+    background-color: #3f3f3f;
+    color: #fff;
+    text-align: left;
+    padding: 5px 8px;
+    border-radius: 2px;
+    font-family: "JetBrains Mono", Menlo, Monaco, Consolas, Courier New,
+      monospace;
+    font-size: 14px;
+    white-space: pre-wrap;
+    z-index: 100;
   }
 </style>

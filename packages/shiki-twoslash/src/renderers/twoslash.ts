@@ -1,8 +1,9 @@
 type Lines = import("shiki").IThemedToken[][]
 type TwoSlash = import("@typescript/twoslash").TwoSlashReturn
 
+import { TwoslashShikiOptions } from ".."
 import { shouldBeHighlightable, shouldHighlightLine } from "../parseCodeFenceInfo"
-import { stripHTML, createHighlightedString2, subTripleArrow, replaceTripleArrowEncoded, escapeHtml } from "../utils"
+import { createHighlightedString, subTripleArrow, replaceTripleArrowEncoded, escapeHtml } from "../utils"
 import { HtmlRendererOptions, preOpenerFromRenderingOptsWithExtras } from "./plain"
 
 // OK, so - this is just straight up complex code.
@@ -22,7 +23,7 @@ import { HtmlRendererOptions, preOpenerFromRenderingOptsWithExtras } from "./pla
 // - the DOM requires a flattened graph of html elements (e.g. spans can' be interspersed)
 //
 
-export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions, twoslash: TwoSlash, codefenceMeta: any) {
+export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & TwoslashShikiOptions, twoslash: TwoSlash, codefenceMeta: any) {
   let html = ""
 
   const hasHighlight = shouldBeHighlightable(codefenceMeta)
@@ -113,12 +114,12 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions, two
             if ("kind" in token) range.classes = token.kind
             if ("targetString" in token) {
               range.classes = "lsp"
-              range["lsp"] = stripHTML(token.text)
+              range["lsp"] = token.text
             }
             return range
           })
 
-          tokenContent += createHighlightedString2(ranges, token.content, targetedQueryWord?.text)
+          tokenContent += createHighlightedString(ranges, token.content, targetedQueryWord?.text)
         } else {
           tokenContent += subTripleArrow(token.content)
         }
@@ -184,9 +185,15 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions, two
     }
   })
   html = replaceTripleArrowEncoded(html.replace(/\n*$/, "")) // Get rid of final new lines
-  const playgroundLink = `<a class='playground-link' href='${twoslash.playgroundURL}'>Try</a>`
-  html += `</code>${playgroundLink}</div></pre>`
+  
+  if (options.addTryButton) {
+    const playgroundLink = `<a class='playground-link' href='${twoslash.playgroundURL}'>Try</a>`
+    html += `</code>${playgroundLink}`
+  } else {
+    html += `</code>`
+  }
 
+  html += `</div></pre>`
   return html
 }
 
