@@ -7,17 +7,21 @@ importers:
       '@types/jest': ^25.2.3
       esbuild: ^0.12.6
       esbuild-jest: ^0.5.0
+      glob: ^7.1.7
       jest: ^27.0.4
       markdown-magic: ^2.0.0
       pleb: ^3.4.3
+      prettier: ^2.3.1
       typescript: ^4.3.2
     devDependencies:
       '@types/jest': 25.2.3
       esbuild: 0.12.6
       esbuild-jest: 0.5.0_esbuild@0.12.6
+      glob: 7.1.7
       jest: 27.0.4
       markdown-magic: 2.0.0
       pleb: 3.4.3
+      prettier: 2.3.1
       typescript: 4.3.2
 
   packages/docusaurus-preset-shiki-twoslash:
@@ -25,7 +29,7 @@ importers:
       remark-shiki-twoslash: 1.3.0
       typescript: '>3'
     dependencies:
-      remark-shiki-twoslash: link:../remark-shiki-twoslash
+      remark-shiki-twoslash: 1.3.0
       typescript: 4.3.2
 
   packages/eleventy-plugin-shiki-twoslash:
@@ -35,7 +39,7 @@ importers:
       shiki-twoslash: workspace
       typescript: '>3'
     dependencies:
-      remark-shiki-twoslash: link:../remark-shiki-twoslash
+      remark-shiki-twoslash: 1.3.0
       typescript: 4.3.2
     devDependencies:
       shiki: 0.9.3
@@ -55,7 +59,7 @@ importers:
       unified: ^8.4.2
       unist-util-visit: ^2.0.0
     dependencies:
-      remark-shiki-twoslash: link:../remark-shiki-twoslash
+      remark-shiki-twoslash: 1.3.0
       typescript: 4.3.2
       unist-util-visit: 2.0.3
     devDependencies:
@@ -73,7 +77,7 @@ importers:
       remark-shiki-twoslash: 1.3.0
       typescript: '>3'
     dependencies:
-      remark-shiki-twoslash: link:../remark-shiki-twoslash
+      remark-shiki-twoslash: 1.3.0
       typescript: 4.3.2
 
   packages/markdown-it-shiki-twoslash:
@@ -93,7 +97,7 @@ importers:
       typescript: '>3'
       unified: ^8.4.2
     dependencies:
-      remark-shiki-twoslash: link:../remark-shiki-twoslash
+      remark-shiki-twoslash: 1.3.0
     devDependencies:
       '@types/deasync': 0.1.1
       '@types/jest': 25.2.3
@@ -130,7 +134,7 @@ importers:
       '@typescript/vfs': 1.3.4
       regenerator-runtime: 0.13.7
       shiki: 0.9.3
-      shiki-twoslash: link:../shiki-twoslash
+      shiki-twoslash: 1.3.3
       tslib: 2.1.0
       typescript: 4.3.2
       unist-util-visit: 2.0.3
@@ -181,11 +185,11 @@ importers:
       hast-util-to-html: 7.1.3
       mdast-util-to-hast: 10.0.1
       remark: 13.0.0
-      remark-shiki-twoslash: link:../remark-shiki-twoslash
+      remark-shiki-twoslash: 1.3.0
       unist-util-visit: 3.1.0
     devDependencies:
       '@types/node': 14.17.1
-      shiki-twoslash: link:../shiki-twoslash
+      shiki-twoslash: 1.3.3
       typescript: 3.9.9
 
   packages/vuepress-plugin-shiki-twoslash:
@@ -193,7 +197,7 @@ importers:
       remark-shiki-twoslash: 1.3.0
       typescript: '>3'
     dependencies:
-      remark-shiki-twoslash: link:../remark-shiki-twoslash
+      remark-shiki-twoslash: 1.3.0
       typescript: 4.3.2
 
 packages:
@@ -2268,7 +2272,6 @@ packages:
       lz-string: 1.4.4
     transitivePeerDependencies:
       - supports-color
-    dev: false
 
   /@typescript/vfs/1.3.4:
     resolution: {integrity: sha512-RbyJiaAGQPIcAGWFa3jAXSuAexU4BFiDRF1g3hy7LmRqfNpYlTQWGXjcrOaVZjJ8YkkpuwG0FcsYvtWQpd9igQ==}
@@ -2276,7 +2279,6 @@ packages:
       debug: 4.3.1
     transitivePeerDependencies:
       - supports-color
-    dev: false
 
   /abab/2.0.5:
     resolution: {integrity: sha512-9IK9EadsbHo6jLWIpxpR6pL0sazTXV6+SQv25ZB+F7Bj9mJNaOc4nCRabwd5M/JwmUa8idz6Eci6eKfJryPs6Q==}
@@ -6556,7 +6558,6 @@ packages:
   /lz-string/1.4.4:
     resolution: {integrity: sha1-wNjq82BZ9wV5bh40SBHPTEmNOiY=}
     hasBin: true
-    dev: false
 
   /magic-string/0.25.7:
     resolution: {integrity: sha512-4CrMT5DOHTDk4HYDlzmwu4FVCcIYI8gauveasrdCu2IKIFOJ3f0v/8MDGJCDL9oD2ppz/Av1b0Nj345H9M+XIA==}
@@ -7350,6 +7351,12 @@ packages:
     hasBin: true
     dev: true
 
+  /prettier/2.3.1:
+    resolution: {integrity: sha512-p+vNbgpLjif/+D+DwAZAbndtRrR0md0MwfmOVN9N+2RgyACMT+7tfaRnT+WDPkqnuVwleyuBIG2XBxKDme3hPA==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
+    dev: true
+
   /pretty-format/25.5.0:
     resolution: {integrity: sha512-kbo/kq2LQ/A/is0PQwsEHM7Ca6//bGPPvU6UnsdDRSKTWxT/ru/xb88v4BJf6a69H+uTytOEsTusT9ksd/1iWQ==}
     engines: {node: '>= 8.3'}
@@ -7656,6 +7663,20 @@ packages:
       mdast-util-from-markdown: 0.8.5
     transitivePeerDependencies:
       - supports-color
+
+  /remark-shiki-twoslash/1.3.0:
+    resolution: {integrity: sha512-2xnVRFhjJ+Q2w62PNzcZKpm7qJKAsmu5+sEwfDKCK3gE6CaKzUkIrv/RSxbnqLJ9rWLLhdF1o+4T8WvRwF+JmQ==}
+    dependencies:
+      '@typescript/twoslash': 1.1.7
+      '@typescript/vfs': 1.3.4
+      shiki: 0.9.3
+      shiki-twoslash: 1.3.1
+      tslib: 2.1.0
+      typescript: 4.3.2
+      unist-util-visit: 2.0.3
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
 
   /remark-squeeze-paragraphs/4.0.0:
     resolution: {integrity: sha512-8qRqmL9F4nuLPIgl92XUuxI3pFxize+F1H0e/W3llTk0UsjJaj01+RrirkMw7P21RKe4X6goQhYRSvNWX+70Rw==}
@@ -8061,6 +8082,27 @@ packages:
     resolution: {integrity: sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==}
     dev: true
     optional: true
+
+  /shiki-twoslash/1.3.1:
+    resolution: {integrity: sha512-BasO1NrB8boky+EybyvQo0j/AMNea3FcUyrJXV0dCElLgmTVTTuNvUQ9DAk3RRNg818pjitU0xdDpopQqGEZbQ==}
+    dependencies:
+      '@typescript/twoslash': 1.1.7
+      '@typescript/vfs': 1.3.4
+      shiki: 0.9.3
+      typescript: 4.3.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /shiki-twoslash/1.3.3:
+    resolution: {integrity: sha512-ZXPpcx/aLeJ4k9qXqCThqoS3MWG2gzAxd/sCHGc6hgZ1sBh3hgnXneZMDjYCrts906X/Dnzg0YlER02+hfClqQ==}
+    dependencies:
+      '@typescript/twoslash': 1.1.7
+      '@typescript/vfs': 1.3.4
+      shiki: 0.9.3
+      typescript: 4.3.2
+    transitivePeerDependencies:
+      - supports-color
 
   /shiki/0.9.3:
     resolution: {integrity: sha512-NEjg1mVbAUrzRv2eIcUt3TG7X9svX7l3n3F5/3OdFq+/BxUdmBOeKGiH4icZJBLHy354Shnj6sfBTemea2e7XA==}
