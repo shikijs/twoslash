@@ -22,22 +22,6 @@ syntax highlighting mixed with the twoslash JavaScript tooling from the TypeScri
    ```
 
 1. Add the CSS from [npmjs.com/package/remark-shiki-twoslash](https://www.npmjs.com/package/remark-shiki-twoslash) to `src/css/custom.css`
-1. Add the JS via a [root component](https://docusaurus.io/docs/using-themes#wrapper-your-site-with-root): `src/theme/Root.js`
-
-```ts
-import React, { useEffect } from "react"
-import { setupTwoslashHovers } from "shiki-twoslash/dist/dom"
-
-
-// Default implementation, that you can customize
-function Root({children}) {
-  useEffect(setupTwoslashHovers, [])
-
-  return <>{children}</>;
-}
-
-export default Root;
-```
 
 1. Disable the in-built formatter: `src/theme/MDXComponents/index.js`:
 
