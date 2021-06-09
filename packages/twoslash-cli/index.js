@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync } from "fs
 import remark from "remark"
 import toHAST from "mdast-util-to-hast"
 import hastToHTML from "hast-util-to-html"
-import visit from "unist-util-visit"
+import { visit } from "unist-util-visit"
 import { join, dirname } from "path"
 import remarkShikiTwoslash from "remark-shiki-twoslash"
 import { basename, extname, sep } from "path"
