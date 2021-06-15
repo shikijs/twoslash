@@ -1797,16 +1797,16 @@ remark-parse@^9.0.0:
   dependencies:
     mdast-util-from-markdown "^0.8.0"
 
-remark-shiki-twoslash@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/remark-shiki-twoslash/-/remark-shiki-twoslash-1.4.0.tgz#99a8da81cc819c16fcb1acd938fce7c90494efc4"
-  integrity sha512-CubyLJoDJfGvrTPCg1RRz+8bNAn1qHCLqW+dB7m2+zjFM7cjHMbqRxrFhayqR+ena714Xo3qo3aAIpYiQFfx8Q==
+remark-shiki-twoslash@1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/remark-shiki-twoslash/-/remark-shiki-twoslash-1.4.2.tgz#8c6bd07b2ded372e5cc02d840cab8bfd9a29f0be"
+  integrity sha512-Mxvu7DHfPf7oyAoundjSuYhU6HTWYDGxIDQJxx2UlsraiIcefq8N7Hxgi5u6t9S162BJK/hIDI0y/mzilHZrNQ==
   dependencies:
     "@typescript/twoslash" "1.1.7"
     "@typescript/vfs" "1.3.4"
     regenerator-runtime "^0.13.7"
     shiki "^0.9.3"
-    shiki-twoslash "1.4.0"
+    shiki-twoslash "1.4.1"
     tslib "2.1.0"
     typescript ">3"
     unist-util-visit "^2.0.0"
@@ -1891,10 +1891,10 @@ shell-quote@1.7.2:
   resolved "https://registry.yarnpkg.com/shell-quote/-/shell-quote-1.7.2.tgz#67a7d02c76c9da24f99d20808fcaded0e0e04be2"
   integrity sha512-mRz/m/JVscCrkMyPqHc/bczi3OQHkLTqXHEFu0zDhK/qfv3UcOA4SVmRCLmos4bhjr9ekVQubj/R7waKapmiQg==
 
-shiki-twoslash@1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/shiki-twoslash/-/shiki-twoslash-1.4.0.tgz#14959abb9bc2173f975973216638f71a5ddd89d8"
-  integrity sha512-GvwWNlf/Y2WGQG2CZo9J8DtAgaTqT+NJY/KX3tLb8360ho/ndBYHgtlAVNM3bKlde4KE3iL6pwr4ZaRaizbWew==
+shiki-twoslash@1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/shiki-twoslash/-/shiki-twoslash-1.4.1.tgz#cab11b13214c51f88bed733512feb2654da0716e"
+  integrity sha512-PB55xKMbiDwiOc9OoJAsxsdKURsqqmHrc8hL0gsRuiJrcN+iz4NupKYwxzp+VzhBkKAZMG8YXwt//XithLpGJQ==
   dependencies:
     "@typescript/twoslash" "1.1.7"
     "@typescript/vfs" "1.3.4"
@@ -2144,14 +2144,16 @@ tty-browserify@0.0.1:
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.1.tgz#3f05251ee17904dfd0677546670db9651682b811"
   integrity sha512-C3TaO7K81YvjCgQH9Q1S3R3P3BtN3RIM8n+OvX4il1K1zgE8ZhI0op7kClgkxtutIE8hQrcrHBXvIheqKUUCxw==
 
-"twoslash-cli@file:../packages/twoslash-cli":
-  version "1.1.0"
+twoslash-cli@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/twoslash-cli/-/twoslash-cli-1.1.1.tgz#b3cf49a3fd1b486780d2b7383b96924e8329ff12"
+  integrity sha512-NOuEqLAVgQQfyaeAobFThXy+aP72jUvEyBIZCCMS4cAnJQzsKb3fcVL09brw2R5XZSVSD2Mh1Nbo513tAcwy5g==
   dependencies:
     commander "^7.2.0"
     hast-util-to-html "^7.1.2"
     mdast-util-to-hast "^10.0.0"
     remark "^13.0.0"
-    remark-shiki-twoslash "1.4.0"
+    remark-shiki-twoslash "1.4.2"
     unist-util-visit "^3.1.0"
 
 type-fest@^0.7.1:
