@@ -1,6 +1,6 @@
 {
   "name": "gatsby-remark-shiki-twoslash",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "license": "MIT",
   "homepage": "https://github.com/shikijs/twoslash",
   "repository": {
@@ -13,19 +13,14 @@
   },
   "description": "A remark plugin for Gatsby which adds twoslash code samples for TypeScript",
   "author": "Orta Therox",
-  "main": "./dist/index.js",
-  "module": "./dist/gatsby-remark-shiki-twoslash.esm.js",
-  "typings": "./dist/index.d.ts",
+  "main": "src/index.js",
   "files": [
     "dist"
   ],
   "scripts": {
-    "start": "tsdx watch",
-    "bootstrap": "npm run build",
-    "prepublishOnly": "npm run build",
-    "build": "tsdx build",
-    "test": "tsdx test",
-    "lint": "tsdx lint"
+    "bootstrap": "",
+    "prepublishOnly": "",
+    "build": ""
   },
   "dependencies": {
     "remark-shiki-twoslash": "1.4.2",

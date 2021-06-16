@@ -4,7 +4,7 @@ import { readdirSync, readFileSync, lstatSync } from "fs"
 import { join, parse } from "path"
 import { toMatchFile } from "jest-file-snapshot"
 import { format } from "prettier"
-import gatsbyRemarkShiki from "../src/index"
+import gatsbyRemarkShiki from ".."
 const remark = require("remark")
 import { Node } from "unist"
 expect.extend({ toMatchFile })
@@ -56,8 +56,6 @@ describe("with fixtures", () => {
         theme: require("./ts-theme.json"),
         vfsRoot: join(__dirname, "..", "..", ".."),
       })
-
-      console.log(results.html)
 
       const htmlString = format(results.html + style, { parser: "html" })
       expect(cleanFixture(htmlString)).toMatchFile(resultHTMLPath)
