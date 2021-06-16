@@ -99,6 +99,6 @@ module.exports = {
         },
       },
     ],
-    ["docusaurus-preset-shiki-twoslash", { theme: "nord" }]
+    ["../../packages/docusaurus-preset-shiki-twoslash", { theme: "nord" }]
   ],
 };

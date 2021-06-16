@@ -78,8 +78,11 @@ export const renderCodeToHTML = (
     // Shiki does know the lang, so tokenize
     tokens = renderHighlighter.codeToThemedTokens(code, lang as any)
   } catch (error) {
-    // Shiki doesn't know this lang
-    return plainTextRenderer(code, renderOpts, codefenceMeta.meta)
+    console.error(error)
+    // Shiki doesn't know this lang, so render it as plain, but
+    // also add a note at the end
+    const note = `<!-- Note from shiki-twoslash: the language ${lang} was not set up for Shiki to use, and so there is no code highlighting --!>`
+    return plainTextRenderer(code, renderOpts, codefenceMeta.meta) + note
   }
 
   // Twoslash specific renderer

@@ -30,6 +30,7 @@ export const cachedTwoslashCall = (
   if (existsSync(cachePath)) {
     return JSON.parse(readFileSync(cachePath, "utf8"))
   } else {
+    console.log(settings)
     const results = runTwoSlash(code, lang, settings)
     if (!existsSync(cacheRoot)) mkdirSync(cacheRoot, { recursive: true })
     writeFileSync(cachePath, JSON.stringify(results), "utf8")

@@ -16,6 +16,7 @@ function getHTML(code: string, lang: string, metaString: string, highlighters: H
   // to json, which can handle comments in the syntax highlight
   const replacer = {
     json5: "json",
+    jsx: "js"
   }
 
   // @ts-ignore
@@ -45,7 +46,7 @@ function getHTML(code: string, lang: string, metaString: string, highlighters: H
  */
 export const runTwoSlashOnNode = (code: string, lang: string, meta: string, settings: UserConfigSettings = {}) => {
   // Offer a way to do high-perf iterations, this is less useful
-  // given that we cache the results of twoslash in the file-system=
+  // given that we cache the results of twoslash in the file-system
   const shouldDisableTwoslash = process && process.env && !!process.env.TWOSLASH_DISABLE
   if (shouldDisableTwoslash) return undefined
 

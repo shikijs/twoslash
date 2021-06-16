@@ -22,7 +22,7 @@ export const preOpenerFromRenderingOptsWithExtras = (opts: HtmlRendererOptions, 
 export function plainTextRenderer(code: string, options: HtmlRendererOptions, codefenceMeta: any) {
   let html = ""
 
-  html += preOpenerFromRenderingOptsWithExtras(options, codefenceMeta, [])
+  html += preOpenerFromRenderingOptsWithExtras(options, codefenceMeta, ["plain"])
   if (options.langId) {
     html += `<div class="language-id">${options.langId}</div>`
   }
