@@ -16,7 +16,7 @@
   "main": "./dist/index.js",
   "module": "./dist/remark-shiki-twoslash.esm.js",
   "typings": "./dist/index.d.ts",
-  "files": [
+  "files": [ 
     "dist"
   ],
   "scripts": {
@@ -44,6 +44,7 @@
     "tsdx": "^0.14.1",
     "tslib": "^1.10.0",
     "typescript": ">3",
-    "unified": "^8.4.2"
+    "unified": "^8.4.2",
+    "esbuild": "^0.12.9"
   }
 }
