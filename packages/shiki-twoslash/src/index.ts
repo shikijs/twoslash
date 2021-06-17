@@ -75,13 +75,16 @@ export const renderCodeToHTML = (
 
   let tokens: IThemedToken[][]
   try {
+    // I'm a little unsure about why we need this, perhaps the jsx language 
+    // upstream in shiki is broken?
     const tmpLang = lang === "jsx" ? "tsx" : lang
+
     tokens = renderHighlighter.codeToThemedTokens(code, tmpLang as any)
   } catch (error) {
     // Shiki doesn't know this lang, so render it as plain text, but
-     // also add a note at the end as a HTML comment
-     const note = `<!-- Note from shiki-twoslash: the language ${lang} was not set up for Shiki to use, and so there is no code highlighting --!>`
-     return plainTextRenderer(code, renderOpts, codefenceMeta.meta) + note
+    // also add a note at the end as a HTML comment
+    const note = `<!-- Note from shiki-twoslash: the language ${lang} was not set up for Shiki to use, and so there is no code highlighting --!>`
+    return plainTextRenderer(code, renderOpts, codefenceMeta.meta) + note
   }
 
   // Twoslash specific renderer

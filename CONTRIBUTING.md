@@ -15,6 +15,8 @@ In the root of the repo to see how your changes affect the tests. Both `shiki-tw
 You can monitor a single markdown fixture via `pnpm test --watch --testNamePattern [filename]`. 
 To get underlying information about what Twoslash is doing you can run tests with the env var `DEBUG="*"`, this is very noisy - so narrow your test down.
 
+I've not yet figured out a way to have shiki-twoslash use the .ts files directly at this abstraction level, so you'll need to run `pnpm build` occasionally if you aren't seeing the expected changes in results.
+
 These two dependencies also use TypeScript, you can validate all of the TypeScript via `pnpm build`. 
 
 #### Examples
