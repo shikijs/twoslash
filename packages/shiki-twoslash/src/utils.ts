@@ -55,7 +55,7 @@ export function createHighlightedString(ranges: Range[], text: string, targetedW
   return htmlAttrUnReplacer(replaceTripleArrow(stripHTML(html)))
 }
 
-// HTML attributes have different rules, 
+// HTML attributes have different rules,
 const htmlAttrReplacer = (str: string) => str.replace(/"/g, "⃟")
 const htmlAttrUnReplacer = (str: string) => str.replace(/⃟/g, '"')
 
@@ -71,8 +71,8 @@ export function stripHTML(text: string) {
     '"': "quot",
     "'": "apos",
     "&": "amp",
-    "\r": "#10",
-    "\n": "#13",
+    "\r": "#13",
+    "\n": "#10",
   }
 
   return text.toString().replace(/[<"'\r\n&]/g, function (chr) {
