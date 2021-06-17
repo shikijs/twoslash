@@ -1,6 +1,6 @@
 import type { TwoSlashReturn } from "@typescript/twoslash"
 import type { Node } from "unist"
-import { UserConfigSettings, renderCodeToHTML, runTwoSlash } from "shiki-twoslash"
+import { UserConfigSettings, renderCodeToHTML } from "shiki-twoslash"
 import { Lang, Highlighter, getHighlighter, IThemeRegistration } from "shiki"
 import visit from "unist-util-visit"
 
@@ -45,7 +45,7 @@ function getHTML(code: string, lang: string, metaString: string, highlighters: H
  */
 export const runTwoSlashOnNode = (code: string, lang: string, meta: string, settings: UserConfigSettings = {}) => {
   // Offer a way to do high-perf iterations, this is less useful
-  // given that we cache the results of twoslash in the file-system=
+  // given that we cache the results of twoslash in the file-system
   const shouldDisableTwoslash = process && process.env && !!process.env.TWOSLASH_DISABLE
   if (shouldDisableTwoslash) return undefined
 

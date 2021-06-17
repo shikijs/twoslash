@@ -28,15 +28,7 @@
     "unist-util-visit": "^2.0.0"
   },
   "devDependencies": {
-    "jest-file-snapshot": "^0.5.0",
-    "rehype-stringify": "^6.0.1",
-    "tsdx": "^0.14.1",
-    "tslib": "^1.10.0",
-    "typescript": ">3",
-    "unified": "^8.4.2",
-    "remark": "^13.0.0",
-    "shiki": "latest",
-    "shiki-twoslash": "1.4.1"
+    "tslib": "^1.10.0"
   },
   "jest": {
     "testEnvironment": "node"

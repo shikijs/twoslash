@@ -1,20 +1,20 @@
+import gatsbyRemarkShiki from ".."
+import shikiTwoslash from "../../shiki-twoslash/src"
+
 const toHAST = require(`mdast-util-to-hast`)
 const hastToHTML = require(`hast-util-to-html`)
 import { readdirSync, readFileSync, lstatSync } from "fs"
 import { join, parse } from "path"
 import { toMatchFile } from "jest-file-snapshot"
 import { format } from "prettier"
-import gatsbyRemarkShiki from ".."
 const remark = require("remark")
 import { Node } from "unist"
 expect.extend({ toMatchFile })
 
 const getHTML = async (code: string, settings: any) => {
-  //import("shiki-twoslash").UserConfigSettings) => {
   const markdownAST: Node = remark().parse(code)
 
-  await gatsbyRemarkShiki({ markdownAST }, settings)
-  // await run()
+  await gatsbyRemarkShiki(settings)(markdownAST)
 
   // @ts-ignore
   const twoslashes = markdownAST.children.filter(c => c.meta && c.meta.includes("twoslash")).map(c => c.twoslash)
@@ -39,9 +39,6 @@ describe("with fixtures", () => {
       return
     }
 
-    // if (fixtureName.includes("Relative")) {
-    //   return
-    // }
 
     it("Fixture: " + fixtureName, async () => {
       const resultHTMLName = parse(fixtureName).name + ".html"
@@ -53,8 +50,7 @@ describe("with fixtures", () => {
       const code = readFileSync(fixture, "utf8")
 
       const results = await getHTML(code, {
-        theme: require("./ts-theme.json"),
-        vfsRoot: join(__dirname, "..", "..", ".."),
+        theme: require("./ts-theme.json")
       })
 
       const htmlString = format(results.html + style, { parser: "html" })

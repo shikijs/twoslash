@@ -40,7 +40,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@typescript/twoslash": "^1.1.7",
+    "@typescript/twoslash": "2.0.1",
     "gfm-code-blocks": "^1.0.0"
   }
 }
