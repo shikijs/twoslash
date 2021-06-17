@@ -1,5 +1,9 @@
+// Replace the dist build of shiki-twoslash with the dev build
+jest.mock("shiki-twoslash", () => {
+  return jest.requireActual("../../shiki-twoslash/src")
+})
+
 import gatsbyRemarkShiki from ".."
-import shikiTwoslash from "../../shiki-twoslash/src"
 
 const toHAST = require(`mdast-util-to-hast`)
 const hastToHTML = require(`hast-util-to-html`)
@@ -8,11 +12,10 @@ import { join, parse } from "path"
 import { toMatchFile } from "jest-file-snapshot"
 import { format } from "prettier"
 const remark = require("remark")
-import { Node } from "unist"
 expect.extend({ toMatchFile })
 
 const getHTML = async (code: string, settings: any) => {
-  const markdownAST: Node = remark().parse(code)
+  const markdownAST = remark().parse(code)
 
   await gatsbyRemarkShiki(settings)(markdownAST)
 
