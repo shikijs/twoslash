@@ -21,7 +21,7 @@
     "lint": "echo 'NOOP'"
   },
   "dependencies": {
-    "remark-shiki-twoslash": "1.4.3",
+    "remark-shiki-twoslash": "1.4.4",
     "typescript": ">3"
   }
 }
