@@ -85,8 +85,8 @@ export const renderCodeToHTML = (
   }
 
   // Twoslash specific renderer
-  if (info.includes("twoslash") && twoslash) {
-    return twoslashRenderer(tokens, renderOpts, twoslash, codefenceMeta.meta)
+  if (lang && info.includes("twoslash") && twoslash) {
+    return twoslashRenderer(tokens, { ...renderOpts, langId: lang }, twoslash, codefenceMeta.meta)
   }
 
   // TSConfig renderer
