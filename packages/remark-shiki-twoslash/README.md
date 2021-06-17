@@ -40,12 +40,12 @@ With Shiki Twoslash, you can explain complicated code in a way that lets people 
 <!-- AUTO-GENERATED-CONTENT:START (CODE:src=../../packages/shiki-twoslash/style.css) -->
 <!-- The below code snippet is automatically added from ../../packages/shiki-twoslash/style.css -->
 ```css
-/*  Start of Shiki Twoslash CSS
+/*  Start of Shiki Twoslash CSS:
 
-Code blocks look like: 
+Code blocks structurally look like: 
 
 <pre class='shiki lsp twoslash [theme-name]'>
-  <div class='language-id>[lang-id]</div>
+  <div class='language-id'>[lang-id]</div>
     <div class='code-container'>
       <code>[the code as a series of spans]</code>
       <a href='playground...'>Try</a> (optional)
@@ -91,6 +91,11 @@ pre {
 }
  pre.shiki div.line {
 	 min-height: 1rem;
+}
+
+/** Don't show the language identifiers */
+pre.shiki .language-id{
+    display: none;
 }
 
 /* Visually differentiates twoslash code samples  */

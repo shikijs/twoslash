@@ -25,7 +25,7 @@
     "prepublishOnly": "npm run build; npm run bootstrap"
   },
   "dependencies": {
-    "remark-shiki-twoslash": "1.4.2"
+    "remark-shiki-twoslash": "1.4.3"
   },
   "devDependencies": {
     "@types/deasync": "^0.1.1",
@@ -36,6 +36,6 @@
     "tslib": "^1.10.0",
     "typescript": ">3",
     "shiki": "latest",
-    "shiki-twoslash": "1.4.1"
+    "shiki-twoslash": "1.4.2"
   }
 }
