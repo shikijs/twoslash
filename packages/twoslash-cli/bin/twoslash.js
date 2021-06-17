@@ -22,7 +22,7 @@ Examples:
     $ twoslash pages/one.md  pages/two.md build`
   )
   .option("-w, --watch", "Watch for file updates and rerun twoslash if necessary.")
-  .option("-s, --samples", "Instead of rendering to HTML, spit out individual code blocks as files")
+  .option("-s, --samples", "Instead of rendering to HTML, spit out individual code blocks as files.")
   .option("--sourceAlso", "Also include a render of the source input. Only works on ts/tsx/js/jsx files.")
   .option("--lint", "Don't actually render output files, just verify they work.")
 
