@@ -20,12 +20,9 @@
     "dist"
   ],
   "scripts": {
-    "start": "tsdx watch",
-    "bootstrap": "npm run build",
-    "prepublishOnly": "npm run build",
-    "build": "tsdx build",
-    "test": "tsdx test",
-    "lint": "tsdx lint"
+    "build": "esbuild src/index.ts --outfile=dist/index.js --target=node12 --platform=node",
+    "bootstrap": "npx tsc src/index.ts --declaration  --emitDeclarationOnly --outdir dist --esModuleInterop",
+    "prepublishOnly": "npm run build; npm run bootstrap"
   },
   "dependencies": {
     "remark-shiki-twoslash": "1.4.2"
@@ -36,12 +33,8 @@
     "@types/markdown-it": "^12.0.1",
     "deasync": "^0.1.21",
     "markdown-it": "^12.0.6",
-    "markdown-it-shiki": "^0.2.3",
-    "rehype-stringify": "^6.0.1",
-    "tsdx": "^0.14.1",
     "tslib": "^1.10.0",
     "typescript": ">3",
-    "unified": "^8.4.2",
     "shiki": "latest",
     "shiki-twoslash": "1.4.1"
   }

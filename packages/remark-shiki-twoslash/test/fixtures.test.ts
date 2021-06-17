@@ -10,11 +10,9 @@ import { Node } from "unist"
 expect.extend({ toMatchFile })
 
 const getHTML = async (code: string, settings: any) => {
-  //import("shiki-twoslash").UserConfigSettings) => {
   const markdownAST: Node = remark().parse(code)
 
-  await gatsbyRemarkShiki({ markdownAST }, settings)
-  // await run()
+  await gatsbyRemarkShiki(settings)(markdownAST)
 
   // @ts-ignore
   const twoslashes = markdownAST.children.filter(c => c.meta && c.meta.includes("twoslash")).map(c => c.twoslash)

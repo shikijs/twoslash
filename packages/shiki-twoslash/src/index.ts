@@ -75,11 +75,13 @@ export const renderCodeToHTML = (
 
   let tokens: IThemedToken[][]
   try {
-    // Shiki does know the lang, so tokenize
-    tokens = renderHighlighter.codeToThemedTokens(code, lang as any)
+    const tmpLang = lang === "jsx" ? "tsx" : lang
+    tokens = renderHighlighter.codeToThemedTokens(code, tmpLang as any)
   } catch (error) {
-    // Shiki doesn't know this lang
-    return plainTextRenderer(code, renderOpts, codefenceMeta.meta)
+    // Shiki doesn't know this lang, so render it as plain text, but
+     // also add a note at the end as a HTML comment
+     const note = `<!-- Note from shiki-twoslash: the language ${lang} was not set up for Shiki to use, and so there is no code highlighting --!>`
+     return plainTextRenderer(code, renderOpts, codefenceMeta.meta) + note
   }
 
   // Twoslash specific renderer
@@ -100,8 +102,8 @@ export const renderCodeToHTML = (
  * Runs Twoslash over the code passed in with a particular language as the default file.
  */
 export const runTwoSlash = (code: string, lang: string, settings: UserConfigSettings = {}): TwoSlashReturn => {
-  // Shiki doesn't respect json5 as an input, so switch it
-  // to json, which can handle comments in the syntax highlight
+  // Shiki doesn't handle a few filetype mappings, so do that ahead of time. Oddly enough, this also
+  // gets re-done at remark-shiki level
   const replacer = {
     json5: "json",
     yml: "yaml",
