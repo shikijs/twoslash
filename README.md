@@ -26,6 +26,8 @@ pnpm bootstrap
 pnpm test
 ```
 
+Then see the contributing [for advice](./CONTRIBUTING.md) and the vision file for the [long-term perspective](./VISION.md).
+
 #### Plugins 
 
 - [`vuepress-plugin-shiki-twoslash`](packages/vuepress-plugin-shiki-twoslash) - For VuePress
