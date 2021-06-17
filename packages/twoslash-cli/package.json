@@ -10,12 +10,13 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "remark-shiki-twoslash": "1.4.2",
+    "chokidar": "^3.5.2",
+    "commander": "^7.2.0",
     "hast-util-to-html": "^7.1.2",
     "mdast-util-to-hast": "^10.0.0",
-    "unist-util-visit": "^3.1.0",
     "remark": "^13.0.0",
-    "commander": "^7.2.0"
+    "remark-shiki-twoslash": "1.4.2",
+    "unist-util-visit": "^3.1.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.6",
