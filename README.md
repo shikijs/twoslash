@@ -2,6 +2,8 @@
 
 You take some Shiki, add a hint of TypeScript compiler, and 🎉 incredible statically generated code samples.
 
+See the user-facing docs at: https://shikijs.github.io/twoslash/
+
 ### This Repo
 
 The majority of this repo uses pnpm, the rest yarn. There are four main areas of interest:
@@ -30,11 +32,11 @@ Then see the contributing [for advice](./CONTRIBUTING.md) and the vision file fo
 
 #### Plugins 
 
-- [`vuepress-plugin-shiki-twoslash`](packages/vuepress-plugin-shiki-twoslash) - For VuePress
 - [`docusaurus-preset-shiki-twoslash`](packages/docusaurus-preset-shiki-twoslash) - for Docusaurus
 - [`eleventy-plugin-shiki-twoslash`](packages/eleventy-plugin-shiki-twoslash) - For 11ty
 - [`gatsby-remark-shiki-twoslash`](packages/gatsby-remark-shiki-twoslash) - For Gatsby
 - [`hexo-shiki-twoslash`](packages/hexo-shiki-twoslash) - For Hexo
+- [`vuepress-plugin-shiki-twoslash`](packages/vuepress-plugin-shiki-twoslash) - For VuePress
 
 #### Markdown Renderers
 

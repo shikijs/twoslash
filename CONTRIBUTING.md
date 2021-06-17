@@ -22,3 +22,7 @@ These two dependencies also use TypeScript, you can validate all of the TypeScri
 #### Examples
 
 The examples projects have been used to bootstrap the integration plugins, and definitely have the potential to get out of date with the `main` branch of Shiki Twoslash. As a development environment they are a tad weak.
+
+#### Twoslash
+
+Shiki Twoslash relies on Twoslash which lives in the [TypeScript website monorepo](https://github.com/microsoft/TypeScript-Website/tree/v2/packages/ts-twoslasher). For more daring features, you may need to add support there first.
