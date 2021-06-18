@@ -36,6 +36,7 @@ jobs:
         run: |
           cd site
           yarn
+          yarn upgrade twoslash-cli
           yarn bootstrap
           yarn build
 
