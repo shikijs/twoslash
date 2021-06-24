@@ -9,6 +9,8 @@ import { parseCodeFenceInfo } from "./parseCodeFenceInfo"
 export interface TwoslashShikiOptions {
   /** A way too turn on the try buttons seen on the TS website */
   addTryButton?: true
+  /** A way to disable implicit React imports */
+  disableImplicitReactImport?: true
 }
 
 /** The possible user config, a combination of all shiki, twoslash and twoslash-shiki options */
@@ -75,7 +77,7 @@ export const renderCodeToHTML = (
 
   let tokens: IThemedToken[][]
   try {
-    // I'm a little unsure about why we need this, perhaps the jsx language 
+    // I'm a little unsure about why we need this, perhaps the jsx language
     // upstream in shiki is broken?
     const tmpLang = lang === "jsx" ? "tsx" : lang
 
@@ -104,7 +106,9 @@ export const renderCodeToHTML = (
 /**
  * Runs Twoslash over the code passed in with a particular language as the default file.
  */
-export const runTwoSlash = (code: string, lang: string, settings: UserConfigSettings = {}): TwoSlashReturn => {
+export const runTwoSlash = (input: string, lang: string, settings: UserConfigSettings = {}): TwoSlashReturn => {
+  let code = input
+
   // Shiki doesn't handle a few filetype mappings, so do that ahead of time. Oddly enough, this also
   // gets re-done at remark-shiki level
   const replacer = {
@@ -114,6 +118,23 @@ export const runTwoSlash = (code: string, lang: string, settings: UserConfigSett
 
   // @ts-ignore
   if (replacer[lang]) lang = replacer[lang]
+
+  // Add react import
+  if (["tsx", "jsx"].includes(lang) && !settings.disableImplicitReactImport) {
+    const reactImport = "import React from 'react'\n"
+    const cutString = "// ---cut---\n"
+    // ^ cutString taken directly from
+    // https://github.com/microsoft/TypeScript-Website/blob/0c8d98a69d520365c1909d536fa1323f03a8438c/packages/ts-twoslasher/src/index.ts#L694
+
+    if (code.includes(cutString)) {
+      code = code
+        .split(cutString)
+        .map((item, index) => (index == 0 ? reactImport.concat(item) : item))
+        .join(cutString)
+    } else {
+      code = [reactImport, cutString, code].join("")
+    }
+  }
 
   const results = twoslasher(code, lang, settings)
   return results
