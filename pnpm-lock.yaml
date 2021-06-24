@@ -46,7 +46,7 @@ importers:
       remark-shiki-twoslash: link:../remark-shiki-twoslash
       typescript: 4.3.2
     devDependencies:
-      shiki: 0.9.3
+      shiki: 0.9.5
       shiki-twoslash: link:../shiki-twoslash
 
   packages/gatsby-remark-shiki-twoslash:
@@ -90,7 +90,7 @@ importers:
       '@types/markdown-it': 12.0.1
       deasync: 0.1.21
       markdown-it: 12.0.6
-      shiki: 0.9.3
+      shiki: 0.9.5
       shiki-twoslash: link:../shiki-twoslash
       tslib: 1.14.1
       typescript: 4.3.2
@@ -168,7 +168,6 @@ importers:
       mdast-util-to-hast: ^10.0.0
       remark: ^13.0.0
       remark-shiki-twoslash: 1.4.4
-      shiki-twoslash: 1.4.3
       typescript: ^3
       unist-util-visit: ^3.1.0
     dependencies:
@@ -181,7 +180,6 @@ importers:
       unist-util-visit: 3.1.0
     devDependencies:
       '@types/node': 14.17.1
-      shiki-twoslash: link:../shiki-twoslash
       typescript: 3.9.9
 
   packages/vuepress-plugin-shiki-twoslash:
@@ -8438,6 +8436,15 @@ packages:
     dependencies:
       onigasm: 2.2.5
       vscode-textmate: 5.4.0
+    dev: false
+
+  /shiki/0.9.5:
+    resolution: {integrity: sha512-XFn+rl3wIowDjzdr5DlHoHgQphXefgUTs2bNp/bZu4WF9gTrTLnKwio3f28VjiFG6Jpip7yQn/p4mMj6OrjrtQ==}
+    dependencies:
+      json5: 2.2.0
+      onigasm: 2.2.5
+      vscode-textmate: 5.2.0
+    dev: true
 
   /side-channel/1.0.4:
     resolution: {integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==}
@@ -9463,8 +9470,13 @@ packages:
       unist-util-stringify-position: 2.0.3
       vfile-message: 2.0.4
 
+  /vscode-textmate/5.2.0:
+    resolution: {integrity: sha512-Uw5ooOQxRASHgu6C7GVvUxisKXfSgW4oFlO+aa+PAkgmH89O3CXxEEzNRNtHSqtXFTl0nAC1uYj0GMSH27uwtQ==}
+    dev: true
+
   /vscode-textmate/5.4.0:
     resolution: {integrity: sha512-c0Q4zYZkcLizeYJ3hNyaVUM2AA8KDhNCA3JvXY8CeZSJuBdAy3bAvSbv46RClC4P3dSO9BdwhnKEx2zOo6vP/w==}
+    dev: false
 
   /w3c-hr-time/1.0.2:
     resolution: {integrity: sha512-z8P5DvDNjKDoFIHK7q8r8lackT6l+jo/Ye3HOle7l9nICP9lf1Ci25fy9vHd0JOWewkIFzXIEig3TdKT7JQ5fQ==}
