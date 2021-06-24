@@ -33,7 +33,7 @@
     "@types/markdown-it": "^12.0.1",
     "deasync": "^0.1.21",
     "markdown-it": "^12.0.6",
-    "shiki": "^0.9.5",
+    "shiki": "0.9.3",
     "shiki-twoslash": "1.4.3",
     "tslib": "^1.10.0",
     "typescript": ">3"
