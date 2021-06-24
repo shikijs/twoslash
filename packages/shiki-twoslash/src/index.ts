@@ -7,9 +7,9 @@ import { tsconfigJSONRenderer } from "./renderers/tsconfig"
 import { parseCodeFenceInfo } from "./parseCodeFenceInfo"
 
 export interface TwoslashShikiOptions {
-  /** A way too turn on the try buttons seen on the TS website */
+  /** A way to turn on the try buttons seen on the TS website */
   addTryButton?: true
-  /** A way to disable implicit React imports */
+  /** A way to disable implicit React imports on tsx/jsx language codeblocks */
   disableImplicitReactImport?: true
 }
 
