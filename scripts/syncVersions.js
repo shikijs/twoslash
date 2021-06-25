@@ -4,7 +4,8 @@ const { readFileSync, writeFileSync } = require("fs")
 const { format } = require("prettier")
 const { execSync } = require("child_process")
 
-const doVersions = () => {
+const updateVersions = () => {
+
   // Make sure that all the versioning is accurate across the packages
   const pgkPaths = glob.sync("packages/*/package.json")
   const packages = pgkPaths.map(p => ({ path: p, pkg: JSON.parse(readFileSync(p, "utf8")) }))
@@ -31,15 +32,12 @@ const doVersions = () => {
   
     if (write) {
       const [major, minor, patch] = p.version.split(".")
-      if (major !== "0" && minor !== "0" && patch !== "0") {
-        p.version = `${major}.${minor}.${Number(patch) + 1}`
-      }
+      p.version = `${major}.${minor}.${Number(patch) + 1}`
       writeFileSync(d.path, format(JSON.stringify(p), { filepath: d.path }))
     }
   })
 }
 
-doVersions()
-doVersions()
-
+updateVersions()
+updateVersions()
 execSync("pnpm i", { stdio: "pipe" })
