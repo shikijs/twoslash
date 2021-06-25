@@ -156,3 +156,49 @@ const b = "345"
   const html = renderCodeToHTML(twoslash.code, "ts", ["twoslash"], {}, highlighter, twoslash)
   expect(html).toContain(`<span class='popover-prefix'>     </span>`)
 })
+
+describe("implicit React import example", () => {
+  it("works fine with the setting enabled (by default)", async () => {
+    const highlighter = await createShikiHighlighter({ theme: "dark-plus" })
+    const code = `const C: React.FC = ({children}) => <div>{children}</div>`
+    const twoslash = runTwoSlash(code, "tsx", {})
+    const html = renderCodeToHTML(twoslash.code, "tsx", ["twoslash"], {}, highlighter, twoslash)
+
+    expect(html).toContain(`data-lsp`)
+    expect(html).toContain(`<data-lsp lsp='var children: React.ReactNode`) // children
+    expect(html).toContain(`<data-lsp lsp='(property) JSX.IntrinsicElements.div`) // div
+    expect(html.split("<data-lsp").length).toEqual(twoslash.staticQuickInfos.length + 1)
+  })
+
+  it("works fine with existing cut", async () => {
+    const highlighter = await createShikiHighlighter({ theme: "dark-plus" })
+    const code = `
+const Tag = React.Fragment;
+// --cut---
+const C: React.FC = ({children}) => <Tag>{children}</Tag>
+`
+    const twoslash = runTwoSlash(code, "tsx", {})
+    const html = renderCodeToHTML(twoslash.code, "tsx", ["twoslash"], {}, highlighter, twoslash)
+
+    expect(html).toContain(`data-lsp`)
+    expect(html).toContain(`<data-lsp lsp='var children: React.ReactNode`) // children
+    expect(html).toContain(`<data-lsp lsp='const Tag: React.ExoticComponent`) // Tag
+    expect(html.split("<data-lsp").length).toEqual(twoslash.staticQuickInfos.length + 1)
+  })
+
+  it("error on setting disabled", async () => {
+    const highlighter = await createShikiHighlighter({ theme: "dark-plus" })
+    const code = `
+// @errors: 2503 7031 7026 2304 7026
+const C: React.FC = ({children}) => <div>{children}</div>
+`
+    const twoslash = runTwoSlash(code, "tsx", { disableImplicitReactImport: true })
+    const html = renderCodeToHTML(twoslash.code, "tsx", ["twoslash"], {}, highlighter, twoslash)
+
+    expect(html).toContain(`data-lsp`)
+    expect(html).toContain(`<data-lsp lsp='var children: any`) // children
+    expect(html).toContain(`<data-lsp lsp='any`) // div
+    expect(html).toContain(`<data-err`)
+    expect(html.split("<data-lsp").length).toEqual(twoslash.staticQuickInfos.length + 1)
+  })
+})
