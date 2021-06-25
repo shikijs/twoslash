@@ -17,7 +17,6 @@ const splice = (str: string, idx: number, rem: number, newString: string) =>
  */
 export function createHighlightedString(ranges: Range[], text: string, targetedWord: string = "") {
   const actions = [] as { text: string; index: number }[]
-  let hasErrors = false
 
   // Why the weird chars? We need to make sure that generic syntax isn't
   // interpreted as html tags - to do that we need to switch out < to &lt; - *but*
@@ -34,7 +33,8 @@ export function createHighlightedString(ranges: Range[], text: string, targetedW
       actions.push({ text: "⇍/data-lsp⇏", index: r.end })
       actions.push({ text: `⇍data-lsp lsp=¿${lsp}¿ ${underLineTargetedWord}⇏`, index: r.begin })
     } else if (r.classes === "err") {
-      hasErrors = true
+      actions.push({ text: "⇍/data-err⇏", index: r.end })
+      actions.push({ text: `⇍data-err⇏`, index: r.begin })
     } else if (r.classes === "query") {
       actions.push({ text: "⇍/data-highlight⇏", index: r.end })
       actions.push({ text: `⇍data-highlight'⇏`, index: r.begin })
@@ -49,8 +49,6 @@ export function createHighlightedString(ranges: Range[], text: string, targetedW
     .forEach(action => {
       html = splice(html, action.index, 0, action.text)
     })
-
-  if (hasErrors) html = `⇍data-err⇏${html}⇍/data-err⇏`
 
   return htmlAttrUnReplacer(replaceTripleArrow(stripHTML(html)))
 }
