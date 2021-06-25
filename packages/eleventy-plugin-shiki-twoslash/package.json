@@ -21,11 +21,11 @@
   },
   "dependencies": {
     "deasync": "^0.1.21",
-    "remark-shiki-twoslash": "1.4.4",
+    "remark-shiki-twoslash": "1.4.5",
     "typescript": ">3"
   },
   "devDependencies": {
     "shiki": "0.9.3",
-    "shiki-twoslash": "1.4.3"
+    "shiki-twoslash": "1.4.4"
   }
 }
