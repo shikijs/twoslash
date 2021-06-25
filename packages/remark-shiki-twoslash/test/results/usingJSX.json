@@ -1,94 +1,76 @@
 [
   {
-    "code": "import React from \"react\"\n\nexport const MyTitle = () => (\n    <h1>Title</h1>\n)",
+    "code": "export const MyTitle = () => <h1>Title</h1>",
     "extension": "tsx",
     "highlights": [],
     "queries": [],
     "staticQuickInfos": [
       {
-        "text": "(alias) namespace React\nimport React",
-        "docs": "",
-        "start": 7,
-        "length": 5,
-        "line": 0,
-        "character": 7,
-        "targetString": "React"
-      },
-      {
         "text": "const MyTitle: () => JSX.Element",
         "docs": "",
-        "start": 40,
+        "start": 13,
         "length": 7,
-        "line": 2,
+        "line": 0,
         "character": 13,
         "targetString": "MyTitle"
       },
       {
         "text": "(property) JSX.IntrinsicElements.h1: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>",
         "docs": "",
-        "start": 63,
+        "start": 30,
         "length": 2,
-        "line": 3,
-        "character": 5,
+        "line": 0,
+        "character": 30,
         "targetString": "h1"
       },
       {
         "text": "(property) JSX.IntrinsicElements.h1: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>",
         "docs": "",
-        "start": 73,
+        "start": 40,
         "length": 2,
-        "line": 3,
-        "character": 15,
+        "line": 0,
+        "character": 40,
         "targetString": "h1"
       }
     ],
     "errors": [],
-    "playgroundURL": "https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgIilQ3wChSkAPSWONCAOwGd4BZATwBVgYAbJOAF44ACgCUQgHyjScOXAA8ACwCMk7nyQKA9KsmkxQA"
+    "playgroundURL": "https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgcilQ3wCgB6cuAWlrQFcZbrSkAPSWONCAOwGd4AWQCeAFWAwANkjgBeOAAoAlPIB8cADwALAIxqJ0pJvJ61QA"
   },
   {
-    "code": "import React from \"react\"\n\nexport const MyTitle = () => (\n    <h1>Title</h1>\n)",
+    "code": "export const MyTitle = () => <h1>Title</h1>",
     "extension": "tsx",
     "highlights": [],
     "queries": [],
     "staticQuickInfos": [
       {
-        "text": "(alias) namespace React\nimport React",
-        "docs": "",
-        "start": 7,
-        "length": 5,
-        "line": 0,
-        "character": 7,
-        "targetString": "React"
-      },
-      {
         "text": "const MyTitle: () => JSX.Element",
         "docs": "",
-        "start": 40,
+        "start": 13,
         "length": 7,
-        "line": 2,
+        "line": 0,
         "character": 13,
         "targetString": "MyTitle"
       },
       {
         "text": "(property) JSX.IntrinsicElements.h1: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>",
         "docs": "",
-        "start": 63,
+        "start": 30,
         "length": 2,
-        "line": 3,
-        "character": 5,
+        "line": 0,
+        "character": 30,
         "targetString": "h1"
       },
       {
         "text": "(property) JSX.IntrinsicElements.h1: React.DetailedHTMLProps<React.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>",
         "docs": "",
-        "start": 73,
+        "start": 40,
         "length": 2,
-        "line": 3,
-        "character": 15,
+        "line": 0,
+        "character": 40,
         "targetString": "h1"
       }
     ],
     "errors": [],
-    "playgroundURL": "https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgIilQ3wChSkAPSWONCAOwGd4BZATwBVgYAbJOAF44ACgCUQgHyjScOXAA8ACwCMk7nyQKA9KsmkxQA"
+    "playgroundURL": "https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgcilQ3wCgB6cuAWlrQFcZbrSkAPSWONCAOwGd4AWQCeAFWAwANkjgBeOAAoAlPIB8cADwALAIxqJ0pJvJ61QA"
   }
 ]

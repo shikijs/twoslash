@@ -86,6 +86,8 @@ And one extra for good luck:
 export interface TwoslashShikiOptions {
   /** A way to turn on the try buttons seen on the TS website */
   addTryButton?: true
+  /** A way to disable implicit React imports on tsx/jsx language codeblocks */
+  disableImplicitReactImport?: true
 }
 ```
 
