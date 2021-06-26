@@ -1,0 +1,95 @@
+[
+  {
+    "code": "\ninterface Todo {\ntitle: string;\n}\n\nconst todo: Readonly<Todo> = {\n    title: \"Delete inactive users\",\n};\n\ntodo.title = \"Hello\";",
+    "extension": "ts",
+    "highlights": [],
+    "queries": [],
+    "staticQuickInfos": [
+      {
+        "text": "interface Todo",
+        "docs": "",
+        "start": 11,
+        "length": 4,
+        "line": 1,
+        "character": 10,
+        "targetString": "Todo"
+      },
+      {
+        "text": "(property) Todo.title: string",
+        "docs": "",
+        "start": 18,
+        "length": 5,
+        "line": 2,
+        "character": 0,
+        "targetString": "title"
+      },
+      {
+        "text": "const todo: Readonly<Todo>",
+        "docs": "",
+        "start": 42,
+        "length": 4,
+        "line": 5,
+        "character": 6,
+        "targetString": "todo"
+      },
+      {
+        "text": "type Readonly<T> = { readonly [P in keyof T]: T[P]; }",
+        "docs": "Make all properties in T readonly",
+        "start": 48,
+        "length": 8,
+        "line": 5,
+        "character": 12,
+        "targetString": "Readonly"
+      },
+      {
+        "text": "interface Todo",
+        "docs": "",
+        "start": 57,
+        "length": 4,
+        "line": 5,
+        "character": 21,
+        "targetString": "Todo"
+      },
+      {
+        "text": "(property) title: string",
+        "docs": "",
+        "start": 71,
+        "length": 5,
+        "line": 6,
+        "character": 4,
+        "targetString": "title"
+      },
+      {
+        "text": "const todo: Readonly<Todo>",
+        "docs": "",
+        "start": 107,
+        "length": 4,
+        "line": 9,
+        "character": 0,
+        "targetString": "todo"
+      },
+      {
+        "text": "(property) title: any",
+        "docs": "",
+        "start": 112,
+        "length": 5,
+        "line": 9,
+        "character": 5,
+        "targetString": "title"
+      }
+    ],
+    "errors": [
+      {
+        "category": 1,
+        "code": 2540,
+        "length": 5,
+        "start": 112,
+        "line": 9,
+        "character": 5,
+        "renderedMessage": "Cannot assign to 'title' because it is a read-only property.",
+        "id": "err-2540-112-5"
+      }
+    ],
+    "playgroundURL": "https://www.typescriptlang.org/play/#code/PTAEAEFMCdoe2gZwFygEwFYAsAGAUHgJYB2ALjAGYCGAxpKACpwAmcoA3nqYaQDaSpEpaCQDmAbjwBfAjTjEhoUizioASpCqtivAJ4AeJqwB8oALwc8oa0p79UAIgAikfuVAla3AG70ArogwiA4ANNKSXCoAdNx89BYOABKuvHAO4kA"
+  }
+]
