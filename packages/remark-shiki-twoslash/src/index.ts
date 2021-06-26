@@ -64,7 +64,7 @@ const highlighterCache = new WeakMap<UserConfigSettings, Highlighter[]>()
 /** Sets up the highlighters, and cache's for recalls */
 export const highlightersFromSettings = async (settings: UserConfigSettings) => {
   const themes = settings.themes || (settings.theme ? [settings.theme] : ["light-plus"])
-  if (highlighterCache.get(settings)) return highlighterCache.get(settings)!
+  if (highlighterCache.has(settings)) return highlighterCache.get(settings)!
 
   const highlighters = await Promise.all(
     themes.map(async theme => {
