@@ -1814,10 +1814,10 @@
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.3.tgz#9c088679876f374eb5983f150d4787aa6fb32d7e"
   integrity sha512-FvUupuM3rlRsRtCN+fDudtmytGO6iHJuuRKS1Ss0pG5z8oX0diNEw94UEL7hgDbpN94rgaK5R7sWm6RrSkZuAQ==
 
-"@typescript/twoslash@1.1.7":
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/@typescript/twoslash/-/twoslash-1.1.7.tgz#9fc5709f37940f2deda396b74e503c6c33c54d6e"
-  integrity sha512-+oASPajHbUpmwsZgf0/ioBn9vjIodAO4c0na2nMLWxBKDMGAo16m8uEFtxjIrEYp6l+h3rBvHchSFucv1/qcNQ==
+"@typescript/twoslash@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@typescript/twoslash/-/twoslash-2.0.1.tgz#bf6dbd571e832e8f2114810d562eec00632ce107"
+  integrity sha512-+TgjZp0d331A2A9nBBjX/EFax3LnR9MtziICqgo2l23hXV9JY4EiNPdcBSEDBRzaWQIMvSa5YvBENnE6uZ33EA==
   dependencies:
     "@typescript/vfs" "1.3.4"
     debug "^4.1.1"
@@ -3402,12 +3402,6 @@ dns-txt@^2.0.2:
   integrity sha1-uR2Ab10nGI5Ks+fRB9iBocxGQrY=
   dependencies:
     buffer-indexof "^1.0.0"
-
-"docusaurus-preset-shiki-twoslash@file:../../packages/docusaurus-preset-shiki-twoslash":
-  version "1.0.2"
-  dependencies:
-    remark-shiki-twoslash "1.3.0"
-    typescript ">3"
 
 dom-converter@^0.2:
   version "0.2.0"
@@ -7036,7 +7030,7 @@ regenerate@^1.4.0:
   resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.4.2.tgz#b9346d8827e8f5a32f7ba29637d398b69014848a"
   integrity sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==
 
-regenerator-runtime@^0.13.4:
+regenerator-runtime@^0.13.4, regenerator-runtime@^0.13.7:
   version "0.13.7"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
   integrity sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==
@@ -7175,17 +7169,16 @@ remark-parse@8.0.3:
     vfile-location "^3.0.0"
     xtend "^4.0.1"
 
-remark-shiki-twoslash@1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/remark-shiki-twoslash/-/remark-shiki-twoslash-1.3.0.tgz#64b3646a849928abc599767d13d23f058a96f1df"
-  integrity sha512-2xnVRFhjJ+Q2w62PNzcZKpm7qJKAsmu5+sEwfDKCK3gE6CaKzUkIrv/RSxbnqLJ9rWLLhdF1o+4T8WvRwF+JmQ==
+"remark-shiki-twoslash@file:../../packages/remark-shiki-twoslash":
+  version "1.4.8"
   dependencies:
-    "@typescript/twoslash" "1.1.7"
+    "@typescript/twoslash" "2.0.1"
     "@typescript/vfs" "1.3.4"
-    shiki "^0.9.3"
-    shiki-twoslash "1.3.1"
+    regenerator-runtime "^0.13.7"
+    shiki "0.9.3"
+    shiki-twoslash "1.5.0"
     tslib "2.1.0"
-    typescript "*"
+    typescript ">3"
     unist-util-visit "^2.0.0"
 
 remark-squeeze-paragraphs@4.0.0:
@@ -7606,17 +7599,17 @@ shelljs@^0.8.4:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
-shiki-twoslash@1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/shiki-twoslash/-/shiki-twoslash-1.3.1.tgz#64ee98895029d781fb898e66e4de1724539d4180"
-  integrity sha512-BasO1NrB8boky+EybyvQo0j/AMNea3FcUyrJXV0dCElLgmTVTTuNvUQ9DAk3RRNg818pjitU0xdDpopQqGEZbQ==
+shiki-twoslash@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/shiki-twoslash/-/shiki-twoslash-1.5.0.tgz#21625311bac5a4738df97476bfb529747d81210c"
+  integrity sha512-TCXLEreIeo6x3oUdkva41lv57wv/GjpgbofrFkh26iEcYQZvUva9decmH4PD7U13zRIuEYnQCOY/8mLZZlb8OA==
   dependencies:
-    "@typescript/twoslash" "1.1.7"
+    "@typescript/twoslash" "2.0.1"
     "@typescript/vfs" "1.3.4"
-    shiki "^0.9.3"
-    typescript "*"
+    shiki "0.9.3"
+    typescript ">3"
 
-shiki@^0.9.3:
+shiki@0.9.3:
   version "0.9.3"
   resolved "https://registry.yarnpkg.com/shiki/-/shiki-0.9.3.tgz#7bf7bcf3ed50ca525ec89cc09254abce4264d5ca"
   integrity sha512-NEjg1mVbAUrzRv2eIcUt3TG7X9svX7l3n3F5/3OdFq+/BxUdmBOeKGiH4icZJBLHy354Shnj6sfBTemea2e7XA==
@@ -8193,7 +8186,7 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@*, typescript@>3, typescript@^4.3.2:
+typescript@>3, typescript@^4.3.2:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.3.2.tgz#399ab18aac45802d6f2498de5054fcbbe716a805"
   integrity sha512-zZ4hShnmnoVnAHpVHWpTcxdv7dWP60S2FsydQLV8V5PbS3FifjWFFRiHSWpDJahly88PRyV5teTSLoq4eG7mKw==
