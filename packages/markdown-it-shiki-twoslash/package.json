@@ -1,6 +1,6 @@
 {
   "name": "markdown-it-shiki-twoslash",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "license": "MIT",
   "homepage": "https://github.com/shikijs/twoslash",
   "repository": {
@@ -25,7 +25,7 @@
     "prepublishOnly": "npm run build; npm run bootstrap"
   },
   "dependencies": {
-    "remark-shiki-twoslash": "1.4.8"
+    "remark-shiki-twoslash": "1.5.0"
   },
   "devDependencies": {
     "@types/deasync": "^0.1.1",

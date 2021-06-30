@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@11ty/dependency-tree/-/dependency-tree-2.0.0.tgz#16143ce261c5dd00b3822374125745aaddd4d593"
   integrity sha512-tYrGX3Tvccufy2jaYDkYpjBmVP1LeQq6b/d0r4GYThTXL4f3ZR7yMAl/0r8h9xvnsP+gkO53wfnV7s8cXcCtEg==
 
-"@11ty/eleventy@1.0.0-canary.22":
-  version "1.0.0-canary.22"
-  resolved "https://registry.yarnpkg.com/@11ty/eleventy/-/eleventy-1.0.0-canary.22.tgz#461eb453d9f89eb49e27e5afd3d96ed95ee318f4"
-  integrity sha512-aMgrFceJKQawEiw9b5AKGrgMcoBwcVw3EAvEuo9ph7DkfM6H9wfm6gkOXd/ga4OdvujNLqOLMgETyuydSeeAtg==
+"@11ty/eleventy@1.0.0-canary.23":
+  version "1.0.0-canary.23"
+  resolved "https://registry.yarnpkg.com/@11ty/eleventy/-/eleventy-1.0.0-canary.23.tgz#41f69be1da7463b62e61f55a96cce60cb0f791fd"
+  integrity sha512-mDD02YuNhYmAPTLXmM6C3V18AwfWpO6uxMqO2kvx127+vSKAFjazJ92bqRh8KjfGR7hZRM+4usv4OMZvSgAYgw==
   dependencies:
     "@11ty/dependency-tree" "^2.0.0"
     browser-sync "^2.26.14"
@@ -95,10 +95,10 @@
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.3.tgz#9c088679876f374eb5983f150d4787aa6fb32d7e"
   integrity sha512-FvUupuM3rlRsRtCN+fDudtmytGO6iHJuuRKS1Ss0pG5z8oX0diNEw94UEL7hgDbpN94rgaK5R7sWm6RrSkZuAQ==
 
-"@typescript/twoslash@1.1.7":
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/@typescript/twoslash/-/twoslash-1.1.7.tgz#9fc5709f37940f2deda396b74e503c6c33c54d6e"
-  integrity sha512-+oASPajHbUpmwsZgf0/ioBn9vjIodAO4c0na2nMLWxBKDMGAo16m8uEFtxjIrEYp6l+h3rBvHchSFucv1/qcNQ==
+"@typescript/twoslash@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@typescript/twoslash/-/twoslash-2.0.1.tgz#bf6dbd571e832e8f2114810d562eec00632ce107"
+  integrity sha512-+TgjZp0d331A2A9nBBjX/EFax3LnR9MtziICqgo2l23hXV9JY4EiNPdcBSEDBRzaWQIMvSa5YvBENnE6uZ33EA==
   dependencies:
     "@typescript/vfs" "1.3.4"
     debug "^4.1.1"
@@ -729,10 +729,11 @@ ejs@^3.1.6:
     jake "^10.6.1"
 
 "eleventy-plugin-shiki-twoslash@file:../../packages/eleventy-plugin-shiki-twoslash":
-  version "1.0.0"
+  version "1.0.7"
   dependencies:
-    remark-shiki-twoslash "1.3.0"
-    typescript "*"
+    deasync "^0.1.21"
+    remark-shiki-twoslash "1.4.8"
+    typescript ">3"
 
 emitter-mixin@0.0.3:
   version "0.0.3"
@@ -1926,17 +1927,23 @@ recursive-copy@^2.0.11:
     promise "^7.0.1"
     slash "^1.0.0"
 
-remark-shiki-twoslash@1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/remark-shiki-twoslash/-/remark-shiki-twoslash-1.3.0.tgz#64b3646a849928abc599767d13d23f058a96f1df"
-  integrity sha512-2xnVRFhjJ+Q2w62PNzcZKpm7qJKAsmu5+sEwfDKCK3gE6CaKzUkIrv/RSxbnqLJ9rWLLhdF1o+4T8WvRwF+JmQ==
+regenerator-runtime@^0.13.7:
+  version "0.13.7"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
+  integrity sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==
+
+remark-shiki-twoslash@1.4.8:
+  version "1.4.8"
+  resolved "https://registry.yarnpkg.com/remark-shiki-twoslash/-/remark-shiki-twoslash-1.4.8.tgz#bc642114000c6f0b0f96693f8ca6d6b37e64347e"
+  integrity sha512-xF70/VtVjzzUvtjtcq8imVHR4hJNoDAQHJlXEYXfHr1A2528gpQeEfrmPIojyplzvVWe0xXZ1VHXzuBfsLPBNw==
   dependencies:
-    "@typescript/twoslash" "1.1.7"
+    "@typescript/twoslash" "2.0.1"
     "@typescript/vfs" "1.3.4"
-    shiki "^0.9.3"
-    shiki-twoslash "1.3.1"
+    regenerator-runtime "^0.13.7"
+    shiki "0.9.3"
+    shiki-twoslash "1.5.0"
     tslib "2.1.0"
-    typescript "*"
+    typescript ">3"
     unist-util-visit "^2.0.0"
 
 require-directory@^2.1.1:
@@ -2093,17 +2100,17 @@ setprototypeof@1.1.1:
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.1.1.tgz#7e95acb24aa92f5885e0abef5ba131330d4ae683"
   integrity sha512-JvdAWfbXeIGaZ9cILp38HntZSFSo3mWg6xGcJJsd+d4aRMOqauag1C63dJfDw7OaMYwEbHMOxEZ1lqVRYP2OAw==
 
-shiki-twoslash@1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/shiki-twoslash/-/shiki-twoslash-1.3.1.tgz#64ee98895029d781fb898e66e4de1724539d4180"
-  integrity sha512-BasO1NrB8boky+EybyvQo0j/AMNea3FcUyrJXV0dCElLgmTVTTuNvUQ9DAk3RRNg818pjitU0xdDpopQqGEZbQ==
+shiki-twoslash@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/shiki-twoslash/-/shiki-twoslash-1.5.0.tgz#21625311bac5a4738df97476bfb529747d81210c"
+  integrity sha512-TCXLEreIeo6x3oUdkva41lv57wv/GjpgbofrFkh26iEcYQZvUva9decmH4PD7U13zRIuEYnQCOY/8mLZZlb8OA==
   dependencies:
-    "@typescript/twoslash" "1.1.7"
+    "@typescript/twoslash" "2.0.1"
     "@typescript/vfs" "1.3.4"
-    shiki "^0.9.3"
-    typescript "*"
+    shiki "0.9.3"
+    typescript ">3"
 
-shiki@^0.9.3:
+shiki@0.9.3:
   version "0.9.3"
   resolved "https://registry.yarnpkg.com/shiki/-/shiki-0.9.3.tgz#7bf7bcf3ed50ca525ec89cc09254abce4264d5ca"
   integrity sha512-NEjg1mVbAUrzRv2eIcUt3TG7X9svX7l3n3F5/3OdFq+/BxUdmBOeKGiH4icZJBLHy354Shnj6sfBTemea2e7XA==
@@ -2335,10 +2342,10 @@ tslib@2.1.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
   integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
 
-typescript@*:
-  version "4.2.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.4.tgz#8610b59747de028fda898a8aef0e103f156d0961"
-  integrity sha512-V+evlYHZnQkaz8TRBuxTA92yZBPotr5H+WhQ7bD3hZUndx5tGOa1fuCgeSjxAzM1RiN5IzvadIXTVefuuwZCRg==
+typescript@>3:
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.3.4.tgz#3f85b986945bcf31071decdd96cf8bfa65f9dcbc"
+  integrity sha512-uauPG7XZn9F/mo+7MrsRjyvbxFpzemRjKEZXS4AK83oP2KKOJPvb+9cO/gmnv8arWZvhnjVOXz7B49m1l0e9Ew==
 
 ua-parser-js@^0.7.18:
   version "0.7.28"
