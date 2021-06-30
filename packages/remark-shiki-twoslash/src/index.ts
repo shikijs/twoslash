@@ -1,7 +1,7 @@
 import type { TwoSlashReturn } from "@typescript/twoslash"
 import type { Node } from "unist"
 import { UserConfigSettings, renderCodeToHTML } from "shiki-twoslash"
-import { Lang, Highlighter, getHighlighter, IThemeRegistration } from "shiki"
+import { Lang, Highlighter, getHighlighter } from "shiki"
 import visit from "unist-util-visit"
 
 import { addIncludes, replaceIncludesInCode } from "./includes"
@@ -59,14 +59,15 @@ export const runTwoSlashOnNode = (code: string, lang: string, meta: string, sett
 }
 
 // To make sure we only have one highlighter per theme in a process
-const highlighterCache = new WeakMap<UserConfigSettings, Highlighter[]>()
+const highlighterCache = new Map<UserConfigSettings, Promise<Highlighter[]>>()
 
 /** Sets up the highlighters, and cache's for recalls */
-export const highlightersFromSettings = async (settings: UserConfigSettings) => {
+export const highlightersFromSettings = (settings: UserConfigSettings) => {
+  // console.log("i should only log once per theme")
+  // ^ uncomment this to debug if required
   const themes = settings.themes || (settings.theme ? [settings.theme] : ["light-plus"])
-  if (highlighterCache.has(settings)) return highlighterCache.get(settings)!
 
-  const highlighters = await Promise.all(
+  return Promise.all(
     themes.map(async theme => {
       // You can put a string, a path, or the JSON theme obj
       const themeName = (theme as any).name || theme
@@ -77,9 +78,6 @@ export const highlightersFromSettings = async (settings: UserConfigSettings) => 
       return highlighter
     })
   )
-
-  highlighterCache.set(settings, highlighters)
-  return highlighters
 }
 
 const amendSettingsForDefaults = (settings: UserConfigSettings) => {
@@ -95,7 +93,7 @@ const amendSettingsForDefaults = (settings: UserConfigSettings) => {
 
 const parsingNewFile = () => includes.clear()
 
-////////////////// The Remark API
+// --- The Remark API ---
 
 /* A rich AST node for uninst with twoslash'd data */
 type RemarkCodeNode = Node & {
@@ -114,8 +112,12 @@ type RemarkCodeNode = Node & {
 function remarkTwoslash(settings: UserConfigSettings = {}) {
   amendSettingsForDefaults(settings)
 
+  if (!highlighterCache.has(settings)) {
+    highlighterCache.set(settings, highlightersFromSettings(settings))
+  }
+
   const transform = async (markdownAST: any) => {
-    const highlighters = await highlightersFromSettings(settings)
+    const highlighters = await highlighterCache.get(settings)!
     parsingNewFile()
     visit(markdownAST, "code", remarkVisitor(highlighters, settings))
   }
@@ -126,30 +128,30 @@ function remarkTwoslash(settings: UserConfigSettings = {}) {
 /**
  * The function doing the work of transforming any codeblock samples in a remark AST.
  */
-export const remarkVisitor = (highlighters: Highlighter[], twoslashSettings: UserConfigSettings = {}) => (
-  node: RemarkCodeNode
-) => {
-  let lang = node.lang
-  // The meta is the bit after lang in: ```lang [this bit]
-  const metaString = !node.meta ? "" : typeof node.meta === "string" ? node.meta : node.meta.join(" ")
-  const code = node.value
+export const remarkVisitor =
+  (highlighters: Highlighter[], twoslashSettings: UserConfigSettings = {}) =>
+  (node: RemarkCodeNode) => {
+    let lang = node.lang
+    // The meta is the bit after lang in: ```lang [this bit]
+    const metaString = !node.meta ? "" : typeof node.meta === "string" ? node.meta : node.meta.join(" ")
+    const code = node.value
 
-  const twoslash = runTwoSlashOnNode(code, lang, metaString, twoslashSettings)
-  if (twoslash) {
-    node.value = twoslash.code
-    node.lang = twoslash.extension as Lang
-    node.twoslash = twoslash
+    const twoslash = runTwoSlashOnNode(code, lang, metaString, twoslashSettings)
+    if (twoslash) {
+      node.value = twoslash.code
+      node.lang = twoslash.extension as Lang
+      node.twoslash = twoslash
+    }
+
+    const shikiHTML = getHTML(node.value, lang, metaString, highlighters, twoslash)
+    node.type = "html"
+    node.value = shikiHTML
+    node.children = []
   }
-
-  const shikiHTML = getHTML(node.value, lang, metaString, highlighters, twoslash)
-  node.type = "html"
-  node.value = shikiHTML
-  node.children = []
-}
 
 export default remarkTwoslash
 
-////////////////// The Markdown-it API
+// --- The Markdown-it API ---
 
 /** Only the inner function exposed as a synchronous API for markdown-it */
 
@@ -157,7 +159,11 @@ export const setupForFile = async (settings: UserConfigSettings = {}) => {
   amendSettingsForDefaults(settings)
   parsingNewFile()
 
-  let highlighters = await highlightersFromSettings(settings)
+  if (!highlighterCache.has(settings)) {
+    highlighterCache.set(settings, highlightersFromSettings(settings))
+  }
+
+  let highlighters = await highlighterCache.get(settings)!
   return { settings, highlighters }
 }
 
