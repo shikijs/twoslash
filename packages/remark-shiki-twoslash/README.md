@@ -206,6 +206,7 @@ pre .code-container {
 }
  pre .error-behind {
 	 user-select: none;
+	 visibility: transparent;
 	 color: #fee;
 }
 /* Queries */
