@@ -1,6 +1,6 @@
 {
   "name": "markdown-it-shiki-twoslash",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "license": "MIT",
   "homepage": "https://github.com/shikijs/twoslash",
   "repository": {
@@ -14,7 +14,7 @@
   "description": "A markdown-it plugin for Shiki with Twoslash code samples",
   "author": "Orta Therox",
   "main": "./dist/index.js",
-  "module": "./dist/markdown-it-shiki-twoslash.esm.js",
+  "type": "module",
   "typings": "./dist/index.d.ts",
   "files": [
     "dist"
