@@ -7,10 +7,6 @@ import visit from "unist-util-visit"
 import { addIncludes, replaceIncludesInCode } from "./includes"
 import { cachedTwoslashCall } from "./caching"
 
-export type Settings = UserConfigSettings & {
-  wrapFragments?: true
-}
-
 // A set of includes which can be pulled via a set ID
 const includes = new Map<string, string>()
 
@@ -56,7 +52,7 @@ function getHTML(
  * Runs twoslash across an AST node, switching out the text content, and lang
  * and adding a `twoslash` property to the node.
  */
-export const runTwoSlashOnNode = (code: string, lang: string, meta: string, settings: Settings = {}) => {
+export const runTwoSlashOnNode = (code: string, lang: string, meta: string, settings: UserConfigSettings = {}) => {
   // Offer a way to do high-perf iterations, this is less useful
   // given that we cache the results of twoslash in the file-system
   const shouldDisableTwoslash = process && process.env && !!process.env.TWOSLASH_DISABLE
@@ -72,10 +68,10 @@ export const runTwoSlashOnNode = (code: string, lang: string, meta: string, sett
 }
 
 // To make sure we only have one highlighter per theme in a process
-const highlighterCache = new Map<Settings, Promise<Highlighter[]>>()
+const highlighterCache = new Map<UserConfigSettings, Promise<Highlighter[]>>()
 
 /** Sets up the highlighters, and cache's for recalls */
-export const highlightersFromSettings = (settings: Settings) => {
+export const highlightersFromSettings = (settings: UserConfigSettings) => {
   // console.log("i should only log once per theme")
   // ^ uncomment this to debug if required
   const themes = settings.themes || (settings.theme ? [settings.theme] : ["light-plus"])
@@ -93,7 +89,7 @@ export const highlightersFromSettings = (settings: Settings) => {
   )
 }
 
-const amendSettingsForDefaults = (settings: Settings) => {
+const amendSettingsForDefaults = (settings: UserConfigSettings) => {
   if (!settings["vfsRoot"]) {
     // Default to assuming you want vfs node_modules set up
     // but don't assume you're on node though
@@ -122,7 +118,7 @@ type RemarkCodeNode = Node & {
  * Synchronous outer function, async inner function, which is how the remark
  * async API works.
  */
-function remarkTwoslash(settings: Settings = {}) {
+function remarkTwoslash(settings: UserConfigSettings = {}) {
   amendSettingsForDefaults(settings)
 
   if (!highlighterCache.has(settings)) {
@@ -142,7 +138,7 @@ function remarkTwoslash(settings: Settings = {}) {
  * The function doing the work of transforming any codeblock samples in a remark AST.
  */
 export const remarkVisitor =
-  (highlighters: Highlighter[], twoslashSettings: Settings = {}) =>
+  (highlighters: Highlighter[], twoslashSettings: UserConfigSettings = {}) =>
   (node: RemarkCodeNode) => {
     let lang = node.lang
     // The meta is the bit after lang in: ```lang [this bit]
@@ -168,7 +164,7 @@ export default remarkTwoslash
 
 /** Only the inner function exposed as a synchronous API for markdown-it */
 
-export const setupForFile = async (settings: Settings = {}) => {
+export const setupForFile = async (settings: UserConfigSettings = {}) => {
   amendSettingsForDefaults(settings)
   parsingNewFile()
 
@@ -185,7 +181,7 @@ export const transformAttributesToHTML = (
   lang: string,
   attrs: string,
   highlighters: Highlighter[],
-  settings: Settings
+  settings: UserConfigSettings
 ) => {
   const twoslash = runTwoSlashOnNode(code, lang, attrs, settings)
   const newCode = (twoslash && twoslash.code) || code

@@ -11,6 +11,8 @@ export interface TwoslashShikiOptions {
   addTryButton?: true
   /** A way to disable implicit React imports on tsx/jsx language codeblocks */
   disableImplicitReactImport?: true
+  /** A way to add a div wrapper for multi-theme outputs */
+  wrapFragments?: true
 }
 
 /** The possible user config, a combination of all shiki, twoslash and twoslash-shiki options */
