@@ -82,13 +82,11 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
-          remarkPlugins: [[require("remark-shiki-twoslash").default, { themes: ["min-light", "nord"] }]],
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           editUrl: "https://github.com/facebook/docusaurus/edit/master/website/",
         },
         blog: {
-          remarkPlugins: [[require("remark-shiki-twoslash").default, { themes: ["min-light", "nord"] }]],
           showReadingTime: true,
           // Please change this to your repo.
           editUrl: "https://github.com/facebook/docusaurus/edit/master/website/blog/",
@@ -96,6 +94,12 @@ module.exports = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
+      },
+    ],
+    [
+      "docusaurus-preset-shiki-twoslash",
+      {
+        themes: ["min-light", "nord"],
       },
     ],
   ],
