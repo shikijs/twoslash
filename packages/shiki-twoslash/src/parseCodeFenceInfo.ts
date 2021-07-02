@@ -7,6 +7,10 @@ const triviaPattern = /\s/
 const startOfNumberPattern = /[0-9-.]/
 const numberPattern = /[0-9-.e]/
 
+// Based on https://github.com/facebook/docusaurus/blob/ed9d2a26f5a7b8096804ae1b3a4fffc504f8f90d/packages/docusaurus-theme-common/src/utils/codeBlockUtils.ts
+// which is under MIT License as per the banner
+const titlePattern = /title=(["'])(.*?)\1/
+
 function testRegex(input: string, pattern: RegExp) {
   if (input === undefined) return false
   return pattern.test(input)
@@ -34,7 +38,13 @@ export function parseCodeFenceInfo(lang: string, fullMetaString: string) {
     return fail(`Invalid character in language name: '${current()}'`)
   }
 
-  return { languageName, meta }
+  return {
+    languageName,
+    meta: {
+      ...meta,
+      title: fullMetaString.match(titlePattern)?.[2] ?? "",
+    },
+  }
 
   function current(): string {
     if (isEnd()) {

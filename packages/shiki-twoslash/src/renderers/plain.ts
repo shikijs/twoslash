@@ -27,6 +27,10 @@ export function plainTextRenderer(code: string, options: HtmlRendererOptions, co
     html += `<div class="language-id">${options.langId}</div>`
   }
 
+  if (codefenceMeta.title) {
+    html += `<div class='code-title'>${codefenceMeta.title}</div>`
+  }
+
   html += `<div class='code-container'><code>`
   html += escapeHtml(code)
 

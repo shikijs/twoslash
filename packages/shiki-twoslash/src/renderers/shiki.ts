@@ -11,6 +11,10 @@ export function defaultShikiRenderer(lines: Lines, options: HtmlRendererOptions,
     html += `<div class="language-id">${options.langId}</div>`
   }
 
+  if (codefenceMeta.title) {
+    html += `<div class='code-title'>${codefenceMeta.title}</div>`
+  }
+
   html += `<div class='code-container'><code>`
 
   lines.forEach(l => {
