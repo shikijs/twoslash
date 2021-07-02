@@ -24,6 +24,10 @@
   padding: 0 var(--ifm-pre-padding);
 }
 
-body {
-  color: red;
+[data-theme="light"] .shiki.nord {
+  display: none;
+}
+
+[data-theme="dark"] .shiki.min-light {
+  display: none;
 }
