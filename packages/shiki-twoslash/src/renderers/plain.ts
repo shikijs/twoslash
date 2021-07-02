@@ -14,6 +14,7 @@ export const preOpenerFromRenderingOptsWithExtras = (opts: HtmlRendererOptions, 
   const fg = opts.fg || "black"
   const theme = opts.themeName || ""
   const fenceClass = (fence && fence.class) || ""
+  if (fence && classes && fence.title) classes.push("with-title")
   const extras = (classes && classes.join(" ")) || ""
   return `<pre class="shiki ${fenceClass} ${theme} ${extras}" style="background-color: ${bg}; color: ${fg}">`
 }
@@ -23,12 +24,12 @@ export function plainTextRenderer(code: string, options: HtmlRendererOptions, co
   let html = ""
 
   html += preOpenerFromRenderingOptsWithExtras(options, codefenceMeta, [])
-  if (options.langId) {
-    html += `<div class="language-id">${options.langId}</div>`
-  }
-
   if (codefenceMeta.title) {
     html += `<div class='code-title'>${codefenceMeta.title}</div>`
+  }
+
+  if (options.langId) {
+    html += `<div class="language-id">${options.langId}</div>`
   }
 
   html += `<div class='code-container'><code>`

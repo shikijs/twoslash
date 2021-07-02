@@ -7,12 +7,12 @@ export function defaultShikiRenderer(lines: Lines, options: HtmlRendererOptions,
   let html = ""
 
   html += preOpenerFromRenderingOptsWithExtras(options, codefenceMeta, [])
-  if (options.langId) {
-    html += `<div class="language-id">${options.langId}</div>`
-  }
-
   if (codefenceMeta.title) {
     html += `<div class='code-title'>${codefenceMeta.title}</div>`
+  }
+
+  if (options.langId) {
+    html += `<div class="language-id">${options.langId}</div>`
   }
 
   html += `<div class='code-container'><code>`
