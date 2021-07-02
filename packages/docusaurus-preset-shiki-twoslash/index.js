@@ -1,39 +1,94 @@
+const path = require("path")
+const { default: twoslash } = require("remark-shiki-twoslash")
+
 /**
- * @param {any} context
- * @param {import("shiki-twoslash").UserConfigSettings} pluginOptions 
- * @returns {any}
+ * @param {import("@docusaurus/types").DocusaurusContext} context
+ * @param {import("remark-shiki-twoslash").Settings} pluginOptions
+ * @returns {import("@docusaurus/types").Preset}
  */
-function theme(context, pluginOptions) {
+function preset(context, pluginOptions) {
+  const options = { ...pluginOptions, wrapFragments: true }
+
   // So, how do we hijack the code renderer? We mostly override the user's configuration for
-  // preset classic.
+  // the presets.
 
-  const preset = context.siteConfig.presets.find(p => p[0] === "@docusaurus/preset-classic")
-  if (!preset) throw new Error("Couldn't find a preset of @docusaurus/preset-classic")
-
-  // Step 1 - Add the remark pre-processor to the three sections it should be in
-  const keys = ["docs", "blog", "pages"]
-  for (const key of keys) {
-    if (!preset[1][key]) preset[1][key] = {}
-    if (!preset[1][key].beforeDefaultRemarkPlugins) preset[1][key].beforeDefaultRemarkPlugins = []
-
-    // Add to before - because otherwise it would have been set by the existing code syntax renderer
-    // now all they have is divs which will NOOP
-    preset[1][key].beforeDefaultRemarkPlugins.push([require("remark-shiki-twoslash").default, pluginOptions])
+  if (!context.siteConfig.presets || !context.siteConfig.plugins) {
+    throw Error("Couldn't find either a preset or a plugin")
   }
 
-  // Step 2 - Add the CSS
-  // if (!preset[1].theme) preset[1].theme = {}
-  // const existingCSS = preset[1].theme.customCss
-  // let newCSS = [require.resolve("docusaurus-preset-shiki-twoslash/twoslash.css")]
-  // if (existingCSS && typeof existingCSS === "string") newCSS.push(existingCSS)
-  // if (existingCSS && typeof existingCSS === "object") newCSS = newCSS.concat(existingCSS)
-  // preset[1].theme.customCss = newCSS
+  // Available presets & plugins
+  // We could parse out the repeated parts from the strings but
+  // I think it's better this way as a way of showing that twoslash could
+  // technically support all kinds of presets, not just official ones
+  const presets = ["@docusaurus/preset-classic", "@docusaurus/preset-bootstrap"]
+  const plugins = [
+    "@docusaurus/plugin-content-docs",
+    "@docusaurus/plugin-content-blog",
+    "@docusaurus/plugin-content-pages",
+  ]
 
-  // Step 3 - Inject the hover via the internal 'theme' - this is a real nasty hack
+  // Flag to keep track if at least one of the presets or the plugins are installed
+  let flag = false
+
+  // Checks if b is in a
+  const contains = (a, b) => a.includes(typeof b === "string" ? b : b[0])
+
+  // Structure a into proper [a, {}]
+  // output is
+  // [a, {}] if a is string
+  // [a[0], {}] if a is [string]
+  // a if a is already [string, {}]
+  const structure = a => (typeof a === "string" ? [a, {}] : a.length === 1 ? [a[0], {}] : a)
+
+  // Adds remark-shiki-twoslash into beforeDefaultRemarkPlugins
+  const addTwoslash = a => {
+    flag = true
+
+    if (!a.beforeDefaultRemarkPlugins) {
+      a.beforeDefaultRemarkPlugins = []
+    }
+    a.beforeDefaultRemarkPlugins.push([twoslash, options])
+    return a
+  }
+
+  // if a preset is found
+  // no need to search for plugins
+  if (context.siteConfig.presets.find(p => contains(presets, p))) {
+    context.siteConfig.presets = context.siteConfig.presets.map(preset => {
+      if (!contains(presets, preset)) {
+        return preset
+      }
+
+      const output = structure(preset)
+      const sections = ["docs", "blog", "pages"]
+      for (const section of sections) {
+        if (!output[1][section]) output[1][section] = {}
+        addTwoslash(output[1][section])
+      }
+
+      return output
+    })
+  } else {
+    context.siteConfig.plugins = context.siteConfig.plugins.map(plugin => {
+      // if the plugin is not supported
+      if (!contains(plugins, plugin)) {
+        return plugin
+      }
+
+      return addTwoslash(structure(plugin))
+    })
+  }
+
+  if (!flag) {
+    throw Error(`
+    Couldn't find a preset or a plugin supported by twoslash
+    Make sure you installed one of these presets [ ${presets.join(", ")} ],
+    or one of these plugins [ ${plugins.join(", ")} ].\n`)
+  }
+
   return {
-    name: "docusaurus-preset-shiki-twoslash",
-    plugins: [] // [require.resolve("./shiki-twoslash-theme")],
+    themes: [path.resolve(__dirname, "./docusaurus-theme-shiki-twoslash")],
   }
 }
 
-module.exports = theme
+module.exports = preset
