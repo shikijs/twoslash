@@ -7,11 +7,21 @@ import visit from "unist-util-visit"
 import { addIncludes, replaceIncludesInCode } from "./includes"
 import { cachedTwoslashCall } from "./caching"
 
+export type Settings = UserConfigSettings & {
+  wrapFragments?: true
+}
+
 // A set of includes which can be pulled via a set ID
 const includes = new Map<string, string>()
 
-// prettier-ignore
-function getHTML(code: string, lang: string, metaString: string, highlighters: Highlighter[], twoslash: TwoSlashReturn | undefined) {
+function getHTML(
+  code: string,
+  lang: string,
+  metaString: string,
+  highlighters: Highlighter[],
+  twoslash: TwoSlashReturn | undefined,
+  wrapFragments?: true
+) {
   // Shiki doesn't respect json5 as an input, so switch it
   // to json, which can handle comments in the syntax highlight
   const replacer = {
@@ -35,6 +45,9 @@ function getHTML(code: string, lang: string, metaString: string, highlighters: H
       return renderCodeToHTML(code, lang, metaString.split(" "), { themeName }, highlighter, twoslash)
     })
     results = output.join("\n")
+    if (highlighters.length > 1 && wrapFragments) {
+      results = `<div class="shiki-twoslash-fragment">${results}</div>`
+    }
   }
   return results
 }
@@ -43,7 +56,7 @@ function getHTML(code: string, lang: string, metaString: string, highlighters: H
  * Runs twoslash across an AST node, switching out the text content, and lang
  * and adding a `twoslash` property to the node.
  */
-export const runTwoSlashOnNode = (code: string, lang: string, meta: string, settings: UserConfigSettings = {}) => {
+export const runTwoSlashOnNode = (code: string, lang: string, meta: string, settings: Settings = {}) => {
   // Offer a way to do high-perf iterations, this is less useful
   // given that we cache the results of twoslash in the file-system
   const shouldDisableTwoslash = process && process.env && !!process.env.TWOSLASH_DISABLE
@@ -59,10 +72,10 @@ export const runTwoSlashOnNode = (code: string, lang: string, meta: string, sett
 }
 
 // To make sure we only have one highlighter per theme in a process
-const highlighterCache = new Map<UserConfigSettings, Promise<Highlighter[]>>()
+const highlighterCache = new Map<Settings, Promise<Highlighter[]>>()
 
 /** Sets up the highlighters, and cache's for recalls */
-export const highlightersFromSettings = (settings: UserConfigSettings) => {
+export const highlightersFromSettings = (settings: Settings) => {
   // console.log("i should only log once per theme")
   // ^ uncomment this to debug if required
   const themes = settings.themes || (settings.theme ? [settings.theme] : ["light-plus"])
@@ -80,7 +93,7 @@ export const highlightersFromSettings = (settings: UserConfigSettings) => {
   )
 }
 
-const amendSettingsForDefaults = (settings: UserConfigSettings) => {
+const amendSettingsForDefaults = (settings: Settings) => {
   if (!settings["vfsRoot"]) {
     // Default to assuming you want vfs node_modules set up
     // but don't assume you're on node though
@@ -109,7 +122,7 @@ type RemarkCodeNode = Node & {
  * Synchronous outer function, async inner function, which is how the remark
  * async API works.
  */
-function remarkTwoslash(settings: UserConfigSettings = {}) {
+function remarkTwoslash(settings: Settings = {}) {
   amendSettingsForDefaults(settings)
 
   if (!highlighterCache.has(settings)) {
@@ -129,7 +142,7 @@ function remarkTwoslash(settings: UserConfigSettings = {}) {
  * The function doing the work of transforming any codeblock samples in a remark AST.
  */
 export const remarkVisitor =
-  (highlighters: Highlighter[], twoslashSettings: UserConfigSettings = {}) =>
+  (highlighters: Highlighter[], twoslashSettings: Settings = {}) =>
   (node: RemarkCodeNode) => {
     let lang = node.lang
     // The meta is the bit after lang in: ```lang [this bit]
@@ -143,7 +156,7 @@ export const remarkVisitor =
       node.twoslash = twoslash
     }
 
-    const shikiHTML = getHTML(node.value, lang, metaString, highlighters, twoslash)
+    const shikiHTML = getHTML(node.value, lang, metaString, highlighters, twoslash, twoslashSettings.wrapFragments)
     node.type = "html"
     node.value = shikiHTML
     node.children = []
@@ -155,7 +168,7 @@ export default remarkTwoslash
 
 /** Only the inner function exposed as a synchronous API for markdown-it */
 
-export const setupForFile = async (settings: UserConfigSettings = {}) => {
+export const setupForFile = async (settings: Settings = {}) => {
   amendSettingsForDefaults(settings)
   parsingNewFile()
 
@@ -172,7 +185,7 @@ export const transformAttributesToHTML = (
   lang: string,
   attrs: string,
   highlighters: Highlighter[],
-  settings: UserConfigSettings
+  settings: Settings
 ) => {
   const twoslash = runTwoSlashOnNode(code, lang, attrs, settings)
   const newCode = (twoslash && twoslash.code) || code
