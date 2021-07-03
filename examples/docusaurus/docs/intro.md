@@ -4,6 +4,22 @@ sidebar_position: 1
 
 # Intro
 
+## Non Twoslash Highlight
+
+```rust {4-6, 10}
+use std::cell::RefCell;
+use std::rc::Rc;
+
+trait Renderable {}
+struct Widget {
+    children: Rc<RefCell<Vec<Self>>>,
+}
+
+// ...
+
+pub fn render(widget: Box<dyn Renderable>) {}
+```
+
 ## An example twoslash
 
 ```ts twoslash
