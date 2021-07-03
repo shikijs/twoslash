@@ -25,14 +25,14 @@ export function plainTextRenderer(code: string, options: HtmlRendererOptions, co
 
   html += preOpenerFromRenderingOptsWithExtras(options, codefenceMeta, [])
   if (codefenceMeta.title) {
-    html += `<div class='code-title'>${codefenceMeta.title}</div>`
+    html += `<div class="code-title">${codefenceMeta.title}</div>`
   }
 
   if (options.langId) {
     html += `<div class="language-id">${options.langId}</div>`
   }
 
-  html += `<div class='code-container'><code>`
+  html += `<div class="code-container"><code>`
   html += escapeHtml(code)
 
   html = html.replace(/\n*$/, "") // Get rid of final new lines

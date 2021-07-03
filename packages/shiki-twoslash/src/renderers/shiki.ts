@@ -12,21 +12,21 @@ export function defaultShikiRenderer(lines: Lines, options: HtmlRendererOptions,
 
   html += preOpenerFromRenderingOptsWithExtras(options, codefenceMeta, [])
   if (codefenceMeta.title) {
-    html += `<div class='code-title'>${codefenceMeta.title}</div>`
+    html += `<div class="code-title">${codefenceMeta.title}</div>`
   }
 
   if (options.langId) {
     html += `<div class="language-id">${options.langId}</div>`
   }
 
-  html += `<div class='code-container'><code>`
+  html += `<div class="code-container"><code>`
 
   lines.forEach((l, i) => {
     if (l.length === 0) {
-      html += `<div class='line'></div>`
+      html += `<div class="line"></div>`
     } else {
       const hiClass = hasHighlight ? (hl(i) ? " highlight" : " dim") : ""
-      const prefix = `<div class='line${hiClass}'>`
+      const prefix = `<div class="line${hiClass}">`
       html += prefix
 
       l.forEach(token => {
