@@ -1,12 +1,13 @@
 // Based on https://github.com/facebook/docusaurus/blob/ed9d2a26f5a7b8096804ae1b3a4fffc504f8f90d/packages/docusaurus-theme-classic/src/theme/CodeBlock/index.tsx
 // which is under MIT License as per the banner
 
+import "./styles.css"
+
 import copy from "copy-text-to-clipboard"
 import React, { useRef, useState } from "react"
-import styles from "./styles.module.css"
 import Translate, { translate } from "@docusaurus/Translate"
 
-const CodeBlock = ({ children, className, ...props }) => {
+const CodeBlock = ({ children, ...props }) => {
   const pre = useRef(null)
   const [showCopied, setShowCopied] = useState(false)
 
@@ -19,7 +20,7 @@ const CodeBlock = ({ children, className, ...props }) => {
   }
 
   return (
-    <pre {...props} className={[className, styles.codeBlock].join(" ")} ref={pre}>
+    <pre {...props} ref={pre}>
       {children}
       <button
         type="button"
@@ -28,7 +29,7 @@ const CodeBlock = ({ children, className, ...props }) => {
           message: "Copy code to clipboard",
           description: "The ARIA label for copy code blocks button",
         })}
-        className={styles.copyButton}
+        className="copy-button"
         onClick={handleCopyCode}
       >
         {showCopied ? (
