@@ -45,51 +45,64 @@ const b = "345"
 
 ### User Settings
 
-The config which a user passes is an intersection of Shiki's [`HighlighterOptions`](https://unpkg.com/shiki/dist/index.d.ts)
+The config which you pass in is a mix of Shiki's [`HighlighterOptions`](https://unpkg.com/shiki/dist/index.d.ts)
 
+<!-- AUTO-GENERATED-CONTENT:START (TYPE:src=./packages/shiki-twoslash/node_modules/shiki/dist/index.d.ts&symbol=HighlighterOptions) -->
 ```ts
 interface HighlighterOptions {
-  theme?: IThemeRegistration
-  langs?: (Lang | ILanguageRegistration)[]
-  themes?: IThemeRegistration[]
-  paths?: IHighlighterPaths
+    theme?: IThemeRegistration;
+    langs?: (Lang | ILanguageRegistration)[];
+    themes?: IThemeRegistration[];
+    /**
+     * Paths for loading themes and langs. Relative to the package's root.
+     */
+    paths?: IHighlighterPaths;
 }
 ```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
 
 With twoslash's [`TwoSlashOptions`](https://unpkg.com/@typescript/twoslash/dist/index.d.ts)
 
+<!-- AUTO-GENERATED-CONTENT:START (TYPE:src=./node_modules/@typescript/twoslash/dist/index.d.ts&symbol=TwoSlashOptions) -->
 ```ts
 export interface TwoSlashOptions {
-  /** Allows setting any of the handbook options from outside the function, useful if you don't want LSP identifiers */
-  defaultOptions?: Partial<ExampleOptions>
-  /** Allows setting any of the compiler options from outside the function */
-  defaultCompilerOptions?: CompilerOptions
-  /** Allows applying custom transformers to the emit result, only useful with the showEmit output */
-  customTransformers?: CustomTransformers
-  /** An optional copy of the TypeScript import, if missing it will be require'd. */
-  tsModule?: TS
-  /** An optional copy of the lz-string import, if missing it will be require'd. */
-  lzstringModule?: LZ
-  /**
-   * An optional Map object which is passed into @typescript/vfs - if you are using twoslash on the
-   * web then you'll need this to set up your lib *.d.ts files. If missing, it will use your fs.
-   */
-  fsMap?: Map<string, string>
-  /** The cwd for the folder which the virtual fs should be overlaid on top of when using local fs, opts to process.cwd() if not present */
-  vfsRoot?: string
+    /** Allows setting any of the handbook options from outside the function, useful if you don't want LSP identifiers */
+    defaultOptions?: Partial<ExampleOptions>;
+    /** Allows setting any of the compiler options from outside the function */
+    defaultCompilerOptions?: CompilerOptions;
+    /** Allows applying custom transformers to the emit result, only useful with the showEmit output */
+    customTransformers?: CustomTransformers;
+    /** An optional copy of the TypeScript import, if missing it will be require'd. */
+    tsModule?: TS;
+    /** An optional copy of the lz-string import, if missing it will be require'd. */
+    lzstringModule?: LZ;
+    /**
+     * An optional Map object which is passed into @typescript/vfs - if you are using twoslash on the
+     * web then you'll need this to set up your lib *.d.ts files. If missing, it will use your fs.
+     */
+    fsMap?: Map<string, string>;
+    /** The cwd for the folder which the virtual fs should be overlaid on top of when using local fs, opts to process.cwd() if not present */
+    vfsRoot?: string;
 }
 ```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
 
 And one extra for good luck:
 
+<!-- AUTO-GENERATED-CONTENT:START (TYPE:src=./packages/shiki-twoslash/src/index.ts&symbol=TwoslashShikiOptions) -->
 ```ts
 export interface TwoslashShikiOptions {
-  /** A way to turn on the try buttons seen on the TS website */
-  addTryButton?: true
-  /** A way to disable implicit React imports on tsx/jsx language codeblocks */
-  disableImplicitReactImport?: true
+    /** A way to turn on the try buttons seen on the TS website */
+    addTryButton?: true;
+    /** A way to disable implicit React imports on tsx/jsx language codeblocks */
+    disableImplicitReactImport?: true;
+    /** A way to add a div wrapper for multi-theme outputs */
+    wrapFragments?: true;
 }
 ```
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 That said, most people will just want to set a `theme`:
 
@@ -160,6 +173,8 @@ async function visitor(highlighterOpts) {
 ```
 
 ##### `renderCodeToHTML`
+
+
 
 ```ts
 /**

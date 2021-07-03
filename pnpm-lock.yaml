@@ -11,6 +11,7 @@ importers:
       glob: ^7.1.7
       jest: ^27.0.5
       markdown-magic: ^2.2.0
+      markdown-magic-inline-types: ^1.0.2
       pleb: ^3.4.4
       prettier: ^2.3.1
       typescript: ^4.3.4
@@ -22,6 +23,7 @@ importers:
       glob: 7.1.7
       jest: 27.0.5
       markdown-magic: 2.2.0
+      markdown-magic-inline-types: 1.0.2
       pleb: 3.4.4
       prettier: 2.3.1
       typescript: 4.3.4
@@ -7332,6 +7334,12 @@ packages:
   /markdown-link/0.1.1:
     resolution: {integrity: sha1-MsXGUZmmRXMWMi0eQinRNAfIx88=}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /markdown-magic-inline-types/1.0.2:
+    resolution: {integrity: sha512-LRJCxpQGbOlUp6v9kCc0nR0EGQvlZbNx2+BpiLFllPkCkINESWQa/jOAHCfFFe4FTj9LgLlocEDP1pSNBu4wgg==}
+    dependencies:
+      typescript: 4.3.4
     dev: true
 
   /markdown-magic/2.2.0:
