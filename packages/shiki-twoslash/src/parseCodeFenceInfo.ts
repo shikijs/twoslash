@@ -21,7 +21,7 @@ export function parseCodeFenceInfo(lang: string, fullMetaString: string) {
   // Heh
   const metaString = fullMetaString.replace("twoslash", "")
   let pos = 0
-  let meta = {}
+  let meta: Record<string, unknown> = {}
   let languageName = ""
   const input = [lang, metaString].filter(Boolean).join(" ")
   skipTrivia()
@@ -38,12 +38,13 @@ export function parseCodeFenceInfo(lang: string, fullMetaString: string) {
     return fail(`Invalid character in language name: '${current()}'`)
   }
 
+  if (fullMetaString.match(titlePattern)) {
+    meta.title = fullMetaString.match(titlePattern)?.[2] ?? ""
+  }
+
   return {
     languageName,
-    meta: {
-      ...meta,
-      title: fullMetaString.match(titlePattern)?.[2] ?? "",
-    },
+    meta,
   }
 
   function current(): string {
