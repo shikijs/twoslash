@@ -173,7 +173,7 @@ export function parseCodeFenceInfo(lang: string, fullMetaString: string) {
 export const shouldBeHighlightable = (meta: any) => {
   return !!Object.keys(meta).find(key => {
     if (key.includes("-")) return true
-    if (parseInt(key) !== NaN) return true
+    if (!isNaN(parseInt(key))) return true
     return false
   })
 }
@@ -182,7 +182,7 @@ export const shouldBeHighlightable = (meta: any) => {
 export const shouldHighlightLine = (meta: any) => {
   const lines: number[] = []
   Object.keys(meta).find(key => {
-    if (parseInt(key) !== NaN) lines.push(parseInt(key))
+    if (!isNaN(parseInt(key))) lines.push(parseInt(key))
     if (key.includes("-")) {
       const [first, last] = key.split("-")
       const lastIndex = parseInt(last) + 1
