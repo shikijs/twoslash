@@ -31,14 +31,14 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
 
   html += preOpenerFromRenderingOptsWithExtras(options, codefenceMeta, ["twoslash", "lsp"])
   if (codefenceMeta.title) {
-    html += `<div class="code-title">${codefenceMeta.title}</div>`
+    html += `<div class='code-title'>${codefenceMeta.title}</div>`
   }
 
   if (options.langId) {
     html += `<div class="language-id">${options.langId}</div>`
   }
 
-  html += `<div class="code-container"><code>`
+  html += `<div class='code-container'><code>`
 
   const errorsGroupedByLine = groupBy(twoslash.errors, e => e.line) || new Map()
   const staticQuickInfosGroupedByLine = groupBy(twoslash.staticQuickInfos, q => q.line) || new Map()
@@ -64,7 +64,7 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
       html += `\n`
     } else {
       const hiClass = hasHighlight ? (hl(i) ? " highlight" : " dim") : ""
-      const prefix = `<div class="line${hiClass}">`
+      const prefix = `<div class='line${hiClass}'>`
       html += prefix
 
       // Keep track of the position of the current token in a line so we can match it up to the
@@ -157,16 +157,16 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
             const targetedWord = lspValues.find(response => response.text === (queries.length && queries[0].text))!
             const halfWayAcrossTheTargetedWord = ((targetedWord && targetedWord.character + targetedWord?.length / 2) - 1) || 0
             html +=
-              `<span class="popover-prefix">` +
+              `<span class='popover-prefix'>` +
               " ".repeat(halfWayAcrossTheTargetedWord) +
               "</span>" +
-              `<span class="popover"><div class="arrow"></div>${queryTextWithPrefix}</span>`
+              `<span class='popover'><div class='arrow'></div>${queryTextWithPrefix}</span>`
             break
           }
 
           case "completions": {
             if (!query.completions) {
-              html += `<span class="query">${"//" + "".padStart(query.offset - 2) + "^ - No completions found"}</span>`
+              html += `<span class='query'>${"//" + "".padStart(query.offset - 2) + "^ - No completions found"}</span>`
             } else {
               const prefixed = query.completions.filter(c => c.name.startsWith(query.completionsPrefix || "____"))
 
@@ -174,14 +174,14 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
                 .sort((l, r) => l.name.localeCompare(r.name))
                 .map(c => {
                   const after = c.name.substr(query.completionsPrefix?.length || 0)
-                  const name = `<span><span class="result-found">${query.completionsPrefix || ""}</span>${after}<span>`
+                  const name = `<span><span class='result-found'>${query.completionsPrefix || ""}</span>${after}<span>`
                   const isDeprecated = c.kindModifiers?.split(",").includes("deprecated")
                   const liClass = isDeprecated ? "deprecated" : ""
-                  return `<li class="${liClass}">${name}</li>`
+                  return `<li class='${liClass}'>${name}</li>`
                 })
                 .join("")
               html +=
-                "".padStart(query.offset) + `<span class="inline-completions"><ul class="dropdown">${lis}</ul></span>`
+                "".padStart(query.offset) + `<span class='inline-completions'><ul class='dropdown'>${lis}</ul></span>`
             }
           }
         }
@@ -192,7 +192,7 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
   html = replaceTripleArrowEncoded(html.replace(/\n*$/, "")) // Get rid of final new lines
 
   if (options.addTryButton) {
-    const playgroundLink = `<a class="playground-link" href="${twoslash.playgroundURL}">Try</a>`
+    const playgroundLink = `<a class='playground-link' href='${twoslash.playgroundURL}'>Try</a>`
     html += `</code>${playgroundLink}`
   } else {
     html += `</code>`

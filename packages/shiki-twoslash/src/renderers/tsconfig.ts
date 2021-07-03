@@ -35,13 +35,13 @@ export function tsconfigJSONRenderer(lines: Lines, options: HtmlRendererOptions,
     html += `<div class="language-id">${options.langId}</div>`
   }
 
-  html += `<div class="code-container"><code>`
+  html += `<div class='code-container'><code>`
 
   lines.forEach(l => {
     if (l.length === 0) {
-      html += `<div class="line"></div>`
+      html += `<div class='line'></div>`
     } else {
-      html += `<div class="line">`
+      html += `<div class='line'>`
       l.forEach(token => {
         // This means we're looking at a token which could be '"module"', '"', '"compilerOptions"' etc
         if (tokenIsJSONKey(token) && isKeyInTSConfig(token)) {
