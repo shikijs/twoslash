@@ -366,7 +366,17 @@ const jsx = await mdx(content, {
 }
 ```
 
-### Power User Features
+### Code Sample Titles
+
+A code sample can have a title, for example the filename via a codefence attribute:
+
+````
+```ts title="examples/index.ts"
+for (let x in [0]) console.log(x)
+```
+````
+
+## Power User Features
 
 #### Cache Cleaning
 

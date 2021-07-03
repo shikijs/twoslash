@@ -10,8 +10,14 @@ import { cachedTwoslashCall } from "./caching"
 // A set of includes which can be pulled via a set ID
 const includes = new Map<string, string>()
 
-// prettier-ignore
-function getHTML(code: string, lang: string, metaString: string, highlighters: Highlighter[], twoslash: TwoSlashReturn | undefined) {
+function getHTML(
+  code: string,
+  lang: string,
+  metaString: string,
+  highlighters: Highlighter[],
+  twoslash: TwoSlashReturn | undefined,
+  wrapFragments?: true
+) {
   // Shiki doesn't respect json5 as an input, so switch it
   // to json, which can handle comments in the syntax highlight
   const replacer = {
@@ -35,6 +41,9 @@ function getHTML(code: string, lang: string, metaString: string, highlighters: H
       return renderCodeToHTML(code, lang, metaString.split(" "), { themeName }, highlighter, twoslash)
     })
     results = output.join("\n")
+    if (highlighters.length > 1 && wrapFragments) {
+      results = `<div class="shiki-twoslash-fragment">${results}</div>`
+    }
   }
   return results
 }
@@ -143,7 +152,7 @@ export const remarkVisitor =
       node.twoslash = twoslash
     }
 
-    const shikiHTML = getHTML(node.value, lang, metaString, highlighters, twoslash)
+    const shikiHTML = getHTML(node.value, lang, metaString, highlighters, twoslash, twoslashSettings.wrapFragments)
     node.type = "html"
     node.value = shikiHTML
     node.children = []

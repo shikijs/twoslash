@@ -30,9 +30,14 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
   const hl = shouldHighlightLine(codefenceMeta)
 
   html += preOpenerFromRenderingOptsWithExtras(options, codefenceMeta, ["twoslash", "lsp"])
+  if (codefenceMeta.title) {
+    html += `<div class='code-title'>${codefenceMeta.title}</div>`
+  }
+
   if (options.langId) {
     html += `<div class="language-id">${options.langId}</div>`
   }
+
   html += `<div class='code-container'><code>`
 
   const errorsGroupedByLine = groupBy(twoslash.errors, e => e.line) || new Map()
@@ -185,7 +190,7 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
     }
   })
   html = replaceTripleArrowEncoded(html.replace(/\n*$/, "")) // Get rid of final new lines
-  
+
   if (options.addTryButton) {
     const playgroundLink = `<a class='playground-link' href='${twoslash.playgroundURL}'>Try</a>`
     html += `</code>${playgroundLink}`

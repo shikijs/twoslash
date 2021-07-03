@@ -25,6 +25,6 @@ OK world
     md.use(shiki)
 
     const html = md.render(file)
-    expect(html).toContain("shiki  nord twoslash lsp")
+    expect(html).toContain("shiki nord twoslash lsp")
   })
 })

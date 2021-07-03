@@ -106,20 +106,43 @@ You can find all [built-in themes here](https://github.com/shikijs/shiki/tree/ma
 
 ### Common Use Case
 
+### Default Compiler Options
+
+You can set a default set of TypeScript options via `defaultCompilerOptions`
+
+```js
+[
+  require("remark-shiki-twoslash").default,
+  {
+    themes: ["min-light", "min-dark"],
+    defaultCompilerOptions: {
+      types: ["node"],
+    },
+  },
+]
+```
+
 ##### Node Types in a Code Sample
 
-To get the Node globals set up, import them via an inline triple-slash reference:
+To set up globals for one-off cases, import them via [an inline triple-slash](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html) reference:
 
 ````
 ```ts twoslash
-/// <reference types="node" />
-import { execSync } from "child_process"
-const files = execSync("git status --porcelain", { encoding: "utf8" })
-files.length
+/// <reference types="jest" />
+import { createHighlightedString } from "../src/utils"
+
+describe(createHighlightedString, () => {
+  it("handles passing the LSP info through in a way that the CSS renderer can understand", () => {
+    const result = createHighlightedString([], "longest")
+
+    expect(result).toMatchInlineSnapshot(
+      `"<data-lsp lsp='function longest&lt;number[]>(a: number[], b: number[]): number[]' >longest</data-lsp>"`
+    )
+  })
+})
 ```
 ````
 
-This applies to other projects which use globals, like Jest etc. If you think that's ugly, that's OK, you can use `// ---cut---` to trim the user-visible output.
 
 ### API
 

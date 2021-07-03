@@ -16,25 +16,25 @@ syntax highlighting mixed with the twoslash JavaScript tooling from the TypeScri
         // ...
       },
     ],
-    + ["docusaurus-preset-shiki-twoslash", { theme: "github-light" }]
++   [
++      'docusaurus-preset-shiki-twoslash',
++      {
++        themes: ["min-light", "nord"],
++      },
++  ],
    ],
-
    ```
 
-1. Add the CSS from [npmjs.com/package/remark-shiki-twoslash](https://www.npmjs.com/package/remark-shiki-twoslash) to `src/css/custom.css`
+1. Set up light/dark mode CSS in `src/css/custom.css`:
+  
+  ```css
+  [data-theme="light"] .shiki.nord {
+     display: none;
+  }
 
-1. Disable the in-built formatter: `src/theme/MDXComponents/index.js`:
-
-```ts
-import InitialComponents from '@theme-init/MDXComponents';
-
-const newExport = {}
-// Remove `pre` and `code` from the MDX parser because Shiki Twoslash will handle them
-Object.entries(InitialComponents).forEach(key => {
-  if (key !== "pre" && key !== "code") newExport[key] = InitialComponents[key]
-})
-
-export default newExport
-```
+  [data-theme="dark"] .shiki.min-light {
+     display: none;
+  }
+  ```
 
 1. **Go read [npmjs.com/package/remark-shiki-twoslash](https://www.npmjs.com/package/remark-shiki-twoslash)** to see what is available, this package leaves all the heavy work to that module.

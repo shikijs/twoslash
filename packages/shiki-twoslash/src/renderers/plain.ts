@@ -14,8 +14,11 @@ export const preOpenerFromRenderingOptsWithExtras = (opts: HtmlRendererOptions, 
   const fg = opts.fg || "black"
   const theme = opts.themeName || ""
   const fenceClass = (fence && fence.class) || ""
+  if (fence && classes && fence.title) classes.push("with-title")
   const extras = (classes && classes.join(" ")) || ""
-  return `<pre class="shiki ${fenceClass} ${theme} ${extras}" style="background-color: ${bg}; color: ${fg}">`
+
+  // prettier-ignore
+  return `<pre class="shiki ${[fenceClass, theme, extras].filter(Boolean).join(" ").trim()}" style="background-color: ${bg}; color: ${fg}">`
 }
 
 /** You don't have a language which shiki twoslash can handle, make a DOM compatible version  */
@@ -23,6 +26,10 @@ export function plainTextRenderer(code: string, options: HtmlRendererOptions, co
   let html = ""
 
   html += preOpenerFromRenderingOptsWithExtras(options, codefenceMeta, [])
+  if (codefenceMeta.title) {
+    html += `<div class='code-title'>${codefenceMeta.title}</div>`
+  }
+
   if (options.langId) {
     html += `<div class="language-id">${options.langId}</div>`
   }

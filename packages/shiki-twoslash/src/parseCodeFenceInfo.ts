@@ -7,6 +7,10 @@ const triviaPattern = /\s/
 const startOfNumberPattern = /[0-9-.]/
 const numberPattern = /[0-9-.e]/
 
+// Based on https://github.com/facebook/docusaurus/blob/ed9d2a26f5a7b8096804ae1b3a4fffc504f8f90d/packages/docusaurus-theme-common/src/utils/codeBlockUtils.ts
+// which is under MIT License as per the banner
+const titlePattern = /title=(["'])(.*?)\1/
+
 function testRegex(input: string, pattern: RegExp) {
   if (input === undefined) return false
   return pattern.test(input)
@@ -17,7 +21,7 @@ export function parseCodeFenceInfo(lang: string, fullMetaString: string) {
   // Heh
   const metaString = fullMetaString.replace("twoslash", "")
   let pos = 0
-  let meta = {}
+  let meta: Record<string, unknown> = {}
   let languageName = ""
   const input = [lang, metaString].filter(Boolean).join(" ")
   skipTrivia()
@@ -34,7 +38,14 @@ export function parseCodeFenceInfo(lang: string, fullMetaString: string) {
     return fail(`Invalid character in language name: '${current()}'`)
   }
 
-  return { languageName, meta }
+  if (fullMetaString.match(titlePattern)) {
+    meta.title = fullMetaString.match(titlePattern)?.[2] ?? ""
+  }
+
+  return {
+    languageName,
+    meta,
+  }
 
   function current(): string {
     if (isEnd()) {
@@ -162,7 +173,7 @@ export function parseCodeFenceInfo(lang: string, fullMetaString: string) {
 export const shouldBeHighlightable = (meta: any) => {
   return !!Object.keys(meta).find(key => {
     if (key.includes("-")) return true
-    if (parseInt(key) !== NaN) return true
+    if (!isNaN(parseInt(key))) return true
     return false
   })
 }
@@ -171,7 +182,7 @@ export const shouldBeHighlightable = (meta: any) => {
 export const shouldHighlightLine = (meta: any) => {
   const lines: number[] = []
   Object.keys(meta).find(key => {
-    if (parseInt(key) !== NaN) lines.push(parseInt(key))
+    if (!isNaN(parseInt(key))) lines.push(parseInt(key))
     if (key.includes("-")) {
       const [first, last] = key.split("-")
       const lastIndex = parseInt(last) + 1

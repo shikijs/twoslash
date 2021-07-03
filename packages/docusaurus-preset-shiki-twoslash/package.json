@@ -17,12 +17,16 @@
   "typings": "./index.d.ts",
   "scripts": {
     "bootstrap": "echo 'NOOP'",
-    "build": "npx tsc index.js --declaration --allowJs --emitDeclarationOnly",
+    "build": "npx tsc index.js --declaration --allowJs --emitDeclarationOnly --esModuleInterop",
     "test": "echo 'NOOP'",
     "lint": "echo 'NOOP'"
   },
   "dependencies": {
+    "copy-text-to-clipboard": "^3.0.1",
     "remark-shiki-twoslash": "1.5.0",
     "typescript": ">3"
+  },
+  "devDependencies": {
+    "@docusaurus/types": "^2.0.0-beta.3"
   }
 }
