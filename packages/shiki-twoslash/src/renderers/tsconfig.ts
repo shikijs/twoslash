@@ -27,6 +27,10 @@ export function tsconfigJSONRenderer(lines: Lines, options: HtmlRendererOptions,
   let html = ""
 
   html += preOpenerFromRenderingOptsWithExtras(options, codefenceMeta, ["tsconfig", "lsp"])
+  if (codefenceMeta.title) {
+    html += `<div class="code-title">${codefenceMeta.title}</div>`
+  }
+
   if (options.langId) {
     html += `<div class="language-id">${options.langId}</div>`
   }
