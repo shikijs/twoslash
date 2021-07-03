@@ -16,7 +16,9 @@ export const preOpenerFromRenderingOptsWithExtras = (opts: HtmlRendererOptions, 
   const fenceClass = (fence && fence.class) || ""
   if (fence && classes && fence.title) classes.push("with-title")
   const extras = (classes && classes.join(" ")) || ""
-  return `<pre class="shiki ${fenceClass} ${theme} ${extras}" style="background-color: ${bg}; color: ${fg}">`
+
+  // prettier-ignore
+  return `<pre class="shiki ${[fenceClass, theme, extras].filter(Boolean).join(" ").trim()}" style="background-color: ${bg}; color: ${fg}">`
 }
 
 /** You don't have a language which shiki twoslash can handle, make a DOM compatible version  */
