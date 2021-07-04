@@ -16,12 +16,12 @@ syntax highlighting mixed with the twoslash JavaScript tooling from the TypeScri
         // ...
       },
     ],
-+   [
-+      'docusaurus-preset-shiki-twoslash',
-+      {
-+        themes: ["min-light", "nord"],
-+      },
-+  ],
+   + [
+   +     'docusaurus-preset-shiki-twoslash',
+   +     {
+   +       themes: ["min-light", "nord"],
+   +     },
+   + ],
    ],
    ```
 
