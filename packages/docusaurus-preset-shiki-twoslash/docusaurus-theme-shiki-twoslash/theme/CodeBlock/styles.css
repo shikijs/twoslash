@@ -11,6 +11,7 @@ pre.shiki > .code-title {
   font-size: var(--ifm-code-font-size);
   font-weight: 500;
 
+  color: var(--ifm-color-emphasis-900);
   border-bottom: 1px solid var(--ifm-color-emphasis-300);
   padding: 0 var(--ifm-pre-padding);
 
