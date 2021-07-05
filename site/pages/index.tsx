@@ -289,7 +289,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           />
           <Tool
             top="Twoslash VS Code"
-            body="Adds twoslash markdup auto-complete to code samples, and offers a one-click link to a Twoslash repl with a reference on the TypeScript website."
+            body="Adds twoslash markup auto-complete to code samples, and offers a one-click link to a Twoslash repl with a reference on the TypeScript website."
             npm="vscode-twoslash"
             url="https://marketplace.visualstudio.com/items?itemName=Orta.vscode-twoslash"
             imgName="vscode"
