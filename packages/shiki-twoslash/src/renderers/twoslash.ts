@@ -56,15 +56,17 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
     const lspValues = staticQuickInfosGroupedByLine.get(i) || []
     const queries = queriesGroupedByLine.get(i) || []
 
+    const hiClass = hasHighlight ? (hl(i) ? " highlight" : " dim") : ""
+    const prefix = `<div class='line${hiClass}'>`
+
     if (l.length === 0 && i === 0) {
       // Skip the first newline if it's blank
       filePos += 1
     } else if (l.length === 0) {
+      const emptyLine = `${prefix}&nbsp;</div>` 
+      html += emptyLine
       filePos += 1
-      html += `\n`
     } else {
-      const hiClass = hasHighlight ? (hl(i) ? " highlight" : " dim") : ""
-      const prefix = `<div class='line${hiClass}'>`
       html += prefix
 
       // Keep track of the position of the current token in a line so we can match it up to the

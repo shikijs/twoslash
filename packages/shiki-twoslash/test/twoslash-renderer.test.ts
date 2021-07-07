@@ -202,3 +202,21 @@ const C: React.FC = ({children}) => <div>{children}</div>
     expect(html.split("<data-lsp").length).toEqual(twoslash.staticQuickInfos.length + 1)
   })
 })
+
+
+// We were using "/n" instead of a new line, so CSS didn't work
+it("has the same number of div.lines as the lines in the code", async () => {
+  const highlighter = await createShikiHighlighter({ theme: "dark-plus" })
+  const code = `function hello() {
+  // to a thing
+}
+
+console.log("hi")`
+  const twoslash = runTwoSlash(code, "ts", {})
+  const html = renderCodeToHTML(twoslash.code, "ts", ["twoslash"], {}, highlighter, twoslash)
+
+  const codeLines = code.split("\n").length
+  const divClassLines = html.split("'line").length
+
+  expect(codeLines + 1).toEqual(divClassLines)
+})
