@@ -152,6 +152,8 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
     // Add queries to the next line
     if (queries.length) {
       queries.forEach(query => {
+        html += `<div class='meta-line'>`
+
         switch (query.kind) {
           case "query": {
             const queryTextWithPrefix = escapeHtml(query.text!)
@@ -187,8 +189,8 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
             }
           }
         }
+        html += "</div>"
       })
-      html += "\n"
     }
   })
   html = replaceTripleArrowEncoded(html.replace(/\n*$/, "")) // Get rid of final new lines
