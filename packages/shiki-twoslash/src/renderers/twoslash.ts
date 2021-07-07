@@ -154,6 +154,8 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
       // This is used to wrap popovers and completions to improve styling options for users.
       const metaLinePrefix = `<div class='meta-line'`;
       queries.forEach(query => {
+        html += `<div class='meta-line'>`
+
         switch (query.kind) {
           case "query": {
             const queryTextWithPrefix = escapeHtml(query.text!)
@@ -188,6 +190,7 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
             }
           }
         }
+        html += "</div>"
       })
     }
   })
