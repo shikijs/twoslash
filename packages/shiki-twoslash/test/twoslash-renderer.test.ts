@@ -204,7 +204,7 @@ const C: React.FC = ({children}) => <div>{children}</div>
 })
 
 
-// We were using "/n" instead of a new line, so CSS didn't work
+// We were using "/n" instead of a new line, so CSS numbers didn't work - see #65
 it("has the same number of div.lines as the lines in the code", async () => {
   const highlighter = await createShikiHighlighter({ theme: "dark-plus" })
   const code = `function hello() {
@@ -218,5 +218,7 @@ console.log("hi")`
   const codeLines = code.split("\n").length
   const divClassLines = html.split("'line").length
 
+  // the +1 is because HTML _starts_ with a line, vs the newline which isn't the first character
+  // effectively a fencepost problem
   expect(codeLines + 1).toEqual(divClassLines)
 })
