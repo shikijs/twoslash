@@ -1,0 +1,21 @@
+[
+  {
+    "code": "/** ABCDE */\nconst a = \"OK\"",
+    "extension": "ts",
+    "highlights": [],
+    "queries": [],
+    "staticQuickInfos": [
+      {
+        "text": "const a: \"OK\"",
+        "docs": "ABCDE",
+        "start": 19,
+        "length": 1,
+        "line": 1,
+        "character": 6,
+        "targetString": "a"
+      }
+    ],
+    "errors": [],
+    "playgroundURL": "https://www.typescriptlang.org/play/#code/PQKhAIEECEGEBECi4TAFAGMD2A7AzgC7gCG4AvOAEQDyA0pUA"
+  }
+]
