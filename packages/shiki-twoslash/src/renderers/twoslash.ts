@@ -151,6 +151,8 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
 
     // Add queries to the next line
     if (queries.length) {
+      // This is used to wrap popovers and completions to improve styling options for users.
+      const metaLinePrefix = `<div class='meta-line'`;
       queries.forEach(query => {
         switch (query.kind) {
           case "query": {
@@ -159,16 +161,16 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
             const targetedWord = lspValues.find(response => response.text === (queries.length && queries[0].text))!
             const halfWayAcrossTheTargetedWord = ((targetedWord && targetedWord.character + targetedWord?.length / 2) - 1) || 0
             html +=
-              `<span class='popover-prefix'>` +
+              `${metaLinePrefix}<span class='popover-prefix'>` +
               " ".repeat(halfWayAcrossTheTargetedWord) +
               "</span>" +
-              `<span class='popover'><div class='arrow'></div>${queryTextWithPrefix}</span>`
+              `<span class='popover'><div class='arrow'></div>${queryTextWithPrefix}</span></div>`
             break
           }
 
           case "completions": {
             if (!query.completions) {
-              html += `<span class='query'>${"//" + "".padStart(query.offset - 2) + "^ - No completions found"}</span>`
+              html += `${metaLinePrefix}<span class='query'>${"//" + "".padStart(query.offset - 2) + "^ - No completions found"}</span></div>`
             } else {
               const prefixed = query.completions.filter(c => c.name.startsWith(query.completionsPrefix || "____"))
 
@@ -182,13 +184,11 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
                   return `<li class='${liClass}'>${name}</li>`
                 })
                 .join("")
-              html +=
-                "".padStart(query.offset) + `<span class='inline-completions'><ul class='dropdown'>${lis}</ul></span>`
+              html += `${metaLinePrefix}${"&nbsp;".repeat(query.offset)}<span class='inline-completions'><ul class='dropdown'>${lis}</ul></span></div>`
             }
           }
         }
       })
-      html += "\n"
     }
   })
   html = replaceTripleArrowEncoded(html.replace(/\n*$/, "")) // Get rid of final new lines
