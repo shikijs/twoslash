@@ -189,8 +189,8 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
             }
           }
         }
+        html += "</div>"
       })
-      html += "</div>"
     }
   })
   html = replaceTripleArrowEncoded(html.replace(/\n*$/, "")) // Get rid of final new lines
