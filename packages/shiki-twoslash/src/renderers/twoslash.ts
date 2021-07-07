@@ -151,9 +151,8 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
 
     // Add queries to the next line
     if (queries.length) {
-      // This is used to wrap popovers and completions to improve styling options for users.
-      const metaLinePrefix = `<div class='meta-line'`;
       queries.forEach(query => {
+        // This is used to wrap popovers and completions to improve styling options for users.
         html += `<div class='meta-line'>`
 
         switch (query.kind) {
@@ -163,16 +162,16 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
             const targetedWord = lspValues.find(response => response.text === (queries.length && queries[0].text))!
             const halfWayAcrossTheTargetedWord = ((targetedWord && targetedWord.character + targetedWord?.length / 2) - 1) || 0
             html +=
-              `${metaLinePrefix}<span class='popover-prefix'>` +
+              `<span class='popover-prefix'>` +
               " ".repeat(halfWayAcrossTheTargetedWord) +
               "</span>" +
-              `<span class='popover'><div class='arrow'></div>${queryTextWithPrefix}</span></div>`
+              `<span class='popover'><div class='arrow'></div>${queryTextWithPrefix}</span>`
             break
           }
 
           case "completions": {
             if (!query.completions) {
-              html += `${metaLinePrefix}<span class='query'>${"//" + "".padStart(query.offset - 2) + "^ - No completions found"}</span></div>`
+              html += `<span class='query'>${"//" + "".padStart(query.offset - 2) + "^ - No completions found"}</span>`
             } else {
               const prefixed = query.completions.filter(c => c.name.startsWith(query.completionsPrefix || "____"))
 
@@ -186,7 +185,7 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
                   return `<li class='${liClass}'>${name}</li>`
                 })
                 .join("")
-              html += `${metaLinePrefix}${"&nbsp;".repeat(query.offset)}<span class='inline-completions'><ul class='dropdown'>${lis}</ul></span></div>`
+              html += `${"&nbsp;".repeat(query.offset)}<span class='inline-completions'><ul class='dropdown'>${lis}</ul></span>`
             }
           }
         }
