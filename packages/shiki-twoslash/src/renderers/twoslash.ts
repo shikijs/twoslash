@@ -152,6 +152,7 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
     // Add queries to the next line
     if (queries.length) {
       queries.forEach(query => {
+        // This is used to wrap popovers and completions to improve styling options for users.
         html += `<div class='meta-line'>`
 
         switch (query.kind) {
@@ -184,8 +185,7 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
                   return `<li class='${liClass}'>${name}</li>`
                 })
                 .join("")
-              html +=
-                "".padStart(query.offset) + `<span class='inline-completions'><ul class='dropdown'>${lis}</ul></span>`
+              html += `${"&nbsp;".repeat(query.offset)}<span class='inline-completions'><ul class='dropdown'>${lis}</ul></span>`
             }
           }
         }

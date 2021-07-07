@@ -222,3 +222,37 @@ console.log("hi")`
   // effectively a fencepost problem
   expect(codeLines + 1).toEqual(divClassLines)
 })
+
+it("has uses div.meta-line for popovers", async () => {
+ const highlighter = await createShikiHighlighter({ theme: "dark-plus" })
+  const code = `function hello() {
+  const x = 123;
+  //    ^?
+}
+`
+  const twoslash = runTwoSlash(code, "ts", {})
+  const html = renderCodeToHTML(twoslash.code, "ts", ["twoslash"], {}, highlighter, twoslash)
+
+  // Make sure that we have a div.meta-line that wraps our query popover.
+  expect(html).toContain(`<div class='meta-line`)
+});
+
+
+it("has uses div.meta-line for completions", async () => {
+ const highlighter = await createShikiHighlighter({ theme: "dark-plus" })
+  const code = `
+// @noErrors
+function hello() {
+  const x = 123;
+  console.l
+//        ^|
+}
+`
+  const twoslash = runTwoSlash(code, "ts", {})
+  const html = renderCodeToHTML(twoslash.code, "ts", ["twoslash"], {}, highlighter, twoslash)
+
+  // Make sure that we have a div.meta-line that wraps our completion list.
+  expect(html).toContain(`<div class='meta-line`)
+  // Make sure the query offset is accounted for.
+  expect(html).toContain("&nbsp;".repeat(10))
+});
