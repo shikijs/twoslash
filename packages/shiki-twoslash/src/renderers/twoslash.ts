@@ -26,6 +26,7 @@ import { HtmlRendererOptions, preOpenerFromRenderingOptsWithExtras } from "./pla
 export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & TwoslashShikiOptions, twoslash: TwoSlash, codefenceMeta: any) {
   let html = ""
 
+  console.log({options})
   const hasHighlight = shouldBeHighlightable(codefenceMeta)
   const hl = shouldHighlightLine(codefenceMeta)
 
@@ -121,7 +122,8 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
             if ("kind" in token) range.classes = token.kind
             if ("targetString" in token) {
               range.classes = "lsp"
-              range["lsp"] = token.text
+              const lspText = options.includeJSDocInHover && token.docs ? `${token.docs}\n\n${token.text}` : token.text
+              range["lsp"] = lspText
             }
             return range
           })

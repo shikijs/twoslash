@@ -13,6 +13,8 @@ export interface TwoslashShikiOptions {
   disableImplicitReactImport?: true
   /** A way to add a div wrapper for multi-theme outputs */
   wrapFragments?: true
+  /** Include JSDoc comments in the hovers */
+  includeJSDocInHover?: true
 }
 
 /** The possible user config, a combination of all shiki, twoslash and twoslash-shiki options */
@@ -51,6 +53,7 @@ export const createShikiHighlighter = (options: HighlighterOptions) => {
  * @param code the source code to render
  * @param lang the language to use in highlighting
  * @param info additional metadata which lives after the code-fence lang (e.g. ["twoslash"])
+ * @param shikiOptions user settings
  * @param highlighter optional, but you should use it, highlighter
  * @param twoslash optional, but required when info contains 'twoslash' as a string
  */
@@ -58,7 +61,7 @@ export const renderCodeToHTML = (
   code: string,
   lang: string,
   info: string[],
-  shikiOptions?: HtmlRendererOptions,
+  shikiOptions?: UserConfigSettings,
   highlighter?: Highlighter,
   twoslash?: TwoSlashReturn
 ) => {

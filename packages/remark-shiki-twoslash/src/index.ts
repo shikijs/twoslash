@@ -16,7 +16,7 @@ function getHTML(
   metaString: string,
   highlighters: Highlighter[],
   twoslash: TwoSlashReturn | undefined,
-  wrapFragments?: true
+  twoslashSettings: UserConfigSettings
 ) {
   // Shiki doesn't respect json5 as an input, so switch it
   // to json, which can handle comments in the syntax highlight
@@ -38,10 +38,10 @@ function getHTML(
     const output = highlighters.map(highlighter => {
       // @ts-ignore
       const themeName: string = highlighter.customName.split("/").pop().replace(".json", "")
-      return renderCodeToHTML(code, lang, metaString.split(" "), { themeName }, highlighter, twoslash)
+      return renderCodeToHTML(code, lang, metaString.split(" "), { themeName, ...twoslashSettings }, highlighter, twoslash)
     })
     results = output.join("\n")
-    if (highlighters.length > 1 && wrapFragments) {
+    if (highlighters.length > 1 && twoslashSettings.wrapFragments) {
       results = `<div class="shiki-twoslash-fragment">${results}</div>`
     }
   }
@@ -152,7 +152,7 @@ export const remarkVisitor =
       node.twoslash = twoslash
     }
 
-    const shikiHTML = getHTML(node.value, lang, metaString, highlighters, twoslash, twoslashSettings.wrapFragments)
+    const shikiHTML = getHTML(node.value, lang, metaString, highlighters, twoslash, twoslashSettings)
     node.type = "html"
     node.value = shikiHTML
     node.children = []
