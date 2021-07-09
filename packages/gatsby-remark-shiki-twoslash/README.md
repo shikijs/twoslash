@@ -5,10 +5,6 @@ syntax highlighting. This part is basically the same as [gatsby-remark-shiki](ht
 
 ## Plugin Setup
 
-#### Express Setup
-
-[Read this PR](https://github.com/orta/gatsby-twoslash-shiki-blog/pull/1) and apply the same to your project.
-
 #### Setup
 
 1. **Install the dependency**: `yarn add gatsby-remark-shiki-twoslash`
