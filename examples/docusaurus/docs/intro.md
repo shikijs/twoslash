@@ -4,6 +4,10 @@ sidebar_position: 1
 
 # Intro
 
+```twoslash include main
+const PI = Math.PI
+```
+
 ## Non Twoslash Highlight
 
 ```rust {4-6, 10}
@@ -80,13 +84,15 @@ const words = welcome.contains(" ")
 
 ## Line Highlighting
 
-```ts twoslash {0, 6-7}
+```ts twoslash {2, 6-7}
+// @include: main
+
 class Point {
   x: number
   y: number
 
   // Normal signature with defaults
-  constructor(x = 0, y = 0) {
+  constructor(x = 0, y = PI) {
     this.x = x
     this.y = y
   }
