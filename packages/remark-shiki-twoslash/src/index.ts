@@ -32,7 +32,7 @@ function getHTML(
   if ((lang as string) === "twoslash") {
     if (!metaString) throw new Error("A twoslash code block needs a pragma like 'twoslash include [name]'")
     addIncludes(includes, code, metaString)
-    results = wrapFragments ? `<div class="shiki-twoslash-fragment"></div>` : ""
+    results = twoslashSettings.wrapFragments ? `<div class="shiki-twoslash-fragment"></div>` : ""
   } else {
     // All good, get each highlighter and render the shiki output for it
     const output = highlighters.map(highlighter => {
