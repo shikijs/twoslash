@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "bootstrap": "pnpm build -r --workspace-concurrency 1 && md-magic",
-    "build": "pnpm run build -r"
+    "build": "pnpm run build -r && md-magic"
   },
   "devDependencies": {
     "@types/jest": "^25.2.3",

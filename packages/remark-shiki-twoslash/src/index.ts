@@ -16,7 +16,7 @@ function getHTML(
   metaString: string,
   highlighters: Highlighter[],
   twoslash: TwoSlashReturn | undefined,
-  wrapFragments?: true
+  twoslashSettings: UserConfigSettings
 ) {
   // Shiki doesn't respect json5 as an input, so switch it
   // to json, which can handle comments in the syntax highlight
@@ -32,16 +32,16 @@ function getHTML(
   if ((lang as string) === "twoslash") {
     if (!metaString) throw new Error("A twoslash code block needs a pragma like 'twoslash include [name]'")
     addIncludes(includes, code, metaString)
-    results = wrapFragments ? `<div class="shiki-twoslash-fragment"></div>` : ""
+    results = twoslashSettings.wrapFragments ? `<div class="shiki-twoslash-fragment"></div>` : ""
   } else {
     // All good, get each highlighter and render the shiki output for it
     const output = highlighters.map(highlighter => {
       // @ts-ignore
       const themeName: string = highlighter.customName.split("/").pop().replace(".json", "")
-      return renderCodeToHTML(code, lang, metaString.split(" "), { themeName }, highlighter, twoslash)
+      return renderCodeToHTML(code, lang, metaString.split(" "), { themeName, ...twoslashSettings }, highlighter, twoslash)
     })
     results = output.join("\n")
-    if (highlighters.length > 1 && wrapFragments) {
+    if (highlighters.length > 1 && twoslashSettings.wrapFragments) {
       results = `<div class="shiki-twoslash-fragment">${results}</div>`
     }
   }
@@ -152,7 +152,7 @@ export const remarkVisitor =
       node.twoslash = twoslash
     }
 
-    const shikiHTML = getHTML(node.value, lang, metaString, highlighters, twoslash, twoslashSettings.wrapFragments)
+    const shikiHTML = getHTML(node.value, lang, metaString, highlighters, twoslash, twoslashSettings)
     node.type = "html"
     node.value = shikiHTML
     node.children = []
@@ -185,5 +185,5 @@ export const transformAttributesToHTML = (
 ) => {
   const twoslash = runTwoSlashOnNode(code, lang, attrs, settings)
   const newCode = (twoslash && twoslash.code) || code
-  return getHTML(newCode, lang, attrs, highlighters, twoslash)
+  return getHTML(newCode, lang, attrs, highlighters, twoslash, settings)
 }

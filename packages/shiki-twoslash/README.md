@@ -100,6 +100,8 @@ export interface TwoslashShikiOptions {
     disableImplicitReactImport?: true;
     /** A way to add a div wrapper for multi-theme outputs */
     wrapFragments?: true;
+    /** Include JSDoc comments in the hovers */
+    includeJSDocInHover?: true;
 }
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
