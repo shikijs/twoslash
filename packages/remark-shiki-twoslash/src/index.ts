@@ -185,5 +185,5 @@ export const transformAttributesToHTML = (
 ) => {
   const twoslash = runTwoSlashOnNode(code, lang, attrs, settings)
   const newCode = (twoslash && twoslash.code) || code
-  return getHTML(newCode, lang, attrs, highlighters, twoslash)
+  return getHTML(newCode, lang, attrs, highlighters, twoslash, settings)
 }

@@ -26,7 +26,6 @@ import { HtmlRendererOptions, preOpenerFromRenderingOptsWithExtras } from "./pla
 export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & TwoslashShikiOptions, twoslash: TwoSlash, codefenceMeta: any) {
   let html = ""
 
-  console.log({options})
   const hasHighlight = shouldBeHighlightable(codefenceMeta)
   const hl = shouldHighlightLine(codefenceMeta)
 

@@ -61,7 +61,7 @@ export const renderCodeToHTML = (
   code: string,
   lang: string,
   info: string[],
-  shikiOptions?: UserConfigSettings,
+  shikiOptions?: UserConfigSettings & { themeName: string },
   highlighter?: Highlighter,
   twoslash?: TwoSlashReturn
 ) => {
