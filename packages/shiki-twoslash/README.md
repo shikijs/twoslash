@@ -88,6 +88,33 @@ export interface TwoSlashOptions {
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+The Twoslash `ExampleOptions` looks like (these are things which can be set via `// @[flag]` in a code sample):
+
+<!-- AUTO-GENERATED-CONTENT:START (TYPE:src=./node_modules/@typescript/twoslash/dist/index.d.ts&symbol=ExampleOptions) -->
+```ts
+/** Available inline flags which are not compiler flags */
+export interface ExampleOptions {
+    /** Lets the sample suppress all error diagnostics */
+    noErrors: boolean;
+    /** An array of TS error codes, which you write as space separated - this is so the tool can know about unexpected errors */
+    errors: number[];
+    /** Shows the JS equivalent of the TypeScript code instead */
+    showEmit: boolean;
+    /**
+     * Must be used with showEmit, lets you choose the file to present instead of the source - defaults to index.js which
+     * means when you just use `showEmit` above it shows the transpiled JS.
+     */
+    showEmittedFile: string;
+    /** Whether to disable the pre-cache of LSP calls for interesting identifiers, defaults to false */
+    noStaticSemanticInfo: boolean;
+    /** Declare that the TypeScript program should edit the fsMap which is passed in, this is only useful for tool-makers, defaults to false */
+    emit: boolean;
+    /** Declare that you don't need to validate that errors have corresponding annotations, defaults to false */
+    noErrorValidation: boolean;
+}
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
 
 And one extra for good luck:
 
