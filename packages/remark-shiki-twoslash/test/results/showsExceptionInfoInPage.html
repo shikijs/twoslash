@@ -1,0 +1,73 @@
+<h2>This twoslash cample fails</h2>
+<p>It should show the info inline</p>
+<style></style>
+<div class="twoslash-exception-message">
+  Error: Errors were thrown in the sample, but not included in an errors tag:
+  2588 Expected: // @errors: 2588 [2588] - Cannot assign to 'a' because it is a
+  constant. ## Code '''ts const a = 123 const b = 543 a = b '''
+</div>
+<p>Above here ^</p>
+
+<style>
+  .shiki {
+    background-color: lightgrey;
+    padding: 8px;
+  }
+
+  .error,
+  .error-behind {
+    margin-left: -20px;
+    margin-right: -12px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 6px;
+    padding-left: 14px;
+
+    white-space: pre-wrap;
+    display: block;
+  }
+
+  .error {
+    position: absolute;
+    background-color: #ffeeee;
+    border-left: 2px solid #bf1818;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    color: black;
+  }
+
+  .error-behind {
+    user-select: none;
+    color: #ffeeee;
+  }
+  .query {
+    color: white;
+  }
+
+  /* To get them all hovering OOTB: .twoslash data-lsp::before { */
+
+  .twoslash data-lsp:hover::before {
+    content: attr(lsp);
+    position: absolute;
+    transform: translate(0, 1rem);
+
+    background-color: #3f3f3f;
+    color: #fff;
+    text-align: left;
+    padding: 5px 8px;
+    border-radius: 2px;
+    font-family: "JetBrains Mono", Menlo, Monaco, Consolas, Courier New,
+      monospace;
+    font-size: 14px;
+    white-space: pre-wrap;
+    z-index: 100;
+  }
+
+  data-err {
+    background: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%206%203'%20enable-background%3D'new%200%200%206%203'%20height%3D'3'%20width%3D'6'%3E%3Cg%20fill%3D'%23c94824'%3E%3Cpolygon%20points%3D'5.5%2C0%202.5%2C3%201.1%2C3%204.1%2C0'%2F%3E%3Cpolygon%20points%3D'4%2C0%206%2C2%206%2C0.6%205.4%2C0'%2F%3E%3Cpolygon%20points%3D'0%2C2%201%2C3%202.4%2C3%200%2C0.6'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+      repeat-x bottom left;
+    padding-bottom: 3px;
+  }
+</style>

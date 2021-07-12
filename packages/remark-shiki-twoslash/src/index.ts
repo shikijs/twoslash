@@ -6,6 +6,7 @@ import visit from "unist-util-visit"
 
 import { addIncludes, replaceIncludesInCode } from "./includes"
 import { cachedTwoslashCall } from "./caching"
+import { setupNodeForTwoslashException } from "./exceptionMessageDOM"
 
 // A set of includes which can be pulled via a set ID
 const includes = new Map<string, string>()
@@ -145,7 +146,19 @@ export const remarkVisitor =
     const metaString = !node.meta ? "" : typeof node.meta === "string" ? node.meta : node.meta.join(" ")
     const code = node.value
 
-    const twoslash = runTwoSlashOnNode(code, lang, metaString, twoslashSettings)
+    let twoslash: TwoSlashReturn| undefined
+    try {
+      twoslash = runTwoSlashOnNode(code, lang, metaString, twoslashSettings)
+    } catch (error) {
+      const shouldAlwaysRaise = process && process.env && !!process.env.CI
+
+      if (shouldAlwaysRaise || twoslashSettings.alwayRaiseForTwoslashExceptions) {
+        throw error
+      } else {
+        return setupNodeForTwoslashException(code, node, error)
+      }
+    }
+
     if (twoslash) {
       node.value = twoslash.code
       node.lang = twoslash.extension as Lang

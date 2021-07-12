@@ -129,6 +129,8 @@ export interface TwoslashShikiOptions {
     wrapFragments?: true;
     /** Include JSDoc comments in the hovers */
     includeJSDocInHover?: true;
+    /** Instead of showing twoslash exceptions inline, throw the entire process like it will on CI */
+    alwayRaiseForTwoslashExceptions?: true;
 }
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
