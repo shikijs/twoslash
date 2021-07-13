@@ -8,7 +8,7 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
 
 .twoslash-fixed-error-note { 
     position: fixed;
-    top: 80px;
+    top: 20px;
     right: 20px;
     display: flex;
     align-items: center;
@@ -20,6 +20,10 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
     border-radius: .25rem;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
  } 
+
+ #__docusaurus .twoslash-fixed-error-note {
+    top: 80px;
+ }
 
  .twoslash-fixed-error-note:hover {
     border-bottom: 1px solid rgba(226, 61, 30, 0.8);
