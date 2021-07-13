@@ -71,7 +71,7 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
 
     let body = `<pre><code>${error}</code></pre>`
     if (error instanceof TwoslashError) {
-        body = bodyFromTwoslashError(error)   
+        body = bodyFromTwoslashError(error)
     } else  if (error instanceof Error) {
         body = bodyFromError(error)   
     }

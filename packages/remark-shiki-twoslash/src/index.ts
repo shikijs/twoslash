@@ -151,8 +151,9 @@ export const remarkVisitor =
       twoslash = runTwoSlashOnNode(code, lang, metaString, twoslashSettings)
     } catch (error) {
       const shouldAlwaysRaise = process && process.env && !!process.env.CI
+      const yeahButNotInTests = typeof jest === "undefined"
 
-      if (shouldAlwaysRaise || twoslashSettings.alwayRaiseForTwoslashExceptions) {
+      if ((shouldAlwaysRaise && yeahButNotInTests) || twoslashSettings.alwayRaiseForTwoslashExceptions) {
         throw error
       } else {
         return setupNodeForTwoslashException(code, node, error)
