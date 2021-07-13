@@ -8,7 +8,7 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
 
 .twoslash-fixed-error-note { 
     position: fixed;
-    top: 20px;
+    top: 80px;
     right: 20px;
     display: flex;
     align-items: center;
@@ -31,6 +31,7 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
     height: 18px;
     border-radius: 9px;
     margin-right:  10px;
+    color: black;
  }
 
 .twoslash-exception-message { 
@@ -40,8 +41,14 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
     padding: 1rem;
 }
 
+.twoslash-exception-message p {
+    margin-top: 1rem;
+    margin-bottom: 0.6rem;
+}
+
 .twoslash-exception-message h3 { 
-    margin-top: 0.2rem;
+    margin-top: 0.6rem;
+    margin-bottom: 0.3rem;
     font-size: 1.8rem;
 }
 
@@ -49,11 +56,17 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
      white-space: pre-wrap;
      font-family: "JetBrains Mono", Menlo, Monaco, Consolas, Courier New, monospace;
      margin-bottom: 20px;
+     background-color: #FCF3D9;
+     color: black;
+     border: none;
+     padding-left: 0;
  }
 
 .twoslash-exception-code {
     border-left: 2px solid rgba(226, 61, 30, 0.8);
     padding-left: 20px;
+    background-color: #FCF3D9;
+    color: black;
 }
 </style>`
 
@@ -66,7 +79,7 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
     }
 
     const bodyFromError = (error: Error) => {
-        return `<code>${error.message}</code>`
+        return `<pre><code>${error.message.split("## Code")[0]}</code></pre>`
     }
 
     let body = `<pre><code>${error}</code></pre>`
@@ -80,10 +93,10 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
 
     const html = `
     <a href='#twoslash-error'><div class='twoslash-fixed-error-note'><span class='twoslash-error-color'></span>Twoslash failure</div></a>
-    <div name='twoslash-error' class='twoslash-exception-message'>${body}${codeSample}</div>`
+    <div class='twoslash-exception-message'>${body}${codeSample}</div>`
 
 
     node.type = "html"
-    node.value = css + html
+    node.value =  "<div id='twoslash-error'>" + css + html + "</div>"
     node.children = []
 }
