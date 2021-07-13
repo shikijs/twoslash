@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Failing Twoslash Page
 
-Not twoslash
+Not a twoslash code sample
 
 
 ```ts
@@ -42,3 +42,18 @@ const point = { x: 12, y: 26 };
 logPoi nt(point);
 ```
 
+And a second:
+
+```ts twoslash
+// @sdfsf: true
+const hello = "123"
+```
+
+Oh, a third?
+
+
+```ts twoslash
+// @showEmit
+// @showEmittedFile: asdad.ts
+const hello = "123"
+```

@@ -13,7 +13,7 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
     display: flex;
     align-items: center;
     padding: .25rem .75rem;
-    color: #6c757d;
+    color: black;
     background-color: #FCF3D9;
     background-clip: padding-box;
     border-bottom: 1px solid rgba(0,0,0,.05);
@@ -30,7 +30,7 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
  }
 
  .twoslash-error-color {
-    background-color: rgba(226, 61, 30, 0.8);
+    background-color: #E23D1E;
     width: 18px;
     height: 18px;
     border-radius: 9px;
@@ -41,8 +41,9 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
 .twoslash-exception-message { 
     font-family: 'Caslon OS', sans-serif; 
     background-color: #FCF3D9;
-    font-size: 1.2rem;
-    padding: 1rem;
+    font-size: 1.1rem;
+    padding: 2rem;
+    border-left: 2px solid #E23D1E;
 }
 
 .twoslash-exception-message p {
@@ -66,8 +67,14 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
      padding-left: 0;
  }
 
+ .twoslash-exception-message > code {
+     display: block;
+     margin-bottom: 1.5rem;
+     margin-top: 3rem;
+ }
+
 .twoslash-exception-code {
-    border-left: 2px solid rgba(226, 61, 30, 0.8);
+    border-left: 2px solid #E5A604;
     padding-left: 20px;
     background-color: #FCF3D9;
     color: black;
