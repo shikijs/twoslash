@@ -1,10 +1,81 @@
 <h2>This twoslash cample fails</h2>
 <p>It should show the info inline</p>
-<style></style>
-<div class="twoslash-exception-message">
-  Error: Errors were thrown in the sample, but not included in an errors tag:
-  2588 Expected: // @errors: 2588 [2588] - Cannot assign to 'a' because it is a
-  constant. ## Code '''ts const a = 123 const b = 543 a = b '''
+<style>
+  @import url("http://fonts.cdnfonts.com/css/caslon-os");
+
+  .twoslash-fixed-error-note {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    color: #6c757d;
+    background-color: #fcf3d9;
+    background-clip: padding-box;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 0.25rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
+  .twoslash-fixed-error-note:hover {
+    border-bottom: 1px solid rgba(226, 61, 30, 0.8);
+  }
+
+  .twoslash-error-color {
+    background-color: rgba(226, 61, 30, 0.8);
+    width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    margin-right: 10px;
+  }
+
+  .twoslash-exception-message {
+    font-family: "Caslon OS", sans-serif;
+    background-color: #fcf3d9;
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+
+  .twoslash-exception-message h3 {
+    margin-top: 0.2rem;
+    font-size: 1.8rem;
+  }
+
+  .twoslash-exception-message code {
+    white-space: pre-wrap;
+    font-family: "JetBrains Mono", Menlo, Monaco, Consolas, Courier New,
+      monospace;
+    margin-bottom: 20px;
+  }
+
+  .twoslash-exception-code {
+    border-left: 2px solid rgba(226, 61, 30, 0.8);
+    padding-left: 20px;
+  }
+</style>
+<a href="#twoslash-error"
+  ><div class="twoslash-fixed-error-note">
+    <span class="twoslash-error-color"></span>Twoslash failure
+  </div></a
+>
+<div name="twoslash-error" class="twoslash-exception-message">
+  <h3>Errors were thrown in the sample, but not included in an errors tag</h3>
+  <p>
+    These errors were not marked as being expected: 2588. <br />Expected: //
+    @errors: 2588
+  </p>
+  <code
+    >Compiler Errors:<br /><br />index.ts<br />
+    [2588] 29 - Cannot assign to 'a' because it is a constant.</code
+  >
+  <p>Raising Code:</p>
+  <pre class="twoslash-exception-code"><code>const a = 123
+const b = 543
+
+a = b</code></pre>
 </div>
 <p>Above here ^</p>
 
