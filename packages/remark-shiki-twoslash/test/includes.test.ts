@@ -10,7 +10,7 @@ const c = 3
 
 it("creates a set of examples", () => {
   const map = new Map()
-  addIncludes(map, multiExample, "include main")
+  addIncludes(map, "main", multiExample)
   expect(map.size == 3)
 
   expect(map.get("main")).toContain("const c")
@@ -20,7 +20,7 @@ it("creates a set of examples", () => {
 
 it("replaces the code", () => {
   const map = new Map()
-  addIncludes(map, multiExample, "include main")
+  addIncludes(map, "main", multiExample)
   expect(map.size == 3)
 
   const sample = `// @include: main`
