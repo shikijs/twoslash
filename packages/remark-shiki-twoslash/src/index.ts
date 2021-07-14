@@ -36,7 +36,7 @@ function getHTML(
   let results
   // Support 'twoslash' includes
   if (fence.lang === "twoslash") {
-    if (!fence.meta.include && typeof fence.meta.include !== "string") {
+    if (!fence.meta.include || typeof fence.meta.include !== "string") {
       throw new Error("A twoslash code block needs a pragma like 'twoslash include [name]'")
     }
 
@@ -121,7 +121,7 @@ const parseFence = (fence: string): Fence => {
     // Search for `include` in tokens
     const index = tokens.indexOf("include")
     if (index !== -1) {
-      tokens.splice(index, 0, "=")
+      tokens.splice(index + 1, 0, "=")
     }
   }
 
