@@ -4,7 +4,7 @@ import { twoslashRenderer } from "./renderers/twoslash"
 import { HtmlRendererOptions, plainTextRenderer } from "./renderers/plain"
 import { defaultShikiRenderer } from "./renderers/shiki"
 import { tsconfigJSONRenderer } from "./renderers/tsconfig"
-import { parseCodeFenceInfo } from "./parseCodeFenceInfo"
+import { Meta } from "./utils"
 
 export interface TwoslashShikiOptions {
   /** A way to turn on the try buttons seen on the TS website */
@@ -62,7 +62,7 @@ export const createShikiHighlighter = (options: HighlighterOptions) => {
 export const renderCodeToHTML = (
   code: string,
   lang: string,
-  info: string[],
+  meta: Meta,
   shikiOptions?: UserConfigSettings & { themeName: string },
   highlighter?: Highlighter,
   twoslash?: TwoSlashReturn
@@ -73,8 +73,6 @@ export const renderCodeToHTML = (
 
   // Shiki does know the lang, so tokenize
   const renderHighlighter = highlighter || storedHighlighter
-  const metaInfo = info && typeof info === "string" ? info : info.join(" ")
-  const codefenceMeta = parseCodeFenceInfo(lang, metaInfo || "")
 
   const renderOpts: HtmlRendererOptions = {
     fg: renderHighlighter.getForegroundColor(),
@@ -93,21 +91,21 @@ export const renderCodeToHTML = (
     // Shiki doesn't know this lang, so render it as plain text, but
     // also add a note at the end as a HTML comment
     const note = `<!-- Note from shiki-twoslash: the language ${lang} was not set up for Shiki to use, and so there is no code highlighting --!>`
-    return plainTextRenderer(code, renderOpts, codefenceMeta.meta) + note
+    return plainTextRenderer(code, renderOpts, meta) + note
   }
 
   // Twoslash specific renderer
-  if (lang && info.includes("twoslash") && twoslash) {
-    return twoslashRenderer(tokens, { ...renderOpts, langId: lang }, twoslash, codefenceMeta.meta)
+  if (lang && meta.twoslash && twoslash) {
+    return twoslashRenderer(tokens, { ...renderOpts, langId: lang }, twoslash, meta)
   }
 
   // TSConfig renderer
-  if (lang && lang.startsWith("json") && info.includes("tsconfig")) {
-    return tsconfigJSONRenderer(tokens, renderOpts, codefenceMeta.meta)
+  if (lang && lang.startsWith("json") && meta.tsconfig) {
+    return tsconfigJSONRenderer(tokens, renderOpts, meta)
   }
 
   // Otherwise just the normal shiki renderer
-  return defaultShikiRenderer(tokens, { ...renderOpts, langId: lang }, codefenceMeta.meta)
+  return defaultShikiRenderer(tokens, { ...renderOpts, langId: lang }, meta)
 }
 
 /**
@@ -146,8 +144,6 @@ export const runTwoSlash = (input: string, lang: string, settings: UserConfigSet
   const results = twoslasher(code, lang, settings)
   return results
 }
-
-export { parseCodeFenceInfo } from "./parseCodeFenceInfo"
 
 /** Set of renderers if you want to explicitly call one instead of using renderCodeToHTML */
 export const renderers = {

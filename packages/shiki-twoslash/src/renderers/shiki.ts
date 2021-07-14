@@ -1,18 +1,17 @@
-import { escapeHtml } from "../utils"
-import { shouldBeHighlightable, shouldHighlightLine } from "../parseCodeFenceInfo"
+import { shouldBeHighlightable, shouldHighlightLine, escapeHtml, Meta } from "../utils"
 import { HtmlRendererOptions, preOpenerFromRenderingOptsWithExtras } from "./plain"
 
 type Lines = import("shiki").IThemedToken[][]
 
-export function defaultShikiRenderer(lines: Lines, options: HtmlRendererOptions, codefenceMeta: any) {
+export function defaultShikiRenderer(lines: Lines, options: HtmlRendererOptions, meta: Meta) {
   let html = ""
 
-  const hasHighlight = shouldBeHighlightable(codefenceMeta)
-  const hl = shouldHighlightLine(codefenceMeta)
+  const hasHighlight = meta.highlight && shouldBeHighlightable(meta.highlight)
+  const hl = shouldHighlightLine(meta.highlight)
 
-  html += preOpenerFromRenderingOptsWithExtras(options, codefenceMeta, [])
-  if (codefenceMeta.title) {
-    html += `<div class='code-title'>${codefenceMeta.title}</div>`
+  html += preOpenerFromRenderingOptsWithExtras(options, meta, [])
+  if (meta.title) {
+    html += `<div class='code-title'>${meta.title}</div>`
   }
 
   if (options.langId) {

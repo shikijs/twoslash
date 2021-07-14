@@ -2,8 +2,15 @@ type Lines = import("shiki").IThemedToken[][]
 type TwoSlash = import("@typescript/twoslash").TwoSlashReturn
 
 import { TwoslashShikiOptions } from ".."
-import { shouldBeHighlightable, shouldHighlightLine } from "../parseCodeFenceInfo"
-import { createHighlightedString, subTripleArrow, replaceTripleArrowEncoded, escapeHtml } from "../utils"
+import {
+  shouldBeHighlightable,
+  shouldHighlightLine,
+  createHighlightedString,
+  subTripleArrow,
+  replaceTripleArrowEncoded,
+  escapeHtml,
+  Meta,
+} from "../utils"
 import { HtmlRendererOptions, preOpenerFromRenderingOptsWithExtras } from "./plain"
 
 // OK, so - this is just straight up complex code.
@@ -23,15 +30,15 @@ import { HtmlRendererOptions, preOpenerFromRenderingOptsWithExtras } from "./pla
 // - the DOM requires a flattened graph of html elements (e.g. spans can' be interspersed)
 //
 
-export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & TwoslashShikiOptions, twoslash: TwoSlash, codefenceMeta: any) {
+export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & TwoslashShikiOptions, twoslash: TwoSlash, meta: Meta) {
   let html = ""
 
-  const hasHighlight = shouldBeHighlightable(codefenceMeta)
-  const hl = shouldHighlightLine(codefenceMeta)
+  const hasHighlight = meta.highlight && shouldBeHighlightable(meta.highlight)
+  const hl = shouldHighlightLine(meta.highlight)
 
-  html += preOpenerFromRenderingOptsWithExtras(options, codefenceMeta, ["twoslash", "lsp"])
-  if (codefenceMeta.title) {
-    html += `<div class='code-title'>${codefenceMeta.title}</div>`
+  html += preOpenerFromRenderingOptsWithExtras(options, meta, ["twoslash", "lsp"])
+  if (meta.title) {
+    html += `<div class='code-title'>${meta.title}</div>`
   }
 
   if (options.langId) {

@@ -1,3 +1,7 @@
+import type { parse } from "fenceparser"
+
+export type Meta = NonNullable<ReturnType<typeof parse>>
+
 type Range = {
   begin: number
   end: number
@@ -99,9 +103,10 @@ export function createHighlightedString(ranges: Range[], text: string, targetedW
 const htmlAttrReplacer = (str: string) => str.replace(/"/g, "⃟")
 const htmlAttrUnReplacer = (str: string) => str.replace(/⃟/g, '"')
 
-// Inline strings which are shown at HTML level 
+// Inline strings which are shown at HTML level
 export const subTripleArrow = (str: string) => str.replace(/</g, "⇍").replace(/>/g, "⇏").replace(/'/g, "⇯")
-export const replaceTripleArrow = (str: string) => str.replace(/⇍/g, "<").replace(/⇏/g, ">").replace(/⇯/g, "'").replace(/¿/g, "'")
+export const replaceTripleArrow = (str: string) =>
+  str.replace(/⇍/g, "<").replace(/⇏/g, ">").replace(/⇯/g, "'").replace(/¿/g, "'")
 export const replaceTripleArrowEncoded = (str: string) =>
   str.replace(/⇍/g, "&lt;").replace(/⇏/g, "&gt;").replace(/⇯/g, "&apos;")
 
@@ -122,4 +127,30 @@ export function stripHTML(text: string) {
 
 export function escapeHtml(html: string) {
   return html.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+}
+
+/** Does anything in the object imply that we should highlight any lines? */
+export const shouldBeHighlightable = (highlight: any) => {
+  return !!Object.keys(highlight || {}).find(key => {
+    if (key.includes("-")) return true
+    if (!isNaN(parseInt(key))) return true
+    return false
+  })
+}
+
+/** Returns a func for figuring out if this line should be highlighted */
+export const shouldHighlightLine = (highlight: any) => {
+  const lines: number[] = []
+  Object.keys(highlight || {}).find(key => {
+    if (!isNaN(parseInt(key))) lines.push(parseInt(key))
+    if (key.includes("-")) {
+      const [first, last] = key.split("-")
+      const lastIndex = parseInt(last) + 1
+      for (let i = parseInt(first); i < lastIndex; i++) {
+        lines.push(i)
+      }
+    }
+  })
+
+  return (line: number) => lines.includes(line)
 }

@@ -1,4 +1,4 @@
-import { escapeHtml } from "../utils"
+import { escapeHtml, Meta } from "../utils"
 
 // C&P'd from shiki
 export interface HtmlRendererOptions {
@@ -9,25 +9,43 @@ export interface HtmlRendererOptions {
 }
 
 /** A func for setting a consistent <pre> */
-export const preOpenerFromRenderingOptsWithExtras = (opts: HtmlRendererOptions, fence?: any, classes?: string[]) => {
+export const preOpenerFromRenderingOptsWithExtras = (opts: HtmlRendererOptions, meta: Meta, classes?: string[]) => {
   const bg = opts.bg || "#fff"
   const fg = opts.fg || "black"
   const theme = opts.themeName || ""
-  const fenceClass = (fence && fence.class) || ""
-  if (fence && classes && fence.title) classes.push("with-title")
-  const extras = (classes && classes.join(" ")) || ""
+
+  // shiki + `class` from fence + with-title if title exists + classes
+  const classList = ["shiki", theme, meta.class, meta.title ? "with-title" : "", ...(classes || [])]
+    .filter(Boolean)
+    .join(" ")
+    .trim()
+
+  const attributes = Object.entries(meta)
+    .filter(entry => {
+      // exclude types other than string, number, boolean
+      // exclude keys class, twoslash
+      // exclude falsy booleans
+      return (
+        ["string", "number", "boolean"].includes(typeof entry[1]) &&
+        !["class", "twoslash"].includes(entry[0]) &&
+        entry[1] !== false
+      )
+    })
+    .map(([key, value]) => (value === true ? key : `${key}="${value}"`))
+    .join(" ")
+    .trim()
 
   // prettier-ignore
-  return `<pre class="shiki ${[fenceClass, theme, extras].filter(Boolean).join(" ").trim()}" style="background-color: ${bg}; color: ${fg}">`
+  return `<pre class="${classList}" style="background-color: ${bg}; color: ${fg}"${attributes ? ` ${attributes}`: ''}>`
 }
 
 /** You don't have a language which shiki twoslash can handle, make a DOM compatible version  */
-export function plainTextRenderer(code: string, options: HtmlRendererOptions, codefenceMeta: any) {
+export function plainTextRenderer(code: string, options: HtmlRendererOptions, meta: Meta) {
   let html = ""
 
-  html += preOpenerFromRenderingOptsWithExtras(options, codefenceMeta, [])
-  if (codefenceMeta.title) {
-    html += `<div class='code-title'>${codefenceMeta.title}</div>`
+  html += preOpenerFromRenderingOptsWithExtras(options, meta, [])
+  if (meta.title) {
+    html += `<div class='code-title'>${meta.title}</div>`
   }
 
   if (options.langId) {
