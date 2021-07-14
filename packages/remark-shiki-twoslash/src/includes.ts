@@ -33,7 +33,7 @@ export const replaceIncludesInCode = (_map: Map<string, string>, code: string) =
     const replaceWith = _map.get(key)
 
     if (!replaceWith) {
-      const msg = `Could not find an includes with the key: '${key}'.\nThere is: ${[..._map.keys()]}.`
+      const msg = `Could not find an include with the key: '${key}'.\nThere is: ${Array.from(_map.keys())}.`
       throw new Error(msg)
     }
 
