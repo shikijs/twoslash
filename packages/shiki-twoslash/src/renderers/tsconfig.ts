@@ -1,7 +1,7 @@
 type Lines = import("shiki").IThemedToken[][]
 
 import type { IThemedToken } from "shiki"
-import { escapeHtml } from "../utils"
+import { escapeHtml, Meta } from "../utils"
 import { tsconfig } from "../tsconfig-oneliners.generated"
 import { HtmlRendererOptions, preOpenerFromRenderingOptsWithExtras } from "./plain"
 
@@ -23,12 +23,12 @@ const isKeyInTSConfig = (token: IThemedToken) => {
  * @param lines the result of shiki highlighting
  * @param options shiki display options
  */
-export function tsconfigJSONRenderer(lines: Lines, options: HtmlRendererOptions, codefenceMeta: any) {
+export function tsconfigJSONRenderer(lines: Lines, options: HtmlRendererOptions, meta: Meta) {
   let html = ""
 
-  html += preOpenerFromRenderingOptsWithExtras(options, codefenceMeta, ["tsconfig", "lsp"])
-  if (codefenceMeta.title) {
-    html += `<div class="code-title">${codefenceMeta.title}</div>`
+  html += preOpenerFromRenderingOptsWithExtras(options, meta, ["tsconfig", "lsp"])
+  if (meta.title) {
+    html += `<div class="code-title">${meta.title}</div>`
   }
 
   if (options.langId) {

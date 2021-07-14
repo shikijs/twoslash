@@ -1,5 +1,4 @@
-export const addIncludes = (map: Map<string, string>, code: string, metaInfo: string) => {
-  const name = metaInfo.split(" ")[1]
+export const addIncludes = (map: Map<string, string>, name: string, code: string) => {
   const lines: string[] = []
 
   code.split("\n").forEach((l, _i) => {
@@ -17,13 +16,13 @@ export const addIncludes = (map: Map<string, string>, code: string, metaInfo: st
 
 export const replaceIncludesInCode = (_map: Map<string, string>, code: string) => {
   const includes = /\/\/ @include: (.*)$/gm
-  
+
   // Basically run a regex over the code replacing any // @include: thing with
   // 'thing' from the map
 
   // const toReplace: [index:number, length: number, str: string][] = []
-  const toReplace: [number,  number, string][] = []
-  
+  const toReplace: [number, number, string][] = []
+
   let match
   while ((match = includes.exec(code)) !== null) {
     // This is necessary to avoid infinite loops with zero-width matches
@@ -34,7 +33,7 @@ export const replaceIncludesInCode = (_map: Map<string, string>, code: string) =
     const replaceWith = _map.get(key)
 
     if (!replaceWith) {
-      const msg = `Could not find an includes with the key: '${key}'.\nThere is: ${[..._map.keys()]}.`
+      const msg = `Could not find an include with the key: '${key}'.\nThere is: ${Array.from(_map.keys())}.`
       throw new Error(msg)
     }
 
