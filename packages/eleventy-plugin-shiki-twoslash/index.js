@@ -24,6 +24,6 @@ module.exports = function (eleventyConfig, options = {}) {
   }
 
   eleventyConfig.addMarkdownHighlighter((code, lang, fence) =>
-    transformAttributesToHTML(code, lang, fence, highlighters, options)
+    transformAttributesToHTML(code, [lang, fence].join(" "), highlighters, options)
   )
 }

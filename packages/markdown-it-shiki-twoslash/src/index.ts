@@ -35,7 +35,7 @@ export const markdownItShikiTwoslashSetup = async (settings: UserConfigSettings)
 
   return (markdownit, options) => {
     markdownit.options.highlight = (code, lang, attrs) => {
-      return transformAttributesToHTML(code, lang, attrs, highlighters, options!)
+      return transformAttributesToHTML(code, [lang, attrs].join(" "), highlighters, options!)
     }
   }
 }

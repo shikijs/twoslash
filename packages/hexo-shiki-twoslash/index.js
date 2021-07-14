@@ -23,9 +23,6 @@ hexo.extend.filter.register("marked:renderer", function (renderer) {
   }
 
   renderer.code = function (code, infostring) {
-    const [lang, ...rest] = infostring.split(" ")
-    const fence = rest.join(" ")
-
-    return transformAttributesToHTML(code, lang, fence, highlighters, config.shikiTwoslash)
+    return transformAttributesToHTML(code, infostring, highlighters, config.shikiTwoslash)
   }
 })
