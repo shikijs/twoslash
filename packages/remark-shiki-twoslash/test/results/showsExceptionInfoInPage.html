@@ -11,7 +11,7 @@
       display: flex;
       align-items: center;
       padding: 0.25rem 0.75rem;
-      color: #6c757d;
+      color: black;
       background-color: #fcf3d9;
       background-clip: padding-box;
       border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -30,7 +30,7 @@
     }
 
     .twoslash-error-color {
-      background-color: rgba(226, 61, 30, 0.8);
+      background-color: #e23d1e;
       width: 18px;
       height: 18px;
       border-radius: 9px;
@@ -41,8 +41,9 @@
     .twoslash-exception-message {
       font-family: "Caslon OS", sans-serif;
       background-color: #fcf3d9;
-      font-size: 1.2rem;
-      padding: 1rem;
+      font-size: 1.1rem;
+      padding: 2rem;
+      border-left: 2px solid #e23d1e;
     }
 
     .twoslash-exception-message p {
@@ -67,8 +68,14 @@
       padding-left: 0;
     }
 
+    .twoslash-exception-message > code {
+      display: block;
+      margin-bottom: 1.5rem;
+      margin-top: 3rem;
+    }
+
     .twoslash-exception-code {
-      border-left: 2px solid rgba(226, 61, 30, 0.8);
+      border-left: 2px solid #e5a604;
       padding-left: 20px;
       background-color: #fcf3d9;
       color: black;
