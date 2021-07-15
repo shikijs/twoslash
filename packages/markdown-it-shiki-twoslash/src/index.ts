@@ -23,7 +23,7 @@ const MarkdownItShikiTwoslash: MarkdownIt.PluginWithOptions<UserConfigSettings> 
   }
 
   markdownit.options.highlight = (code, lang, attrs) => {
-    return transformAttributesToHTML(code, lang, attrs, highlighters!, options)
+    return transformAttributesToHTML(code, [lang, attrs].join(" "), highlighters!, options)
   }
 }
 

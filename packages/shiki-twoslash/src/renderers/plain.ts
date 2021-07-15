@@ -31,7 +31,7 @@ export const preOpenerFromRenderingOptsWithExtras = (opts: HtmlRendererOptions, 
         entry[1] !== false
       )
     })
-    .map(([key, value]) => (value === true ? key : `${key}="${value}"`))
+    .map(([key, value]) => `${key}="${value}"`)
     .join(" ")
     .trim()
 
