@@ -13,7 +13,7 @@ const CodeBlock = ({ children, ...props }) => {
 
   const handleCopyCode = () => {
     if (pre.current) {
-      copy([...(pre.current.querySelectorAll("code div.line") ?? [])].map(el => el.textContent).join("\n"))
+      copy(Array.from(pre.current.querySelectorAll("code div.line")).map(el => el.textContent).join("\n"))
     }
     setShowCopied(true)
     setTimeout(() => setShowCopied(false), 2000)
