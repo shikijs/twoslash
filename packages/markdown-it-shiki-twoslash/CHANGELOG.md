@@ -1,5 +1,11 @@
 # markdown-it-shiki-twoslash
 
+## 1.1.12
+
+### Patch Changes
+
+- remark-shiki-twoslash@2.0.1
+
 ## 1.1.11
 
 ### Patch Changes

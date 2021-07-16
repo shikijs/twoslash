@@ -1,5 +1,11 @@
 # shiki-twoslash
 
+## 2.0.3
+
+### Patch Changes
+
+- 8a82e13: Remove `dom.ts` which is no longer in use.
+
 ## 2.0.2
 
 ### Patch Changes

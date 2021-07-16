@@ -1,5 +1,11 @@
 # twoslash-cli
 
+## 1.2.15
+
+### Patch Changes
+
+- remark-shiki-twoslash@2.0.1
+
 ## 1.2.14
 
 ### Patch Changes
