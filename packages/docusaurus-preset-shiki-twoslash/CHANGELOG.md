@@ -1,5 +1,11 @@
 # docusaurus-preset-shiki-twoslash
 
+## 1.1.16
+
+### Patch Changes
+
+- a2bb854: Fix copy button not working on production.
+
 ## 1.1.15
 
 ### Patch Changes
