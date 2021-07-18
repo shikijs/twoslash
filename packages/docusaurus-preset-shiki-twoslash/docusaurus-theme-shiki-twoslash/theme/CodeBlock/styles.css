@@ -64,14 +64,10 @@ pre.shiki {
 }
 
 /* Sets a horizontal padding for all the lines */
-pre.shiki > .code-container > code > * {
+pre.shiki div.line,
+pre.shiki div.meta-line {
   padding-left: var(--ifm-pre-padding);
   padding-right: var(--ifm-pre-padding);
-}
-
-/* Reset padding affected to the query popover */
-pre.shiki > .code-container > code > span.popover {
-  margin-left: calc(var(--ifm-pre-padding) * -2) !important;
 }
 
 /* Sets vertical padding for the container */
