@@ -18,7 +18,7 @@ export interface TwoslashShikiOptions {
   /** Instead of showing twoslash exceptions inline, throw the entire process like it will on CI */
   alwayRaiseForTwoslashExceptions?: true
   /** Ignore transforming certain code blocks */
-  ignore?: string[]
+  ignoreCodeblocksWithCodefenceMeta?: string[]
 }
 
 /** The possible user config, a combination of all shiki, twoslash and twoslash-shiki options */

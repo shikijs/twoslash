@@ -101,7 +101,7 @@ module.exports = {
       "docusaurus-preset-shiki-twoslash",
       {
         themes: ["min-light", "nord"],
-        ignore: ["live"],
+        ignoreCodeblocksWithCodefenceMeta: ["live"],
       },
     ],
   ],
