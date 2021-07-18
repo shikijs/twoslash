@@ -131,6 +131,8 @@ export interface TwoslashShikiOptions {
     includeJSDocInHover?: true;
     /** Instead of showing twoslash exceptions inline, throw the entire process like it will on CI */
     alwayRaiseForTwoslashExceptions?: true;
+    /** Ignore transforming certain code blocks */
+    ignore?: string[];
 }
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->

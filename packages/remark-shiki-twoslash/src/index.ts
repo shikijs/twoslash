@@ -175,6 +175,11 @@ export const remarkVisitor =
     const code = node.value
     const fence = parseFence([node.lang, node.meta].filter(Boolean).join(" "))
 
+    // Do nothing if the node has an attribute to ignore
+    if (Object.keys(fence.meta).filter(key => (twoslashSettings.ignore || []).includes(key)).length > 0) {
+      return
+    }
+
     let twoslash: TwoSlashReturn | undefined
     try {
       twoslash = runTwoSlashOnNode(code, fence, twoslashSettings)
