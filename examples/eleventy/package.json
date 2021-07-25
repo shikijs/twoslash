@@ -2,9 +2,14 @@
   "scripts": {
     "start": "yarn eleventy --serve"
   },
+  "resolutions": {
+    "docusaurus-preset-shiki-twoslash": "link:../../packages/docusaurus-preset-shiki-twoslash",
+    "remark-shiki-twoslash": "link:../../packages/remark-shiki-twoslash",
+    "shiki-twoslash": "link:../../packages/shiki-twoslash"
+  },
   "dependencies": {
     "@11ty/eleventy": "1.0.0-canary.23",
     "deasync": "^0.1.21",
-    "eleventy-plugin-shiki-twoslash": "file:../../packages/eleventy-plugin-shiki-twoslash"
+    "eleventy-plugin-shiki-twoslash": "link:../../packages/eleventy-plugin-shiki-twoslash" 
   }
 }
