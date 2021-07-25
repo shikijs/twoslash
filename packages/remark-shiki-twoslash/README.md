@@ -431,6 +431,21 @@ c.toString()
 ```
 ````
 
+### Using your own VS Code theme with Shiki Twoslash
+
+Every theme from VS Code comes down to a set of `.json` files which are what you pass to shiki. For example, we'll use the theme ["Pop 'n Lock'](https://vscodethemes.com/e/Luxcium.pop-n-lock-theme-vscode). If you look in [`/src/themes`](https://github.com/Luxcium/pop-n-lock-theme-vscode/blob/master/src/themes/) you'll see many theme JSON files. These are what you pass to `themes`. 
+
+It's not normal for these themes to be available as npm modules, so you'll need to download the JSON (and handle the licensing!) into your project. Then set your settings like:
+
+```ts
+{
+	remarkPlugins: [[remarkShikiTwoslash, { 
+		themes: [
+			"vendor/pop-n-lock/Pop-N-Lock.json",  "vendor/pop-n-lock/Pop-N-Lock.alexis-black.json"}]
+	],
+}
+```
+
 ### Editor Experience
 
 See [VSCode Twoslash](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-twoslash) to get auto-complete for twoslash markup and quick links to the Twoslash online REPL.
