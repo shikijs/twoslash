@@ -17,6 +17,7 @@ syntax highlighting mixed with the twoslash JavaScript tooling from the TypeScri
    }
    ```
 
+1. Include the CSS which you can find in the next step
 1. **Go read [npmjs.com/package/remark-shiki-twoslash](https://www.npmjs.com/package/remark-shiki-twoslash)** to see the next steps, and what is available, this module leaves all the heavy work to that module.
 
 #### Requires Eleventy 1.0 or greater
