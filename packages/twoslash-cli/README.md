@@ -44,12 +44,17 @@ twoslash pages/one.md  pages/two.md build
 twoslash --samples pages/example_files.md renders
 ```
 
-> Lint all the code samples in bunch of Markdown files .
+> Lint all the code samples in bunch of Markdown files.
 
 ```sh
 twoslash --lint pages/example_files.md
 ```
 
+> Create TSX files with a named `Code` export for a set of .ts files.
+
+```sh
+twoslash --sourceAlso samples/*.ts components/twoslash 
+```
 
 #### Configuring Shiki Twoslash
 
