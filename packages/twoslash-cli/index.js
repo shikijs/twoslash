@@ -1,6 +1,10 @@
 // @ts-check
 
+// To work on this, cd to this folder:
+// cd packages/twoslash-cli
 
+// Then run:
+// ./bin/twoslash.js examples/*.ts render
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync } from "fs"
 import remark from "remark"
