@@ -1,0 +1,78 @@
+[
+  {
+    "code": "function compact(arr: string[]) {\n  if (arr.length > 10) return arr\n  return arr\n}",
+    "extension": "ts",
+    "highlights": [],
+    "queries": [],
+    "staticQuickInfos": [
+      {
+        "text": "function compact(arr: string[]): string[]",
+        "docs": "",
+        "start": 9,
+        "length": 7,
+        "line": 0,
+        "character": 9,
+        "targetString": "compact"
+      },
+      {
+        "text": "(parameter) arr: string[]",
+        "docs": "",
+        "start": 17,
+        "length": 3,
+        "line": 0,
+        "character": 17,
+        "targetString": "arr"
+      },
+      {
+        "text": "(parameter) arr: string[]",
+        "docs": "",
+        "start": 40,
+        "length": 3,
+        "line": 1,
+        "character": 6,
+        "targetString": "arr"
+      },
+      {
+        "text": "(property) Array<string>.length: number",
+        "docs": "Gets or sets the length of the array. This is a number one higher than the highest index in the array.",
+        "start": 44,
+        "length": 6,
+        "line": 1,
+        "character": 10,
+        "targetString": "length"
+      },
+      {
+        "text": "(parameter) arr: string[]",
+        "docs": "",
+        "start": 64,
+        "length": 3,
+        "line": 1,
+        "character": 30,
+        "targetString": "arr"
+      },
+      {
+        "text": "(parameter) arr: string[]",
+        "docs": "",
+        "start": 77,
+        "length": 3,
+        "line": 2,
+        "character": 9,
+        "targetString": "arr"
+      }
+    ],
+    "errors": [],
+    "playgroundURL": "https://www.typescriptlang.org/play/#code/PTAEAEEMDtoewC6QQUwFygDYoGYNAKwBsoAtKABTZ4CUoAcnKCgCYCWCcATqAO6RdobaAHMAzqGGgAUpABukAMoBjLmwAO+HG2xiAPACMuwAHyHjJgCoALNhNWQx1lBOSguAV2gI2AWxQAdABQOF7KPnDQoMpwvuqQ4RQCXBhiCGqiANoAunQA3kGgkjiUyQHYogjWoCagAIwADHRcKAgegqDJhe6t7VFdIBAw8EioGGoi1vgAzA0AnIRklBNTdKA2dqCRKKBOcB6YLKAGO5DHHO6IyKxBAL5AA",
+    "tags": [
+      {
+        "name": "annotate",
+        "line": 0,
+        "annotation": "left 56 - (left) No editor warnings in JavaScript files<br/><br/>This crashes at runtime."
+      },
+      {
+        "name": "annotate",
+        "line": 3,
+        "annotation": "right 309 5 - (right)  This one should be a bit rotated"
+      }
+    ]
+  }
+]

@@ -10,7 +10,7 @@ const a = "123"
 const b = "345"
     `
     const twoslash = runTwoSlash(code, "ts", {})
-    const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, {}, highlighter, twoslash)
+    const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
 
     expect(html).toContain(`data-lsp`)
     expect(html).toContain(`<data-lsp lsp='const a:`)
@@ -45,7 +45,7 @@ console.log(hello);
     const highlighter = await createShikiHighlighter({ theme: "dark-plus" })
 
     const twoslash = runTwoSlash(file, "ts", {})
-    const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, {}, highlighter, twoslash)
+    const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
 
     expect(html).toContain(`data-lsp`)
     expect(html).toContain(`<data-lsp lsp='function longest`)
@@ -61,7 +61,7 @@ console.log(hello);
     const highlighter = await createShikiHighlighter({ theme: "dark-plus" })
 
     const twoslash = runTwoSlash(file, "ts", {})
-    const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, {}, highlighter, twoslash)
+    const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
 
     expect(html).toContain(`<data-lsp lsp='function longest`)
 
@@ -101,7 +101,7 @@ console.log(hello);
     const highlighter = await createShikiHighlighter({ theme: "dark-plus" })
 
     const twoslash = runTwoSlash(file, "ts", {})
-    const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, {}, highlighter, twoslash)
+    const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
 
     expect(html).toContain(`data-lsp`)
     expect(html).toContain(`<data-lsp lsp='function longest`)
@@ -115,7 +115,7 @@ console.log(hello);
     })
 
     const twoslash = runTwoSlash(file, "ts", {})
-    const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, {}, highlighter, twoslash)
+    const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
 
     expect(html).toContain(`data-lsp`)
     expect(html).toContain(`<data-lsp lsp='function longest`)
@@ -136,7 +136,7 @@ it("handles multi-line queries with comments", async () => {
   //   ^?
 `
   const twoslash = runTwoSlash(file, "ts", {})
-  const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, {}, highlighter, twoslash)
+  const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
 
   expect(html).toContain(`type P = {
     x: number;
@@ -153,7 +153,7 @@ const b = "345"
 //    ^?
     `
   const twoslash = runTwoSlash(code, "ts", {})
-  const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, {}, highlighter, twoslash)
+  const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
   expect(html).toContain(`<span class='popover-prefix'>     </span>`)
 })
 
@@ -162,7 +162,7 @@ describe("implicit React import example", () => {
     const highlighter = await createShikiHighlighter({ theme: "dark-plus" })
     const code = `const C: React.FC = ({children}) => <div>{children}</div>`
     const twoslash = runTwoSlash(code, "tsx", {})
-    const html = renderCodeToHTML(twoslash.code, "tsx", { twoslash: true }, {}, highlighter, twoslash)
+    const html = renderCodeToHTML(twoslash.code, "tsx", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
 
     expect(html).toContain(`data-lsp`)
     expect(html).toContain(`<data-lsp lsp='var children: React.ReactNode`) // children
@@ -178,7 +178,7 @@ const Tag = React.Fragment;
 const C: React.FC = ({children}) => <Tag>{children}</Tag>
 `
     const twoslash = runTwoSlash(code, "tsx", {})
-    const html = renderCodeToHTML(twoslash.code, "tsx", { twoslash: true }, {}, highlighter, twoslash)
+    const html = renderCodeToHTML(twoslash.code, "tsx", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
 
     expect(html).toContain(`data-lsp`)
     expect(html).toContain(`<data-lsp lsp='var children: React.ReactNode`) // children
@@ -193,7 +193,7 @@ const C: React.FC = ({children}) => <Tag>{children}</Tag>
 const C: React.FC = ({children}) => <div>{children}</div>
 `
     const twoslash = runTwoSlash(code, "tsx", { disableImplicitReactImport: true })
-    const html = renderCodeToHTML(twoslash.code, "tsx", { twoslash: true }, {}, highlighter, twoslash)
+    const html = renderCodeToHTML(twoslash.code, "tsx", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
 
     expect(html).toContain(`data-lsp`)
     expect(html).toContain(`<data-lsp lsp='var children: any`) // children
@@ -212,7 +212,7 @@ it("has the same number of div.lines as the lines in the code", async () => {
 
 console.log("hi")`
   const twoslash = runTwoSlash(code, "ts", {})
-  const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, {}, highlighter, twoslash)
+  const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
 
   const codeLines = code.split("\n").length
   const divClassLines = html.split("'line").length
@@ -230,7 +230,7 @@ it("has uses div.meta-line for popovers", async () => {
 }
 `
   const twoslash = runTwoSlash(code, "ts", {})
-  const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, {}, highlighter, twoslash)
+  const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
 
   // Make sure that we have a div.meta-line that wraps our query popover.
   expect(html).toContain(`<div class='meta-line`)
@@ -247,10 +247,22 @@ function hello() {
 }
 `
   const twoslash = runTwoSlash(code, "ts", {})
-  const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, {}, highlighter, twoslash)
+  const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
 
   // Make sure that we have a div.meta-line that wraps our completion list.
   expect(html).toContain(`<div class='meta-line`)
   // Make sure the query offset is accounted for.
   expect(html).toContain("&nbsp;".repeat(10))
+})
+
+
+it("doesnt raise when you use an annotation", async () => {
+  const code = `
+const a = 123
+// @annotate: Hello
+`
+
+  expect(() => {
+    runTwoSlash(code, "ts", {})
+  }).not.toThrow()
 })

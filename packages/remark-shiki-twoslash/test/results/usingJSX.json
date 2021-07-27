@@ -34,7 +34,8 @@
       }
     ],
     "errors": [],
-    "playgroundURL": "https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgcilQ3wCgB6cuAWlrQFcZbrSkAPSWONCAOwGd4AWQCeAFWAwANkjgBeOAAoAlPIB8cADwALAIxqJ0pJvJ61QA"
+    "playgroundURL": "https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgcilQ3wCgB6cuAWlrQFcZbrSkAPSWONCAOwGd4AWQCeAFWAwANkjgBeOAAoAlPIB8cADwALAIxqJ0pJvJ61QA",
+    "tags": []
   },
   {
     "code": "export const MyTitle = () => <h1>Title</h1>",
@@ -71,6 +72,7 @@
       }
     ],
     "errors": [],
-    "playgroundURL": "https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgcilQ3wCgB6cuAWlrQFcZbrSkAPSWONCAOwGd4AWQCeAFWAwANkjgBeOAAoAlPIB8cADwALAIxqJ0pJvJ61QA"
+    "playgroundURL": "https://www.typescriptlang.org/play/#code/JYWwDg9gTgLgBAJQKYEMDG8BmUIjgcilQ3wCgB6cuAWlrQFcZbrSkAPSWONCAOwGd4AWQCeAFWAwANkjgBeOAAoAlPIB8cADwALAIxqJ0pJvJ61QA",
+    "tags": []
   }
 ]

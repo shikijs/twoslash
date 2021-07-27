@@ -126,7 +126,7 @@ export const runTwoSlash = (input: string, lang: string, settings: UserConfigSet
   // @ts-ignore
   if (replacer[lang]) lang = replacer[lang]
 
-  // Add react import
+  // Add react import to code samples indicating they're needing react. 
   if (["tsx", "jsx"].includes(lang) && !settings.disableImplicitReactImport) {
     const reactImport = "import React from 'react'\n"
     const cutString = "// ---cut---\n"
@@ -143,6 +143,7 @@ export const runTwoSlash = (input: string, lang: string, settings: UserConfigSet
     }
   }
 
+  settings.customTags = ["annotate"]
   const results = twoslasher(code, lang, settings)
   return results
 }

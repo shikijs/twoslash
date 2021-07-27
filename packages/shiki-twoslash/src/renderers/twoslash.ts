@@ -2,6 +2,7 @@ type Lines = import("shiki").IThemedToken[][]
 type TwoSlash = import("@typescript/twoslash").TwoSlashReturn
 
 import { TwoslashShikiOptions } from ".."
+import { htmlForTags } from "../annotations"
 import {
   shouldBeHighlightable,
   shouldHighlightLine,
@@ -208,6 +209,11 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
     html += `</code>${playgroundLink}`
   } else {
     html += `</code>`
+  }
+
+  // Attach annotations which live above of the code
+  if (twoslash.tags && twoslash.tags.length) {
+    html += htmlForTags(twoslash.tags)
   }
 
   html += `</div></pre>`
