@@ -5,11 +5,11 @@ syntax highlighting mixed with the twoslash JavaScript tooling from the TypeScri
 
 #### Setup
 
-1. **Install the dependency**: `yarn add vuepress-shiki-twoslash`
-1. **Include `"vuepress-shiki-twoslash"` in the plugins section** of `./vuepress/config.ts`
+1. **Install the dependency**: `yarn add vuepress-plugin-shiki-twoslash`
+1. **Include `"vuepress-plugin-shiki-twoslash"` in the plugins section** of `./vuepress/config.ts`
 
    ```diff
-   + import vuepressShikiTwoslash from "vuepress-shiki-twoslash"
+   + import vuepressShikiTwoslash from "vuepress-plugin-shiki-twoslash"
 
    export default defineUserConfig<DefaultThemeOptions>({
      lang: 'en-US',
