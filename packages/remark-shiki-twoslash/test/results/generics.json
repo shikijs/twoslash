@@ -52,7 +52,8 @@
       }
     ],
     "errors": [],
-    "playgroundURL": "https://www.typescriptlang.org/play/#code/C4TwDgpgBAggPAIQHxQLxQN5QFBT1AZ2ACcAuQkgSwDsBzXfAI3IWwF8g"
+    "playgroundURL": "https://www.typescriptlang.org/play/#code/C4TwDgpgBAggPAIQHxQLxQN5QFBT1AZ2ACcAuQkgSwDsBzXfAI3IWwF8g",
+    "tags": []
   },
   {
     "code": "\ntype A<B> = { \n    str: \"one\" | \"two\"\n    b: B\n}",
@@ -107,6 +108,7 @@
       }
     ],
     "errors": [],
-    "playgroundURL": "https://www.typescriptlang.org/play/#code/FAFwngDgpgBAggHgEID4YF4YG8bBvmAZxACcAuGAIgHsA7KSmAHypAHdrK8CAjCpYAF8gA"
+    "playgroundURL": "https://www.typescriptlang.org/play/#code/FAFwngDgpgBAggHgEID4YF4YG8bBvmAZxACcAuGAIgHsA7KSmAHypAHdrK8CAjCpYAF8gA",
+    "tags": []
   }
 ]

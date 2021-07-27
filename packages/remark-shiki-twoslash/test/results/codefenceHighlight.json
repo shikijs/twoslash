@@ -106,7 +106,8 @@
       }
     ],
     "errors": [],
-    "playgroundURL": "https://www.typescriptlang.org/play/#code/GYVwdgxgLglg9mABAcwE4FN1QBQAd2oDOCAXIoVKjGMgDSIAmAhlOmQCIvoCUiA3gChEiCAmIAbdADpxcZNgAGACXTjZiACR98RBAF96UOMwCeiGIU19mrKUc6sAypWrzuegIQLuAvQIFomDgARACyTAwMFgjB9GDoAO6IDujY3NxAA"
+    "playgroundURL": "https://www.typescriptlang.org/play/#code/GYVwdgxgLglg9mABAcwE4FN1QBQAd2oDOCAXIoVKjGMgDSIAmAhlOmQCIvoCUiA3gChEiCAmIAbdADpxcZNgAGACXTjZiACR98RBAF96UOMwCeiGIU19mrKUc6sAypWrzuegIQLuAvQIFomDgARACyTAwMFgjB9GDoAO6IDujY3NxAA",
+    "tags": []
   },
   {
     "code": "const b = 2\nconst c = 3 // highlighted (0 based)",
@@ -134,6 +135,7 @@
       }
     ],
     "errors": [],
-    "playgroundURL": "https://www.typescriptlang.org/play/#code/MYewdgzgLgBAhjAvDAjAKAPQZgWj8AVyjxzVElgCMkYAmM8aGYGgZhixgAsBLAcy4AbflygBTACYwAFAAYYlOBEkBKIA"
+    "playgroundURL": "https://www.typescriptlang.org/play/#code/MYewdgzgLgBAhjAvDAjAKAPQZgWj8AVyjxzVElgCMkYAmM8aGYGgZhixgAsBLAcy4AbflygBTACYwAFAAYYlOBEkBKIA",
+    "tags": []
   }
 ]

@@ -43,7 +43,8 @@
       }
     ],
     "errors": [],
-    "playgroundURL": "https://www.typescriptlang.org/play/#code/DYUwLgBAzg9gtiAagQ2AVxALgsgdgTwgF4IAiMACwEsoIadowAnK3Ac1IChPRIpmAMiHaVsuNHABGIJsQgAKADz8W7AHywEKdCACUAOlAiKQA"
+    "playgroundURL": "https://www.typescriptlang.org/play/#code/DYUwLgBAzg9gtiAagQ2AVxALgsgdgTwgF4IAiMACwEsoIadowAnK3Ac1IChPRIpmAMiHaVsuNHABGIJsQgAKADz8W7AHywEKdCACUAOlAiKQA",
+    "tags": []
   },
   {
     "code": "let someValue: any = \"this is a string\"\n\nlet strLength: number = (someValue as string).length",
@@ -89,6 +90,7 @@
       }
     ],
     "errors": [],
-    "playgroundURL": "https://www.typescriptlang.org/play/#code/DYUwLgBAzg9gtiAagQ2AVxALgsgdgTwgF4IAiMACwEsoIadowAnK3Ac1IChPRIpmAMiHaVsuNHABGIJsQgAKWAhToQOWvxbsAlADpQIikA"
+    "playgroundURL": "https://www.typescriptlang.org/play/#code/DYUwLgBAzg9gtiAagQ2AVxALgsgdgTwgF4IAiMACwEsoIadowAnK3Ac1IChPRIpmAMiHaVsuNHABGIJsQgAKWAhToQOWvxbsAlADpQIikA",
+    "tags": []
   }
 ]
