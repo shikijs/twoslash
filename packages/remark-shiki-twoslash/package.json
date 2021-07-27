@@ -27,7 +27,7 @@
     "lint": "tsdx lint"
   },
   "dependencies": {
-    "@typescript/twoslash": "2.1.0",
+    "@typescript/twoslash": "2.2.0",
     "@typescript/vfs": "1.3.4",
     "fenceparser": "^1.1.0",
     "regenerator-runtime": "^0.13.7",
