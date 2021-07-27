@@ -35,6 +35,7 @@ export const markdownItShikiTwoslashSetup = async (settings: UserConfigSettings)
 
   return (markdownit, options) => {
     markdownit.options.highlight = (code, lang, attrs) => {
+      code = code.replace(/\r?\n$/, "") // strip trailing newline fed during code block parsing
       return transformAttributesToHTML(code, [lang, attrs].join(" "), highlighters, options!)
     }
   }
