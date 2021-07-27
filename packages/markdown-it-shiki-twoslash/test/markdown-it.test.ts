@@ -26,5 +26,7 @@ OK world
 
     const html = md.render(file)
     expect(html).toContain("shiki nord twoslash lsp")
+    const numberOfLines = html.match(/div class='line'/g)?.length
+    expect(numberOfLines).toBe(3)
   })
 })
