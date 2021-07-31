@@ -201,6 +201,51 @@ const C: React.FC = ({children}) => <div>{children}</div>
     expect(html).toContain(`<data-err`)
     expect(html.split("<data-lsp").length).toEqual(twoslash.staticQuickInfos.length + 1)
   })
+
+  it("works fine with `React` already imported", async () => {
+    const highlighter = await createShikiHighlighter({ theme: "dark-plus" })
+    const code = `
+import React from 'react'
+const C: React.FC = ({children}) => <div>{children}</div>
+`
+    const twoslash = runTwoSlash(code, "tsx", {})
+    const html = renderCodeToHTML(twoslash.code, "tsx", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
+
+    expect(html).toContain(`data-lsp`)
+    expect(html).toContain(`<data-lsp lsp='var children: React.ReactNode`) // children
+    expect(html).toContain(`<data-lsp lsp='(property) JSX.IntrinsicElements.div`) // div
+    expect(html.split("<data-lsp").length).toEqual(twoslash.staticQuickInfos.length + 1)
+  })
+
+  it("works fine with `useState` already imported", async () => {
+    const highlighter = await createShikiHighlighter({ theme: "dark-plus" })
+    const code = `
+import {useState} from 'react'
+const C: React.FC = ({children}) => <div>{children}</div>
+`
+    const twoslash = runTwoSlash(code, "tsx", {})
+    const html = renderCodeToHTML(twoslash.code, "tsx", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
+
+    expect(html).toContain(`data-lsp`)
+    expect(html).toContain(`<data-lsp lsp='var children: React.ReactNode`) // children
+    expect(html).toContain(`<data-lsp lsp='(property) JSX.IntrinsicElements.div`) // div
+    expect(html.split("<data-lsp").length).toEqual(twoslash.staticQuickInfos.length + 1)
+  })
+
+  it("works fine with both `React` & `useState` already imported", async () => {
+    const highlighter = await createShikiHighlighter({ theme: "dark-plus" })
+    const code = `
+import React, {useState} from 'react'
+const C: React.FC = ({children}) => <div>{children}</div>
+`
+    const twoslash = runTwoSlash(code, "tsx", {})
+    const html = renderCodeToHTML(twoslash.code, "tsx", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
+
+    expect(html).toContain(`data-lsp`)
+    expect(html).toContain(`<data-lsp lsp='var children: React.ReactNode`) // children
+    expect(html).toContain(`<data-lsp lsp='(property) JSX.IntrinsicElements.div`) // div
+    expect(html.split("<data-lsp").length).toEqual(twoslash.staticQuickInfos.length + 1)
+  })
 })
 
 // We were using "/n" instead of a new line, so CSS numbers didn't work - see #65
