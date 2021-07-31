@@ -126,8 +126,10 @@ export const runTwoSlash = (input: string, lang: string, settings: UserConfigSet
   // @ts-ignore
   if (replacer[lang]) lang = replacer[lang]
 
-  // Add react import to code samples indicating they're needing react. 
-  if (["tsx", "jsx"].includes(lang) && !settings.disableImplicitReactImport) {
+  const hasReactImport = /^import\s+React(?:.*)\s+from\s+('|")react\1/gm
+
+  // Add react import to code samples indicating they're needing react.
+  if (["tsx", "jsx"].includes(lang) && !settings.disableImplicitReactImport && !hasReactImport.test(code)) {
     const reactImport = "import React from 'react'\n"
     const cutString = "// ---cut---\n"
     // ^ cutString taken directly from

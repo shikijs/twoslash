@@ -84,6 +84,8 @@ export interface TwoSlashOptions {
     fsMap?: Map<string, string>;
     /** The cwd for the folder which the virtual fs should be overlaid on top of when using local fs, opts to process.cwd() if not present */
     vfsRoot?: string;
+    /** A set of known `// @[tags]` tags to extract and not treat as a comment */
+    customTags?: string[];
 }
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
