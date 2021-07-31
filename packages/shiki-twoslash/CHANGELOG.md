@@ -1,5 +1,11 @@
 # shiki-twoslash
 
+## 2.1.2
+
+### Patch Changes
+
+- 71b0697: Checks for existing `React` import before adding it automatically in TSX code blocks.
+
 ## 2.1.1
 
 ### Patch Changes

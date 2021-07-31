@@ -1,5 +1,11 @@
 # gatsby-remark-shiki-twoslash
 
+## 3.0.17
+
+### Patch Changes
+
+- remark-shiki-twoslash@2.0.4
+
 ## 3.0.16
 
 ### Patch Changes

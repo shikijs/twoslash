@@ -1,6 +1,6 @@
 {
   "name": "hexo-shiki-twoslash",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "license": "MIT",
   "homepage": "https://github.com/shikijs/twoslash",
   "repository": {
@@ -21,7 +21,7 @@
     "lint": "echo 'NOOP'"
   },
   "dependencies": {
-    "remark-shiki-twoslash": "2.0.3",
+    "remark-shiki-twoslash": "2.0.4",
     "typescript": ">3"
   }
 }

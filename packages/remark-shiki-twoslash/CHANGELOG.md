@@ -1,5 +1,12 @@
 ### 1.4.0
 
+## 2.0.4
+
+### Patch Changes
+
+- Updated dependencies [71b0697]
+  - shiki-twoslash@2.1.2
+
 ## 2.0.3
 
 ### Patch Changes
