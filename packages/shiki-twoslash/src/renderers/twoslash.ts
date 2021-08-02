@@ -52,6 +52,7 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
   const staticQuickInfosGroupedByLine = groupBy(twoslash.staticQuickInfos, q => q.line) || new Map()
   // A query is always about the line above it!
   const queriesGroupedByLine = groupBy(twoslash.queries, q => q.line - 1) || new Map()
+  const tagsGroupedByLine = groupBy(twoslash.tags, q => q.line - 1) || new Map()
 
   /**
    * This is the index of the original twoslash code reference, it is not
@@ -63,7 +64,9 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
     const errors = errorsGroupedByLine.get(i) || []
     const lspValues = staticQuickInfosGroupedByLine.get(i) || []
     const queries = queriesGroupedByLine.get(i) || []
+    const tags = tagsGroupedByLine.get(i) || []
 
+    // console.log(queries)
     const hiClass = hasHighlight ? (hl(i) ? " highlight" : " dim") : ""
     const prefix = `<div class='line${hiClass}'>`
 
@@ -201,6 +204,22 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
         html += "</div>"
       })
     }
+
+    // Any tags (currently that's warn/error/log)
+    if (tags.length) {
+      tags.forEach(tag => {
+          if(!["error", "warning", "log"].includes(tag.name)) return
+
+          // This is used to wrap popovers and completions to improve styling options for users.
+          html += `<div class='meta-line logger ${tag.name}'>`
+          switch(tag.name) {
+            case "error": html += `${errorSVG}<span class='message'>${tag.name}</span>`; break;
+            case "warn": html += `${warningSVG}<span class='message'>${tag.name}</span>`; break;
+            case "log": html += `${logSVG}<span class='message'>${tag.name}</span>`; break;
+          }
+          html += "</div>"
+      })
+    }
   })
   html = replaceTripleArrowEncoded(html.replace(/\n*$/, "")) // Get rid of final new lines
 
@@ -234,3 +253,8 @@ function groupBy<T>(list: T[], keyGetter: (obj: any) => number) {
   })
   return map
 }
+
+
+const errorSVG = `<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.63018 1.29289L1.29289 4.63018C1.10536 4.81772 1 5.07207 1 5.33729V13.6627C1 13.9279 1.10536 14.1823 1.29289 14.3698L4.63018 17.7071C4.81772 17.8946 5.07207 18 5.33729 18H13.6627C13.9279 18 14.1823 17.8946 14.3698 17.7071L17.7071 14.3698C17.8946 14.1823 18 13.9279 18 13.6627V5.33729C18 5.07207 17.8946 4.81772 17.7071 4.63018L14.3698 1.29289C14.1823 1.10536 13.9279 1 13.6627 1H5.33729C5.07207 1 4.81772 1.10536 4.63018 1.29289Z" fill="#E72622" stroke="#E72622"/><rect x="8" y="4" width="3" height="7" fill="white"/><rect x="8" y="13" width="3" height="3" fill="white"/></svg>`
+const warningSVG = `<svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.63401 0.5C10.0189 -0.166667 10.9812 -0.166667 11.3661 0.5L20.4593 16.25C20.8442 16.9167 20.3631 17.75 19.5933 17.75H1.40676C0.636965 17.75 0.15584 16.9167 0.54074 16.25L9.63401 0.5Z" fill="#E5A604"/><rect x="9" y="4" width="3" height="7" fill="white"/><rect x="9" y="13" width="3" height="3" fill="white"/></svg>`
+const logSVG = `<svg width="12" height="15" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.76822 0.359816C5.41466 -0.0644613 4.78409 -0.121785 4.35982 0.231779C3.93554 0.585343 3.87821 1.21591 4.23178 1.64018L5.76822 0.359816ZM10 7L10.7926 7.60971L11.2809 6.97499L10.7682 6.35982L10 7ZM4.20738 12.8903C3.87064 13.328 3.95254 13.9559 4.39029 14.2926C4.82804 14.6294 5.45589 14.5475 5.79262 14.1097L4.20738 12.8903ZM4.23178 1.64018L9.23178 7.64018L10.7682 6.35982L5.76822 0.359816L4.23178 1.64018ZM9.20738 6.39029L4.20738 12.8903L5.79262 14.1097L10.7926 7.60971L9.20738 6.39029Z" fill="#BDBDBD"/><line y1="3.5" x2="4" y2="3.5" stroke="#BDBDBD"/><path d="M0 7H4" stroke="#BDBDBD"/><line y1="10.5" x2="4" y2="10.5" stroke="#BDBDBD"/></svg>`
