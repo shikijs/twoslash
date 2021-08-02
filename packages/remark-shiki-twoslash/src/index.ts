@@ -1,5 +1,5 @@
 import type { Node } from "unist"
-import type { TwoSlashReturn } from "@typescript/twoslash"
+import { TwoslashError, TwoSlashReturn } from "@typescript/twoslash"
 
 import visit from "unist-util-visit"
 import { lex, parse } from "fenceparser"
@@ -173,7 +173,14 @@ export const remarkVisitor =
   (highlighters: Highlighter[], twoslashSettings: UserConfigSettings = {}) =>
   (node: RemarkCodeNode) => {
     const code = node.value
-    const fence = parseFence([node.lang, node.meta].filter(Boolean).join(" "))
+    let fence: Fence = undefined!
+
+    try {
+      fence = parseFence([node.lang, node.meta].filter(Boolean).join(" "))
+    } catch (error) {
+      const twoslashError = new TwoslashError("Codefence error", "Could not parse the codefence for this code sample", "It's usually an unclosed string", code)
+      return setupNodeForTwoslashException(code, node, twoslashError)
+    }
 
     // Do nothing if the node has an attribute to ignore
     if (Object.keys(fence.meta).filter(key => (twoslashSettings.ignoreCodeblocksWithCodefenceMeta || []).includes(key)).length > 0) {
