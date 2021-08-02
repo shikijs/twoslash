@@ -1,0 +1,166 @@
+<h2>Broken codefence</h2>
+<div id="twoslash-error">
+  <style>
+    @import url("http://fonts.cdnfonts.com/css/caslon-os");
+
+    .twoslash-fixed-error-note {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      color: black;
+      background-color: #fcf3d9;
+      background-clip: padding-box;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 0.25rem;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+
+    #__docusaurus .twoslash-fixed-error-note {
+      top: 80px;
+    }
+
+    .twoslash-fixed-error-note:hover {
+      border-bottom: 1px solid rgba(226, 61, 30, 0.8);
+    }
+
+    .twoslash-error-color {
+      background-color: #e23d1e;
+      width: 18px;
+      height: 18px;
+      border-radius: 9px;
+      margin-right: 10px;
+      color: black;
+    }
+
+    .twoslash-exception-message {
+      font-family: "Caslon OS", sans-serif;
+      background-color: #fcf3d9;
+      font-size: 1.1rem;
+      padding: 2rem;
+      border-left: 2px solid #e23d1e;
+    }
+
+    .twoslash-exception-message p {
+      margin-top: 1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .twoslash-exception-message h3 {
+      margin-top: 0.6rem;
+      margin-bottom: 0.3rem;
+      font-size: 1.8rem;
+    }
+
+    .twoslash-exception-message code {
+      white-space: pre-wrap;
+      font-family: "JetBrains Mono", Menlo, Monaco, Consolas, Courier New,
+        monospace;
+      margin-bottom: 20px;
+      background-color: #fcf3d9;
+      color: black;
+      border: none;
+      padding-left: 0;
+    }
+
+    .twoslash-exception-message > code {
+      display: block;
+      margin-bottom: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .twoslash-exception-code {
+      border-left: 2px solid #e5a604;
+      padding-left: 20px;
+      background-color: #fcf3d9;
+      color: black;
+    }
+  </style>
+  <a href="#twoslash-error"
+    ><div class="twoslash-fixed-error-note">
+      <span class="twoslash-error-color"></span>Twoslash failure
+    </div></a
+  >
+  <div class="twoslash-exception-message">
+    <h3>Codefence error</h3>
+    <p>Could not parse the codefence for this code sample</p>
+    <code>It's usually an unclosed string</code>
+    <p>Raising Code:</p>
+    <pre
+      class="twoslash-exception-code"
+    ><code>function greet(person: string, date: Date) {
+  console.log(`Hello ${person}, today is ${date.toDateString()}!`)
+}
+
+greet("Maddison", new Date())</code></pre>
+  </div>
+</div>
+<p>This should be an error message ^</p>
+
+<style>
+  .shiki {
+    background-color: lightgrey;
+    padding: 8px;
+  }
+
+  .error,
+  .error-behind {
+    margin-left: -20px;
+    margin-right: -12px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 6px;
+    padding-left: 14px;
+
+    white-space: pre-wrap;
+    display: block;
+  }
+
+  .error {
+    position: absolute;
+    background-color: #ffeeee;
+    border-left: 2px solid #bf1818;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    color: black;
+  }
+
+  .error-behind {
+    user-select: none;
+    color: #ffeeee;
+  }
+  .query {
+    color: white;
+  }
+
+  /* To get them all hovering OOTB: .twoslash data-lsp::before { */
+
+  .twoslash data-lsp:hover::before {
+    content: attr(lsp);
+    position: absolute;
+    transform: translate(0, 1rem);
+
+    background-color: #3f3f3f;
+    color: #fff;
+    text-align: left;
+    padding: 5px 8px;
+    border-radius: 2px;
+    font-family: "JetBrains Mono", Menlo, Monaco, Consolas, Courier New,
+      monospace;
+    font-size: 14px;
+    white-space: pre-wrap;
+    z-index: 100;
+  }
+
+  data-err {
+    background: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%206%203'%20enable-background%3D'new%200%200%206%203'%20height%3D'3'%20width%3D'6'%3E%3Cg%20fill%3D'%23c94824'%3E%3Cpolygon%20points%3D'5.5%2C0%202.5%2C3%201.1%2C3%204.1%2C0'%2F%3E%3Cpolygon%20points%3D'4%2C0%206%2C2%206%2C0.6%205.4%2C0'%2F%3E%3Cpolygon%20points%3D'0%2C2%201%2C3%202.4%2C3%200%2C0.6'%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E")
+      repeat-x bottom left;
+    padding-bottom: 3px;
+  }
+</style>
