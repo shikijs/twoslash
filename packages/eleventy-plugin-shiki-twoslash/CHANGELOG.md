@@ -1,5 +1,13 @@
 # eleventy-plugin-shiki-twoslash
 
+## 1.0.25
+
+### Patch Changes
+
+- ed7ff80: Automatically remove trailing newlines
+- Updated dependencies [bbba24f]
+  - remark-shiki-twoslash@2.0.5
+
 ## 1.0.24
 
 ### Patch Changes

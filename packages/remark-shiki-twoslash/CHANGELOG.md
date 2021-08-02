@@ -1,5 +1,13 @@
 ### 1.4.0
 
+## 2.0.5
+
+### Patch Changes
+
+- bbba24f: Adds inline errors for fenceparser errors - fixes #101
+- Updated dependencies [bbba24f]
+  - shiki-twoslash@2.1.3
+
 ## 2.0.4
 
 ### Patch Changes
