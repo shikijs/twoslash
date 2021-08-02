@@ -94,10 +94,14 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
     }
 
     let body = `<pre><code>${error}</code></pre>`
-    if (error instanceof TwoslashError) {
+    if (!error) {
+        body = `Unknown error: got ${error} from twoslash`
+    } else if (error instanceof TwoslashError) {
         body = bodyFromTwoslashError(error)
     } else  if (error instanceof Error) {
         body = bodyFromError(error)   
+    } else {
+        body = `Unknown error: got ${error} from twoslash`
     }
 
     const codeSample = `<p>Raising Code:</p><pre class='twoslash-exception-code'><code>${code}</code></pre>`
