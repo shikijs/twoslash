@@ -1,6 +1,7 @@
 type Lines = import("shiki").IThemedToken[][]
 type TwoSlash = import("@typescript/twoslash").TwoSlashReturn
 
+import { TwoSlashReturn } from "@typescript/twoslash"
 import { TwoslashShikiOptions } from ".."
 import { htmlForTags } from "../annotations"
 import {
@@ -50,8 +51,9 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
 
   const errorsGroupedByLine = groupBy(twoslash.errors, e => e.line) || new Map()
   const staticQuickInfosGroupedByLine = groupBy(twoslash.staticQuickInfos, q => q.line) || new Map()
-  // A query is always about the line above it!
+  // Queries/highlights are always about the line above it!
   const queriesGroupedByLine = groupBy(twoslash.queries, q => q.line - 1) || new Map()
+  const highlightsGroupedByLine = groupBy(twoslash.highlights, q => q.line) || new Map()
 
   /**
    * This is the index of the original twoslash code reference, it is not
@@ -63,6 +65,12 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
     const errors = errorsGroupedByLine.get(i) || []
     const lspValues = staticQuickInfosGroupedByLine.get(i) || []
     const queries = queriesGroupedByLine.get(i) || []
+    const inlineHighlights = highlightsGroupedByLine.get(i) || []
+
+    if (inlineHighlights.length) {
+      console.log("found highlights1")
+      debugger
+    }
 
     const hiClass = hasHighlight ? (hl(i) ? " highlight" : " dim") : ""
     const prefix = `<div class='line${hiClass}'>`
@@ -86,10 +94,22 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
 
         let tokenContent = ""
         // Underlining particular words
-        const findTokenFunc = (start: number) => (e: any) =>
+        
+        const findTokenFuncStatic = (start: number) => (e: TwoSlashReturn["staticQuickInfos"][number]) =>
           start <= e.character && start + token.content.length >= e.character + e.length
 
-        const findTokenDebug = (start: number) => (e: any) => {
+        const findTokenFuncErr = (start: number) => (e: TwoSlashReturn["errors"][number]) => {
+          if(!e.start || !e.length || !e.character) return false
+          return start <= e.start!  && start + token.content.length >= e.character! + e.length!
+        }
+
+        const findTokenFuncQuery = (start: number) => (e: TwoSlashReturn["queries"][number]) => 
+           start <= e.start!  && start + token.content.length >= e.offset + e.length!
+
+        const findTokenFuncHighlight = (start: number) => (e: TwoSlashReturn["highlights"][number]) => 
+           start + 1 <= e.start!  && start + token.content.length >= e.offset + e.length!
+
+        const findTokenDebug = (start: number) => (e: { character: number, length: number }) => {
           const result = start <= e.character && start + token.content.length >= e.character + e.length
           // prettier-ignore
           console.log(result, start, '<=', e.character, '&&', start + token.content.length, '>=', e.character + e.length)
@@ -100,14 +120,19 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
           return result
         }
 
-        const errorsInToken = errors.filter(findTokenFunc(tokenPos))
-        const lspResponsesInToken = lspValues.filter(findTokenFunc(tokenPos))
-        const queriesInToken = queries.filter(findTokenFunc(tokenPos))
+        const lspResponsesInToken = lspValues.filter(findTokenFuncStatic(tokenPos))
+        const errorsInToken = errors.filter(findTokenFuncErr(tokenPos))
+
+        const queriesInToken = queries.filter(findTokenFuncQuery(tokenPos))
+        const highlightsInToken = inlineHighlights.filter(findTokenFuncHighlight(tokenPos))
+        if(highlightsInToken.length) {
+          console.log("found highlights2")
+        }
 
         // Does this line have a word targeted by a query?
         targetedQueryWord = targetedQueryWord || lspResponsesInToken.find(response => response.text === (queries.length && queries[0].text))!
 
-        const allTokens = [...errorsInToken, ...lspResponsesInToken, ...queriesInToken]
+        const allTokens = [...errorsInToken, ...lspResponsesInToken, ...queriesInToken, ...highlightsInToken]
         const allTokensByStart = allTokens.sort((l, r) => {
           return (l.start || 0) - (r.start || 0)
         })

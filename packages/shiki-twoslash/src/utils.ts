@@ -34,6 +34,8 @@ export function createHighlightedString(ranges: Range[], text: string, targetedW
         return tag(`${close ? "/" : ""}data-highlight`)
       // handle both unknown and err variant as error-tag
       // case "err": is not required, just to be useful for others
+      case "highlight":
+        return tag(`${close ? "/" : ""}data-highlighted`)
       case "err":
       default:
         return tag(`${close ? "/" : ""}data-err`)
