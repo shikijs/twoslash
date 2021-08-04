@@ -25,7 +25,7 @@
     "typescript": ">3"
   },
   "devDependencies": {
-    "shiki": "0.9.3",
+    "shiki": "0.9.6",
     "shiki-twoslash": "2.1.3"
   }
 }

@@ -189,7 +189,8 @@ export const remarkVisitor =
 
     let twoslash: TwoSlashReturn | undefined
     try {
-      twoslash = runTwoSlashOnNode(code, fence, twoslashSettings)
+      // By allowing node.twoslash to already exist you can set it up yourself in a browser
+      twoslash = node.twoslash || runTwoSlashOnNode(code, fence, twoslashSettings)
     } catch (error) {
       const shouldAlwaysRaise = process && process.env && !!process.env.CI
       const yeahButNotInTests = typeof jest === "undefined"

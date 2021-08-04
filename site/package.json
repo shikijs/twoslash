@@ -8,11 +8,20 @@
     "build": "next build && next export && touch out/.nojekyll && node script/stripNextJS.mjs",
     "start": "next dev"
   },
+  "resolutions": {
+    "docusaurus-preset-shiki-twoslash": "link:../packages/docusaurus-preset-shiki-twoslash",
+    "remark-shiki-twoslash": "link:../packages/remark-shiki-twoslash",
+    "shiki-twoslash": "link:../packages/shiki-twoslash",
+    "shiki": "0.9.6"
+  },
   "dependencies": {
     "@types/express": "^4.17.12",
+    "monaco-editor": "^0.26.1",
     "next": "10.2.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "remark-shiki-twoslash": "^2.0.5",
+    "ts-debounce": "^3.0.0",
     "vscode-theme-generator": "^0.1.5"
   },
   "devDependencies": {
