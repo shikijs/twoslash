@@ -14,9 +14,9 @@ export const htmlForTags = (tags: TwoSlashReturn["tags"]) => {
       const arrowSVG = arrow({ flipped, rotation: arrowRotation })
 
       html += `
-<div class='twoslash-annotation' style="top: ${t.line}em;">
+<div class='twoslash-annotation ${flipped ? "right" : "left"}' style="top: ${t.line}em;">
   ${arrowSVG}
-  <p class='twoslash-annotation-text ${flipped ? "right" : "left"}' style="transform: rotate(${textRotation}deg)">${text}</p>
+  <p class='twoslash-annotation-text' style="transform: rotate(${textRotation}deg)">${text}</p>
 </div>`
     }
   })

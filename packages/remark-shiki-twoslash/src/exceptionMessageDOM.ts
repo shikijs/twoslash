@@ -93,7 +93,7 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
         return `<pre><code>${error.message.split("## Code")[0]}</code></pre>`
     }
 
-    const eLog = typeof jest === undefined ? console.error : (_str: string) => {}
+    const eLog = typeof jest === "undefined" ? console.error : (_str: string) => {}
 
     let body = `<pre><code>${error}</code></pre>`
     if (typeof error !== "object") {
