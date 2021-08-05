@@ -30,7 +30,7 @@
   ```
   ````
 
-  Would create a codeblocck with:
+  Would create a codeblock with:
 
   ```js
   function compact(arr) {

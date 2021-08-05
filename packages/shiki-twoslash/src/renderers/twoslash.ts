@@ -37,6 +37,8 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
   const hasHighlight = meta.highlight && shouldBeHighlightable(meta.highlight)
   const hl = shouldHighlightLine(meta.highlight)
 
+  if (twoslash.tags && twoslash.tags.length) html += "<div class='tag-container'>"
+  
   html += preOpenerFromRenderingOptsWithExtras(options, meta, ["twoslash", "lsp"])
   if (meta.title) {
     html += `<div class='code-title'>${meta.title}</div>`
@@ -211,12 +213,14 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
     html += `</code>`
   }
 
+  html += `</div></pre>`
+
   // Attach annotations which live above of the code
   if (twoslash.tags && twoslash.tags.length) {
     html += htmlForTags(twoslash.tags)
+    html += "</div>"
   }
 
-  html += `</div></pre>`
   return html
 }
 

@@ -93,22 +93,24 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
         return `<pre><code>${error.message.split("## Code")[0]}</code></pre>`
     }
 
+    const eLog = typeof jest === undefined ? console.error : (_str: string) => {}
+
     let body = `<pre><code>${error}</code></pre>`
     if (typeof error !== "object") {
         body = String(error)
-        console.error(`### Unexpected error:`)
-        console.error(error)
+        eLog(`### Unexpected error:`)
+        eLog(error)
     } else if (error instanceof TwoslashError) {
         body = bodyFromTwoslashError(error)
-        console.error(`### Twoslash error: ${error.title}`)
-        console.error(error.description)
-        console.error(error.recommendation)
-        console.error("\n### Code Sample")
-        console.error(code)
+        eLog(`### Twoslash error: ${error.title}`)
+        eLog(error.description)
+        eLog(error.recommendation)
+        eLog("\n### Code Sample")
+        eLog(code)
     } else if (error instanceof Error) {
         body = bodyFromError(error)
-        console.error(`### Unexpected error:`)
-        console.error(error)
+        eLog(`### Unexpected error:`)
+        eLog(error)
     }
 
     const codeSample = `<p>Raising Code:</p><pre class='twoslash-exception-code'><code>${code}</code></pre>`
