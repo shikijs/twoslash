@@ -17,7 +17,7 @@ export const htmlForTags = (tags: TwoSlashReturn["tags"]) => {
       
       
       if (info.includes("{")) {
-        const theInfo =  "{" + info.split("{")[0]
+        const theInfo =  "{" + info.split("{")[1]
         try {
           settings = JSON.parse(theInfo)
         } catch (error) {
