@@ -19,7 +19,8 @@ export const htmlForTags = (tags: TwoSlashReturn["tags"]) => {
       if (info.includes("{")) {
         const theInfo =  "{" + info.split("{")[1]
         try {
-          settings = JSON.parse(theInfo)
+          const specificSettings = JSON.parse(theInfo)
+          settings = {...settings, ...specificSettings }
         } catch (error) {
           throw new TwoslashError("Could not parse annotation", `The annotation ${JSON.stringify(t)} could convert '${theInfo}' into JSON`, `Look at ${(error as any).message}.`)
         }
