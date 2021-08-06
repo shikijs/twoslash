@@ -1,6 +1,6 @@
 {
   "name": "remark-shiki-twoslash",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "license": "MIT",
   "homepage": "https://github.com/shikijs/twoslash",
   "repository": {
@@ -47,5 +47,9 @@
     "tslib": "^1.10.0",
     "typescript": ">3",
     "unified": "^8.4.2"
+  },
+  "browser": {
+    "fs": false,
+    "path": false
   }
 }

@@ -11,9 +11,13 @@ export const cachedTwoslashCall = (
   lang: string,
   settings: UserConfigSettings
 ): TwoSlashReturn | undefined => {
-  try {
-    require("crypto")
-  } catch (err) {
+  // @ts-expect-error
+  const isWebWorker = typeof self !== "undefined" && typeof self.WorkerGlobalScope !== "undefined"
+  const isBrowser =
+    isWebWorker ||
+    (typeof window !== "undefined" && typeof window.document !== "undefined" && typeof fetch !== "undefined")
+
+  if (isBrowser) {
     // Not in Node, run un-cached
     return runTwoSlash(code, lang, settings)
   }

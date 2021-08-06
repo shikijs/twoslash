@@ -22,5 +22,8 @@
     "pleb": "^3.4.4",
     "prettier": "^2.3.1",
     "typescript": "^4.3.4"
+  }, 
+  "prettier": {
+    "printWidth": 140
   }
 }

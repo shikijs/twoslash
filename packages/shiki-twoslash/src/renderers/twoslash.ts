@@ -66,7 +66,7 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
     const lspValues = staticQuickInfosGroupedByLine.get(i) || []
     const queries = queriesGroupedByLine.get(i) || []
 
-    const hiClass = hasHighlight ? (hl(i) ? " highlight" : " dim") : ""
+    const hiClass = hasHighlight ? (hl(i + 1) ? " highlight" : " dim") : ""
     const prefix = `<div class='line${hiClass}'>`
 
     if (l.length === 0 && i === 0) {

@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "components/docs/Emit.mdx"  ],
   "exclude": [
     "node_modules",
     "examples"

@@ -1,0 +1,59 @@
+## Showing the Emitted Files
+
+Running a Twoslash code sample is a full TypeScript compiler run, and that run will create files inside the virtual file system. You can replace the contents of your code sample with the results of running TypeScript over the project.
+
+#### `@showEmit`
+
+`// @showEmit` is the main command to tell Shiki Twoslash that you want to replace the output of your code sample with the equivalent `.js` file.
+
+```ts twoslash
+// @showEmit
+const level: string = "Danger"
+```
+
+Would show the `.js` file which this `.ts` file represents. You can see TypeScript add 'use strict' and `: string` is removed from the output.
+
+#### `@showEmittedFile: [file]`
+
+While the `.js` file is probably the most useful file out of the box, TypeScript does emit other files if you have the right flags enabled (`.d.ts` and `.map`) but also when you have a multi-file code sample - you might need to tell Shiki Twoslash which file to show. For all these cases you can _also_ add `@showEmittedFile: [file]` to tell Shiki Twoslash which file you want to show.
+
+```ts twoslash
+// @declaration
+// @showEmit
+// @showEmittedFile: index.d.ts
+export const hello = "world"
+```
+ 
+> Shows the `.d.ts` for a TypeScript code sample
+
+```ts twoslash
+// @sourceMap
+// @showEmit
+// @showEmittedFile: index.js.map
+export const hello = "world"
+```
+ 
+> Shows the `.map` for the JavaScript -> TypeScript
+
+```ts twoslash
+// @declaration
+// @declarationMap
+// @showEmit
+// @showEmittedFile: index.d.ts.map
+export const hello = "world"
+```
+ 
+> Shows the `.map` for a `.d.ts` (mainly used for project references)
+
+```ts twoslash
+// @showEmit
+// @showEmittedFile: b.js
+// @filename: a.ts
+export const helloWorld: string = "Hi"
+
+// @filename: b.ts
+import {helloWorld} from "./a"
+console.log(helloWorld)
+```
+ 
+> Shows `.js` file for `b.ts`

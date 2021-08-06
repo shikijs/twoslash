@@ -53,7 +53,6 @@ Code blocks structurally look like:
   </pre> 
 */
 
-
 pre {
 	/* In theory shiki will overwrite these, but this is to make sure there are defaults regardless */
 	 background-color: white;
