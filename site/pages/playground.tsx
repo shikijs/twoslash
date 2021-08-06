@@ -163,6 +163,7 @@ export default function Playground() {
               if (firstTime) {
                 firstTime = true;
                 runner({
+                  // @ts-ignore
                   lang: "twoslash",
                   meta: "include main",
                   type: "custom",
