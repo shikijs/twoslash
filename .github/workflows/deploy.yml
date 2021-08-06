@@ -35,7 +35,7 @@ jobs:
       - name: Setup Website
         run: |
           cd site
-          yarn i
+          yarn install
           yarn bootstrap
           yarn build
 
