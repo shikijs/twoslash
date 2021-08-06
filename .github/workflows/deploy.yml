@@ -34,8 +34,6 @@ jobs:
 
       - name: Setup Website
         run: |
-          # Unblocks us on using older shikis
-          npx json -I -f packages/remark-shiki-twoslash/node_modules/shiki/package.json -e "this.browser = { fs: false, path: false }"
           cd site
           yarn i
           yarn bootstrap
