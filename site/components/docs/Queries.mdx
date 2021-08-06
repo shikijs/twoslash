@@ -1,9 +1,29 @@
 ## Queries in Twoslash
 
-Here's some docs, OK
+One of the key reasons for making Twoslash is the ability to use the TypeScript compiler to pull out type information about your code mechanically. Twoslash comes with two different ways to query your code: `?^` and `?|`. 
 
+#### Extract Type
 
-```ts
-const a = "OK"
-let b = 234
+Using `^?` you can pull out type information about a particular identifier in the line of code above it. 
+
+```ts twoslash
+const hi = "Hello"
+const msg = hi + ", world
+//    ^?
 ```
+
+> Note: You can click on the code sample above to make it run in the playground. 
+
+#### Completions
+
+Using `^|` you can pull out information about a what the auto-complete looks like at a particular location.
+
+```ts twoslash
+// @noErrors
+console.e
+//       ^|
+```
+
+What happens is that Twoslash makes a request to TypeScript to get the auto-complete at the point of the `^`, and then filters the possible outputs based on the letters following the `.`. Up to 5 results will be shown inline, and if a completion is marked as deprecated - that will be respected in the output.
+
+So, in this case, Twoslash asks TypeScript for completions of `console`, then filters down to completions which start with `e`. Note that the compiler flag for `// @noErrors` is set, because `console.e` is a failing TypeScript code sample but we don't really care about that.

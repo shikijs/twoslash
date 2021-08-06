@@ -50,22 +50,9 @@ The config which you pass in is a mix of Shiki's [`HighlighterOptions`](https://
 <!-- AUTO-GENERATED-CONTENT:START (TYPE:src=./packages/shiki-twoslash/node_modules/shiki/dist/index.d.ts&symbol=HighlighterOptions) -->
 ```ts
 interface HighlighterOptions {
-    /**
-     * The theme to load upfront.
-     */
     theme?: IThemeRegistration;
-    /**
-     * A list of themes to load upfront.
-     *
-     * Default to: `['dark-plus', 'light-plus']`
-     */
-    themes?: IThemeRegistration[];
-    /**
-     * A list of languages to load upfront.
-     *
-     * Default to `['html', 'css', 'javascript']`
-     */
     langs?: (Lang | ILanguageRegistration)[];
+    themes?: IThemeRegistration[];
     /**
      * Paths for loading themes and langs. Relative to the package's root.
      */

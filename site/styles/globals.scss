@@ -419,7 +419,9 @@ pre.shiki {
         display: flex;
         flex-direction: column;
         width: 200px;
-
+        min-width: 200px;
+        border-bottom: none;
+        height: 100%;;
       }
       
       .react-tabs__tab {
@@ -454,6 +456,14 @@ pre.shiki {
         }
         p { 
           font-size: 1rem;;
+        }
+        blockquote {
+          color: #00000090;
+          margin: 20px 8px;
+          margin-top: -30px;
+          p {
+            margin-top: 0;
+          }
         }
       }
 

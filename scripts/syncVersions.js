@@ -8,6 +8,7 @@ const updateVersions = () => {
 
   // Make sure that all the versioning is accurate across the packages
   const pgkPaths = glob.sync("packages/*/package.json")
+  pgkPaths.push("site/package.json")
   const packages = pgkPaths.map(p => ({ path: p, pkg: JSON.parse(readFileSync(p, "utf8")) }))
   const inWorkspace = dep => {
     return packages.find(p => p.pkg.name === dep)

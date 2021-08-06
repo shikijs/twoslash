@@ -15,6 +15,14 @@ import "react-tabs/style/react-tabs.css";
 
 import { Resizable } from "re-resizable";
 
+const twoslashInclude = `
+const a = 1
+// - 1
+const b = 2
+// - 2
+const c = 3
+`
+
 export default function Playground() {
   let codefence = "ts twoslash"
 
@@ -51,9 +59,19 @@ export default function Playground() {
       re.config({
         paths: {
           vs: "https://typescript.azureedge.net/cdn/4.3.5/monaco/min/vs",
-          sandbox: "https://www.typescriptlang.org/js/sandbox",
+          sandbox: "https://www.typescriptlang.org/js/sandbox/",
         },
         ignoreDuplicateModules: ["vs/editor/editor.main"],
+        catchError: true,
+        onError: function (err) {
+          if (document.getElementById("loading-message")) {
+            document.getElementById("loading-message")!.innerText = "Cannot load the Playground in this browser"
+            console.error("Error setting up monaco/sandbox/playground from the JS, this is likely that you're using a browser which monaco doesn't support.")
+          } else {
+            console.error("Caught an error which is likely happening during initializing a playground plugin:")
+          }
+          console.error(err)
+        }
       });
 
       re(
@@ -110,6 +128,8 @@ export default function Playground() {
 
             const mapWithLibFiles = await createDefaultMapFromCDN({ target: 3 }, "4.3.5", true, ts, sandbox.lzstring as any);
 
+            let firstTime = true
+
             const runTwoslash = () => {
               const newContent = sandbox.getText();
               mapWithLibFiles.set("index.ts", newContent);
@@ -134,6 +154,18 @@ export default function Playground() {
                 lzstringModule: sandbox.lzstring as any,
                 fsMap: mapWithLibFiles,
               });
+
+              // Set up an include in the environment for the first time.
+              if (firstTime) {
+                firstTime = true
+                runner({
+                  lang:  "twoslash",
+                  meta: "include main",
+                  type: "custom",
+                  value: twoslashInclude,
+                  children: [],
+                })
+              }
 
               const lang = codefence.split(" ")[0]
               const node = {
