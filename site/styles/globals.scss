@@ -465,6 +465,12 @@ pre.shiki {
             margin-top: 0;
           }
         }
+        .clickable-code {
+          cursor: pointer;
+          &:hover{
+            background-color: #FAEDC8;
+          }
+        }
       }
 
     }
@@ -713,6 +719,7 @@ pre:hover data-lsp {
   flex-direction: column;
   padding-top: 200px;
   padding-bottom: 200px;
+  height: 400px;
 
   p {
     text-align: center;
