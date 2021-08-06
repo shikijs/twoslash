@@ -1,4 +1,4 @@
-<!-- twoslash: { theme: "../../../script/shiki-twoslash" } -->
+<!-- twoslash: { theme: "../../../../../../site/script/shiki-twoslash" } -->
 ````markdown
 ### Adding Values
 
