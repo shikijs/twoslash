@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "bootstrap": "yarn twoslash --sourceAlso examples/*  examples/render; json -I -f ../packages/remark-shiki-twoslash/node_modules/shiki/package.json -e 'this.browser = { fs: true, path: false }'",
+    "bootstrap": "yarn twoslash --sourceAlso examples/*  examples/render; json -I -f ../packages/remark-shiki-twoslash/node_modules/shiki/package.json -e 'this.browser = { fs: false, path: false }'",
     "build": "next build && next export && touch out/.nojekyll && node script/stripNextJS.mjs",
     "start": "next dev"
   },
