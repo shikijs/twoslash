@@ -1,5 +1,18 @@
 # hexo-shiki-twoslash
 
+## 1.0.19
+
+### Patch Changes
+
+- Updated dependencies [bbba24f]
+  - remark-shiki-twoslash@2.0.5
+
+## 1.0.18
+
+### Patch Changes
+
+- remark-shiki-twoslash@2.0.4
+
 ## 1.0.17
 
 ### Patch Changes

@@ -37,6 +37,8 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
   const hasHighlight = meta.highlight && shouldBeHighlightable(meta.highlight)
   const hl = shouldHighlightLine(meta.highlight)
 
+  if (twoslash.tags && twoslash.tags.length) html += "<div class='tag-container'>"
+  
   html += preOpenerFromRenderingOptsWithExtras(options, meta, ["twoslash", "lsp"])
   if (meta.title) {
     html += `<div class='code-title'>${meta.title}</div>`
@@ -66,8 +68,7 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
     const queries = queriesGroupedByLine.get(i) || []
     const tags = tagsGroupedByLine.get(i) || []
 
-    // console.log(queries)
-    const hiClass = hasHighlight ? (hl(i) ? " highlight" : " dim") : ""
+    const hiClass = hasHighlight ? (hl(i + 1) ? " highlight" : " dim") : ""
     const prefix = `<div class='line${hiClass}'>`
 
     if (l.length === 0 && i === 0) {
@@ -208,14 +209,14 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
     // Any tags (currently that's warn/error/log)
     if (tags.length) {
       tags.forEach(tag => {
-          if(!["error", "warning", "log"].includes(tag.name)) return
+          if(!["error", "warn", "log"].includes(tag.name)) return
 
           // This is used to wrap popovers and completions to improve styling options for users.
-          html += `<div class='meta-line logger ${tag.name}'>`
+          html += `<div class='meta-line logger ${tag.name}-log'>`
           switch(tag.name) {
-            case "error": html += `${errorSVG}<span class='message'>${tag.name}</span>`; break;
-            case "warn": html += `${warningSVG}<span class='message'>${tag.name}</span>`; break;
-            case "log": html += `${logSVG}<span class='message'>${tag.name}</span>`; break;
+            case "error": html += `${errorSVG}<span class='message'>${tag.annotation || "N/A"}</span>`; break;
+            case "warn": html += `${warningSVG}<span class='message'>${tag.annotation || "N/A"}</span>`; break;
+            case "log": html += `${logSVG}<span class='message'>${tag.annotation || "N/A"}</span>`; break;
           }
           html += "</div>"
       })
@@ -230,12 +231,14 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
     html += `</code>`
   }
 
+  html += `</div></pre>`
+
   // Attach annotations which live above of the code
   if (twoslash.tags && twoslash.tags.length) {
     html += htmlForTags(twoslash.tags)
+    html += "</div>"
   }
 
-  html += `</div></pre>`
   return html
 }
 

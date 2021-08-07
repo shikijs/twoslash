@@ -35,8 +35,7 @@ jobs:
       - name: Setup Website
         run: |
           cd site
-          yarn
-          yarn upgrade twoslash-cli
+          yarn install
           yarn bootstrap
           yarn build
 

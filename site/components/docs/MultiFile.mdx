@@ -1,0 +1,73 @@
+## Multi File Code Samples
+
+Twoslash code samples aren't limited to creating a single file, by using `// @filename: [file]` you can write any file to the virtual file system used by TypeScript to power your code samples. 
+
+#### `@filename: file`
+
+Most of the time, you  don't need to think about the underlaying virtual file system in a code sample, but when you have imports between them it becomes important to know. 
+Twoslash will default to creating an `index.[type]` based on the langauge passed to the code sample:
+
+```ts twoslash 
+// I'm index.ts
+```
+
+```tsx twoslash 
+// I'm index.tsx
+```
+
+```js twoslash 
+// I'm index.tjs
+```
+
+Then until Twoslash hits a `// @filename: [file]` the parser keeps adding new lines into the same file. After seeing `@filename` Twoslash creates a new virtual file-system file and adds the new lines to that. You can't edit a file after it was created, but you can overwrite it.
+
+#### It can be any file
+
+For example, if you want to quickly fake a node module:
+
+```ts twoslash
+// @filename: node_modules/@types/mylib/index.d.ts
+export function doit(): string
+
+// @filename: index.ts
+import {doit} from "mylib"
+console.log(doit)
+```
+
+This code sample sets up the types for a non-existent npm module, and TypeScript picks it up as the definitions in the same way it would in a non-virtual TypeScript project.
+
+```ts twoslash
+// @resolveJsonModule
+// @filename: app.json
+{ "version": "23.2.3" }
+
+// @filename: index.ts
+import appSettings from "./app.json"
+appSettings.version
+//           ^?
+```
+
+This code sets up a JSON object which can be imported in a TypeScript file.
+
+
+```ts twoslash
+// @filename: ambient.d.ts
+declare module '*.mdx' {
+    export default any
+}
+declare module "react"
+
+// @filename: MultiFileDocs.mdx
+## Hello world
+
+// @filename: index.tsx
+// ---cut--
+import React from "react"
+import MultiFileDocs from "./MultiFileDocs.mdx"
+
+export default () => <MultiFileDocs/>
+```
+
+This code is basically a simplified version of how these docs are written. There is a `.d.ts` file which globally says 'mdx files are OK to import' and 'the module "react" exists, but don't worry about the details'. 
+
+Then for a user, they only see the imports and exports inside `index.tsx`.

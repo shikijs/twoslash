@@ -22,6 +22,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
         <meta name="msapplication-TileColor" content="#fcf3d9" />
       </Head>
 
+      <body>
       <main className="main">
         <article className="container border-red">
           <div className="intro">
@@ -332,6 +333,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
           </MicroPoint>
         </article>
       </main>
+      </body>
     </>
   );
 }

@@ -61,17 +61,17 @@
       }
     ],
     "errors": [],
-    "playgroundURL": "https://www.typescriptlang.org/play/#code/PTAEAEEMDtoewC6QQUwFygDYoGYNAKwBsoAtKABTZ4CUoAcnKCgCYCWCcATqAO6RdobaAHMAzqGGgAUpABukAMoBjLmwAO+HG2xiAPACMuwAHyHjJgCoALNhNWQx1lBOSguAV2gI2AWxQAdABQOF7KPnDQoMpwvuqQ4RQCXBhiCGqiANoAunQA3kGgkjiUyQHYogjWoCagAIwADHRcKAgegqDJhe6t7VFdIBAw8EioGGoi1vgAzA0AnIRklBNTdKA2dqCRKKBOcB6YLKAGO5DHHO6IyKxBAL5AA",
+    "playgroundURL": "https://www.typescriptlang.org/play/#code/PTAEAEEMDtoewC6QQUwFygDYoGYNAN6gBEkATmXAO4BKixGxADKAIygBMxANCagB4IAIigDmZFCgYkAzABMxPPnAAO04hyYSAtsVABfUAFpQACmx4AlKABycUCjkBLBHDKgq5aE+iiAzqA+oABSkABukADKAMZkTir4OE7YfgA8AEZkwAB8GVnZACoAFk4BsZB+RSgByKBkAK7QCE7aKAB0AFA4jdHNcNCg0XDaKpC9puRkGH4Icb4A2gC61gQdoIE4ZpNt2L4IRaDZbEzWEgj1ZAOTa3Uo55eg1yAQMPBIqBhxokX4RKQU1DoCHUABYAKygCFcXjEATCMQSKSMIwcBSiPSGEymL4-aygYqlUD9FCgSpweqYOSgdIkyDUlx1RDIRwdfRAA",
     "tags": [
       {
         "name": "annotate",
         "line": 0,
-        "annotation": "left 56 - (left) No editor warnings in JavaScript files<br/><br/>This crashes at runtime."
+        "annotation": "left { \"arrowRot\": \"0 1 2\", \"textDegree\": \"3deg\", \"top\": \"20rem\" } - (left) No editor warnings in JavaScript files<br/><br/>This crashes at runtime."
       },
       {
         "name": "annotate",
         "line": 3,
-        "annotation": "right 309 5 - (right)  This one should be a bit rotated"
+        "annotation": "right { \"arrowRot\": \"45 5 2\", \"textDegree\": \"-2deg\" } - (right)  This one should be a bit rotated"
       }
     ]
   }

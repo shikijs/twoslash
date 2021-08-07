@@ -64,7 +64,7 @@ function renderJS(args) {
   if (fileContent.startsWith("// codefence: ")) {
     const highlightOpts = fileContent.split("\n")[0].replace("// codefence: ", "")
     classes.push(highlightOpts)
-    fileContent = fileContent.replace(`// twoslash: ${highlightOpts}\n`, "")
+    fileContent = fileContent.replace(`// codefence: ${highlightOpts}\n`, "")
   }
 
   const newFileName = tmpdir() + sep + basename(from) + ".md"

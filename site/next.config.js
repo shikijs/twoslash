@@ -6,7 +6,9 @@ if (process.env.CI) {
   assetPrefix = "/twoslash";
 }
 
-module.exports = {
+const withMDX = require('@next/mdx')()
+module.exports = withMDX({
+  webpack5: true,
   basePath,
   assetPrefix,
-};
+})

@@ -23,7 +23,8 @@ module.exports = function (eleventyConfig, options = {}) {
     }
   }
 
-  eleventyConfig.addMarkdownHighlighter((code, lang, fence) =>
-    transformAttributesToHTML(code, [lang, fence].join(" "), highlighters, options)
-  )
+  eleventyConfig.addMarkdownHighlighter((code, lang, fence) => {
+    code = code.replace(/\r?\n$/, "") // strip trailing newline fed during code block parsing
+    return transformAttributesToHTML(code, [lang, fence].join(" "), highlighters, options)
+  })
 }

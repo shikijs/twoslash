@@ -1,0 +1,45 @@
+## Meta Annotations on a Code Sample
+
+OK, bear with me now. Sometimes the thing you want to say is _about_ the code, annotations provide a way to provide outside commentary on your code.
+
+#### `@annotate: [left|right] [overrides] - [text]`
+
+Annotate has a lot more controls than most of the other Shiki Twoslash commands, because each use of it probably needs to feel a bit different. 
+Here's an example based on the TypeScript home page, click it to get it running so we can talk about what it does:
+
+```ts twoslash
+// @errors: 2304
+// @strict: false
+
+function compact(arr) {
+  if (orr.length > 10)
+    return arr.trim(0, 10)
+  return arr
+}
+// @annotate: left { "arrowRot": "90deg 8px 27px", "textDegree": "3deg", "top": "0rem" } - Discovered a typo, the param is arr, not orr!
+```
+
+First up, cool - it adds some text (which overlaps the editor in the playground...) to the left hand side of the code. It features quite a few different options, so lets go through them one by one:
+
+- `left` or `right`: It's currently `left`, switch it to `right`. It's worth noting the arrow flips also, and `90deg` isn't a great option. Let's look at that next.
+- `{ "arrrowRot": "90deg 8px 27px" }` - This JSON object is used to manipulate the annotation, you have 3 controls for arrow positioning and rotation: `degrees x y`. I recommend keeping those in degrees and px, but it's your life. These are overrides from defaults which are OK, but not really something you ever want to ship. I think a reasonable value for 
+- `{ "textDegree": "3deg" }` - Rotates the text, you probably want something between `-3deg` and `3deg`. Optional, defaults to 0. 
+- `{ "top": "0rem" }` - Sets the y coordinates for the annotation relative to the code sample, if it's not included then it becomes `[lineNum]rem`.
+
+What's not included in this sample is `flipped` which can be used to flip the arrow's orientation.
+
+Here's some examples to try out with this same code sample:
+
+```
+// @annotate: right { "arrowRot": "-50deg -10px -10px", "top": "3rem" } - Discovered a typo, the param is arr, not orr!
+```
+> A horizontal right example
+
+```
+// @annotate: right { "arrowRot": "190deg 8px 46px", "flipped": false, "textDegree": "-3deg", "top": "-0.7rem" } - Discovered a typo, the param is arr, not orr!
+```
+> Upside down arrow pointing at the error, using `flipped` to re-flip the arrow
+
+### CSS vs Inline Options
+
+A lot of decisions like "how long should annotations be", "how do they attach" are left to you to play with in the CSS instead of as individual options. These are systemic decisions which affect all of the annotations IMO. Open to changing my mind though. 

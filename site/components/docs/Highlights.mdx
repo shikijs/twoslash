@@ -1,0 +1,28 @@
+## Highlight Code
+
+There are many ways to help someone focus on the important part of a code sample. One of the most prominent tools for this is by highlighting a particular chunk of code.
+
+#### Codefence Line Highlights
+
+To highlight a particular set of lines, Shiki Twoslash re-used the [gatsby-remark-vscode's](https://github.com/andrewbranch/gatsby-remark-vscode#gatsby-remark-vscode) [syntax](https://github.com/andrewbranch/gatsby-remark-vscode#line-highlighting), which expands on the codefence string.
+
+```ts twoslash {1,3-5}
+const a = 1; // highlighted
+const b = 2;
+const c = 3; // highlighted
+const d = 4; // highlighted
+const e = 5; // highlighted
+```
+
+The line highlight syntax follows the convention of how your editor shows lines, which is starting at `1`, not `0`. You can have as many numbers and ranges as you'd like.
+
+#### Inline Highlights
+
+This is WIP, but there is support in the system for inline highlights via `// ^^^^^`
+
+```ts twoslash
+const hello = "world"
+//    ^^^^^^^
+```
+
+The intention is that Shiki Twoslash would highlight just the words which are inside the hats. The line is removed, but there's no support in Shiki Twoslash for rendering them _yet_. ( Or maybe there is and I've not updated the docs, try it? )

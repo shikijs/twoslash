@@ -1,4 +1,4 @@
-// twoslash: { theme: "../../../script/shiki-twoslash" }
+// twoslash: { theme: "../../../../../../site/script/shiki-twoslash" }
 // @module: esnext
 // @filename: maths.ts
 export function absolute(num: number) {

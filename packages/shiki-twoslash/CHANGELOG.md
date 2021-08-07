@@ -1,5 +1,17 @@
 # shiki-twoslash
 
+## 2.1.3
+
+### Patch Changes
+
+- bbba24f: Adds inline errors for fenceparser errors - fixes #101
+
+## 2.1.2
+
+### Patch Changes
+
+- 71b0697: Checks for existing `React` import before adding it automatically in TSX code blocks.
+
 ## 2.1.1
 
 ### Patch Changes
@@ -18,7 +30,7 @@
   ```
   ````
 
-  Would create a codeblocck with:
+  Would create a codeblock with:
 
   ```js
   function compact(arr) {

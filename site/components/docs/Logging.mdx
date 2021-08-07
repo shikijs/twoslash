@@ -1,0 +1,20 @@
+## Logging Commands
+
+When you first see a Shiki Twoslash code sample with an inline compiler error, you instinctively trust that the compiler error is correct because the design shows that it is not a part of the code sample. The logging tools lets you do that, but abuses the systemic trust because your code is not being evaluated to generate the logs.
+
+This feature is effectively a facade, people will trust your output and it will look better. 
+
+### `@log:`, `@warn:`, `@error:`
+
+The names are based on the functions on the `console` object:
+
+```ts twoslash
+console.log("Hello world")
+// @log: Hello world
+
+console.warn("Ola Mundo")
+// @warn: Old  Mundo
+
+console.error("Neih hou")
+// @error: Neih hou
+```

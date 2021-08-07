@@ -1,4 +1,4 @@
-<!-- twoslash: { theme: "../../../script/shiki-twoslash" } -->
+<!-- twoslash: { theme: "../../../../../../site/script/shiki-twoslash" } -->
 ```css
 @media (prefers-color-scheme: light) {
   .shiki.dark-plus {

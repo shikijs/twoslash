@@ -1,0 +1,14 @@
+### TypeScript Environment
+
+The defaults for TypeScript differ somewhat from a blank TypeScript project (with a blank `tsconfig.json`), they are:
+
+```ts
+const defaultCompilerOptions = {
+  strict: true,
+  target: ts.ScriptTarget.ES2016,
+  allowJs: true,
+  ...(options.defaultCompilerOptions ?? {}),
+}
+```
+
+You can customize the `defaultCompilerOptions` in your config to set any custom flags which should be applied to every code sample. Otherwise you can use `// @[compilerFlag]` to set the environment up per release.

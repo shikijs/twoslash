@@ -1,0 +1,55 @@
+## Re-using code inside a document
+
+A twoslash code sample has a lot of potential to get distractingly long for an author. The more complex the code you're describing, the more setup it needs to be a full compilable sample. To work around this, Shiki Twoslash adds support for creating importable code.
+
+The mental model is that you can create named sets of code which you are probably going to use `---cut--` on. These work by creating code samples _which are not rendered_.
+
+### `twoslash include [name]`
+
+Code samples beginning with the langauge `twoslash` are not rendered by [remark-shiki-twoslash](https://www.npmjs.com/package/remark-shiki-twoslash) (which powers all the SSG plugins). They have to have a name:
+
+```twoslash include main
+const a = 1
+// - 1
+const b = 2
+// - 2
+const c = 3
+```
+
+For the current Markdown document, this adds the ability to write:
+
+```
+// @include: main
+// @include: main-1
+// @include: main-2
+```
+
+Each of which is a different subset of the original `twoslash` code sample. These are direct string substitutions which happens before TypeScript looks at the code sample.
+
+```ts twoslash
+// @include: main-1
+// ---cut---
+const nextA = a + 13
+```
+
+Is the same as 
+
+```ts twoslash
+const a = 1
+// ---cut---
+const nextA = a + 13
+```
+
+The included code is a direct copy and paste, which means it will also contain comments like `// - 2`, so `---cut--` them away. Or send a PR to remove them, I'm pretty flexible.
+
+### Trying it in the Playground
+
+I've added this `twoslash include` into the Playground, so you can import it in your code samples to see what it looks like:
+
+```twoslash include main
+const a = 1
+// - 1
+const b = 2
+// - 2
+const c = 3
+```

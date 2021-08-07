@@ -93,15 +93,31 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
         return `<pre><code>${error.message.split("## Code")[0]}</code></pre>`
     }
 
+    // @ts-ignore
+    const isWebWorker = typeof self !== "undefined" && typeof self.WorkerGlobalScope !== "undefined"
+    const isBrowser =
+      isWebWorker ||
+      (typeof window !== "undefined" && typeof window.document !== "undefined" && typeof fetch !== "undefined")
+    const isJest = typeof jest === "undefined"
+
+    const eLog = !isBrowser && !isJest ? console.error : (_str: string) => {}
+
     let body = `<pre><code>${error}</code></pre>`
-    if (!error) {
-        body = `Unknown error: got ${error} from twoslash`
+    if (typeof error !== "object") {
+        body = String(error)
+        eLog(`### Unexpected error:`)
+        eLog(error)
     } else if (error instanceof TwoslashError) {
         body = bodyFromTwoslashError(error)
-    } else  if (error instanceof Error) {
-        body = bodyFromError(error)   
-    } else {
-        body = `Unknown error: got ${error} from twoslash`
+        eLog(`### Twoslash error: ${error.title}`)
+        eLog(error.description)
+        eLog(error.recommendation)
+        eLog("\n### Code Sample")
+        eLog(code)
+    } else if (error instanceof Error) {
+        body = bodyFromError(error)
+        eLog(`### Unexpected error:`)
+        eLog(error)
     }
 
     const codeSample = `<p>Raising Code:</p><pre class='twoslash-exception-code'><code>${code}</code></pre>`
