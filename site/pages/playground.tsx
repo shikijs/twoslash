@@ -16,11 +16,25 @@ import Errors from "../components/docs/Errors.mdx";
 import Queries from "../components/docs/Queries.mdx";
 import Types from "../components/docs/Types.mdx";
 import Env from "../components/docs/Environment.mdx";
+import Annotations from "../components/docs/Annotations.mdx";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
 import { Resizable } from "re-resizable";
+
+const defaultCode = `// Here is an example code snippet, notice that
+// none of these comments are in the output to the right ->
+
+// The rendered version of this code sample pulls 
+// out the type of 'str' so that readers don't need
+// to hover over the identifier, and to help focus on
+// what I (the author) think is interesting!
+
+// ---cut---
+const num = 123
+const str = "234234"
+//    ^?`
 
 const twoslashInclude = `
 const a = 1
@@ -94,7 +108,7 @@ export default function Playground() {
             document.getElementById("loading-message")!.innerText = "Cannot load the Playground in this browser";
             console.error("Error setting up monaco/sandbox/playground from the JS, this is likely that you're using a browser which monaco doesn't support.");
           } else {
-            console.error("Caught an error which is likely happening during initializing a playground plugin:");
+            console.error("Caught an error which is likely happening while initializing shiki twoslash.");
           }
           console.error(err);
         },
@@ -117,7 +131,7 @@ export default function Playground() {
             document.getElementById("monaco-editor-embed")!.style.display = "block";
             const sandbox = await sandboxEnv.createTypeScriptSandbox(
               {
-                text: "const a = 123",
+                text: defaultCode,
                 compilerOptions: {
                   // TODO: default to jsx
                   // jsx: 4
@@ -185,8 +199,6 @@ export default function Playground() {
 
             const runTwoslash = () => {
               const newContent = sandbox.getText();
-              mapWithLibFiles.set("index.ts", newContent);
-
               if (!highlighter) return;
 
               // Sets up an fs map which uses the TS sandbox type definitions 
@@ -339,19 +351,21 @@ export default function Playground() {
         <meta name="msapplication-TileColor" content="#fcf3d9" />
       </Head>
       <header className="nav">
-        <svg width="23" height="32" viewBox="0 0 23 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0.0673828 22.0295V19.2L11.2505 25.7347V28.3621L0.0673828 22.0295Z" fill="#183F66" fillOpacity="0.8" />
-          <path d="M11.251 2.62737V0L22.232 6.06316L22.2994 8.82526L11.251 2.62737Z" fill="#E23D1E" fillOpacity="0.8" />
-          <path d="M0.0673828 8.96001V6.19791L22.3663 19.0653V22.0295L0.0673828 8.96001Z" fill="#E5A604" fillOpacity="0.8" />
-          <path d="M0.0673828 25.6674V22.8379L11.2505 29.3726V32L0.0673828 25.6674Z" fill="#183F66" fillOpacity="0.8" />
-          <path d="M11.251 6.06316V3.43579L22.232 9.90316V12.5305L11.251 6.06316Z" fill="#E23D1E" fillOpacity="0.8" />
-          <path d="M0 12.5979L0.0673684 9.76843L22.5011 22.9053V25.5326L0 12.5979Z" fill="#E5A604" fillOpacity="0.8" />
-          <path d="M22.4336 22.0295V19.2L11.2504 25.7347V28.3621L22.4336 22.0295Z" fill="#183F66" fillOpacity="0.8" />
-          <path d="M11.251 2.62737V0L0.0678196 6.33263V8.96L11.251 2.62737Z" fill="#E23D1E" fillOpacity="0.8" />
-          <path d="M22.4336 25.6674V22.8379L11.2504 29.3726V32L22.4336 25.6674Z" fill="#183F66" fillOpacity="0.8" />
-          <path d="M11.1152 6.13053V3.43579L0.0668125 9.97053V12.5979L11.1152 6.13053Z" fill="#E23D1E" fillOpacity="0.8" />
-        </svg>
-        <p className="subtitle">The playground concerning</p>
+        <a href="/">
+          <svg width="23" height="32" viewBox="0 0 23 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.0673828 22.0295V19.2L11.2505 25.7347V28.3621L0.0673828 22.0295Z" fill="#183F66" fillOpacity="0.8" />
+            <path d="M11.251 2.62737V0L22.232 6.06316L22.2994 8.82526L11.251 2.62737Z" fill="#E23D1E" fillOpacity="0.8" />
+            <path d="M0.0673828 8.96001V6.19791L22.3663 19.0653V22.0295L0.0673828 8.96001Z" fill="#E5A604" fillOpacity="0.8" />
+            <path d="M0.0673828 25.6674V22.8379L11.2505 29.3726V32L0.0673828 25.6674Z" fill="#183F66" fillOpacity="0.8" />
+            <path d="M11.251 6.06316V3.43579L22.232 9.90316V12.5305L11.251 6.06316Z" fill="#E23D1E" fillOpacity="0.8" />
+            <path d="M0 12.5979L0.0673684 9.76843L22.5011 22.9053V25.5326L0 12.5979Z" fill="#E5A604" fillOpacity="0.8" />
+            <path d="M22.4336 22.0295V19.2L11.2504 25.7347V28.3621L22.4336 22.0295Z" fill="#183F66" fillOpacity="0.8" />
+            <path d="M11.251 2.62737V0L0.0678196 6.33263V8.96L11.251 2.62737Z" fill="#E23D1E" fillOpacity="0.8" />
+            <path d="M22.4336 25.6674V22.8379L11.2504 29.3726V32L22.4336 25.6674Z" fill="#183F66" fillOpacity="0.8" />
+            <path d="M11.1152 6.13053V3.43579L0.0668125 9.97053V12.5979L11.1152 6.13053Z" fill="#E23D1E" fillOpacity="0.8" />
+          </svg>
+        </a>
+        <p className="subtitle">The playground concerning...</p>
         <h1>Shiki-Twoslash</h1>
       </header>
 
@@ -408,6 +422,7 @@ export default function Playground() {
                   <Tab>Multi-file</Tab>
                   <Tab>DRY Samples</Tab>
                   <Tab>@types</Tab>
+                  <Tab>Meta Annotations</Tab>
                   {/* <Tab>Logging</Tab> */}
 
                   <TitleTab>Reference</TitleTab>
@@ -444,6 +459,9 @@ export default function Playground() {
                 </TabPanel>
                 <TabPanel>
                   <Types />
+                </TabPanel>
+                <TabPanel>
+                  <Annotations />
                 </TabPanel>
                 {/* <TabPanel>
                   <h2>Logging</h2>

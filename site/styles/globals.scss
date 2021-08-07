@@ -358,19 +358,20 @@ pre.shiki {
     flex-direction: row;
     margin-top: 1rem;
     padding: 20px;
+    height: calc(100vh - 80px);
 
     h3.title {
       margin-top: 0;
       text-align: center;
     }
-  }
-
-  .left,
-  .right {
-    width: 50%;
-    height: 100%;
-    flex:1;
-  }
+  
+    > .left,
+    > .right {
+      width: 50%;
+      height: 100%;
+      flex:1;
+    }
+    }
 
   input.codefence {
     background-color: #F5EDD6;
@@ -399,7 +400,7 @@ pre.shiki {
 
   .vertical-split {
     width: 2px;
-    background-color: #183F66;
+    background-color: #faedc8;
     margin-left: 20px;
     margin-right: 20px;
   }
@@ -411,6 +412,8 @@ pre.shiki {
     bottom: 0;
     right: 0;
     background-color: #fcf3d9;
+    background: linear-gradient(to right, #FAEDC8 200px, #fcf3d9 0);
+
     box-shadow: 0px -1px 6px rgba(0, 0, 0, 0.11);
 
     
@@ -433,7 +436,6 @@ pre.shiki {
     
       
       .react-tabs__tab-list {
-        background-color: #FAEDC8;
         display: flex;
         flex-direction: column;
         width: 200px;
@@ -484,6 +486,11 @@ pre.shiki {
           }
         }
         .clickable-code {
+          > div {
+            color: #00000090;
+            margin: 8px 0;
+            font-size: 14px;
+          }
           cursor: pointer;
           &:hover{
             background-color: #FAEDC8;
@@ -699,20 +706,45 @@ pre .inline-completions ul.dropdown li span.result {
 pre:hover data-lsp {
   border-color: #747474;
 }
-/** The tooltip-like which provides the LSP response */
-/* #twoslash-mouse-hover-info {
-  background-color: #3f3f3f;
-  color: #fff;
-  text-align: left;
-  padding: 5px 8px;
-  border-radius: 2px;
-  font-family: "Cascadia Mono-SemiLight", "JetBrains Mono", Menlo, Monaco, Consolas, Courier New, monospace;
-  font-size: 14px;
-  white-space: pre-wrap;
-  border-radius: 2px;
-  
-  pointer-events: none;
-} */
+
+
+.tag-container {
+  position: relative;
+
+  .twoslash-annotation {
+    position: absolute;
+    font-family: "JetBrains Mono", Menlo, Monaco, Consolas, Courier New,
+      monospace;
+      p {
+        text-align: left;
+        font-size: 0.8rem;
+        line-height: 0.9rem;;
+      }
+
+    right: -10px;
+    width: 200px;
+    color: #187abf;
+    background-color: #fcf3d9bb;
+
+
+    svg {
+      float: left;
+      margin-left: -44px;
+    }
+
+    &.left {
+      right: auto;
+      left: -200px;
+
+      svg {
+        float: right;
+        margin-right: -5px;
+      }
+    }
+  }
+}
+
+
 
 .twoslash data-lsp:hover::before {
   content: attr(lsp);

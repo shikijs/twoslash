@@ -10,7 +10,7 @@ export const htmlForTags = (tags: TwoSlashReturn["tags"]) => {
       const flipped = info.includes("right")
       let settings = {
         flipped,
-        arrowRot: flipped ? "0 0 0" : "56 0 0",
+        arrowRot: flipped ? "90deg 20px 20px" : "90deg 20px 20px",
         textDegree: "0deg",
         top: `${t.line}em`
       }
@@ -43,8 +43,8 @@ const arrow = (style: { flipped: boolean; arrowRot: string, textDegree: string, 
   const leftInner = `M27 39C26.5 32.7511 21.9 17.5173 7.5 6.57333M16.5 4.04L0.999999 0.999998C3.16667 4.88444 7.5 13.16 7.5 15.1867`
   const rightInner = `M1 39C1.5 32.7511 6.1 17.5173 20.5 6.57333M11.5 4.04L27 0.999998C24.8333 4.88444 20.5 13.16 20.5 15.1867`
   const inner = style.flipped ? leftInner : rightInner
-  
-  return `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(${style.arrowRot})">
+  const rot = style.arrowRot.split(" ")
+  return `<svg style='transform: translateX(${rot[1]}) translateY(${rot[2]}) rotate(${rot[0]});' width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="${inner}" stroke="black" />
 </svg>`
 }
