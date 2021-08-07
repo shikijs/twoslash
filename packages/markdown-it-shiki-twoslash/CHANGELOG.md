@@ -1,5 +1,12 @@
 # markdown-it-shiki-twoslash
 
+## 2.0.14
+
+### Patch Changes
+
+- Updated dependencies [8fffcd9]
+  - remark-shiki-twoslash@3.0.0
+
 ## 2.0.2
 
 ### Patch Changes
@@ -39,8 +46,8 @@
 
   ```js
   function compact(arr) {
-    if (orr.length > 10) return arr
-    return arr
+    if (orr.length > 10) return arr;
+    return arr;
   }
   ```
 

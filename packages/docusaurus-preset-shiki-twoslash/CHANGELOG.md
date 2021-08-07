@@ -1,5 +1,12 @@
 # docusaurus-preset-shiki-twoslash
 
+## 1.1.27
+
+### Patch Changes
+
+- Updated dependencies [8fffcd9]
+  - remark-shiki-twoslash@3.0.0
+
 ## 1.1.20
 
 ### Patch Changes
@@ -35,8 +42,8 @@
 
   ```js
   function compact(arr) {
-    if (orr.length > 10) return arr
-    return arr
+    if (orr.length > 10) return arr;
+    return arr;
   }
   ```
 
