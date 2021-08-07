@@ -8,6 +8,7 @@ if (process.env.CI) {
 
 const withMDX = require('@next/mdx')()
 module.exports = withMDX({
+  webpack5: true,
   basePath,
   assetPrefix,
 })

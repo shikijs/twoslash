@@ -1,0 +1,41 @@
+## Compiler Errors
+
+Most of the time, unless you are the TypeScript team, you want to avoid errors in your code samples. Strictly speaking, this usually means setting the right compiler flags and environment in each code sample.
+
+Some times however, you _do_ want to raise a compiler error - to show incorrect states. In those cases, twoslash has a way to mark the compiler errors you expect.
+
+#### `@errors: [num]`
+
+All TypeScript compiler errors have a number, this number is _relatively_ arbitrary and can change between TypeScript versions. For our case these numbers are useul in declaring what we expect to see.
+
+Taking this example:
+
+```ts twoslash
+const a = "123"
+a = 132
+```
+
+TypeScript gives the following error:
+
+> Cannot assign to 'a' because it is a constant. [2588]
+
+Which the code sample does not reference, and thus the codesample has raise the mis-match as an 'exception'. Shiki Twoslash then shows a pretty error, and will set the process exit code to 1 failing any builds. 
+You can use `// @errors: 2588` to tell Shiki Twoslash that you expect this error to occur:
+
+```ts twoslash
+// @errors: 2588
+const a = "123"
+a = 132
+```
+
+This moves the compiler error message into the code sample.
+
+#### `@noErrors`
+
+Sometimes you have needs in which a broken TypeScript build _is OK_, a good example of this is using a completion query `// ^|` which requires a broken TypeScript project to work. You can use `// @noErrors` to supress all errors in a code sample, and _not_ have them show inline.
+
+```ts twoslash
+// @noErrors
+const a = "123"
+a = 132
+```

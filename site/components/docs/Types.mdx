@@ -1,0 +1,31 @@
+## External Types 
+
+Unless you're teaching TypeScript/JavaScript, you're probably going to want to import libraries into your code samples. 
+
+Shiki Twoslash works by faking a virtual file system **over** your existing file system. This means any `@types` or libraries with TypeScript definitions should work out of the box with no config.
+
+#### Globals
+
+Setting up globals is a little bit more complex, but not drastically. You need to use the [triple slash reference](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-types-) which adds a particular library to the global scope.
+
+```ts twoslash
+/// <reference types="node" />
+// ---cut--
+import {writeFileSync} from "fs" 
+writeFileSync("myfile.txt", "// TODO")
+```
+
+Which sets up Node imports and globals etc. APIs like Jest's are similar cases where you would use a triple slash reference.
+
+```ts twoslash
+/// <reference types="jest" />
+import "jest" // so the playground downloads the types, not needed in node projects
+// ---cut--
+
+test("my tests", () => {
+    expect("hello").toEqual("hello")
+//   ^?
+})
+```
+
+Note that in the playground, automatic type acquisition first has to download all the .d.ts files for these libraries which could take some time. Once the errors in the editor have gone away, try re-run the code samples by making a change.

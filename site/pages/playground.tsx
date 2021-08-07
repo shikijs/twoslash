@@ -13,7 +13,10 @@ import DRY from "../components/docs/DRY.mdx";
 import Emit from "../components/docs/Emit.mdx";
 import Highlights from "../components/docs/Highlights.mdx";
 import MultiFile from "../components/docs/MultiFile.mdx";
+import Errors from "../components/docs/Errors.mdx";
 import Queries from "../components/docs/Queries.mdx";
+import Types from "../components/docs/Types.mdx";
+import Env from "../components/docs/Environment.mdx";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -28,15 +31,34 @@ const b = 2
 const c = 3
 `;
 
+
+// We have MANY async bits of work (mainly shiki/ts sandbox/twoslash-y/remarky ) so this is a
+// globalish alias to re-run the 'work' of transforming
+let reTriggerTwoslash;
+
+// Render the compiler options, this func is overwritten once we get access to the sandbox and ts
+let renderCompilerInfo = () => {}
+
+// Render the fs and twoslash info, this func is overwritten once we get access to the sandbox and ts
+let renderDebugInfo = () => {
+  reTriggerTwoslash()
+}
+
 export default function Playground() {
   let codefence = "ts twoslash";
 
+  let RenderCompilerFlags = () => {
+    useEffect(() => { renderCompilerInfo() })
+    return <div id="compiler-info"/>
+  }
+
+  let RenderDebugInfo = () => {
+    useEffect(() => { renderDebugInfo() })
+    return <div id="debug-info"/>
+  }
+
   useEffect(() => {
     let highlighter: Highlighter | undefined;
-
-    // We have MANY async bits of work (mainly shiki/ts sandbox/twoslash-y/remarky ) so this is a
-    // globalish alias to re-run the 'work' of transforming
-    let reTriggerTwoslash;
 
     // Grab Shiki from unpkg and set up a shiki highlighter.
     const getShiki = document.createElement("script");
@@ -63,7 +85,7 @@ export default function Playground() {
 
       re.config({
         paths: {
-          vs: "https://typescript.azureedge.net/cdn/4.3.5/monaco/min/vs",
+          vs: "https://typescript.azureedge.net/cdn/4.4.0-beta/monaco/min/vs",
           sandbox: "https://www.typescriptlang.org/js/sandbox/",
         },
         ignoreDuplicateModules: ["vs/editor/editor.main"],
@@ -97,7 +119,10 @@ export default function Playground() {
             const sandbox = await sandboxEnv.createTypeScriptSandbox(
               {
                 text: "const a = 123",
-                compilerOptions: {},
+                compilerOptions: {
+                  // TODO: default to jsx
+                  // jsx: 4
+                },
                 domID: "monaco-editor-embed",
                 supportTwoslashCompilerOptions: true,
                 monacoSettings: {
@@ -127,6 +152,29 @@ export default function Playground() {
             sandbox.monaco.editor.setTheme("shiki-monaco");
             sandbox.editor.focus();
 
+            renderCompilerInfo = () => {
+              const flags = ts.optionDeclarations.sort((l, r) => l.name.localeCompare(r.name))
+              const container = document.getElementById("compiler-info")
+
+              const header = document.createElement("h2")
+              header.textContent = "Compiler Flags"
+              container.appendChild(header)
+              
+              // @ts-ignore
+              flags
+                .sort((l, r) => l.name.localeCompare(r.name))
+                .forEach(opt => {
+                  const skip = ["Project_Files_0", "Watch_Options_999", "Command_line_Options_6171"]
+                  if (!opt.category) return
+                  if (opt.isCommandLineOnly) return
+                  if (skip.includes(opt.category.key)) return
+        
+                  const p = document.createElement("p")
+                  p.innerHTML = `<code>// @<a href='https://www.typescriptlang.org/tsconfig#${opt.name}' target='_blank'>${opt.name}</a></code><br>${opt.description.message}.`
+                  container.appendChild(p)
+                })
+            }
+
             // @ts-ignore
             window.sandbox = sandbox;
 
@@ -140,23 +188,23 @@ export default function Playground() {
 
               if (!highlighter) return;
 
-              try {
-                const newResults = twoslasher(newContent, "tsx", {
-                  tsModule: ts,
-                  lzstringModule: sandbox.lzstring as any,
-                  fsMap: mapWithLibFiles,
-                });
-                console.log(newResults);
-              } catch (err) {
-                console.error(err);
-              }
+              // Sets up an fs map which uses the TS sandbox type definitions 
+              const fsMap = new Map<string, string>(mapWithLibFiles)
+
+              // @ts-ignore
+              const ataTypes: Record<string, string> = window.typeDefinitions || {}
+              Object.keys(ataTypes).forEach(f => {
+                if (f.startsWith("file:/")) {
+                  fsMap.set(f.replace("file:///", "/"), ataTypes[f])
+                }
+              })
 
               const runner = remarkVisitor([highlighter], {
                 // @ts-ignore
                 theme: twoslashTheme,
                 tsModule: ts,
                 lzstringModule: sandbox.lzstring as any,
-                fsMap: mapWithLibFiles,
+                fsMap
               });
 
               // Set up an include in the environment for the first time.
@@ -179,10 +227,61 @@ export default function Playground() {
                 type: "custom",
                 value: newContent,
                 children: [],
+                twoslash: undefined
               };
 
               runner(node);
               document.getElementById("output").innerHTML = node.value;
+
+              // If you have the debug panel open, then push a bunch of info
+              // into that HTML element
+              const debug = document.getElementById("debug-info")
+              if (debug && node.twoslash) {
+                while (debug.firstChild) {
+                  debug.removeChild(debug.firstChild)
+                }
+
+                const header = document.createElement("h2")
+                header.textContent = "Debug Info"
+                debug.appendChild(header)
+
+                const twoslash = document.createElement("h5")
+                twoslash.textContent = "Twoslash Info"
+                debug.appendChild(twoslash)
+
+                const pre = document.createElement("pre")
+                debug.appendChild(pre)
+
+                node.twoslash.staticQuickInfos = ["Skipped for brevity..."]
+                const twoslashCode = document.createElement("code")
+                twoslashCode.textContent = JSON.stringify(node.twoslash, null, "  ")
+                pre.appendChild(twoslashCode)
+
+                // Show the files
+                const vfsHeader = document.createElement("h5")
+                vfsHeader.textContent = "VFS Info"
+                debug.appendChild(vfsHeader)
+
+                const files = Array.from(fsMap.keys()).reverse()
+                const dtsFiles: string[] = []
+                const nodeModules: string[] = []
+
+                files.forEach(filename => {
+                  if (filename.startsWith("/lib.")) {
+                    dtsFiles.push(filename.replace("/lib", "lib"))
+                  } else if (filename.startsWith("/node_modules")) {
+                    nodeModules.push(filename.replace("/node_modules", "node_modules"))
+                  } else {
+                    const p = document.createElement("p")
+                    p.innerText = filename
+                    debug.appendChild(p)
+
+                    const code = document.createElement("code")
+                    code.innerText = fsMap.get(filename)!.trim()
+                    debug.appendChild(code)
+                  }
+                })
+              }
             };
             reTriggerTwoslash = runTwoslash;
 
@@ -206,6 +305,7 @@ export default function Playground() {
     const height = target.getBoundingClientRect().height;
     localStorage.setItem("bottom-height", Math.round(height).toString());
   };
+
 
   useEffect(() => {
     const docs = document.getElementsByClassName("docs").item(0);
@@ -254,7 +354,7 @@ export default function Playground() {
         <div className="play-split">
           <div className="left">
             <h3 className="title">Input</h3>
-            <code>```</code> <input id='codefence' className="codefence" type="text" defaultValue={codefence} onChange={(e) => (codefence = e.target.value)}></input>
+            <code>```</code> <input id='codefence' className="codefence" type="text" defaultValue={codefence} onChange={(e) => { codefence = e.target.value; reTriggerTwoslash() }}></input>
             <div id="loader">
               <div className="lds-grid">
                 <div></div>
@@ -296,23 +396,31 @@ export default function Playground() {
                 <TabList>
                   <TitleTab>Features</TitleTab>
                   <Tab>Queries</Tab>
+                  <Tab>Errors</Tab>
                   <Tab>Highlights</Tab>
                   <Tab>Emit</Tab>
                   <Tab>Cutting</Tab>
                   <Tab>Multi-file</Tab>
                   <Tab>DRY Samples</Tab>
                   <Tab>@types</Tab>
-                  <Tab>Logging</Tab>
+                  {/* <Tab>Logging</Tab> */}
 
                   <TitleTab>Reference</TitleTab>
                   <Tab>Compiler Opts</Tab>
-                  <Tab>Defaults</Tab>
+                  <Tab>Environment</Tab>
+                  <Tab>Debug</Tab>
                 </TabList>
 
                 {/* Blank for 'features */}
-                <TabPanel></TabPanel>
+                <TabPanel>
+                  <h2>Welcome to the Shiki Twoslash Playground</h2>
+                  <p>Documentation lives to the left of this text. You can drag this panel up/down to see more/less.</p>
+                </TabPanel>
                 <TabPanel>
                   <Queries />
+                </TabPanel>
+                <TabPanel>
+                  <Errors />
                 </TabPanel>
                 <TabPanel>
                   <Highlights />
@@ -330,18 +438,21 @@ export default function Playground() {
                   <DRY />
                 </TabPanel>
                 <TabPanel>
-                  <h2>@types</h2>
+                  <Types />
                 </TabPanel>
-                <TabPanel>
+                {/* <TabPanel>
                   <h2>Logging</h2>
-                </TabPanel>
+                </TabPanel> */}
                 {/* Blank for 'Reference */}
                 <TabPanel></TabPanel>
                 <TabPanel>
-                  <h2>compiler opts</h2>
+                  <RenderCompilerFlags />
                 </TabPanel>
                 <TabPanel>
-                  <h2>Defaults</h2>
+                  <Env />
+                </TabPanel>
+                <TabPanel>
+                  <RenderDebugInfo />
                 </TabPanel>
               </Tabs>
             </div>
