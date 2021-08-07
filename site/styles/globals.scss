@@ -92,7 +92,7 @@ article.container {
   border-left: 8px solid #e5a604bb;
 }
 
-.main {
+main.main {
   padding: 5rem 0;
   flex: 1;
   display: flex;
@@ -376,6 +376,24 @@ pre.shiki {
     background-color: #F5EDD6;
     font-family: monospace;
     border: none;
+  }
+
+  #output {
+    .twoslash-exception-message h3 {
+      font-size: 1.1rem;
+    }
+
+    .twoslash-exception-message p {
+      font-size: 1rem;
+    }
+
+    .twoslash-exception-message > code {
+      font-size: 0.9rem;
+    }
+
+    .twoslash-exception-code {
+      display: none;
+    }
   }
 
 

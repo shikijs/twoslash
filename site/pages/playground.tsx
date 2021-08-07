@@ -2,7 +2,6 @@ import Head from "next/head";
 import React, { useEffect } from "react";
 import { remarkVisitor } from "remark-shiki-twoslash";
 import type { Highlighter } from "shiki";
-import { twoslasher } from "@typescript/twoslash";
 import twoslashTheme from "../script/shiki-twoslash.json";
 
 import { createDefaultMapFromCDN } from "@typescript/vfs";
@@ -128,6 +127,8 @@ export default function Playground() {
                 monacoSettings: {
                   renderLineHighlight: "none",
                   automaticLayout: true,
+                  occurrencesHighlight: false,
+                  roundedSelection: false,
                 },
               },
               main,
@@ -231,7 +232,11 @@ export default function Playground() {
               };
 
               runner(node);
-              document.getElementById("output").innerHTML = node.value;
+
+              if(node.value) {
+                const editedForWeb = node.value.replace("<p>Raising Code:</p>", "")
+                document.getElementById("output").innerHTML = editedForWeb;
+              }
 
               // If you have the debug panel open, then push a bunch of info
               // into that HTML element
