@@ -707,7 +707,6 @@ pre:hover data-lsp {
   border-color: #747474;
 }
 
-
 .tag-container {
   position: relative;
 
@@ -721,7 +720,9 @@ pre:hover data-lsp {
         line-height: 0.9rem;;
       }
 
+    
     right: -10px;
+    /** Default annotation text to 200px */
     width: 200px;
     color: #187abf;
     background-color: #fcf3d9bb;
@@ -744,7 +745,37 @@ pre:hover data-lsp {
   }
 }
 
+pre .logger {
+  // position: absolute;
+  display: flex;
+  align-items: center;
+  color: black;
+  padding: 6px;
+  padding-left: 8px;
+  width: calc(100% - 19px);
+  white-space: pre-wrap;
 
+  svg {
+    margin-right: 9px;
+  }
+
+  &.error-log {
+    background-color: #fee;
+    border-left: 2px solid #bf1818;  
+  }
+  &.warn-log {
+    background-color: rgb(255, 255, 238);
+    border-left: 2px solid #eae662;  
+  }
+  &.log-log {
+    background-color: rgb(233, 233, 233);
+    border-left: 2px solid #ababab;  
+    svg {
+      margin-left: 6px;
+      margin-right: 9px;
+    }
+  }
+}
 
 .twoslash data-lsp:hover::before {
   content: attr(lsp);

@@ -93,7 +93,14 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
         return `<pre><code>${error.message.split("## Code")[0]}</code></pre>`
     }
 
-    const eLog = typeof jest === "undefined" ? console.error : (_str: string) => {}
+    // @ts-ignore
+    const isWebWorker = typeof self !== "undefined" && typeof self.WorkerGlobalScope !== "undefined"
+    const isBrowser =
+      isWebWorker ||
+      (typeof window !== "undefined" && typeof window.document !== "undefined" && typeof fetch !== "undefined")
+    const isJest = typeof jest === "undefined"
+
+    const eLog = !isBrowser && !isJest ? console.error : (_str: string) => {}
 
     let body = `<pre><code>${error}</code></pre>`
     if (typeof error !== "object") {

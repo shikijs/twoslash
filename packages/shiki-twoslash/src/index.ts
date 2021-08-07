@@ -145,7 +145,7 @@ export const runTwoSlash = (input: string, lang: string, settings: UserConfigSet
     }
   }
 
-  settings.customTags = ["annotate"]
+  settings.customTags = ["annotate", "log", "warn", "error"]
   const results = twoslasher(code, lang, settings)
   return results
 }

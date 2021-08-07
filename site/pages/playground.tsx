@@ -17,6 +17,7 @@ import Queries from "../components/docs/Queries.mdx";
 import Types from "../components/docs/Types.mdx";
 import Env from "../components/docs/Environment.mdx";
 import Annotations from "../components/docs/Annotations.mdx";
+import Logging from "../components/docs/Logging.mdx";
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -423,7 +424,7 @@ export default function Playground() {
                   <Tab>DRY Samples</Tab>
                   <Tab>@types</Tab>
                   <Tab>Meta Annotations</Tab>
-                  {/* <Tab>Logging</Tab> */}
+                  <Tab>Logging</Tab>
 
                   <TitleTab>Reference</TitleTab>
                   <Tab>Compiler Opts</Tab>
@@ -462,6 +463,9 @@ export default function Playground() {
                 </TabPanel>
                 <TabPanel>
                   <Annotations />
+                </TabPanel>
+                <TabPanel>
+                  <Logging />
                 </TabPanel>
                 {/* <TabPanel>
                   <h2>Logging</h2>
