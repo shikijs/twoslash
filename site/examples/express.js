@@ -1,4 +1,4 @@
-// twoslash: { theme: "../../../../../../site/script/shiki-twoslash" }
+// twoslash: { theme: "../../../../../../site/script/shiki-twoslash", vfsRoot: "../../../../../../site/" }
 // @noErrors
 // @esModuleInterop
 import express from "express"

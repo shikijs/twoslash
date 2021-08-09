@@ -28,10 +28,17 @@ export const cachedTwoslashCall = (
 
   const shasum = createHash("sha1")
   const codeSha = shasum.update(code).digest("hex")
-  const cacheRoot = join(__dirname, "..", "..", ".cache", "twoslash")
+  let cacheRoot = join(__dirname, "..", "..", ".cache", "twoslash")
+  if (__dirname.includes("node_modules")) {
+    cacheRoot = join(__dirname.split("node_modules"), ".cache", "twoslash")
+  }
+
   const cachePath = join(cacheRoot, `${codeSha}.json`)
 
   if (existsSync(cachePath)) {
+    if (process.env.debug)
+      console.log(`Using cached twoslash results from ${cachePath}`)
+    
     return JSON.parse(readFileSync(cachePath, "utf8"))
   } else {
     const results = runTwoSlash(code, lang, settings)

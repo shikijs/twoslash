@@ -89,9 +89,14 @@ async function renderMarkdown(args) {
   const fileContent = readFileSync(from, "utf8")
   const settings = getSettingsFromMarkdown(fileContent, from) || {}
   const markdownAST = remark().parse(fileContent)
-
-  // @ts-ignore
-  await remarkShikiTwoslash.default(settings)(markdownAST)
+  console.log(settings)
+  try {
+    // @ts-ignore
+    await remarkShikiTwoslash.default(settings)(markdownAST)
+  } catch (error) {
+    console.error(`Failed to render: ${from}`)
+    console.error(error)
+  }
 
   // Bail before writing the new versions if we're linting
   if (args.lint) return

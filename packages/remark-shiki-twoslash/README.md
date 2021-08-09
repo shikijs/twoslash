@@ -287,6 +287,67 @@ pre .code-container {
 		 transition: none;
 	}
 }
+
+/** Annotations support, providing a tool for meta commentary */
+.tag-container {
+	position: relative;
+}
+.tag-container .twoslash-annotation {
+	position: absolute;
+	font-family: "JetBrains Mono", Menlo, Monaco, Consolas, Courier New, monospace;
+	right: -10px;
+   /** Default annotation text to 200px */
+	width: 200px;
+	color: #187abf;
+	background-color: #fcf3d9 bb;
+}
+.tag-container .twoslash-annotation p {
+	text-align: left;
+	font-size: 0.8rem;
+	line-height: 0.9rem;
+}
+.tag-container .twoslash-annotation svg {
+	float: left;
+	margin-left: -44px;
+}
+.tag-container .twoslash-annotation.left {
+	right: auto;
+	left: -200px;
+}
+.tag-container .twoslash-annotation.left svg {
+	float: right;
+	margin-right: -5px;
+}
+
+/** Support for showing console log/warn/errors inline */
+pre .logger {
+	display: flex;
+	align-items: center;
+	color: black;
+	padding: 6px;
+	padding-left: 8px;
+	width: calc(100% - 19px);
+	white-space: pre-wrap;
+}
+pre .logger svg {
+	margin-right: 9px;
+}
+pre .logger.error-log {
+	background-color: #fee;
+	border-left: 2px solid #bf1818;
+}
+pre .logger.warn-log {
+	background-color: #ffe;
+	border-left: 2px solid #eae662;
+}
+pre .logger.log-log {
+	background-color: #e9e9e9;
+	border-left: 2px solid #ababab;
+}
+pre .logger.log-log svg {
+	margin-left: 6px;
+	margin-right: 9px;
+}
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 

@@ -6,12 +6,14 @@
     "dev": "next dev",
     "bootstrap": "yarn twoslash --sourceAlso examples/*  examples/render; json -I -f ../packages/remark-shiki-twoslash/node_modules/shiki/package.json -e 'this.browser = { fs: false, path: false }'",
     "build": "next build && next export && touch out/.nojekyll && node script/stripNextJS.mjs",
-    "start": "next dev"
+    "start": "next dev",
+    "twoslash": "node ../packages/twoslash-cli/bin/twoslash.js"
   },
   "resolutions": {
     "docusaurus-preset-shiki-twoslash": "link:../packages/docusaurus-preset-shiki-twoslash",
     "remark-shiki-twoslash": "link:../packages/remark-shiki-twoslash",
     "shiki-twoslash": "link:../packages/shiki-twoslash",
+    "twoslash-cli": "link:../packages/twoslash-cli",
     "shiki": "0.9.3"
   },
   "dependencies": {
