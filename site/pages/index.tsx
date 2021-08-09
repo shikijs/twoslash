@@ -23,6 +23,23 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
       </Head>
 
       <body>
+      <header className="nav home">
+        <a href="/">
+          <svg width="23" height="32" viewBox="0 0 23 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.0673828 22.0295V19.2L11.2505 25.7347V28.3621L0.0673828 22.0295Z" fill="#183F66" fillOpacity="0.8" />
+            <path d="M11.251 2.62737V0L22.232 6.06316L22.2994 8.82526L11.251 2.62737Z" fill="#E23D1E" fillOpacity="0.8" />
+            <path d="M0.0673828 8.96001V6.19791L22.3663 19.0653V22.0295L0.0673828 8.96001Z" fill="#E5A604" fillOpacity="0.8" />
+            <path d="M0.0673828 25.6674V22.8379L11.2505 29.3726V32L0.0673828 25.6674Z" fill="#183F66" fillOpacity="0.8" />
+            <path d="M11.251 6.06316V3.43579L22.232 9.90316V12.5305L11.251 6.06316Z" fill="#E23D1E" fillOpacity="0.8" />
+            <path d="M0 12.5979L0.0673684 9.76843L22.5011 22.9053V25.5326L0 12.5979Z" fill="#E5A604" fillOpacity="0.8" />
+            <path d="M22.4336 22.0295V19.2L11.2504 25.7347V28.3621L22.4336 22.0295Z" fill="#183F66" fillOpacity="0.8" />
+            <path d="M11.251 2.62737V0L0.0678196 6.33263V8.96L11.251 2.62737Z" fill="#E23D1E" fillOpacity="0.8" />
+            <path d="M22.4336 25.6674V22.8379L11.2504 29.3726V32L22.4336 25.6674Z" fill="#183F66" fillOpacity="0.8" />
+            <path d="M11.1152 6.13053V3.43579L0.0668125 9.97053V12.5979L11.1152 6.13053Z" fill="#E23D1E" fillOpacity="0.8" />
+          </svg>
+        </a>
+        <p className="subtitle"><a href="./playground">Playground</a></p>
+      </header>
       <main className="main">
         <article className="container border-red">
           <div className="intro">
@@ -368,7 +385,8 @@ function themes() {
 
 function fakeCodeFence(str: string, fence: string) {
   return str
-    .replace("// codefence: {1, 3-4}", `\`\`\`ts twoslash ${fence}`)
+    .replace('class="shiki', `class="not-shiki`) 
+    .replace("<div class='code-container'><code>", `<div class='code-container'><code>\`\`\`ts twoslash ${fence}`)
     .replace("<div class='line'></div></code", '<div class="line" style="color: #BB8700">```</div></code');
 }
 
