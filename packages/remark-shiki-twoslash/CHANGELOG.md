@@ -1,5 +1,12 @@
 ### 1.4.0
 
+## 3.0.2
+
+### Patch Changes
+
+- 56b4e11: Builds an hexadecimal cache key based code snippet plus `shiki-twoslash` current version.
+  This is useful for cache busting when we add a new version of any shiki ecosystem and we have an old cache that should be revalidated.
+
 ## 3.0.0
 
 ### Major Changes
