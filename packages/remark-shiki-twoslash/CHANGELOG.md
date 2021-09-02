@@ -1,5 +1,14 @@
 ### 1.4.0
 
+## 3.0.3
+
+### Patch Changes
+
+- bc5330b: shiki-twoslash: fix HTML comment syntax when we can't find a language for the code sample.
+  Use correct cache path after splitting based on `node_modules`
+- Updated dependencies [bc5330b]
+  - shiki-twoslash@3.0.1
+
 ## 3.0.2
 
 ### Patch Changes

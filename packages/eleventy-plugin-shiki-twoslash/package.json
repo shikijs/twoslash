@@ -1,6 +1,6 @@
 {
   "name": "eleventy-plugin-shiki-twoslash",
-  "version": "1.0.39",
+  "version": "1.0.40",
   "license": "MIT",
   "homepage": "https://github.com/shikijs/twoslash",
   "repository": {
@@ -21,11 +21,11 @@
   },
   "dependencies": {
     "deasync": "^0.1.21",
-    "remark-shiki-twoslash": "3.0.2",
+    "remark-shiki-twoslash": "3.0.3",
     "typescript": ">3"
   },
   "devDependencies": {
     "shiki": "0.9.3",
-    "shiki-twoslash": "3.0.0"
+    "shiki-twoslash": "3.0.1"
   }
 }
