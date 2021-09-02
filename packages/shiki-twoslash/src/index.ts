@@ -92,7 +92,7 @@ export const renderCodeToHTML = (
   } catch (error) {
     // Shiki doesn't know this lang, so render it as plain text, but
     // also add a note at the end as a HTML comment
-    const note = `<!-- Note from shiki-twoslash: the language ${lang} was not set up for Shiki to use, and so there is no code highlighting --!>`
+    const note = `<!-- Note from shiki-twoslash: the language ${lang} was not set up for Shiki to use, and so there is no code highlighting -->`
     return plainTextRenderer(code, renderOpts, meta) + note
   }
 
