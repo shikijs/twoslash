@@ -1,5 +1,7 @@
 ---
 "shiki-twoslash": patch
+"remark-shiki-twoslash": patch
 ---
 
-shiki-twoslash: fix HTML comment syntax when we can't find a language for the code sample
+shiki-twoslash: fix HTML comment syntax when we can't find a language for the code sample.
+Use correct cache path after splitting based on `node_modules`
