@@ -30,7 +30,7 @@ export const cachedTwoslashCall = (
   const codeSha = shasum.update(`${code}-${shikiVersion}`).digest("hex")
   let cacheRoot = join(__dirname, "..", "..", ".cache", "twoslash")
   if (__dirname.includes("node_modules")) {
-    cacheRoot = join(__dirname.split("node_modules"), ".cache", "twoslash")
+    cacheRoot = join(__dirname.split("node_modules")[0], ".cache", "twoslash")
   }
 
   const cachePath = join(cacheRoot, `${codeSha}.json`)
