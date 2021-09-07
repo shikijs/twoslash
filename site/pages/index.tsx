@@ -312,6 +312,13 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
             url="https://marketplace.visualstudio.com/items?itemName=Orta.vscode-twoslash"
             imgName="vscode"
           />
+          <Tool
+            top="Twoslash Playground"
+            body="Share and create repros of Twoslash code samples. Contains a full API reference for Twoslash commands."
+            npm="Playground"
+            url="/playground"
+            imgName="playground"
+          />
         </article>
 
         <Split num={2} />
