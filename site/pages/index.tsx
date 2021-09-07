@@ -316,7 +316,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
             top="Twoslash Playground"
             body="Share and create repros of Twoslash code samples. Contains a full API reference for Twoslash commands."
             npm="Playground"
-            url="/playground"
+            url="/twoslash/playground"
             imgName="playground"
           />
         </article>
