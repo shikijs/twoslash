@@ -38,7 +38,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
             <path d="M11.1152 6.13053V3.43579L0.0668125 9.97053V12.5979L11.1152 6.13053Z" fill="#E23D1E" fillOpacity="0.8" />
           </svg>
         </a>
-        <p className="subtitle"><a href="./playground">Playground</a></p>
+        <p className="subtitle"><a href="/twoslash/playground">Playground</a></p>
       </header>
       <main className="main">
         <article className="container border-red">
