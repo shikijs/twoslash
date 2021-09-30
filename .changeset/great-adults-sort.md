@@ -2,4 +2,4 @@
 "remark-shiki-twoslash": patch
 ---
 
-Fixes an unreleased typo
+Fixes a typo that prevent PnP environments to be properly detected
