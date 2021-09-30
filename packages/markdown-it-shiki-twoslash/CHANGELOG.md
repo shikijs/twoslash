@@ -1,5 +1,12 @@
 # markdown-it-shiki-twoslash
 
+## 2.0.18
+
+### Patch Changes
+
+- Updated dependencies [e5ecfea]
+  - remark-shiki-twoslash@3.0.4
+
 ## 2.0.17
 
 ### Patch Changes

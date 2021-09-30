@@ -1,5 +1,11 @@
 ### 1.4.0
 
+## 3.0.4
+
+### Patch Changes
+
+- e5ecfea: Fixes remark-shiki-twoslash when used in PnP projects
+
 ## 3.0.3
 
 ### Patch Changes
