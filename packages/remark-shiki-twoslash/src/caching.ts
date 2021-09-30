@@ -42,7 +42,7 @@ export const cachedTwoslashCall = (
     return join(pnp.getPackageInformation(pnp.topLevelLocator).packageLocation, "node_modules", ".cache", "twoslash");
   };
 
-  const cacheRoot = process.env.pnp
+  const cacheRoot = process.versions.pnp
     ? getPnpCache()
     : getNmCache();
 
