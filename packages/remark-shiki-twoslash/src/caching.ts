@@ -28,10 +28,23 @@ export const cachedTwoslashCall = (
   const shikiVersion = require('@typescript/twoslash/package.json').version
   const shasum = createHash("sha1")
   const codeSha = shasum.update(`${code}-${shikiVersion}`).digest("hex")
-  let cacheRoot = join(__dirname, "..", "..", ".cache", "twoslash")
-  if (__dirname.includes("node_modules")) {
-    cacheRoot = join(__dirname.split("node_modules")[0], ".cache", "twoslash")
-  }
+
+  const getNmCache = () => {
+    if (__dirname.includes("node_modules")) {
+      return join(__dirname.split("node_modules")[0], ".cache", "twoslash")
+    } else {
+      return join(__dirname, "..", "..", ".cache", "twoslash");
+    }
+  };
+
+  const getPnpCache = () => {
+    const pnp = require("pnpapi");
+    return join(pnp.getPackageInformation(pnp.topLevelLocator).packageLocation, "node_modules", ".cache", "twoslash");
+  };
+
+  const cacheRoot = process.env.pnp
+    ? getPnpCache()
+    : getNmCache();
 
   const cachePath = join(cacheRoot, `${codeSha}.json`)
 
