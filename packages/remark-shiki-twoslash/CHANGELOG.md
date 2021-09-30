@@ -1,5 +1,11 @@
 ### 1.4.0
 
+## 3.0.5
+
+### Patch Changes
+
+- 86d6214: Fixes a typo that prevent PnP environments to be properly detected
+
 ## 3.0.4
 
 ### Patch Changes
