@@ -119,7 +119,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
                 <span className="eu">T</span>hink of twoslash as a pre-processor for your code-samples.
               </p>
               <p>Twoslash is a JavaScript and TypeScript markup language. You can write a single code sample which describes an entire JavaScript project</p>
-              <p>Twoslash uses the same compiler APIs as your text editors to provide type-driven hover information, accurate errors and</p>
+              <p>Twoslash uses the same compiler APIs as your text editors to provide type-driven hover information, accurate errors and type callouts</p>
               <p>
                 Each code sample is compiled in isolation, so you can be certain all your examples still compile and work right a few major versions down the
                 line.
