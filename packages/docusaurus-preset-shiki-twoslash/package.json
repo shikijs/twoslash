@@ -1,6 +1,6 @@
 {
   "name": "docusaurus-preset-shiki-twoslash",
-  "version": "1.1.32",
+  "version": "1.1.33",
   "license": "MIT",
   "homepage": "https://github.com/shikijs/twoslash",
   "repository": {
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "copy-text-to-clipboard": "^3.0.1",
-    "remark-shiki-twoslash": "3.0.5",
+    "remark-shiki-twoslash": "3.0.6",
     "typescript": ">3"
   },
   "devDependencies": {

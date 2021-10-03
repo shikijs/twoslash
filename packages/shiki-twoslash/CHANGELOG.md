@@ -1,5 +1,11 @@
 # shiki-twoslash
 
+## 3.0.2
+
+### Patch Changes
+
+- 4b83df9: Updates the twoslash dependency
+
 ## 3.0.1
 
 ### Patch Changes
