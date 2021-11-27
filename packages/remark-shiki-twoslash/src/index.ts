@@ -98,17 +98,6 @@ export const highlightersFromSettings = (settings: UserConfigSettings) => {
   )
 }
 
-const amendSettingsForDefaults = (settings: UserConfigSettings) => {
-  if (!settings["vfsRoot"]) {
-    // Default to assuming you want vfs node_modules set up
-    // but don't assume you're on node though
-    try {
-      // dist > remark-shiki-twoslash > node_modules
-      settings.vfsRoot = require("path").join(__dirname, "..", "..", "..")
-    } catch (error) {}
-  }
-}
-
 const parsingNewFile = () => includes.clear()
 
 const parseFence = (fence: string): Fence => {
@@ -151,8 +140,6 @@ type RemarkCodeNode = Node & {
  * async API works.
  */
 function remarkTwoslash(settings: UserConfigSettings = {}) {
-  amendSettingsForDefaults(settings)
-
   if (!highlighterCache.has(settings)) {
     highlighterCache.set(settings, highlightersFromSettings(settings))
   }
@@ -221,7 +208,6 @@ export default remarkTwoslash
 /** Only the inner function exposed as a synchronous API for markdown-it */
 
 export const setupForFile = async (settings: UserConfigSettings = {}) => {
-  amendSettingsForDefaults(settings)
   parsingNewFile()
 
   if (!highlighterCache.has(settings)) {
