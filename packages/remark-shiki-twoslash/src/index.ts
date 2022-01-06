@@ -135,11 +135,13 @@ type RemarkCodeNode = Node & {
   twoslash?: TwoSlashReturn
 }
 
+export type Options = UserConfigSettings
+
 /**
  * Synchronous outer function, async inner function, which is how the remark
  * async API works.
  */
-function remarkTwoslash(settings: UserConfigSettings = {}) {
+function remarkTwoslash(settings: Options = {}) {
   if (!highlighterCache.has(settings)) {
     highlighterCache.set(settings, highlightersFromSettings(settings))
   }
