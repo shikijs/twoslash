@@ -31,7 +31,7 @@ export const cachedTwoslashCall = (
 
   const getNmCache = () => {
     if (__dirname.includes("node_modules")) {
-      return join(__dirname.split("node_modules")[0], ".cache", "twoslash")
+      return join(__dirname.split("node_modules")[0], "node_modules", ".cache", "twoslash")
     } else {
       return join(__dirname, "..", "..", ".cache", "twoslash");
     }
