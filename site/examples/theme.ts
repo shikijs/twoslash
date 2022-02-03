@@ -1,4 +1,4 @@
-// twoslash: { themes: ["../../../../../../site/script/shiki-twoslash", 'dark-plus',  'github-dark',  'github-light',  'light-plus',  'material-theme-darker',  'material-theme-default', 'material-theme-lighter',  'min-light',  'min-dark',  'monokai', 'slack-theme-ochin', 'solarized-light' , 'nord',  'slack-theme-dark-mode',    'material-theme-ocean',  'solarized-dark',  'material-theme-palenight' ] }
+// twoslash: { themes: ["../../../../../../site/script/shiki-twoslash", 'dark-plus',  'github-dark',  'github-light',  'light-plus',  'material-default', 'material-lighter',  'min-light',  'min-dark',  'monokai', 'slack-ochin', 'solarized-light' , 'nord',  'slack-dark',    'material-ocean',  'solarized-dark',  'material-palenight' ] }
 // @errors: 2540
 interface Todo {
   title: string;

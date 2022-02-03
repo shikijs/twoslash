@@ -89,7 +89,7 @@ async function renderMarkdown(args) {
   const fileContent = readFileSync(from, "utf8")
   const settings = getSettingsFromMarkdown(fileContent, from) || {}
   const markdownAST = remark().parse(fileContent)
-  console.log(settings)
+
   try {
     // @ts-ignore
     await remarkShikiTwoslash.default(settings)(markdownAST)

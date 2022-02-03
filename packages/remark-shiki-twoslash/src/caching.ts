@@ -38,8 +38,12 @@ export const cachedTwoslashCall = (
   };
 
   const getPnpCache = () => {
-    const pnp = require("pnpapi");
-    return join(pnp.getPackageInformation(pnp.topLevelLocator).packageLocation, "node_modules", ".cache", "twoslash");
+    try {
+      const pnp = require("pnpapi");
+      return join(pnp.getPackageInformation(pnp.topLevelLocator).packageLocation, "node_modules", ".cache", "twoslash");
+    } catch (error) {
+      return getNmCache()
+    }
   };
 
   const cacheRoot = process.versions.pnp

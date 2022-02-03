@@ -1,7 +1,8 @@
 import Head from "next/head";
 import React, { useEffect } from "react";
 import { remarkVisitor } from "remark-shiki-twoslash";
-import type { Highlighter } from "shiki";
+// import type { Highlighter } from "shiki";
+type Highlighter = Parameters<typeof import("remark-shiki-twoslash").remarkVisitor>[0][0];
 import twoslashTheme from "../script/shiki-twoslash.json";
 
 import { createDefaultMapFromCDN } from "@typescript/vfs";
@@ -35,7 +36,7 @@ const defaultCode = `// Here is an example code snippet, notice that
 // ---cut---
 const num = 123
 const str = "234234"
-//    ^?`
+//    ^?`;
 
 const twoslashInclude = `
 const a = 1
@@ -45,31 +46,34 @@ const b = 2
 const c = 3
 `;
 
-
 // We have MANY async bits of work (mainly shiki/ts sandbox/twoslash-y/remarky ) so this is a
 // globalish alias to re-run the 'work' of transforming
 let reTriggerTwoslash;
 
 // Render the compiler options, this func is overwritten once we get access to the sandbox and ts
-let renderCompilerInfo = () => {}
+let renderCompilerInfo = () => {};
 
 // Render the fs and twoslash info, this func is overwritten once we get access to the sandbox and ts
 let renderDebugInfo = () => {
-  reTriggerTwoslash()
-}
+  reTriggerTwoslash();
+};
 
 export default function Playground() {
   let codefence = "ts twoslash";
 
   let RenderCompilerFlags = () => {
-    useEffect(() => { renderCompilerInfo() })
-    return <div id="compiler-info"/>
-  }
+    useEffect(() => {
+      renderCompilerInfo();
+    });
+    return <div id="compiler-info" />;
+  };
 
   let RenderDebugInfo = () => {
-    useEffect(() => { renderDebugInfo() })
-    return <div id="debug-info"/>
-  }
+    useEffect(() => {
+      renderDebugInfo();
+    });
+    return <div id="debug-info" />;
+  };
 
   useEffect(() => {
     let highlighter: Highlighter | undefined;
@@ -169,27 +173,27 @@ export default function Playground() {
             sandbox.editor.focus();
 
             renderCompilerInfo = () => {
-              const flags = ts.optionDeclarations.sort((l, r) => l.name.localeCompare(r.name))
-              const container = document.getElementById("compiler-info")
+              const flags = ts.optionDeclarations.sort((l, r) => l.name.localeCompare(r.name));
+              const container = document.getElementById("compiler-info");
 
-              const header = document.createElement("h2")
-              header.textContent = "Compiler Flags"
-              container.appendChild(header)
-              
+              const header = document.createElement("h2");
+              header.textContent = "Compiler Flags";
+              container.appendChild(header);
+
               // @ts-ignore
               flags
                 .sort((l, r) => l.name.localeCompare(r.name))
-                .forEach(opt => {
-                  const skip = ["Project_Files_0", "Watch_Options_999", "Command_line_Options_6171"]
-                  if (!opt.category) return
-                  if (opt.isCommandLineOnly) return
-                  if (skip.includes(opt.category.key)) return
-        
-                  const p = document.createElement("p")
-                  p.innerHTML = `<code>// @<a href='https://www.typescriptlang.org/tsconfig#${opt.name}' target='_blank'>${opt.name}</a></code><br>${opt.description.message}.`
-                  container.appendChild(p)
-                })
-            }
+                .forEach((opt) => {
+                  const skip = ["Project_Files_0", "Watch_Options_999", "Command_line_Options_6171"];
+                  if (!opt.category) return;
+                  if (opt.isCommandLineOnly) return;
+                  if (skip.includes(opt.category.key)) return;
+
+                  const p = document.createElement("p");
+                  p.innerHTML = `<code>// @<a href='https://www.typescriptlang.org/tsconfig#${opt.name}' target='_blank'>${opt.name}</a></code><br>${opt.description.message}.`;
+                  container.appendChild(p);
+                });
+            };
 
             // @ts-ignore
             window.sandbox = sandbox;
@@ -202,23 +206,23 @@ export default function Playground() {
               const newContent = sandbox.getText();
               if (!highlighter) return;
 
-              // Sets up an fs map which uses the TS sandbox type definitions 
-              const fsMap = new Map<string, string>(mapWithLibFiles)
+              // Sets up an fs map which uses the TS sandbox type definitions
+              const fsMap = new Map<string, string>(mapWithLibFiles);
 
               // @ts-ignore
-              const ataTypes: Record<string, string> = window.typeDefinitions || {}
-              Object.keys(ataTypes).forEach(f => {
+              const ataTypes: Record<string, string> = window.typeDefinitions || {};
+              Object.keys(ataTypes).forEach((f) => {
                 if (f.startsWith("file:/")) {
-                  fsMap.set(f.replace("file:///", "/"), ataTypes[f])
+                  fsMap.set(f.replace("file:///", "/"), ataTypes[f]);
                 }
-              })
+              });
 
               const runner = remarkVisitor([highlighter], {
                 // @ts-ignore
                 theme: twoslashTheme,
                 tsModule: ts,
                 lzstringModule: sandbox.lzstring as any,
-                fsMap
+                fsMap,
               });
 
               // Set up an include in the environment for the first time.
@@ -241,64 +245,64 @@ export default function Playground() {
                 type: "custom",
                 value: newContent,
                 children: [],
-                twoslash: undefined
+                twoslash: undefined,
               };
 
               runner(node);
 
-              if(node.value) {
-                const editedForWeb = node.value.replace("<p>Raising Code:</p>", "")
+              if (node.value) {
+                const editedForWeb = node.value.replace("<p>Raising Code:</p>", "");
                 document.getElementById("output").innerHTML = editedForWeb;
               }
 
               // If you have the debug panel open, then push a bunch of info
               // into that HTML element
-              const debug = document.getElementById("debug-info")
+              const debug = document.getElementById("debug-info");
               if (debug && node.twoslash) {
                 while (debug.firstChild) {
-                  debug.removeChild(debug.firstChild)
+                  debug.removeChild(debug.firstChild);
                 }
 
-                const header = document.createElement("h2")
-                header.textContent = "Debug Info"
-                debug.appendChild(header)
+                const header = document.createElement("h2");
+                header.textContent = "Debug Info";
+                debug.appendChild(header);
 
-                const twoslash = document.createElement("h5")
-                twoslash.textContent = "Twoslash Info"
-                debug.appendChild(twoslash)
+                const twoslash = document.createElement("h5");
+                twoslash.textContent = "Twoslash Info";
+                debug.appendChild(twoslash);
 
-                const pre = document.createElement("pre")
-                debug.appendChild(pre)
+                const pre = document.createElement("pre");
+                debug.appendChild(pre);
 
-                node.twoslash.staticQuickInfos = ["Skipped for brevity..."]
-                const twoslashCode = document.createElement("code")
-                twoslashCode.textContent = JSON.stringify(node.twoslash, null, "  ")
-                pre.appendChild(twoslashCode)
+                node.twoslash.staticQuickInfos = ["Skipped for brevity..."];
+                const twoslashCode = document.createElement("code");
+                twoslashCode.textContent = JSON.stringify(node.twoslash, null, "  ");
+                pre.appendChild(twoslashCode);
 
                 // Show the files
-                const vfsHeader = document.createElement("h5")
-                vfsHeader.textContent = "VFS Info"
-                debug.appendChild(vfsHeader)
+                const vfsHeader = document.createElement("h5");
+                vfsHeader.textContent = "VFS Info";
+                debug.appendChild(vfsHeader);
 
-                const files = Array.from(fsMap.keys()).reverse()
-                const dtsFiles: string[] = []
-                const nodeModules: string[] = []
+                const files = Array.from(fsMap.keys()).reverse();
+                const dtsFiles: string[] = [];
+                const nodeModules: string[] = [];
 
-                files.forEach(filename => {
+                files.forEach((filename) => {
                   if (filename.startsWith("/lib.")) {
-                    dtsFiles.push(filename.replace("/lib", "lib"))
+                    dtsFiles.push(filename.replace("/lib", "lib"));
                   } else if (filename.startsWith("/node_modules")) {
-                    nodeModules.push(filename.replace("/node_modules", "node_modules"))
+                    nodeModules.push(filename.replace("/node_modules", "node_modules"));
                   } else {
-                    const p = document.createElement("p")
-                    p.innerText = filename
-                    debug.appendChild(p)
+                    const p = document.createElement("p");
+                    p.innerText = filename;
+                    debug.appendChild(p);
 
-                    const code = document.createElement("code")
-                    code.innerText = fsMap.get(filename)!.trim()
-                    debug.appendChild(code)
+                    const code = document.createElement("code");
+                    code.innerText = fsMap.get(filename)!.trim();
+                    debug.appendChild(code);
                   }
-                })
+                });
               }
             };
             reTriggerTwoslash = runTwoslash;
@@ -323,7 +327,6 @@ export default function Playground() {
     const height = target.getBoundingClientRect().height;
     localStorage.setItem("bottom-height", Math.round(height).toString());
   };
-
 
   useEffect(() => {
     const docs = document.getElementsByClassName("docs").item(0);
@@ -374,7 +377,17 @@ export default function Playground() {
         <div className="play-split">
           <div className="left">
             <h3 className="title">Input</h3>
-            <code>```</code> <input id='codefence' className="codefence" type="text" defaultValue={codefence} onChange={(e) => { codefence = e.target.value; reTriggerTwoslash() }}></input>
+            <code>```</code>{" "}
+            <input
+              id="codefence"
+              className="codefence"
+              type="text"
+              defaultValue={codefence}
+              onChange={(e) => {
+                codefence = e.target.value;
+                reTriggerTwoslash();
+              }}
+            ></input>
             <div id="loader">
               <div className="lds-grid">
                 <div></div>
@@ -387,9 +400,7 @@ export default function Playground() {
                 <div></div>
                 <div></div>
               </div>
-              <p id="loading-message" role="status">
-                
-              </p>
+              <p id="loading-message" role="status"></p>
             </div>
             <div style={{ height: "300px", display: "none" }} id="monaco-editor-embed" />
             <code>```</code>
