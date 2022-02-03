@@ -26,6 +26,17 @@ console.log(helloWorld)
 
 Would only show the last two lines, but to TypeScript it was a program with 2 files and all of the IDE information is hooked up correctly across the files. This is why `// @filename: [file]` is specifically the only Twoslash command which _is not_ removed, because if it's not relevant it can be `---cut---` away.
 
-### Cut Below
+#### `---cut-after---`
 
-In my ~2 years of writing Twoslash code samples, I've never needed to cut _under_ a code sample. So if someone wants it they're welcome to send a well-tested PR. 
+The sibling to `--cut---` which trims anything after the sigil:
+
+```tsx twoslash
+const Page = () => (
+// ---cut---
+<Container>
+  <ImportantComponent />
+</Container>
+// ---cut-after---
+)
+```
+

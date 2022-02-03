@@ -22,7 +22,7 @@ const components = {
 }
 
 function MyApp({ Component, pageProps }) {
-  return   <MDXProvider components={components}>
+  return  <MDXProvider components={components}>
    <Component {...pageProps} />
   </MDXProvider>
 }

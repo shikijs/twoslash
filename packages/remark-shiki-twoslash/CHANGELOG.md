@@ -1,5 +1,13 @@
 ### 1.4.0
 
+## 3.0.7
+
+### Patch Changes
+
+- f4d749f: Export `Options` type for remark plugin
+- b4570bb: Moves the cache folder to correctly live inside inside node_modules
+- 2bc773e: Stop setting `vfsRoot` when it's not present, so that `@typescript/twoslash` can handle it.
+
 ## 3.0.6
 
 ### Patch Changes

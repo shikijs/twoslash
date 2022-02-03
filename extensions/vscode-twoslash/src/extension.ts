@@ -30,7 +30,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   const openTwoslash = vscode.commands.registerCommand("vscode-twoslash.openTwoslashCodeblock", (codeblock) => {
     const hash = `#code/${lzstring.compressToEncodedURIComponent(codeblock.code.trim())}`
-    vscode.commands.executeCommand('vscode.open', vscode.Uri.parse('https://www.typescriptlang.org/dev/bug-workbench/' + hash));
+    vscode.commands.executeCommand('vscode.open', vscode.Uri.parse('https://shikijs.github.io/twoslash/playground/' + hash));
   });
 
   const clearD = vscode.commands.registerCommand("vscode-twoslash.clearAllMonitors", (codeblock) => {
@@ -115,8 +115,14 @@ export function activate(context: vscode.ExtensionContext) {
               {
                 label: "---cut---",
                 kind: 14,
-                detail: "Twoslash split output",
+                detail: "Twoslash remove code above",
                 insertText: "---cut---".replace(word, ""),
+              },
+              {
+                label: "---cut-after---",
+                kind: 14,
+                detail: "Twoslash remove code below",
+                insertText: "---cut-after---".replace(word, ""),
               },
             ],
           }
