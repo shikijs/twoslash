@@ -66,6 +66,8 @@ function preset(context, pluginOptions) {
     const output = structure(preset)
     const sections = ["docs", "blog", "pages"]
     for (const section of sections) {
+      // If the plugin is disabled, keep it disabled
+      if (output[1][section] === false) continue
       if (!output[1][section]) output[1][section] = {}
       addTwoslash(output[1][section])
     }
