@@ -1,5 +1,11 @@
 # docusaurus-preset-shiki-twoslash
 
+## 1.1.35
+
+### Patch Changes
+
+- 17c0d12: feat(docusaurus-preset): support shorthands, support mix of preset and plugin
+
 ## 1.1.34
 
 ### Patch Changes
