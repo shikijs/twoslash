@@ -20,24 +20,31 @@ function preset(context, pluginOptions) {
   // We could parse out the repeated parts from the strings but
   // I think it's better this way as a way of showing that twoslash could
   // technically support all kinds of presets, not just official ones
-  const presets = ["@docusaurus/preset-classic", "@docusaurus/preset-bootstrap"]
+  const presets = [["@docusaurus/preset-classic", "classic"]]
   const plugins = [
-    "@docusaurus/plugin-content-docs",
-    "@docusaurus/plugin-content-blog",
-    "@docusaurus/plugin-content-pages",
+    ["@docusaurus/plugin-content-docs", "content-docs"],
+    ["@docusaurus/plugin-content-blog", "content-blog"],
+    ["@docusaurus/plugin-content-pages", "content-pages"],
   ]
 
   // Flag to keep track if at least one of the presets or the plugins are installed
   let flag = false
 
-  // Checks if b is in a
-  const contains = (a, b) => a.includes(typeof b === "string" ? b : b[0])
+  /**
+   * Checks if b is in a
+   * @param {string[][]} a
+   * @param {string | [string] | [string, any]} b
+   */
+  const contains = (a, b) => a.flat().includes(typeof b === "string" ? b : b[0])
 
-  // Structure a into proper [a, {}]
-  // output is
-  // [a, {}] if a is string
-  // [a[0], {}] if a is [string]
-  // a if a is already [string, {}]
+  /**
+   * Structure `a` into proper `[a, {}]`
+   * @param {string | [string] | [string, any]} a
+   * @returns {[string, any]}
+   *  - `[a, {}]` if `a` is `string`
+   *  - `[a[0], {}]` if `a` is `[string]`
+   *  - `a` if `a` is already `[string, {}]`
+   */
   const structure = a => (typeof a === "string" ? [a, {}] : a.length === 1 ? [a[0], {}] : a)
 
   // Adds remark-shiki-twoslash into beforeDefaultRemarkPlugins
@@ -51,39 +58,41 @@ function preset(context, pluginOptions) {
     return a
   }
 
-  // if a preset is found
-  // no need to search for plugins
-  if (context.siteConfig.presets.find(p => contains(presets, p))) {
-    context.siteConfig.presets = context.siteConfig.presets.map(preset => {
-      if (!contains(presets, preset)) {
-        return preset
-      }
+  context.siteConfig.presets = context.siteConfig.presets.map(preset => {
+    if (!contains(presets, preset)) {
+      return preset
+    }
 
-      const output = structure(preset)
-      const sections = ["docs", "blog", "pages"]
-      for (const section of sections) {
-        if (!output[1][section]) output[1][section] = {}
-        addTwoslash(output[1][section])
-      }
+    const output = structure(preset)
+    const sections = ["docs", "blog", "pages"]
+    for (const section of sections) {
+      // If the plugin is disabled, keep it disabled
+      if (output[1][section] === false) continue
+      if (!output[1][section]) output[1][section] = {}
+      addTwoslash(output[1][section])
+    }
 
-      return output
-    })
-  } else {
-    context.siteConfig.plugins = context.siteConfig.plugins.map(plugin => {
-      // if the plugin is not supported
-      if (!contains(plugins, plugin)) {
-        return plugin
-      }
+    return output
+  })
 
-      return addTwoslash(structure(plugin))
-    })
-  }
+  context.siteConfig.plugins = context.siteConfig.plugins.map(plugin => {
+    if (typeof plugin === "function" || (Array.isArray(plugin) && typeof plugin[0] === "function")) {
+      return plugin
+    }
+
+    // if the plugin is not supported
+    if (!contains(plugins, plugin)) {
+      return plugin
+    }
+
+    return addTwoslash(structure(plugin))
+  })
 
   if (!flag) {
     throw Error(`
     Couldn't find a preset or a plugin supported by twoslash
-    Make sure you installed one of these presets [ ${presets.join(", ")} ],
-    or one of these plugins [ ${plugins.join(", ")} ].\n`)
+    Make sure you installed one of these presets [ ${presets.map(p => p[0]).join(", ")} ],
+    or one of these plugins [ ${plugins.map(p => p[0]).join(", ")} ].\n`)
   }
 
   return {
