@@ -40,7 +40,7 @@ export const cachedTwoslashCall = (
   const getPnpCache = () => {
     try {
       const pnp = require("pnpapi");
-      return join(pnp.getPackageInformation(pnp.topLevelLocator).packageLocation, "node_modules", ".cache", "twoslash");
+      return join(pnp.getPackageInformation(pnp.topLevel).packageLocation, "node_modules", ".cache", "twoslash");
     } catch (error) {
       return getNmCache()
     }
