@@ -2,6 +2,10 @@ import type { Node } from "unist"
 
 import {TwoslashError} from "@typescript/twoslash"
 
+function escapeHtml(html: string) {
+  return html.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+}
+
 export const setupNodeForTwoslashException = (code: string, node: Node, error: unknown) => {
     const css = `<style>
 @import url('http://fonts.cdnfonts.com/css/caslon-os'); 
@@ -120,7 +124,7 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
         eLog(error)
     }
 
-    const codeSample = `<p>Raising Code:</p><pre class='twoslash-exception-code'><code>${code}</code></pre>`
+    const codeSample = `<p>Raising Code:</p><pre class='twoslash-exception-code'><code>${escapeHtml(code)}</code></pre>`
 
     const html = `
     <a href='#twoslash-error'><div class='twoslash-fixed-error-note'><span class='twoslash-error-color'></span>Twoslash failure</div></a>
