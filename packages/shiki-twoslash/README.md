@@ -37,7 +37,7 @@ const a = "123"
 const b = "345"
     `
   const twoslash = runTwoSlash(code, "ts", {})
-  const html = renderCodeToHTML(twoslash.code, "ts", ["twoslash"], {}, highlighter, twoslash)
+  const html = renderCodeToHTML(twoslash.code, "ts", { twoslash: true }, {}, highlighter, twoslash)
 
   fs.writeFileSync("output.html", html, "utf8")
 }
