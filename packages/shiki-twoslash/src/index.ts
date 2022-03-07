@@ -56,7 +56,7 @@ export const createShikiHighlighter = (options: HighlighterOptions) => {
  *
  * @param code the source code to render
  * @param lang the language to use in highlighting
- * @param info additional metadata which lives after the code-fence lang (e.g. ["twoslash"])
+ * @param info additional metadata which lives after the code-fence lang (e.g. `{ twoslash: true }`)
  * @param shikiOptions user settings
  * @param highlighter optional, but you should use it, highlighter
  * @param twoslash optional, but required when info contains 'twoslash' as a string
