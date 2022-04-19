@@ -87,9 +87,9 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
 
     const bodyFromTwoslashError = (error: TwoslashError) =>  {
         return `
-<h3>${error.title}</h3>
-<p>${error.description.replace(/(?:\r\n|\r|\n)/g, '<br>')}</p>
-<code>${error.recommendation.replace(/(?:\r\n|\r|\n)/g, '<br>')}</code>
+<h3>${escapeHtml(error.title)}</h3>
+<p>${escapeHtml(error.description).replace(/(?:\r\n|\r|\n)/g, "<br>")}</p>
+<code>${escapeHtml(error.recommendation).replace(/(?:\r\n|\r|\n)/g, "<br>")}</code>
 `
     }
 
