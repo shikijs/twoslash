@@ -53,7 +53,7 @@ twoslash --lint pages/example_files.md
 > Create TSX files with a named `Code` export for a set of .ts files.
 
 ```sh
-twoslash --sourceAlso samples/*.ts components/twoslash 
+twoslash --reactAlso samples/*.ts components/twoslash 
 ```
 
 #### Configuring Shiki Twoslash
