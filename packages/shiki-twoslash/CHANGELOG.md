@@ -1,5 +1,11 @@
 # shiki-twoslash
 
+## 3.1.0
+
+### Minor Changes
+
+- 53d3730: Bump version of "shiki" to 0.10.1
+
 ## 3.0.2
 
 ### Patch Changes

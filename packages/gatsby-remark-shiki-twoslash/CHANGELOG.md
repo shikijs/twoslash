@@ -1,5 +1,13 @@
 # gatsby-remark-shiki-twoslash
 
+## 3.0.35
+
+### Patch Changes
+
+- Updated dependencies [aa047ea]
+- Updated dependencies [53d3730]
+  - remark-shiki-twoslash@3.1.0
+
 ## 3.0.34
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 ### 1.4.0
 
+## 3.1.0
+
+### Minor Changes
+
+- 53d3730: Bump version of "shiki" to 0.10.1
+
+### Patch Changes
+
+- aa047ea: Escape HTML in error message/recommendation
+- Updated dependencies [53d3730]
+  - shiki-twoslash@3.1.0
+
 ## 3.0.9
 
 ### Patch Changes
