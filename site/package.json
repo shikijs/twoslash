@@ -14,7 +14,7 @@
     "remark-shiki-twoslash": "link:../packages/remark-shiki-twoslash",
     "shiki-twoslash": "link:../packages/shiki-twoslash",
     "twoslash-cli": "link:../packages/twoslash-cli",
-    "shiki": "0.9.11"
+    "shiki": "0.10.1"
   },
   "dependencies": {
     "@mdx-js/loader": "^1.6.22",
@@ -31,7 +31,7 @@
     "react-tabs": "^3.2.2",
     "remark-shiki-twoslash": "3.0.5",
     "sass": "^1.37.5",
-    "shiki": "0.9.11",
+    "shiki": "0.10.1",
     "shiki-twoslash": "link:../packages/shiki-twoslash",
     "ts-debounce": "^3.0.0",
     "vscode-theme-generator": "^0.1.5"
