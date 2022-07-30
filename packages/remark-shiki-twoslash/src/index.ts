@@ -64,7 +64,7 @@ function getHTML(
 export const runTwoSlashOnNode = (code: string, { lang, meta }: Fence, settings: UserConfigSettings = {}) => {
   // Offer a way to do high-perf iterations, this is less useful
   // given that we cache the results of twoslash in the file-system
-  const shouldDisableTwoslash = process && process.env && !!process.env.TWOSLASH_DISABLE
+  const shouldDisableTwoslash = typeof process !== "undefined" && process.env && !!process.env.TWOSLASH_DISABLE
   if (shouldDisableTwoslash) return undefined
 
   // Only run twoslash when the meta has the attribute twoslash
