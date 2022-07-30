@@ -102,7 +102,8 @@ export const setupNodeForTwoslashException = (code: string, node: Node, error: u
     const isBrowser =
       isWebWorker ||
       (typeof window !== "undefined" && typeof window.document !== "undefined" && typeof fetch !== "undefined")
-    const isJest = typeof jest === "undefined"
+  
+      const isJest = typeof jest !== "undefined"
 
     const eLog = !isBrowser && !isJest ? console.error : (_str: string) => {}
 

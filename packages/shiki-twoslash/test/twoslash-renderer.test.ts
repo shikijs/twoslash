@@ -165,7 +165,7 @@ describe("implicit React import example", () => {
     const html = renderCodeToHTML(twoslash.code, "tsx", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
 
     expect(html).toContain(`data-lsp`)
-    expect(html).toContain(`<data-lsp lsp='var children: React.ReactNode`) // children
+    expect(html).toContain(`<data-lsp lsp='(parameter) children: React.`) // children
     expect(html).toContain(`<data-lsp lsp='(property) JSX.IntrinsicElements.div`) // div
     expect(html.split("<data-lsp").length).toEqual(twoslash.staticQuickInfos.length + 1)
   })
@@ -181,7 +181,7 @@ const C: React.FC = ({children}) => <Tag>{children}</Tag>
     const html = renderCodeToHTML(twoslash.code, "tsx", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
 
     expect(html).toContain(`data-lsp`)
-    expect(html).toContain(`<data-lsp lsp='var children: React.ReactNode`) // children
+    expect(html).toContain(`<data-lsp lsp='(parameter) children: React.`) // children
     expect(html).toContain(`<data-lsp lsp='const Tag: React.ExoticComponent`) // Tag
     expect(html.split("<data-lsp").length).toEqual(twoslash.staticQuickInfos.length + 1)
   })
@@ -196,7 +196,7 @@ const C: React.FC = ({children}) => <div>{children}</div>
     const html = renderCodeToHTML(twoslash.code, "tsx", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
 
     expect(html).toContain(`data-lsp`)
-    expect(html).toContain(`<data-lsp lsp='var children: any`) // children
+    expect(html).toContain(`<data-lsp lsp='(parameter) children: any`) // children
     expect(html).toContain(`<data-lsp lsp='any`) // div
     expect(html).toContain(`<data-err`)
     expect(html.split("<data-lsp").length).toEqual(twoslash.staticQuickInfos.length + 1)
@@ -212,7 +212,7 @@ const C: React.FC = ({children}) => <div>{children}</div>
     const html = renderCodeToHTML(twoslash.code, "tsx", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
 
     expect(html).toContain(`data-lsp`)
-    expect(html).toContain(`<data-lsp lsp='var children: React.ReactNode`) // children
+    expect(html).toContain(`<data-lsp lsp='(parameter) children: React.`) // children
     expect(html).toContain(`<data-lsp lsp='(property) JSX.IntrinsicElements.div`) // div
     expect(html.split("<data-lsp").length).toEqual(twoslash.staticQuickInfos.length + 1)
   })
@@ -227,7 +227,7 @@ const C: React.FC = ({children}) => <div>{children}</div>
     const html = renderCodeToHTML(twoslash.code, "tsx", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
 
     expect(html).toContain(`data-lsp`)
-    expect(html).toContain(`<data-lsp lsp='var children: React.ReactNode`) // children
+    expect(html).toContain(`<data-lsp lsp='(parameter) children: React.`) // children
     expect(html).toContain(`<data-lsp lsp='(property) JSX.IntrinsicElements.div`) // div
     expect(html.split("<data-lsp").length).toEqual(twoslash.staticQuickInfos.length + 1)
   })
@@ -242,7 +242,7 @@ const C: React.FC = ({children}) => <div>{children}</div>
     const html = renderCodeToHTML(twoslash.code, "tsx", { twoslash: true }, { themeName: "nord" }, highlighter, twoslash)
 
     expect(html).toContain(`data-lsp`)
-    expect(html).toContain(`<data-lsp lsp='var children: React.ReactNode`) // children
+    expect(html).toContain(`<data-lsp lsp='(parameter) children: React.`) // children
     expect(html).toContain(`<data-lsp lsp='(property) JSX.IntrinsicElements.div`) // div
     expect(html.split("<data-lsp").length).toEqual(twoslash.staticQuickInfos.length + 1)
   })
