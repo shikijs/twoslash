@@ -5,7 +5,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "bootstrap": "pnpm build -r --workspace-concurrency 1 && md-magic",
+    "bootstrap": "pnpm recursive run --workspace-concurrency 1 build  && md-magic",
     "build": "pnpm run build -r && md-magic",
     "deploy": "pnpm changeset version && pnpm install && git add . && git commit -m 'Deploy' && git push"
   },
@@ -21,8 +21,8 @@
     "markdown-magic-inline-types": "^1.0.2",
     "pleb": "^3.4.4",
     "prettier": "^2.3.1",
-    "typescript": "^4.3.4"
-  }, 
+    "typescript": "^4.7.4"
+  },
   "prettier": {
     "printWidth": 140
   }

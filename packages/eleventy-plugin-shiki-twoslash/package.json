@@ -17,7 +17,7 @@
   "typings": "./index.d.ts",
   "scripts": {
     "bootstrap": "echo 'NOOP'",
-    "build": "npx tsc index.js --declaration --allowJs --emitDeclarationOnly"
+    "build": "npx tsc index.js --declaration --allowJs --emitDeclarationOnly --target es2018 -moduleResolution node"
   },
   "dependencies": {
     "deasync": "^0.1.21",

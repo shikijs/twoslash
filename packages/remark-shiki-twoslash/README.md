@@ -502,7 +502,8 @@ It's not normal for these themes to be available as npm modules, so you'll need 
 	remarkPlugins: [[remarkShikiTwoslash, { 
 		themes: [
 			"vendor/pop-n-lock/Pop-N-Lock.json",  "vendor/pop-n-lock/Pop-N-Lock.alexis-black.json"}]
-	],
+		],
+	}]]
 }
 ```
 

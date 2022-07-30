@@ -77,7 +77,7 @@ interface HighlighterOptions {
 
 With twoslash's [`TwoSlashOptions`](https://unpkg.com/@typescript/twoslash/dist/index.d.ts)
 
-<!-- AUTO-GENERATED-CONTENT:START (TYPE:src=./node_modules/@typescript/twoslash/dist/index.d.ts&symbol=TwoSlashOptions) -->
+<!-- AUTO-GENERATED-CONTENT:START (TYPE:src=./packages/shiki-twoslash/node_modules/@typescript/twoslash/dist/index.d.ts&symbol=TwoSlashOptions) -->
 ```ts
 export interface TwoSlashOptions {
     /** Allows setting any of the handbook options from outside the function, useful if you don't want LSP identifiers */
@@ -105,7 +105,7 @@ export interface TwoSlashOptions {
 
 The Twoslash `ExampleOptions` looks like (these are things which can be set via `// @[flag]` in a code sample):
 
-<!-- AUTO-GENERATED-CONTENT:START (TYPE:src=./node_modules/@typescript/twoslash/dist/index.d.ts&symbol=ExampleOptions) -->
+<!-- AUTO-GENERATED-CONTENT:START (TYPE:src=./packages/shiki-twoslash/node_modules/@typescript/twoslash/dist/index.d.ts&symbol=ExampleOptions) -->
 ```ts
 /** Available inline flags which are not compiler flags */
 export interface ExampleOptions {
