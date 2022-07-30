@@ -22,3 +22,10 @@ jobs:
       - run: pnpm install
       - run: pnpm bootstrap
       - run: pnpm test
+
+      - name: Validate Website
+        run: |
+          cd site
+          yarn install
+          yarn bootstrap
+          yarn build
