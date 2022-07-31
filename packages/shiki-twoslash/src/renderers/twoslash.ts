@@ -104,7 +104,21 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
           return result
         }
 
-        const errorsInToken = errors.filter(findTokenFunc(tokenPos))
+        const isTokenWithinErrorRange = (start: number) => (e: any) => 
+          start >= e.character && start + token.content.length <= e.character + e.length
+
+        const isTokenWithinErrorRangeDebug = (start: number) => (e: any) => {
+          const result = start >= e.character && start + token.content.length <= e.character + e.length
+          // prettier-ignore
+          console.log(result, token.content ,start, '>=', e.character, '&&', start + token.content.length, '<=', e.character + e.length)
+          if (result) {
+            console.log("Found:", e)
+            console.log("Inside:", token)
+          }
+          return result
+        }
+
+        const errorsInToken = errors.filter(isTokenWithinErrorRange(tokenPos))
         const lspResponsesInToken = lspValues.filter(findTokenFunc(tokenPos))
         const queriesInToken = queries.filter(findTokenFunc(tokenPos))
 
