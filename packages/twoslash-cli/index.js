@@ -92,7 +92,7 @@ async function renderMarkdown(args) {
 
   try {
     // @ts-ignore
-    await remarkShikiTwoslash.dejfault(settings)(markdownAST)
+    await remarkShikiTwoslash.default(settings)(markdownAST)
   } catch (error) {
     console.error(`Failed to render: ${from}`)
     console.error(error)
