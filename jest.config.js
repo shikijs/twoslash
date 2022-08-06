@@ -10,5 +10,8 @@ module.exports = {
         }
       } 
     ]
+  },
+  "snapshotFormat": {
+    "printBasicPrototype": false
   }
 };
