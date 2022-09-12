@@ -16,7 +16,7 @@
   "main": "./index.js",
   "scripts": {
     "bootstrap": "echo 'NOOP'",
-    "build": "npx tsc index.js --declaration --allowJs --emitDeclarationOnly  --target es2018 -moduleResolution node",
+    "build": "pnpm exec tsc index.js --declaration --allowJs --emitDeclarationOnly  --target es2018 -moduleResolution node",
     "test": "echo 'NOOP'",
     "lint": "echo 'NOOP'"
   },
