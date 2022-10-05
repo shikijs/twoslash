@@ -122,8 +122,8 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
                 <p>
                   <span className="eu">T</span>hink of twoslash as a pre-processor for your code-samples.
                 </p>
-                <p>Twoslash is a JavaScript and TypeScript markup language. You can write a single code sample which describes an entire JavaScript project</p>
-                <p>Twoslash uses the same compiler APIs as your text editors to provide type-driven hover information, accurate errors and type callouts</p>
+                <p>Twoslash is a JavaScript and TypeScript markup language. You can write a single code sample which describes an entire JavaScript project.</p>
+                <p>Twoslash uses the same compiler APIs as your text editors to provide type-driven hover information, accurate errors and type callouts.</p>
                 <p>
                   Each code sample is compiled in isolation, so you can be certain all your examples still compile and work right a few major versions down the
                   line.
@@ -154,7 +154,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
                 </p>
                 <p>All code samples use Shiki, then you can opt-in to have Twoslash markup inside specific TypeScript / JavaScript code blocks.</p>
                 <p>
-                  Shiki Twoslash is built to generate completely server-side syntax highlighted code samples with no reliance that the user can run JavaScript.
+                  Shiki Twoslash is built to generate completely server-side syntax highlighted code samples with no reliance on client-side JavaScript.
                 </p>
               </div>
 
@@ -179,7 +179,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
 
             <Code code={props.html.basic.replace("shiki-twoslash twoslash", "").replace("twoslash", "").replace("lsp", "")} />
 
-            <Point msg="However, on JavaScript-y code samples, you can opt-in a code sample to use Twoslash. Try move your cursor into this code sample:" />
+            <Point msg="However, on JavaScript-y code samples, you can opt-in a code sample to use Twoslash. Try moving your cursor into this code sample:" />
 
             <Code code={props.html.basic} />
 
