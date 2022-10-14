@@ -1,4 +1,5 @@
 import type { Node } from "unist"
+import type { Transformer } from "unified";
 import { TwoslashError, TwoSlashReturn } from "@typescript/twoslash"
 
 import visit from "unist-util-visit"
@@ -146,7 +147,7 @@ function remarkTwoslash(settings: Options = {}) {
     highlighterCache.set(settings, highlightersFromSettings(settings))
   }
 
-  const transform = async (markdownAST: any) => {
+  const transform: Transformer = async (markdownAST) => {
     const highlighters = await highlighterCache.get(settings)!
     parsingNewFile()
     visit(markdownAST, "code", remarkVisitor(highlighters, settings))
