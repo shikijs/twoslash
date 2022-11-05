@@ -10,7 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
   
   // Provides the buttons
   const codelens = new SnapshotCodeLensProvider(runner)
-  const codelensD = vscode.languages.registerCodeLensProvider({ pattern: '**/*.md' }, codelens)
+  const codelensD = vscode.languages.registerCodeLensProvider({ pattern: "**/*.{md,mdx}" }, codelens);
   
   // So that a runner can tell the code actions to update after a run
   runner.codeLensDidChange = codelens.onDidChange
@@ -69,7 +69,7 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   // Provides a hover with the full info for exceptions
-  const hoverDispose = vscode.languages.registerHoverProvider('markdown', {
+  const hoverDispose = vscode.languages.registerHoverProvider(['markdown', 'mdx'], {
     provideHover(document, position, token) {
       const char = document.offsetAt(position)
       const codeblock = runner.stateForSampleAtPosition(char)
@@ -88,7 +88,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 
   // Provides a hover with the full info for exceptions
-  const completionDispose = vscode.languages.registerCompletionItemProvider('markdown', {
+  const completionDispose = vscode.languages.registerCompletionItemProvider(['markdown', 'mdx'], {
       provideCompletionItems: (document, position, cancel, context) => {
 
         const results: vscode.CompletionItem[] = []
