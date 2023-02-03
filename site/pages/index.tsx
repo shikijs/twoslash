@@ -71,7 +71,7 @@ export default function Home(props: ReturnType<typeof getStaticProps>["props"]) 
               <p>
                 Purveyor of renowned open source code
                 <br />
-                and TypeScript compiler team member
+                and ex-TypeScript compiler team member
               </p>
             </div>
 
