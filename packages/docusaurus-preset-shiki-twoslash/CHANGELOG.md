@@ -1,5 +1,13 @@
 # docusaurus-preset-shiki-twoslash
 
+## 1.1.39
+
+### Patch Changes
+
+- Updated dependencies [e6b739c]
+- Updated dependencies [bfca2ac]
+  - remark-shiki-twoslash@3.1.1
+
 ## 1.1.38
 
 ### Patch Changes

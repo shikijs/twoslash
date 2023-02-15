@@ -1,5 +1,14 @@
 ### 1.4.0
 
+## 3.1.1
+
+### Patch Changes
+
+- e6b739c: fix type error in `remarkTwoslash`
+- bfca2ac: Moves typescript to peer dependencies
+- Updated dependencies [bfca2ac]
+  - shiki-twoslash@3.1.1
+
 ## 3.1.0
 
 ### Minor Changes

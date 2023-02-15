@@ -1,5 +1,11 @@
 # shiki-twoslash
 
+## 3.1.1
+
+### Patch Changes
+
+- bfca2ac: Moves typescript to peer dependencies
+
 ## 3.1.0
 
 ### Minor Changes

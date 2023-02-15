@@ -1,5 +1,13 @@
 # hexo-shiki-twoslash
 
+## 1.0.37
+
+### Patch Changes
+
+- Updated dependencies [e6b739c]
+- Updated dependencies [bfca2ac]
+  - remark-shiki-twoslash@3.1.1
+
 ## 1.0.36
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "remark-shiki-twoslash",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "license": "MIT",
   "homepage": "https://github.com/shikijs/twoslash",
   "repository": {
@@ -33,7 +33,7 @@
     "fenceparser": "^1.1.0",
     "regenerator-runtime": "^0.13.7",
     "shiki": "0.10.1",
-    "shiki-twoslash": "3.1.0",
+    "shiki-twoslash": "3.1.1",
     "tslib": "2.1.0",
     "unist-util-visit": "^2.0.0"
   },
