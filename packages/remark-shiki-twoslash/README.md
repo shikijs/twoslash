@@ -438,6 +438,10 @@ for (let x in [0]) console.log(x)
 
 ## Power User Features
 
+#### Skip Twoslash
+
+To avoid running twoslash on any code samples, run the environment with `TWOSLASH_DISABLE` as truthy and it will skip all twoslash processing. The code will instead be rendered as a normal code fence.
+
 #### Cache Cleaning
 
 To avoid re-running twoslash un-necessarily during dev mode, this plugin will cache all twoslash and only run the compilation when the code changes. You can find (and purge) the cache in `node_modules/.cache/twoslash`.
