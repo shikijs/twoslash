@@ -1,5 +1,12 @@
 # twoslash-cli
 
+## 1.3.23
+
+### Patch Changes
+
+- Updated dependencies [e133a03]
+  - remark-shiki-twoslash@3.1.2
+
 ## 1.3.22
 
 ### Patch Changes

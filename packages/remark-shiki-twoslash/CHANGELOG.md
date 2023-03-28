@@ -1,5 +1,11 @@
 ### 1.4.0
 
+## 3.1.2
+
+### Patch Changes
+
+- e133a03: Adds the TypeScript version to the cache key for twoslash
+
 ## 3.1.1
 
 ### Patch Changes

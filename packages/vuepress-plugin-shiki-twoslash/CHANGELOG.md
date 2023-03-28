@@ -1,5 +1,12 @@
 # vuepress-plugin-shiki-twoslash
 
+## 1.0.38
+
+### Patch Changes
+
+- Updated dependencies [e133a03]
+  - remark-shiki-twoslash@3.1.2
+
 ## 1.0.37
 
 ### Patch Changes
