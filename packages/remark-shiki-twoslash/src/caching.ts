@@ -25,9 +25,11 @@ export const cachedTwoslashCall = (
   const { createHash } = require("crypto")
   const { readFileSync, existsSync, mkdirSync, writeFileSync } = require("fs")
   const { join } = require("path")
+
   const shikiVersion = require('@typescript/twoslash/package.json').version
+  const tsVersion = require('typescript/package.json').version
   const shasum = createHash("sha1")
-  const codeSha = shasum.update(`${code}-${shikiVersion}`).digest("hex")
+  const codeSha = shasum.update(`${code}-${shikiVersion}-${tsVersion}`).digest("hex")
 
   const getNmCache = () => {
     if (__dirname.includes("node_modules")) {
