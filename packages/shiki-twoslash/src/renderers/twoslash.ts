@@ -192,7 +192,7 @@ export function twoslashRenderer(lines: Lines, options: HtmlRendererOptions & Tw
                 .sort((l, r) => l.name.localeCompare(r.name))
                 .map(c => {
                   const after = c.name.substr(query.completionsPrefix?.length || 0)
-                  const name = `<span><span class='result-found'>${query.completionsPrefix || ""}</span>${after}<span>`
+                  const name = `<span><span class='result-found'>${query.completionsPrefix || ""}</span>${after}</span>`
                   const isDeprecated = c.kindModifiers?.split(",").includes("deprecated")
                   const liClass = isDeprecated ? "deprecated" : ""
                   return `<li class='${liClass}'>${name}</li>`
