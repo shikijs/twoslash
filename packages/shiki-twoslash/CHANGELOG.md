@@ -1,5 +1,11 @@
 # shiki-twoslash
 
+## 3.1.2
+
+### Patch Changes
+
+- 7777f35: Fixed renderer completion result closing tag.
+
 ## 3.1.1
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 ### 1.4.0
 
+## 3.1.3
+
+### Patch Changes
+
+- Updated dependencies [7777f35]
+  - shiki-twoslash@3.1.2
+
 ## 3.1.2
 
 ### Patch Changes
