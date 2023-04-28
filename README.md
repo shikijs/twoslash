@@ -47,3 +47,8 @@ Then see the contributing [for advice](./CONTRIBUTING.md) and the vision file fo
 
 - [`shiki-twoslash`](packages/shiki-twoslash) - Provides all the building blocks for above
 - [`twoslash-cli`](packages/twoslash-cli) - A CLI for converting md/ts/tsx/js/jsx files to HTML
+
+
+###### Deploys
+
+Run: `pnpm deploy`.
