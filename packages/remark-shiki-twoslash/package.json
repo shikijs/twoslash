@@ -32,7 +32,7 @@
     "@types/unist": "^2.0.0",
     "fenceparser": "^1.1.0",
     "regenerator-runtime": "^0.13.7",
-    "shiki": "0.10.1",
+    "shiki": "0.14.2",
     "shiki-twoslash": "3.1.2",
     "tslib": "2.1.0",
     "unist-util-visit": "^2.0.0"
