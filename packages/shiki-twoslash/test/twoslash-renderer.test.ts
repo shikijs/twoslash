@@ -313,3 +313,15 @@ const a = 123
 })
 
 
+it("includes extra attributes on the pre", async () => {
+  const highlighter = await createShikiHighlighter({ theme: "nord" })
+  const meta = {
+    title: "Hello",
+    class: "rotated shadow",
+    style: "--agent: smith;",
+    onclick: "return doTheThing(\"now\") && succeed()",
+  }
+  const html = renderCodeToHTML( "", "ts", meta, { themeName: "nord" }, highlighter)
+
+  expect(html).toContain(`<pre title="Hello" class="shiki nord rotated shadow with-title" style="background-color: #1E1E1E; color: #D4D4D4; --agent: smith;" onclick="return doTheThing(&quot;now&quot;) &amp;&amp; succeed()">`)
+})

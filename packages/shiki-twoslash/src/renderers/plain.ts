@@ -1,4 +1,4 @@
-import { escapeHtml, Meta } from "../utils"
+import { stripHTML, escapeHtml, Meta } from "../utils"
 
 // C&P'd from shiki
 export interface HtmlRendererOptions {
@@ -20,23 +20,34 @@ export const preOpenerFromRenderingOptsWithExtras = (opts: HtmlRendererOptions, 
     .join(" ")
     .trim()
 
-  const attributes = Object.entries(meta)
+  const style = [`background-color: ${bg}; color: ${fg}`, meta.style ?? ""]
+    .filter(Boolean)
+    .join("; ")
+    .trim()
+
+  const attributes = {
+    ...meta,
+    class: classList,
+    style,
+  }
+
+  const attributesString = Object.entries(attributes)
     .filter(entry => {
       // exclude types other than string, number, boolean
-      // exclude keys class, twoslash
+      // exclude key twoslash
       // exclude falsy booleans
       return (
         ["string", "number", "boolean"].includes(typeof entry[1]) &&
-        !["class", "twoslash"].includes(entry[0]) &&
+        !["twoslash"].includes(entry[0]) &&
         entry[1] !== false
       )
     })
-    .map(([key, value]) => `${key}="${value}"`)
+    .map(([key, value]) => `${key}="${stripHTML((value as string).toString())}"`)
     .join(" ")
     .trim()
 
   // prettier-ignore
-  return `<pre class="${classList}" style="background-color: ${bg}; color: ${fg}"${attributes ? ` ${attributes}`: ''}>`
+  return `<pre ${attributesString}>`
 }
 
 /** You don't have a language which shiki twoslash can handle, make a DOM compatible version  */
