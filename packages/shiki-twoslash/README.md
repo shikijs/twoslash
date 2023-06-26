@@ -52,18 +52,18 @@ The config which you pass in is a mix of Shiki's [`HighlighterOptions`](https://
 interface HighlighterOptions {
     /**
      * The theme to load upfront.
+     *
+     * Default to: 'nord'
      */
     theme?: IThemeRegistration;
     /**
      * A list of themes to load upfront.
-     *
-     * Default to: `['dark-plus', 'light-plus']`
      */
     themes?: IThemeRegistration[];
     /**
      * A list of languages to load upfront.
      *
-     * Default to `['html', 'css', 'javascript']`
+     * Default to all the bundled languages.
      */
     langs?: (Lang | ILanguageRegistration)[];
     /**
@@ -88,6 +88,8 @@ export interface TwoSlashOptions {
     customTransformers?: CustomTransformers;
     /** An optional copy of the TypeScript import, if missing it will be require'd. */
     tsModule?: TS;
+    /** Absolute path to the directory to look up built-in TypeScript .d.ts files. */
+    tsLibDirectory?: string;
     /** An optional copy of the lz-string import, if missing it will be require'd. */
     lzstringModule?: LZ;
     /**

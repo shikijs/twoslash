@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "bootstrap": "pnpm recursive run --workspace-concurrency 1 build  && md-magic",
-    "build": "pnpm run build -r && md-magic",
+    "build": "pnpm recursive run --workspace-concurrency 1 build && md-magic",
     "deploy": "pnpm changeset version && pnpm install && git add . && git commit -m 'Deploy' && git push"
   },
   "devDependencies": {

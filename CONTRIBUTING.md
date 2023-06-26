@@ -24,3 +24,11 @@ The examples projects have been used to bootstrap the integration plugins, and d
 #### Twoslash
 
 Shiki Twoslash relies on Twoslash which lives in the [TypeScript website monorepo](https://github.com/microsoft/TypeScript-Website/tree/v2/packages/ts-twoslasher). For more daring features, you may need to add support there first.
+
+#### Deps
+
+There is a script `node scripts/syncVersions.js` which ensures that all the deps in the repo line up, which if you make any package json changes you probably want to run
+
+#### Deploys 
+
+The deploy process happens on push and compares the versions via pleb

@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: "15.x"
+          node-version: "18.x"
           registry-url: "https://registry.npmjs.org/"
       - name: Cache .pnpm-store
         uses: actions/cache@v1
@@ -19,7 +19,7 @@ jobs:
           path: ~/.pnpm-store
           key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
       - name: Install pnpm
-        run: curl -f https://get.pnpm.io/v6.js | node - add --global pnpm@6
+        run: curl -f https://get.pnpm.io/v8.js | node - add --global pnpm@8
 
 
       - run: pnpm install

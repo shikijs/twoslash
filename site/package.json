@@ -1,6 +1,6 @@
 {
   "name": "twoslash-site",
-  "version": "0.1.5",
+  "version": "0.1.12",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -14,14 +14,14 @@
     "remark-shiki-twoslash": "link:../packages/remark-shiki-twoslash",
     "shiki-twoslash": "link:../packages/shiki-twoslash",
     "twoslash-cli": "link:../packages/twoslash-cli",
-    "shiki": "0.10.1"
+    "shiki": "*"
   },
   "dependencies": {
     "@mdx-js/loader": "^1.6.22",
     "@next/mdx": "^11.0.1",
     "@types/express": "^4.17.12",
     "@types/mdx": "^2.0.2",
-    "docusaurus-preset-shiki-twoslash": "1.1.38",
+    "docusaurus-preset-shiki-twoslash": "1.1.44",
     "json": "^11.0.0",
     "monaco-editor": "^0.26.1",
     "next": "12.2.3",
@@ -30,16 +30,15 @@
     "react-dom": "17.0.2",
     "react-resizable": "^3.0.4",
     "react-tabs": "^3.2.2",
-    "remark-shiki-twoslash": "3.1.0",
+    "remark-shiki-twoslash": "3.1.7",
     "sass": "^1.37.5",
-    "shiki": "0.10.1",
-    "shiki-twoslash": "3.1.0",
+    "shiki-twoslash": "3.1.3",
     "ts-debounce": "^3.0.0",
     "vscode-theme-generator": "^0.1.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",
-    "twoslash-cli": "1.3.21",
+    "twoslash-cli": "1.3.28",
     "typescript": "^4.7.4"
   },
   "prettier": {

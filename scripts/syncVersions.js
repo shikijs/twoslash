@@ -14,10 +14,14 @@ const updateVersions = () => {
     return packages.find(p => p.pkg.name === dep)
   }
   
+  const shikiTwoslash = packages.find(p => p.pkg.name === "shiki-twoslash")
+  if(!shikiTwoslash) throw new Error("No shiki-twoslash package found")
+
   packages.forEach(d => {
     const p = d.pkg
     const deps = [p.devDependencies || {}, p.dependencies || {}]
     let write = false
+    // Ensure intra packages have the right versions 
     deps.forEach(d => {
       const keysInWorkSpace = Object.keys(d).filter(dep => inWorkspace(dep))
       keysInWorkSpace.forEach(key => {
@@ -30,6 +34,15 @@ const updateVersions = () => {
         }
       })
     })
+
+    // Ensure deps defined in shiki-twoslash are consistent across other packages
+    Object.keys(shikiTwoslash.pkg.dependencies).forEach(key => {
+      if(shikiTwoslash.dependencies?.[key] && d[key] && d[key]  !== shikiTwoslash.dependencies[key]) {
+        console.log(`Updating ${key} on ${d.name} to ${shikiTwoslash.dependencies[key]}`)
+        d[key] = shikiTwoslash?.[d]?.[key]
+        write = true
+      }
+    })
   
     if (write) {
       const [major, minor, patch] = p.version.split(".")
@@ -38,6 +51,8 @@ const updateVersions = () => {
     }
   })
 }
+
+// todo: add syncing fencesitter and shiki versions
 
 updateVersions()
 updateVersions()
