@@ -18,9 +18,9 @@ jobs:
         with:
           path: ~/.pnpm-store
           key: ${{ runner.os }}-node${{ matrix.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-      - name: Install pnpm
-        run: curl -f https://get.pnpm.io/v8.js | node - add --global pnpm@8
-
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
       - run: pnpm install
       - run: pnpm run update -r
