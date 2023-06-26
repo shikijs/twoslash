@@ -23,7 +23,7 @@ jobs:
           version: 8
 
       - run: pnpm install
-      - run: pnpm run update -r
+      # - run: pnpm run update -r
       - run: pnpm bootstrap
       - run: pnpm run test
 
