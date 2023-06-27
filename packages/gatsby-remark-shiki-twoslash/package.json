@@ -19,7 +19,6 @@
   ],
   "scripts": {
     "bootstrap": "",
-    "prepublishOnly": "",
     "build": ""
   },
   "dependencies": {

@@ -21,7 +21,6 @@
   ],
   "scripts": {
     "start": "tsdx watch",
-    "prepublishOnly": "npm run ",
     "update": "node scripts/generateTSConfigOneliners.js",
     "build": "tsdx build",
     "test": "tsdx test",
