@@ -20,11 +20,16 @@
     "jest": "^27.0.5",
     "markdown-magic": "^2.2.0",
     "markdown-magic-inline-types": "^1.0.2",
-    "pleb": "^3.4.4",
+    "pleb": "^5.1.4",
     "prettier": "^2.3.1",
     "typescript": "^4.7.4"
   },
   "prettier": {
     "printWidth": 140
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "pleb@5.1.4": "patches/pleb@5.1.4.patch"
+    }
   }
 }

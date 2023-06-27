@@ -1,0 +1,13 @@
+diff --git a/dist/commands/publish.js b/dist/commands/publish.js
+index 1250350da55d7bc15553d338b68b869c27208d32..26cf0db8d627a5c6416fbea806b83281d9ee12d3 100644
+--- a/dist/commands/publish.js
++++ b/dist/commands/publish.js
+@@ -30,7 +30,7 @@ export async function publish({ directoryPath, dryRun = false, distDir = '.', re
+                     stdio: 'inherit',
+                     shell: true,
+                 };
+-                spawnSyncLogged('npm', publishArgs, spawnOptions, npmPackage.displayName);
++                spawnSyncLogged('pnpm', publishArgs, spawnOptions, npmPackage.displayName);
+                 log(`${npmPackage.displayName}: done.`);
+             }
+         }
