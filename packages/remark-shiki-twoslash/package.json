@@ -21,7 +21,6 @@
   ],
   "scripts": {
     "start": "tsdx watch",
-    "prepublishOnly": "npm run build",
     "build": "tsdx build",
     "test": "tsdx test",
     "lint": "tsdx lint"

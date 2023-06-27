@@ -22,7 +22,6 @@
   "scripts": {
     "build": "esbuild src/index.ts --outfile=dist/index.js --target=node12 --platform=node",
     "bootstrap": "pnpm exec tsc src/index.ts --declaration  --emitDeclarationOnly --outdir dist --esModuleInterop",
-    "prepublishOnly": "npm run build;"
   },
   "dependencies": {
     "deasync": "^0.1.21",
