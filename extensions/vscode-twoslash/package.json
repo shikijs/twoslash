@@ -14,7 +14,8 @@
     "Linters"
   ],
   "activationEvents": [
-    "onLanguage:markdown"
+    "onLanguage:markdown",
+    "onLanguage:mdx"
   ],
   "contributes": {
   },
