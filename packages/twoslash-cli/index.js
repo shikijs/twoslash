@@ -15,6 +15,7 @@ import { join, dirname } from "path"
 import remarkShikiTwoslash from "remark-shiki-twoslash"
 import { basename, extname, sep } from "path"
 import { tmpdir } from "os"
+import ts from "typescript"
 
 export const canConvert = (path) => {
   const usable = [".md", ".ts", ".js", ".tsx", ".jsx"]
@@ -89,6 +90,18 @@ async function renderMarkdown(args) {
   const fileContent = readFileSync(from, "utf8")
   const settings = getSettingsFromMarkdown(fileContent, from) || {}
   const markdownAST = remark().parse(fileContent)
+
+  if (settings.defaultCompilerOptions) {
+    const {options} = ts.convertCompilerOptionsFromJson(settings.defaultCompilerOptions, ".")
+    settings.defaultCompilerOptions = {
+      ...settings.defaultCompilerOptions,
+      ...Object.fromEntries(
+        Object
+          .entries(options)
+          .flatMap(([key, value]) => value === undefined ? [] : [[key, value]])
+      ),
+    }
+  }
 
   try {
     // @ts-ignore
